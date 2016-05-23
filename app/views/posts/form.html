@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block Title %}
+This is a form!
+{% endblock %}
+
+
+{% block body %}
+<form class="form-horizontal" >
+	<fieldset>
+
+		<!-- Form Name -->
+		<legend>testing form</legend>
+
+		<!-- Text input-->
+		<div class="control-group">
+			<label class="control-label" for="textinput-0">Text Input</label>
+			<div class="controls">
+				<input id="textinput-0" name="textinput-0" placeholder="please fill me" class="input-xlarge" required="" type="text">
+				<p class="help-block">some help</p>
+			</div>
+		</div>
+
+		<!-- Button -->
+		<div class="control-group">
+			<label class="control-label" for="singlebutton-0">execute</label>
+			<div class="controls">
+				<button id="singlebutton-0" name="singlebutton-0" class="btn btn-success">go for it</button>
+			</div>
+		</div>
+
+	</fieldset>
+</form>
+
+
+{% endblock %}
