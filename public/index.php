@@ -10,14 +10,14 @@ use gateweb\mvc\core\Router;
  * Composer
  */
 require_once(__DIR__.'/../../_class/initialize_dist.php');
-	
+
+
 
 // extra local classes
-$dir = "../app/";
+$dir = __DIR__."/../app/";
 if(is_executable($dir)){
 	$loader->addNamespace('gateweb\mvc\app', $dir);
 }
-
 
 /**
  * Error and Exception handling
@@ -33,14 +33,13 @@ set_exception_handler('gateweb\mvc\core\Error::exceptionHandler');
 $router = new Router();
 
 // Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('{controller}/{action}');
-$router->add('{controller}/{id:\d+}/{action}');
-$router->add('admin/{controller}/{action}', ['namespace' => 'admin']);
+$router->add('/questionnaire/', ['controller' => 'Home', 'action' => 'index']);
+$router->add('/questionnaire/{controller}/{action}');
+$router->add('/questionnaire/{controller}/{id:\d+}/{action}');
+$router->add('/questionnaire/admin/{controller}/{action}', ['namespace' => 'admin']);
 
 
 		
 $router->dispatch($router->get_path());
-
 
 
