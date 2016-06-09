@@ -15,7 +15,8 @@ class homeCest
     public function tryToTest(AcceptanceTester $I)
     {
         $I->wantTo('test a test page');
-        $I->amOnPage('/acceptanceTest');
+        $I->amOnPage('/test/index');
         $I->see('hello');
+
     }
 }

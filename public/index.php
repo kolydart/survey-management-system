@@ -1,5 +1,6 @@
 <?php
 
+use gateweb\mvc\app\Config;
 use gateweb\mvc\core\Router;
 
 /**
@@ -33,10 +34,10 @@ set_exception_handler('gateweb\mvc\core\Error::exceptionHandler');
 $router = new Router();
 
 // Add the routes
-$router->add('/questionnaire/', ['controller' => 'Home', 'action' => 'index']);
-$router->add('/questionnaire/{controller}/{action}');
-$router->add('/questionnaire/{controller}/{id:\d+}/{action}');
-$router->add('/questionnaire/admin/{controller}/{action}', ['namespace' => 'admin']);
+$router->add(Config::URL_BASE."/", ["controller" => "Home", "action" => "index"]);
+$router->add(Config::URL_BASE."/{controller}/{action}");
+$router->add(Config::URL_BASE."/{controller}/{id:\d+}/{action}");
+$router->add(Config::URL_BASE."/admin/{controller}/{action}", ["namespace" => "admin"]);
 
 
 		
