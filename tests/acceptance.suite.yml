@@ -11,4 +11,4 @@ modules:
         - AcceptanceHelper
     config:
         PhpBrowser:
-            url: 'https://secure.gateweb.gr/questionnaire/'
+            url: 'https://secure.gateweb.gr/qst/'
