@@ -2,13 +2,10 @@
 
 use gateweb\mvc\app\Config;
 use gateweb\mvc\core\Router;
-
+session_start();
 /**
  * Front controller
  *
- */
-/**
- * Composer
  */
 require_once(__DIR__.'/../../_class/initialize_dist.php');
 
@@ -39,8 +36,4 @@ $router->add(Config::URL_BASE."/{controller}/{action}");
 $router->add(Config::URL_BASE."/{controller}/{id:\d+}/{action}");
 $router->add(Config::URL_BASE."/admin/{controller}/{action}", ["namespace" => "admin"]);
 
-
-		
 $router->dispatch($router->get_path());
-
-

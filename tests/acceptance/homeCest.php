@@ -1,5 +1,4 @@
 <?php
-use \AcceptanceTester;
 
 class homeCest
 {
@@ -17,6 +16,14 @@ class homeCest
         $I->wantTo('test a test page');
         $I->amOnPage('/test/index');
         $I->see('hello');
+
+
+
+
+
+
+
+        
 
     }
 }
