@@ -1,5 +1,5 @@
 logs/
-app/Config.php
+#app/Config.php
 
 tests/_output/*
 docs/questionnaire.todo
