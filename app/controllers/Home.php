@@ -37,18 +37,15 @@ class Home extends \gateweb\mvc\core\Controller
 	 * @return void
 	 */
 	public function indexAction(){
-		View::renderTemplate('home/index.html', [
-			'name'    => 'George',
-			'colours' => ['red', 'green', 'blue']
-		]);
+		View::renderTemplate('home/index.html');
 	}
 
 	public function customViewAction(){
 
-		View::render('home/customView.php', [
-			'name'    => 'John',
-			'colours' => ['red', 'green', 'blue']
-		]);
+		// View::render('home/customView.php', [
+		// 	'name'    => 'John',
+		// 	'colours' => ['red', 'green', 'blue']
+		// ]);
 		
 	}
 }

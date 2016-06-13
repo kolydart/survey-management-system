@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Survey{% endblock %}
 
 {% block body %}
 
-	<h1>Welcome</h1>
-	<p>Hello from a Twig template, {{ name }}!</p>
+{% include 'menu.html' %}	
+
+	<h1>Καλωσήλθατε</h1>
+	<h2>Επιλογή ερωτηματολογίου</h2>
+	<p></p>
 
 	<ul>
 		{% for colour in colours %}
