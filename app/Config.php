@@ -52,4 +52,10 @@ class Config
 	 * remember to also change .htaccess
 	 */
 	const URL_BASE = '/qst';
+
+	/**
+	 * log dir. remember, it must be writable (and outside public dir)
+	 */
+	const LOG_DIR = '/logs';
+
 }
