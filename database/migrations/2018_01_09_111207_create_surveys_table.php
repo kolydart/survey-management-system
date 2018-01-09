@@ -19,7 +19,7 @@ class CreateSurveysTable extends Migration
             $table->string('subject');
             $table->text('intro');
             $table->text('notes');
-            $table->string('teacher')->default('Κολυδάς, Τάσος');
+            $table->string('person')->default('Κολυδάς, Τάσος');
             $table->dateTime('date_begin');
             $table->dateTime('date_end');
             $table->timestamps();
