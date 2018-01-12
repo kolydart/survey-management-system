@@ -13,3 +13,6 @@ yarn-error.log
 composer.lock
 docs/questionnaire.todo
 docs/questionnaire_archive.todo
+.phpstorm.meta.php
+_ide_helper.php
+_ide_helper_models.php
