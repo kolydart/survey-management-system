@@ -18,6 +18,16 @@ class CreateQuestionsTable extends Migration
             $table->string('text');
             $table->timestamps();
         });
+        Schema::create('question_questionnaire', function (Blueprint $table) {
+            $table->integer('questionnaire_id');
+            $table->integer('question_id');
+            $table->integer('answer_id');
+            $table->text('text')->nullable();
+            $table->timestamps();
+            $table->primary(['questionnaire_id', 'question_id', 'answer_id'],'question_questionnaire_primary');
+        });
+
+
     }
 
     /**
@@ -28,5 +38,6 @@ class CreateQuestionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('questions');
+        Schema::dropIfExists('question_questionnaire');
     }
 }
