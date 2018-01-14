@@ -11,8 +11,14 @@
 			<li class="list-group-item">
 				{{$question->id}}: 
 				{{$question->text}}<br>
-				{{-- {{App\Answer::where('order',$question->pivot->answer_id)->where('id',$question->id)->first()->text}} --}}
-				{{App\Answer::where('order',$question->pivot->answer_id)->where('id',1)->text}}
+				<ul>
+					@foreach ($question->answers as $answer)
+						<li @if ($answer == $question->answers->where('order',$question->pivot->answer_id)->first()) class="text-success" @endif>
+							{{$answer->text}}
+						</li>
+					@endforeach
+				</ul>
+				{{-- {{$question->answered}} --}}
 			</li>
 		@endforeach
 	</ul>
