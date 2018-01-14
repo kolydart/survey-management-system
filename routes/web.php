@@ -20,14 +20,14 @@ Route::get('/', function () {
 /**
  * Surveys
  */
-Route::get('/surveys','SurveysController@index')->name('surveys.index');
+Route::resource('/surveys','SurveysController');
 
 /**
  * Questions
  */
-Route::get('/questions','QuestionsController@index')->name('questions.index');
+Route::resource('/questions','QuestionsController');
 
 /**
  * Questionnaires
  */
-Route::get('/questionnaires','QuestionnairesController@index')->name('questionnaires.index');
+Route::resource('questionnaires', 'QuestionnairesController');
