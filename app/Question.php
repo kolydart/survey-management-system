@@ -13,7 +13,7 @@ class Question extends Model
     }
 
     public function questionnaire(){
-    	return $this->belongsToMany(Questionnaire::class);
+    	return $this->belongsToMany(Questionnaire::class)->withPivot('answer_id', 'text');
     }
     
     public function answers(){

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Answer;
 use App\Question;
 use App\Survey;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Questionnaire extends Model {
 	}
 
 	public function questions(){
-		return $this->belongsToMany(Question::class);
+		return $this->belongsToMany(Question::class)->withPivot('answer_id','text');
 	}
 	
 }

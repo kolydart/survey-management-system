@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Question;
 use App\Questionnaire;
 use Illuminate\Http\Request;
 
@@ -45,9 +47,9 @@ class QuestionnairesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Questionnaire $questionnaire)
     {
-        //
+        return view('questionnaires.show',compact('questionnaire'));
     }
 
     /**
