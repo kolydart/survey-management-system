@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +13,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/surveys');
 });
+
+/**
+ * Surveys
+ */
+Route::get('/surveys','SurveyController@index')->name('survey.index');
+
+Route::get('/test',function (){
+	return Config::get('app.name');
+}
+);
