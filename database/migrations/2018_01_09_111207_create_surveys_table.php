@@ -24,6 +24,13 @@ class CreateSurveysTable extends Migration
             $table->dateTime('date_end');
             $table->timestamps();
         });
+        Schema::create('question_survey', function (Blueprint $table) {
+            $table->integer('survey_id');
+            $table->integer('question_id');
+            $table->string('code')->nullable()->comment('Ο κωδικός του ερωτήματος');
+            $table->primary(['survey_id', 'question_id']);            
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,5 +41,6 @@ class CreateSurveysTable extends Migration
     public function down()
     {
         Schema::dropIfExists('surveys');
+        Schema::dropIfExists('question_survey');
     }
 }
