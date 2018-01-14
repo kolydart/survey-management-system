@@ -20,9 +20,14 @@ Route::get('/', function () {
 /**
  * Surveys
  */
-Route::get('/surveys','SurveyController@index')->name('survey.index');
+Route::get('/surveys','SurveysController@index')->name('surveys.index');
 
-Route::get('/test',function (){
-	return Config::get('app.name');
-}
-);
+/**
+ * Questions
+ */
+Route::get('/questions','QuestionsController@index')->name('questions.index');
+
+/**
+ * Questionnaires
+ */
+Route::get('/questionnaires','QuestionnairesController@index')->name('questionnaires.index');

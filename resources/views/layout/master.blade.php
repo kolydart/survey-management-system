@@ -27,9 +27,9 @@
     <div class="container">
       <div class="row">
         
-        <div class="col-sm-8 blog-main">
+        {{-- <div class="col-sm-8 blog-main"> --}}
             @yield('content')
-        </div>
+        {{-- </div> --}}
 
         {{-- @include('posts.sidebar') --}}
       </div>

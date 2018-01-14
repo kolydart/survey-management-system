@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Question;
+use App\Questionnaire;
 use Illuminate\Http\Request;
 
-class QuestionnaireController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::with(Questionnaire::class)->with(Answer::class)->with(Survey::class)->all();
+        return view('questions.index',compact('questions'));
     }
 
     /**
@@ -40,10 +44,10 @@ class QuestionnaireController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
         //
     }
@@ -51,10 +55,10 @@ class QuestionnaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
         //
     }
@@ -63,10 +67,10 @@ class QuestionnaireController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -74,10 +78,10 @@ class QuestionnaireController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
         //
     }
