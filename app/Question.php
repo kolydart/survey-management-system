@@ -12,8 +12,8 @@ class Question extends Model
     	return $this->belongsToMany(Survey::class);
     }
 
-    public function questionnaire(){
-    	return $this->belongsToMany(Questionnaire::class)->withPivot('answer_id', 'text');
+    public function questionnaires(){
+    	return $this->belongsToMany(Questionnaire::class)->withPivot('answer_id', 'response');
     }
     
     public function answers(){
