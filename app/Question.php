@@ -20,8 +20,13 @@ class Question extends Model
     	return $this->belongsToMany(Answer::class);
     }
     
+    /**
+     * Which answer(s) was submitted
+     * @param  Questionnaire $questionnaire 
+     * @return collection
+     */
     public function answered(Questionnaire $questionnaire){
-        return $this->answers->where('order',$this->questionnaires->find($questionnaire)->pivot->answer_id)->first();
+        return $this->answers->where('order',$this->questionnaires->find($questionnaire)->pivot->answer_id);
     }
 
 }
