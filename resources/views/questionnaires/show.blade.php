@@ -13,12 +13,11 @@
 				{{$question->text}}<br>
 				<ul>
 					@foreach ($question->answers as $answer)
-						<li @if ($answer == $question->answers->where('order',$question->pivot->answer_id)->first()) class="text-success" @endif>
+						<li @if ($answer == $question->answered($questionnaire)) class="text-success" @endif>
 							{{$answer->text}}
 						</li>
 					@endforeach
 				</ul>
-				{{-- {{$question->answered}} --}}
 			</li>
 		@endforeach
 	</ul>

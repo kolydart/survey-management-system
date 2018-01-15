@@ -20,4 +20,8 @@ class Question extends Model
     	return $this->belongsToMany(Answer::class);
     }
     
+    public function answered(Questionnaire $questionnaire){
+        return $this->answers->where('order',$this->questionnaires->find($questionnaire)->pivot->answer_id)->first();
+    }
+
 }
