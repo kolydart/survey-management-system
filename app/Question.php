@@ -5,9 +5,13 @@ namespace App;
 use App\Answer;
 use App\Questionnaire;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
 {
+    use SoftDeletes; // trait
+    protected $dates = ['deleted_at'];
+        
     public function surveys(){
     	return $this->belongsToMany(Survey::class);
     }

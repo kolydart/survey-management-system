@@ -6,8 +6,12 @@ use App\Answer;
 use App\Question;
 use App\Survey;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Questionnaire extends Model {
+	use SoftDeletes; // trait
+	protected $dates = ['deleted_at'];
+		
 	/**
 	 * @return mixed
 	 */

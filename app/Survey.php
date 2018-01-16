@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Survey extends Model
 {
+	use SoftDeletes; // trait
+	protected $dates = ['deleted_at'];
+		
     public function groups(){
     	return $this->hasMany(Group::class);
     }
