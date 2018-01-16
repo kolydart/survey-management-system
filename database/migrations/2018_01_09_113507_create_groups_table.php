@@ -17,10 +17,8 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('survey_id')->unsigned();
-            $table->foreign('survey_id')
-                ->references('id')->on('surveys')
-                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

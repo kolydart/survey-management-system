@@ -18,6 +18,7 @@ class CreateQuestionnairesTable extends Migration
             $table->integer('survey_id');
             $table->string('name')->comment('User name who filed the qstnr');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

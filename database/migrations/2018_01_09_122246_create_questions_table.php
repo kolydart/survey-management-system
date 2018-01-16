@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('text');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('question_questionnaire', function (Blueprint $table) {
             $table->integer('questionnaire_id');

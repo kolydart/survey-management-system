@@ -23,6 +23,7 @@ class CreateSurveysTable extends Migration
             $table->dateTime('date_begin');
             $table->dateTime('date_end');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('question_survey', function (Blueprint $table) {
             $table->integer('survey_id');

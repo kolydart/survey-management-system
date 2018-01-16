@@ -19,6 +19,7 @@ class CreateAnswersTable extends Migration
             $table->primary(['id', 'order']);
             $table->text('text')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('answer_question', function (Blueprint $table) {
@@ -26,12 +27,6 @@ class CreateAnswersTable extends Migration
             $table->integer('answer_id');
             $table->primary(['question_id', 'answer_id']);
             $table->timestamps();
-            // $table->foreign('question_id')
-            //     ->references('id')->on('questions')
-            //     ->onDelete('cascade');
-            // $table->foreign('answer_id')
-            //     ->references('id')->on('answers')
-            //     ->onDelete('cascade');
         });
     }
 
