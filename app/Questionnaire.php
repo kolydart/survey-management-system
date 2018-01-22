@@ -20,7 +20,7 @@ class Questionnaire extends Model {
 	}
 
 	public function questions(){
-		return $this->belongsToMany(Question::class)->withPivot('answer_id','response');
+		return $this->belongsToMany(Question::class)->withPivot('answer_order','response');
 	}
 
 }

@@ -24,10 +24,10 @@ class CreateQuestionsTable extends Migration
         Schema::create('question_questionnaire', function (Blueprint $table) {
             $table->integer('questionnaire_id');
             $table->integer('question_id');
-            $table->integer('answer_id');
+            $table->integer('answer_order');
             $table->text('response')->nullable();
             $table->timestamps();
-            $table->primary(['questionnaire_id', 'question_id', 'answer_id'],'question_questionnaire_primary');
+            $table->primary(['questionnaire_id', 'question_id', 'answer_order'],'question_questionnaire_primary');
         });
 
 

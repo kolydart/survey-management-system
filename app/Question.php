@@ -17,7 +17,7 @@ class Question extends Model
     }
 
     public function questionnaires(){
-    	return $this->belongsToMany(Questionnaire::class)->withPivot('answer_id', 'response');
+    	return $this->belongsToMany(Questionnaire::class)->withPivot('answer_order', 'response');
     }
     
     public function answers(){
@@ -30,7 +30,7 @@ class Question extends Model
      * @return collection
      */
     public function answered(Questionnaire $questionnaire){
-        return $this->answers->where('order',$this->questionnaires->find($questionnaire)->pivot->answer_id);
+        return $this->answers->where('order',$this->questionnaires->find($questionnaire)->pivot->answer_order);
     }
 
 }
