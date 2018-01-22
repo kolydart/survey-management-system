@@ -24,8 +24,8 @@ class CreateAnswersTable extends Migration
 
         Schema::create('answer_question', function (Blueprint $table) {
             $table->integer('question_id');
-            $table->integer('answer_order');
-            $table->primary(['question_id', 'answer_order']);
+            $table->integer('answer_id');
+            $table->primary(['question_id', 'answer_id']);
             $table->timestamps();
         });
     }
