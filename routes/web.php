@@ -17,10 +17,10 @@ use gateweb\common\Database;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return redirect('/surveys');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return redirect('/surveys');
+// });
 
 /**
  * Surveys
