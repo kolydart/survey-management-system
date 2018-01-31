@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Question;
 use App\Questionnaire;
+use App\Survey;
 use Illuminate\Http\Request;
 
 class QuestionnairesController extends Controller
@@ -14,9 +15,14 @@ class QuestionnairesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questionnaires = Questionnaire::all(); //with(Question::class)->with(Survey::class)->
+        if(isset($request->survey)){
+            $request->validate(['survey'=>'integer']);
+            $questionnaires = Survey::find($request->survey)->questionnaires;
+        }else{
+            $questionnaires = Questionnaire::all();
+        }
         return view('questionnaires.index',compact('questionnaires'));
     }
 
