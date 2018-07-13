@@ -3,6 +3,7 @@ function initialState() {
         all: [],
         relationships: {
             'question': 'title',
+            'answer': 'title',
         },
         query: {},
         loading: false

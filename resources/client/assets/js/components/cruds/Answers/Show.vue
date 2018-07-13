@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Responses</h1>
+            <h1>Answers</h1>
         </section>
 
         <section class="content">
@@ -26,22 +26,14 @@
                                             <td>{{ item.id }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Question</th>
-                                            <td>
-                                                <span class="label label-info" v-if="item.question !== null">
-                                                    {{ item.question.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Content</th>
-                                            <td>{{ item.content }}</td>
+                                            <th>Title</th>
+                                            <td>{{ item.title }}</td>
                                             </tr>
                                         <tr>
-                                            <th>Answer</th>
+                                            <th>Answerlists</th>
                                             <td>
-                                                <span class="label label-info" v-if="item.answer !== null">
-                                                    {{ item.answer.title }}
+                                                <span class="label label-info" v-for="answerlists in item.answerlists">
+                                                    {{ answerlists.title }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -74,7 +66,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('ResponsesSingle', ['item'])
+        ...mapGetters('AnswersSingle', ['item'])
     },
     watch: {
         "$route.params.id": function() {
@@ -83,7 +75,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('ResponsesSingle', ['fetchData', 'resetState'])
+        ...mapActions('AnswersSingle', ['fetchData', 'resetState'])
     }
 }
 </script>

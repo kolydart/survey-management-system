@@ -2,12 +2,10 @@ function initialState() {
     return {
         item: {
             id: null,
-            question: null,
-            content: null,
-            answer: null,
+            title: null,
+            answerlists: [],
         },
-        questionsAll: [],
-        answersAll: [],
+        answerlistsAll: [],
         
         loading: false,
     }
@@ -16,8 +14,7 @@ function initialState() {
 const getters = {
     item: state => state.item,
     loading: state => state.loading,
-    questionsAll: state => state.questionsAll,
-    answersAll: state => state.answersAll,
+    answerlistsAll: state => state.answerlistsAll,
     
 }
 
@@ -44,18 +41,15 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.question)) {
-                params.set('question_id', '')
+            if (_.isEmpty(state.item.answerlists)) {
+                params.delete('answerlists')
             } else {
-                params.set('question_id', state.item.question.id)
-            }
-            if (_.isEmpty(state.item.answer)) {
-                params.set('answer_id', '')
-            } else {
-                params.set('answer_id', state.item.answer.id)
+                for (let index in state.item.answerlists) {
+                    params.set('answerlists['+index+']', state.item.answerlists[index].id)
+                }
             }
 
-            axios.post('/api/v1/responses', params)
+            axios.post('/api/v1/answers', params)
                 .then(response => {
                     commit('resetState')
                     resolve()
@@ -99,18 +93,15 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.question)) {
-                params.set('question_id', '')
+            if (_.isEmpty(state.item.answerlists)) {
+                params.delete('answerlists')
             } else {
-                params.set('question_id', state.item.question.id)
-            }
-            if (_.isEmpty(state.item.answer)) {
-                params.set('answer_id', '')
-            } else {
-                params.set('answer_id', state.item.answer.id)
+                for (let index in state.item.answerlists) {
+                    params.set('answerlists['+index+']', state.item.answerlists[index].id)
+                }
             }
 
-            axios.post('/api/v1/responses/' + state.item.id, params)
+            axios.post('/api/v1/answers/' + state.item.id, params)
                 .then(response => {
                     commit('setItem', response.data.data)
                     resolve()
@@ -132,34 +123,24 @@ const actions = {
         })
     },
     fetchData({ commit, dispatch }, id) {
-        axios.get('/api/v1/responses/' + id)
+        axios.get('/api/v1/answers/' + id)
             .then(response => {
                 commit('setItem', response.data.data)
             })
 
-        dispatch('fetchQuestionsAll')
-    dispatch('fetchAnswersAll')
+        dispatch('fetchAnswerlistsAll')
     },
-    fetchQuestionsAll({ commit }) {
-        axios.get('/api/v1/questions')
+    fetchAnswerlistsAll({ commit }) {
+        axios.get('/api/v1/answerlists')
             .then(response => {
-                commit('setQuestionsAll', response.data.data)
+                commit('setAnswerlistsAll', response.data.data)
             })
     },
-    fetchAnswersAll({ commit }) {
-        axios.get('/api/v1/answers')
-            .then(response => {
-                commit('setAnswersAll', response.data.data)
-            })
+    setTitle({ commit }, value) {
+        commit('setTitle', value)
     },
-    setQuestion({ commit }, value) {
-        commit('setQuestion', value)
-    },
-    setContent({ commit }, value) {
-        commit('setContent', value)
-    },
-    setAnswer({ commit }, value) {
-        commit('setAnswer', value)
+    setAnswerlists({ commit }, value) {
+        commit('setAnswerlists', value)
     },
     resetState({ commit }) {
         commit('resetState')
@@ -170,20 +151,14 @@ const mutations = {
     setItem(state, item) {
         state.item = item
     },
-    setQuestion(state, value) {
-        state.item.question = value
+    setTitle(state, value) {
+        state.item.title = value
     },
-    setContent(state, value) {
-        state.item.content = value
+    setAnswerlists(state, value) {
+        state.item.answerlists = value
     },
-    setAnswer(state, value) {
-        state.item.answer = value
-    },
-    setQuestionsAll(state, value) {
-        state.questionsAll = value
-    },
-    setAnswersAll(state, value) {
-        state.answersAll = value
+    setAnswerlistsAll(state, value) {
+        state.answerlistsAll = value
     },
     
     setLoading(state, loading) {

@@ -42,6 +42,16 @@
                                             >
                                     </textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="answer">Answer *</label>
+                                    <v-select
+                                            name="answer"
+                                            label="title"
+                                            @input="updateAnswer"
+                                            :value="item.answer"
+                                            :options="answersAll"
+                                            />
+                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -72,7 +82,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('ResponsesSingle', ['item', 'loading', 'questionsAll']),
+        ...mapGetters('ResponsesSingle', ['item', 'loading', 'questionsAll', 'answersAll']),
     },
     created() {
         this.fetchData(this.$route.params.id)
@@ -87,12 +97,15 @@ export default {
         }
     },
     methods: {
-        ...mapActions('ResponsesSingle', ['fetchData', 'updateData', 'resetState', 'setQuestion', 'setContent']),
+        ...mapActions('ResponsesSingle', ['fetchData', 'updateData', 'resetState', 'setQuestion', 'setContent', 'setAnswer']),
         updateQuestion(value) {
             this.setQuestion(value)
         },
         updateContent(e) {
             this.setContent(e.target.value)
+        },
+        updateAnswer(value) {
+            this.setAnswer(value)
         },
         submitForm() {
             this.updateData()

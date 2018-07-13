@@ -42,6 +42,18 @@
                     <span>@lang('quickadmin.responses.title')</span>
                 </router-link>
             </li>
+            <li v-if="$can('question_access')">
+                <router-link :to="{ name: 'questions.index' }">
+                    <i class="fa fa-comment-o"></i>
+                    <span>@lang('quickadmin.questions.title')</span>
+                </router-link>
+            </li>
+            <li v-if="$can('answer_access')">
+                <router-link :to="{ name: 'answers.index' }">
+                    <i class="fa fa-comment"></i>
+                    <span>@lang('quickadmin.answers.title')</span>
+                </router-link>
+            </li>
             <li class="treeview" v-if="$can('entity_access')">
                 <a href="#">
                     <i class="fa fa-gears"></i>
@@ -67,12 +79,6 @@
                         <router-link :to="{ name: 'categories.index' }">
                             <i class="fa fa-sitemap"></i>
                             <span>@lang('quickadmin.category.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('question_access')">
-                        <router-link :to="{ name: 'questions.index' }">
-                            <i class="fa fa-comment-o"></i>
-                            <span>@lang('quickadmin.questions.title')</span>
                         </router-link>
                     </li>
                     <li v-if="$can('user_access')">

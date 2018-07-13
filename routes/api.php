@@ -8,10 +8,11 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::apiResource('items', 'ItemsController');
     Route::apiResource('answerlists', 'AnswerlistsController');
     Route::apiResource('responses', 'ResponsesController');
+    Route::apiResource('questions', 'QuestionsController');
+    Route::apiResource('answers', 'AnswersController');
     Route::apiResource('institutions', 'InstitutionsController');
     Route::apiResource('groups', 'GroupsController');
     Route::apiResource('categories', 'CategoriesController');
-    Route::apiResource('questions', 'QuestionsController');
     Route::apiResource('users', 'UsersController');
     Route::apiResource('roles', 'RolesController');
     Route::apiResource('permissions', 'PermissionsController');

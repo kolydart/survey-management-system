@@ -22,6 +22,14 @@ import ResponsesIndex from '../components/cruds/Responses/Index.vue'
 import ResponsesCreate from '../components/cruds/Responses/Create.vue'
 import ResponsesShow from '../components/cruds/Responses/Show.vue'
 import ResponsesEdit from '../components/cruds/Responses/Edit.vue'
+import QuestionsIndex from '../components/cruds/Questions/Index.vue'
+import QuestionsCreate from '../components/cruds/Questions/Create.vue'
+import QuestionsShow from '../components/cruds/Questions/Show.vue'
+import QuestionsEdit from '../components/cruds/Questions/Edit.vue'
+import AnswersIndex from '../components/cruds/Answers/Index.vue'
+import AnswersCreate from '../components/cruds/Answers/Create.vue'
+import AnswersShow from '../components/cruds/Answers/Show.vue'
+import AnswersEdit from '../components/cruds/Answers/Edit.vue'
 import InstitutionsIndex from '../components/cruds/Institutions/Index.vue'
 import InstitutionsCreate from '../components/cruds/Institutions/Create.vue'
 import InstitutionsShow from '../components/cruds/Institutions/Show.vue'
@@ -34,10 +42,6 @@ import CategoriesIndex from '../components/cruds/Categories/Index.vue'
 import CategoriesCreate from '../components/cruds/Categories/Create.vue'
 import CategoriesShow from '../components/cruds/Categories/Show.vue'
 import CategoriesEdit from '../components/cruds/Categories/Edit.vue'
-import QuestionsIndex from '../components/cruds/Questions/Index.vue'
-import QuestionsCreate from '../components/cruds/Questions/Create.vue'
-import QuestionsShow from '../components/cruds/Questions/Show.vue'
-import QuestionsEdit from '../components/cruds/Questions/Edit.vue'
 import UsersIndex from '../components/cruds/Users/Index.vue'
 import UsersCreate from '../components/cruds/Users/Create.vue'
 import UsersShow from '../components/cruds/Users/Show.vue'
@@ -73,6 +77,14 @@ const routes = [
     { path: '/responses/create', component: ResponsesCreate, name: 'responses.create' },
     { path: '/responses/:id', component: ResponsesShow, name: 'responses.show' },
     { path: '/responses/:id/edit', component: ResponsesEdit, name: 'responses.edit' },
+    { path: '/questions', component: QuestionsIndex, name: 'questions.index' },
+    { path: '/questions/create', component: QuestionsCreate, name: 'questions.create' },
+    { path: '/questions/:id', component: QuestionsShow, name: 'questions.show' },
+    { path: '/questions/:id/edit', component: QuestionsEdit, name: 'questions.edit' },
+    { path: '/answers', component: AnswersIndex, name: 'answers.index' },
+    { path: '/answers/create', component: AnswersCreate, name: 'answers.create' },
+    { path: '/answers/:id', component: AnswersShow, name: 'answers.show' },
+    { path: '/answers/:id/edit', component: AnswersEdit, name: 'answers.edit' },
     { path: '/institutions', component: InstitutionsIndex, name: 'institutions.index' },
     { path: '/institutions/create', component: InstitutionsCreate, name: 'institutions.create' },
     { path: '/institutions/:id', component: InstitutionsShow, name: 'institutions.show' },
@@ -85,10 +97,6 @@ const routes = [
     { path: '/categories/create', component: CategoriesCreate, name: 'categories.create' },
     { path: '/categories/:id', component: CategoriesShow, name: 'categories.show' },
     { path: '/categories/:id/edit', component: CategoriesEdit, name: 'categories.edit' },
-    { path: '/questions', component: QuestionsIndex, name: 'questions.index' },
-    { path: '/questions/create', component: QuestionsCreate, name: 'questions.create' },
-    { path: '/questions/:id', component: QuestionsShow, name: 'questions.show' },
-    { path: '/questions/:id/edit', component: QuestionsEdit, name: 'questions.edit' },
     { path: '/users', component: UsersIndex, name: 'users.index' },
     { path: '/users/create', component: UsersCreate, name: 'users.create' },
     { path: '/users/:id', component: UsersShow, name: 'users.show' },

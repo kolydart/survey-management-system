@@ -18,7 +18,7 @@ class ResponsesController extends Controller
     {
         
 
-        return new ResponseResource(Response::with(['question'])->get());
+        return new ResponseResource(Response::with(['question', 'answer'])->get());
     }
 
     public function show($id)
@@ -27,7 +27,7 @@ class ResponsesController extends Controller
             return abort(401);
         }
 
-        $response = Response::with(['question'])->findOrFail($id);
+        $response = Response::with(['question', 'answer'])->findOrFail($id);
 
         return new ResponseResource($response);
     }

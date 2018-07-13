@@ -13,14 +13,16 @@ import AnswerlistsIndex from './modules/Answerlists'
 import AnswerlistsSingle from './modules/Answerlists/single'
 import ResponsesIndex from './modules/Responses'
 import ResponsesSingle from './modules/Responses/single'
+import QuestionsIndex from './modules/Questions'
+import QuestionsSingle from './modules/Questions/single'
+import AnswersIndex from './modules/Answers'
+import AnswersSingle from './modules/Answers/single'
 import InstitutionsIndex from './modules/Institutions'
 import InstitutionsSingle from './modules/Institutions/single'
 import GroupsIndex from './modules/Groups'
 import GroupsSingle from './modules/Groups/single'
 import CategoriesIndex from './modules/Categories'
 import CategoriesSingle from './modules/Categories/single'
-import QuestionsIndex from './modules/Questions'
-import QuestionsSingle from './modules/Questions/single'
 import UsersIndex from './modules/Users'
 import UsersSingle from './modules/Users/single'
 import RolesIndex from './modules/Roles'
@@ -47,14 +49,16 @@ export default new Vuex.Store({
         AnswerlistsSingle,
         ResponsesIndex,
         ResponsesSingle,
+        QuestionsIndex,
+        QuestionsSingle,
+        AnswersIndex,
+        AnswersSingle,
         InstitutionsIndex,
         InstitutionsSingle,
         GroupsIndex,
         GroupsSingle,
         CategoriesIndex,
         CategoriesSingle,
-        QuestionsIndex,
-        QuestionsSingle,
         UsersIndex,
         UsersSingle,
         RolesIndex,

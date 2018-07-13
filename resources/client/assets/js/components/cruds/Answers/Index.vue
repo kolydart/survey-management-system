@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Answerlists</h1>
+            <h1>Answers</h1>
         </section>
 
         <section class="content">
@@ -68,15 +68,14 @@ export default {
             columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
                 { title: 'Title', field: 'title', sortable: true },
-                { title: 'Type', field: 'type', sortable: true },
-                { title: 'Answers', field: 'answers', tdComp: DatatableList },
+                { title: 'Answerlists', field: 'answerlists', tdComp: DatatableList },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {
-                module: 'AnswerlistsIndex',
-                route: 'answerlists',
-                permission_prefix: 'answerlist_'
+                module: 'AnswersIndex',
+                route: 'answers',
+                permission_prefix: 'answer_'
             }
         }
     },
@@ -88,7 +87,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('AnswerlistsIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('AnswersIndex', ['data', 'total', 'loading', 'relationships']),
     },
     watch: {
         query: {
@@ -99,7 +98,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('AnswerlistsIndex', ['fetchData', 'setQuery', 'resetState']),
+        ...mapActions('AnswersIndex', ['fetchData', 'setQuery', 'resetState']),
     }
 }
 </script>

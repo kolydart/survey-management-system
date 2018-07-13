@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Responses</h1>
+            <h1>Answers</h1>
         </section>
 
         <section class="content">
@@ -10,7 +10,7 @@
                     <form @submit.prevent="submitForm" novalidate>
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Create</h3>
+                                <h3 class="box-title">Edit</h3>
                             </div>
 
                             <div class="box-body">
@@ -21,35 +21,25 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="question">Question *</label>
-                                    <v-select
-                                            name="question"
-                                            label="title"
-                                            @input="updateQuestion"
-                                            :value="item.question"
-                                            :options="questionsAll"
-                                            />
-                                </div>
-                                <div class="form-group">
-                                    <label for="content">Content</label>
-                                    <textarea
-                                            rows="3"
+                                    <label for="title">Title *</label>
+                                    <input
+                                            type="text"
                                             class="form-control"
-                                            name="content"
-                                            placeholder="Enter Content"
-                                            :value="item.content"
-                                            @input="updateContent"
+                                            name="title"
+                                            placeholder="Enter Title *"
+                                            :value="item.title"
+                                            @input="updateTitle"
                                             >
-                                    </textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="answer">Answer *</label>
+                                    <label for="answerlists">Answerlists *</label>
                                     <v-select
-                                            name="answer"
+                                            name="answerlists"
                                             label="title"
-                                            @input="updateAnswer"
-                                            :value="item.answer"
-                                            :options="answersAll"
+                                            @input="updateAnswerlists"
+                                            :value="item.answerlists"
+                                            :options="answerlistsAll"
+                                            multiple
                                             />
                                 </div>
                             </div>
@@ -82,31 +72,33 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('ResponsesSingle', ['item', 'loading', 'questionsAll', 'answersAll'])
+        ...mapGetters('AnswersSingle', ['item', 'loading', 'answerlistsAll']),
     },
     created() {
-        this.fetchQuestionsAll(),
-        this.fetchAnswersAll()
+        this.fetchData(this.$route.params.id)
     },
     destroyed() {
         this.resetState()
     },
+    watch: {
+        "$route.params.id": function() {
+            this.resetState()
+            this.fetchData(this.$route.params.id)
+        }
+    },
     methods: {
-        ...mapActions('ResponsesSingle', ['storeData', 'resetState', 'setQuestion', 'setContent', 'setAnswer', 'fetchQuestionsAll', 'fetchAnswersAll']),
-        updateQuestion(value) {
-            this.setQuestion(value)
+        ...mapActions('AnswersSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setAnswerlists']),
+        updateTitle(e) {
+            this.setTitle(e.target.value)
         },
-        updateContent(e) {
-            this.setContent(e.target.value)
-        },
-        updateAnswer(value) {
-            this.setAnswer(value)
+        updateAnswerlists(value) {
+            this.setAnswerlists(value)
         },
         submitForm() {
-            this.storeData()
+            this.updateData()
                 .then(() => {
-                    this.$router.push({ name: 'responses.index' })
-                    this.$eventHub.$emit('create-success')
+                    this.$router.push({ name: 'answers.index' })
+                    this.$eventHub.$emit('update-success')
                 })
                 .catch((error) => {
                     console.error(error)
