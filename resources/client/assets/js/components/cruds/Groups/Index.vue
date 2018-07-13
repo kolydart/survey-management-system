@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Surveys</h1>
+            <h1>Class</h1>
         </section>
 
         <section class="content">
@@ -68,16 +68,13 @@ export default {
             columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
                 { title: 'Title', field: 'title', sortable: true },
-                { title: 'Institution', field: 'institution', tdComp: DatatableSingle },
-                { title: 'Category', field: 'category', tdComp: DatatableList },
-                { title: 'Class', field: 'group', tdComp: DatatableSingle },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {
-                module: 'SurveysIndex',
-                route: 'surveys',
-                permission_prefix: 'survey_'
+                module: 'GroupsIndex',
+                route: 'groups',
+                permission_prefix: 'group_'
             }
         }
     },
@@ -89,7 +86,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('SurveysIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('GroupsIndex', ['data', 'total', 'loading', 'relationships']),
     },
     watch: {
         query: {
@@ -100,7 +97,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SurveysIndex', ['fetchData', 'setQuery', 'resetState']),
+        ...mapActions('GroupsIndex', ['fetchData', 'setQuery', 'resetState']),
     }
 }
 </script>

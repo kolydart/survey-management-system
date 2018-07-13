@@ -2,9 +2,7 @@ function initialState() {
     return {
         all: [],
         relationships: {
-            'institution': 'title',
-            'category': 'title',
-            'group': 'title',
+            
         },
         query: {},
         loading: false
@@ -30,7 +28,7 @@ const actions = {
     fetchData({ commit, state }) {
         commit('setLoading', true)
 
-        axios.get('/api/v1/surveys')
+        axios.get('/api/v1/groups')
             .then(response => {
                 commit('setAll', response.data.data)
             })
@@ -44,7 +42,7 @@ const actions = {
             })
     },
     destroyData({ commit, state }, id) {
-        axios.delete('/api/v1/surveys/' + id)
+        axios.delete('/api/v1/groups/' + id)
             .then(response => {
                 commit('setAll', state.all.filter((item) => {
                     return item.id != id

@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Surveys</h1>
+            <h1>Class</h1>
         </section>
 
         <section class="content">
@@ -30,37 +30,6 @@
                                             :value="item.title"
                                             @input="updateTitle"
                                             >
-                                </div>
-                                <div class="form-group">
-                                    <label for="institution">Institution</label>
-                                    <v-select
-                                            name="institution"
-                                            label="title"
-                                            @input="updateInstitution"
-                                            :value="item.institution"
-                                            :options="institutionsAll"
-                                            />
-                                </div>
-                                <div class="form-group">
-                                    <label for="category">Category</label>
-                                    <v-select
-                                            name="category"
-                                            label="title"
-                                            @input="updateCategory"
-                                            :value="item.category"
-                                            :options="categoriesAll"
-                                            multiple
-                                            />
-                                </div>
-                                <div class="form-group">
-                                    <label for="group">Class</label>
-                                    <v-select
-                                            name="group"
-                                            label="title"
-                                            @input="updateGroup"
-                                            :value="item.group"
-                                            :options="groupsAll"
-                                            />
                                 </div>
                             </div>
 
@@ -92,34 +61,23 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('SurveysSingle', ['item', 'loading', 'institutionsAll', 'categoriesAll', 'groupsAll'])
+        ...mapGetters('GroupsSingle', ['item', 'loading'])
     },
     created() {
-        this.fetchInstitutionsAll(),
-        this.fetchCategoriesAll(),
-        this.fetchGroupsAll()
+        // Code ...
     },
     destroyed() {
         this.resetState()
     },
     methods: {
-        ...mapActions('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']),
+        ...mapActions('GroupsSingle', ['storeData', 'resetState', 'setTitle']),
         updateTitle(e) {
             this.setTitle(e.target.value)
-        },
-        updateInstitution(value) {
-            this.setInstitution(value)
-        },
-        updateCategory(value) {
-            this.setCategory(value)
-        },
-        updateGroup(value) {
-            this.setGroup(value)
         },
         submitForm() {
             this.storeData()
                 .then(() => {
-                    this.$router.push({ name: 'surveys.index' })
+                    this.$router.push({ name: 'groups.index' })
                     this.$eventHub.$emit('create-success')
                 })
                 .catch((error) => {

@@ -27,12 +27,6 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li v-if="$can('class_access')">
-                        <router-link :to="{ name: 'classes.index' }">
-                            <i class="fa fa-group"></i>
-                            <span>@lang('quickadmin.class.title')</span>
-                        </router-link>
-                    </li>
                     <li v-if="$can('institution_access')">
                         <router-link :to="{ name: 'institutions.index' }">
                             <i class="fa fa-institution"></i>
@@ -43,6 +37,12 @@
                         <router-link :to="{ name: 'categories.index' }">
                             <i class="fa fa-list-ul"></i>
                             <span>@lang('quickadmin.category.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('group_access')">
+                        <router-link :to="{ name: 'groups.index' }">
+                            <i class="fa fa-group"></i>
+                            <span>@lang('quickadmin.group.title')</span>
                         </router-link>
                     </li>
                 </ul>

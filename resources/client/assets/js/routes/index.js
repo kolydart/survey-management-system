@@ -6,10 +6,6 @@ import SurveysIndex from '../components/cruds/Surveys/Index.vue'
 import SurveysCreate from '../components/cruds/Surveys/Create.vue'
 import SurveysShow from '../components/cruds/Surveys/Show.vue'
 import SurveysEdit from '../components/cruds/Surveys/Edit.vue'
-import ClassesIndex from '../components/cruds/Classes/Index.vue'
-import ClassesCreate from '../components/cruds/Classes/Create.vue'
-import ClassesShow from '../components/cruds/Classes/Show.vue'
-import ClassesEdit from '../components/cruds/Classes/Edit.vue'
 import InstitutionsIndex from '../components/cruds/Institutions/Index.vue'
 import InstitutionsCreate from '../components/cruds/Institutions/Create.vue'
 import InstitutionsShow from '../components/cruds/Institutions/Show.vue'
@@ -30,6 +26,10 @@ import UsersIndex from '../components/cruds/Users/Index.vue'
 import UsersCreate from '../components/cruds/Users/Create.vue'
 import UsersShow from '../components/cruds/Users/Show.vue'
 import UsersEdit from '../components/cruds/Users/Edit.vue'
+import GroupsIndex from '../components/cruds/Groups/Index.vue'
+import GroupsCreate from '../components/cruds/Groups/Create.vue'
+import GroupsShow from '../components/cruds/Groups/Show.vue'
+import GroupsEdit from '../components/cruds/Groups/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -39,10 +39,6 @@ const routes = [
     { path: '/surveys/create', component: SurveysCreate, name: 'surveys.create' },
     { path: '/surveys/:id', component: SurveysShow, name: 'surveys.show' },
     { path: '/surveys/:id/edit', component: SurveysEdit, name: 'surveys.edit' },
-    { path: '/classes', component: ClassesIndex, name: 'classes.index' },
-    { path: '/classes/create', component: ClassesCreate, name: 'classes.create' },
-    { path: '/classes/:id', component: ClassesShow, name: 'classes.show' },
-    { path: '/classes/:id/edit', component: ClassesEdit, name: 'classes.edit' },
     { path: '/institutions', component: InstitutionsIndex, name: 'institutions.index' },
     { path: '/institutions/create', component: InstitutionsCreate, name: 'institutions.create' },
     { path: '/institutions/:id', component: InstitutionsShow, name: 'institutions.show' },
@@ -63,6 +59,10 @@ const routes = [
     { path: '/users/create', component: UsersCreate, name: 'users.create' },
     { path: '/users/:id', component: UsersShow, name: 'users.show' },
     { path: '/users/:id/edit', component: UsersEdit, name: 'users.edit' },
+    { path: '/groups', component: GroupsIndex, name: 'groups.index' },
+    { path: '/groups/create', component: GroupsCreate, name: 'groups.create' },
+    { path: '/groups/:id', component: GroupsShow, name: 'groups.show' },
+    { path: '/groups/:id/edit', component: GroupsEdit, name: 'groups.edit' },
 ]
 
 export default new VueRouter({

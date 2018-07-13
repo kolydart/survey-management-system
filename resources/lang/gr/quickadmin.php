@@ -7,12 +7,13 @@ return [
 		'users' => [		'title' => 'Χρήστες',		'fields' => [			'name' => 'Όνομα',			'email' => 'Email',			'password' => 'Κωδικός',			'role' => 'Ρόλος',			'remember-token' => 'Να με θυμάσαι',		],	],
 		'survey' => [		'title' => 'Surveys',		'fields' => [		],	],
 		'diaxeirish-kathgoriwn' => [		'title' => 'Διαχείριση κατηγοριών',		'fields' => [		],	],
-		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'class' => 'Class',			'category' => 'Category',		],	],
+		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Class',		],	],
 		'surveyclass' => [		'title' => 'SurveyClass',		'fields' => [		],	],
 		'surveyinstitution' => [		'title' => 'SurveyInstitution',		'fields' => [		],	],
-		'class' => [		'title' => 'Class',		'fields' => [			'title' => 'Title',		],	],
+		'class' => [		'title' => 'Class',		'fields' => [		],	],
 		'institution' => [		'title' => 'Institution',		'fields' => [			'title' => 'Title',		],	],
 		'category' => [		'title' => 'Category',		'fields' => [			'title' => 'Title',		],	],
+		'group' => [		'title' => 'Class',		'fields' => [			'title' => 'Title',		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',

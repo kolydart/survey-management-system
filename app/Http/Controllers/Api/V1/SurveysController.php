@@ -18,7 +18,7 @@ class SurveysController extends Controller
     {
         
 
-        return new SurveyResource(Survey::with(['institution', 'class', 'category'])->get());
+        return new SurveyResource(Survey::with(['institution', 'category', 'group'])->get());
     }
 
     public function show($id)
@@ -27,7 +27,7 @@ class SurveysController extends Controller
             return abort(401);
         }
 
-        $survey = Survey::with(['institution', 'class', 'category'])->findOrFail($id);
+        $survey = Survey::with(['institution', 'category', 'group'])->findOrFail($id);
 
         return new SurveyResource($survey);
     }

@@ -3,13 +3,8 @@ function initialState() {
         item: {
             id: null,
             title: null,
-            institution: null,
-            category: [],
-            group: null,
         },
-        institutionsAll: [],
-        categoriesAll: [],
-        groupsAll: [],
+        
         
         loading: false,
     }
@@ -18,9 +13,7 @@ function initialState() {
 const getters = {
     item: state => state.item,
     loading: state => state.loading,
-    institutionsAll: state => state.institutionsAll,
-    categoriesAll: state => state.categoriesAll,
-    groupsAll: state => state.groupsAll,
+    
     
 }
 
@@ -47,25 +40,9 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.institution)) {
-                params.set('institution_id', '')
-            } else {
-                params.set('institution_id', state.item.institution.id)
-            }
-            if (_.isEmpty(state.item.category)) {
-                params.delete('category')
-            } else {
-                for (let index in state.item.category) {
-                    params.set('category['+index+']', state.item.category[index].id)
-                }
-            }
-            if (_.isEmpty(state.item.group)) {
-                params.set('group_id', '')
-            } else {
-                params.set('group_id', state.item.group.id)
-            }
+            
 
-            axios.post('/api/v1/surveys', params)
+            axios.post('/api/v1/groups', params)
                 .then(response => {
                     commit('resetState')
                     resolve()
@@ -109,25 +86,9 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.institution)) {
-                params.set('institution_id', '')
-            } else {
-                params.set('institution_id', state.item.institution.id)
-            }
-            if (_.isEmpty(state.item.category)) {
-                params.delete('category')
-            } else {
-                for (let index in state.item.category) {
-                    params.set('category['+index+']', state.item.category[index].id)
-                }
-            }
-            if (_.isEmpty(state.item.group)) {
-                params.set('group_id', '')
-            } else {
-                params.set('group_id', state.item.group.id)
-            }
+            
 
-            axios.post('/api/v1/surveys/' + state.item.id, params)
+            axios.post('/api/v1/groups/' + state.item.id, params)
                 .then(response => {
                     commit('setItem', response.data.data)
                     resolve()
@@ -149,44 +110,16 @@ const actions = {
         })
     },
     fetchData({ commit, dispatch }, id) {
-        axios.get('/api/v1/surveys/' + id)
+        axios.get('/api/v1/groups/' + id)
             .then(response => {
                 commit('setItem', response.data.data)
             })
 
-        dispatch('fetchInstitutionsAll')
-    dispatch('fetchCategoriesAll')
-    dispatch('fetchGroupsAll')
+        
     },
-    fetchInstitutionsAll({ commit }) {
-        axios.get('/api/v1/institutions')
-            .then(response => {
-                commit('setInstitutionsAll', response.data.data)
-            })
-    },
-    fetchCategoriesAll({ commit }) {
-        axios.get('/api/v1/categories')
-            .then(response => {
-                commit('setCategoriesAll', response.data.data)
-            })
-    },
-    fetchGroupsAll({ commit }) {
-        axios.get('/api/v1/groups')
-            .then(response => {
-                commit('setGroupsAll', response.data.data)
-            })
-    },
+    
     setTitle({ commit }, value) {
         commit('setTitle', value)
-    },
-    setInstitution({ commit }, value) {
-        commit('setInstitution', value)
-    },
-    setCategory({ commit }, value) {
-        commit('setCategory', value)
-    },
-    setGroup({ commit }, value) {
-        commit('setGroup', value)
     },
     resetState({ commit }) {
         commit('resetState')
@@ -200,24 +133,7 @@ const mutations = {
     setTitle(state, value) {
         state.item.title = value
     },
-    setInstitution(state, value) {
-        state.item.institution = value
-    },
-    setCategory(state, value) {
-        state.item.category = value
-    },
-    setGroup(state, value) {
-        state.item.group = value
-    },
-    setInstitutionsAll(state, value) {
-        state.institutionsAll = value
-    },
-    setCategoriesAll(state, value) {
-        state.categoriesAll = value
-    },
-    setGroupsAll(state, value) {
-        state.groupsAll = value
-    },
+    
     
     setLoading(state, loading) {
         state.loading = loading

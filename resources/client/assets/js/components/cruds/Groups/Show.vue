@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Surveys</h1>
+            <h1>Class</h1>
         </section>
 
         <section class="content">
@@ -29,30 +29,6 @@
                                             <th>Title</th>
                                             <td>{{ item.title }}</td>
                                             </tr>
-                                        <tr>
-                                            <th>Institution</th>
-                                            <td>
-                                                <span class="label label-info" v-if="item.institution !== null">
-                                                    {{ item.institution.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Category</th>
-                                            <td>
-                                                <span class="label label-info" v-for="category in item.category">
-                                                    {{ category.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Class</th>
-                                            <td>
-                                                <span class="label label-info" v-if="item.group !== null">
-                                                    {{ item.group.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -82,7 +58,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('SurveysSingle', ['item'])
+        ...mapGetters('GroupsSingle', ['item'])
     },
     watch: {
         "$route.params.id": function() {
@@ -91,7 +67,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SurveysSingle', ['fetchData', 'resetState'])
+        ...mapActions('GroupsSingle', ['fetchData', 'resetState'])
     }
 }
 </script>
