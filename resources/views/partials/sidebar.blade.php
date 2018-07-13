@@ -33,16 +33,16 @@
                             <span>@lang('quickadmin.institution.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('category_access')">
-                        <router-link :to="{ name: 'categories.index' }">
-                            <i class="fa fa-list-ul"></i>
-                            <span>@lang('quickadmin.category.title')</span>
-                        </router-link>
-                    </li>
                     <li v-if="$can('group_access')">
                         <router-link :to="{ name: 'groups.index' }">
                             <i class="fa fa-group"></i>
                             <span>@lang('quickadmin.group.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('category_access')">
+                        <router-link :to="{ name: 'categories.index' }">
+                            <i class="fa fa-list-ul"></i>
+                            <span>@lang('quickadmin.category.title')</span>
                         </router-link>
                     </li>
                 </ul>

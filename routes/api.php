@@ -5,9 +5,9 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::apiResource('rules', 'RulesController', ['only' => ['index']]);
     Route::apiResource('surveys', 'SurveysController');
     Route::apiResource('institutions', 'InstitutionsController');
+    Route::apiResource('groups', 'GroupsController');
     Route::apiResource('categories', 'CategoriesController');
     Route::apiResource('permissions', 'PermissionsController');
     Route::apiResource('roles', 'RolesController');
     Route::apiResource('users', 'UsersController');
-    Route::apiResource('groups', 'GroupsController');
 });

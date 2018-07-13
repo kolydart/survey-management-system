@@ -11,13 +11,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $institution
  * @property string $group
+ * @property string $introduction
+ * @property string $notes
+ * @property tinyInteger $completed
 */
 class Survey extends Model
 {
     use SoftDeletes;
 
     
-    protected $fillable = ['title', 'institution_id', 'group_id'];
+    protected $fillable = ['title', 'introduction', 'notes', 'completed', 'institution_id', 'group_id'];
     
 
     public static function storeValidation($request)
@@ -27,7 +30,10 @@ class Survey extends Model
             'institution_id' => 'integer|exists:institutions,id|max:4294967295|nullable',
             'category' => 'array|nullable',
             'category.*' => 'integer|exists:categories,id|max:4294967295|nullable',
-            'group_id' => 'integer|exists:groups,id|max:4294967295|nullable'
+            'group_id' => 'integer|exists:groups,id|max:4294967295|nullable',
+            'introduction' => 'max:191|nullable',
+            'notes' => 'max:191|nullable',
+            'completed' => 'boolean|nullable'
         ];
     }
 
@@ -38,7 +44,10 @@ class Survey extends Model
             'institution_id' => 'integer|exists:institutions,id|max:4294967295|nullable',
             'category' => 'array|nullable',
             'category.*' => 'integer|exists:categories,id|max:4294967295|nullable',
-            'group_id' => 'integer|exists:groups,id|max:4294967295|nullable'
+            'group_id' => 'integer|exists:groups,id|max:4294967295|nullable',
+            'introduction' => 'max:191|nullable',
+            'notes' => 'max:191|nullable',
+            'completed' => 'boolean|nullable'
         ];
     }
 

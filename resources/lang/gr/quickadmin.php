@@ -7,7 +7,7 @@ return [
 		'users' => [		'title' => 'Χρήστες',		'fields' => [			'name' => 'Όνομα',			'email' => 'Email',			'password' => 'Κωδικός',			'role' => 'Ρόλος',			'remember-token' => 'Να με θυμάσαι',		],	],
 		'survey' => [		'title' => 'Surveys',		'fields' => [		],	],
 		'diaxeirish-kathgoriwn' => [		'title' => 'Διαχείριση κατηγοριών',		'fields' => [		],	],
-		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Class',		],	],
+		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Class',			'introduction' => 'Introduction',			'notes' => 'Notes',			'completed' => 'Completed',		],	],
 		'surveyclass' => [		'title' => 'SurveyClass',		'fields' => [		],	],
 		'surveyinstitution' => [		'title' => 'SurveyInstitution',		'fields' => [		],	],
 		'class' => [		'title' => 'Class',		'fields' => [		],	],

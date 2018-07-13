@@ -2443,6 +2443,42 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2461,7 +2497,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.resetState();
     },
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
@@ -2473,6 +2509,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         updateGroup: function updateGroup(value) {
             this.setGroup(value);
+        },
+        updateIntroduction: function updateIntroduction(e) {
+            this.setIntroduction(e.target.value);
+        },
+        updateNotes: function updateNotes(e) {
+            this.setNotes(e.target.value);
+        },
+        updateCompleted: function updateCompleted(e) {
+            this.setCompleted(e.target.checked);
         },
         submitForm: function submitForm() {
             var _this = this;
@@ -2581,6 +2626,42 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2605,7 +2686,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.fetchData(this.$route.params.id);
         }
     },
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
@@ -2617,6 +2698,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         updateGroup: function updateGroup(value) {
             this.setGroup(value);
+        },
+        updateIntroduction: function updateIntroduction(e) {
+            this.setIntroduction(e.target.value);
+        },
+        updateNotes: function updateNotes(e) {
+            this.setNotes(e.target.value);
+        },
+        updateCompleted: function updateCompleted(e) {
+            this.setCompleted(e.target.checked);
         },
         submitForm: function submitForm() {
             var _this = this;
@@ -2715,7 +2805,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Institution', field: 'institution', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Category', field: 'category', tdComp: __WEBPACK_IMPORTED_MODULE_3__dtmodules_DatatableList___default.a }, { title: 'Class', field: 'group', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Institution', field: 'institution', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Category', field: 'category', tdComp: __WEBPACK_IMPORTED_MODULE_3__dtmodules_DatatableList___default.a }, { title: 'Class', field: 'group', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Completed', field: 'completed', tdComp: __WEBPACK_IMPORTED_MODULE_4__dtmodules_DatatableCheckbox___default.a, colStyle: 'width: 50px;' }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
             query: { sort: 'id', order: 'desc' },
             xprops: {
                 module: 'SurveysIndex',
@@ -2755,6 +2845,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3646,7 +3748,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3676,7 +3778,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3856,7 +3958,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3916,7 +4018,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24712,6 +24814,24 @@ var render = function() {
                                   )
                                 : _vm._e()
                             ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", [_vm._v("Introduction")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.item.introduction))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", [_vm._v("Notes")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.item.notes))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", [_vm._v("Completed")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.item.completed))])
                           ])
                         ])
                       ]
@@ -25023,7 +25143,59 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "introduction" } }, [
+                          _vm._v("Introduction")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "introduction",
+                            placeholder: "Enter Introduction"
+                          },
+                          domProps: { value: _vm.item.introduction },
+                          on: { input: _vm.updateIntroduction }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "notes" } }, [
+                          _vm._v("Notes")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "notes",
+                            placeholder: "Enter Notes"
+                          },
+                          domProps: { value: _vm.item.notes },
+                          on: { input: _vm.updateNotes }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "checkbox" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "checkbox", name: "completed" },
+                              domProps: {
+                                value: _vm.item.completed,
+                                checked: _vm.item.completed == true
+                              },
+                              on: { change: _vm.updateCompleted }
+                            }),
+                            _vm._v(
+                              "\n                                        Completed\n                                    "
+                            )
+                          ])
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
                     _c(
@@ -26951,7 +27123,59 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "introduction" } }, [
+                          _vm._v("Introduction")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "introduction",
+                            placeholder: "Enter Introduction"
+                          },
+                          domProps: { value: _vm.item.introduction },
+                          on: { input: _vm.updateIntroduction }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "notes" } }, [
+                          _vm._v("Notes")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "notes",
+                            placeholder: "Enter Notes"
+                          },
+                          domProps: { value: _vm.item.notes },
+                          on: { input: _vm.updateNotes }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "checkbox" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "checkbox", name: "completed" },
+                              domProps: {
+                                value: _vm.item.completed,
+                                checked: _vm.item.completed == true
+                              },
+                              on: { change: _vm.updateCompleted }
+                            }),
+                            _vm._v(
+                              "\n                                        Completed\n                                    "
+                            )
+                          ])
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
                     _c(
@@ -31114,46 +31338,46 @@ function subjectName(item) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_cruds_Institutions_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_cruds_Institutions_Show_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_cruds_Institutions_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Institutions/Edit.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_cruds_Institutions_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_cruds_Institutions_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_cruds_Categories_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_cruds_Categories_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_cruds_Categories_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_cruds_Categories_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_cruds_Categories_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_cruds_Categories_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_cruds_Categories_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_cruds_Categories_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_cruds_Categories_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_cruds_Categories_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_cruds_Categories_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_cruds_Categories_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_cruds_Permissions_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_cruds_Permissions_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_cruds_Permissions_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_cruds_Permissions_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_cruds_Permissions_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_cruds_Permissions_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_cruds_Permissions_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_cruds_Permissions_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_cruds_Permissions_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_cruds_Permissions_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_cruds_Permissions_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_cruds_Permissions_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_cruds_Roles_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_cruds_Roles_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_cruds_Roles_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_cruds_Roles_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_cruds_Roles_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_cruds_Roles_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_cruds_Roles_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_cruds_Roles_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_cruds_Roles_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_cruds_Roles_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_cruds_Roles_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__components_cruds_Roles_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_cruds_Users_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_cruds_Users_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__components_cruds_Users_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_cruds_Users_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_cruds_Users_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_cruds_Users_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_cruds_Users_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_cruds_Users_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_cruds_Users_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cruds_Users_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cruds_Users_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_cruds_Users_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_cruds_Groups_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_cruds_Groups_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__components_cruds_Groups_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_cruds_Groups_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_cruds_Groups_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_cruds_Groups_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cruds_Groups_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cruds_Groups_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_cruds_Groups_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cruds_Groups_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cruds_Groups_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_cruds_Groups_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_cruds_Groups_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_cruds_Groups_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_cruds_Groups_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_cruds_Groups_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_cruds_Groups_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_cruds_Groups_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_cruds_Groups_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_cruds_Groups_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_cruds_Groups_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_cruds_Groups_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Groups/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_cruds_Groups_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_cruds_Groups_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_cruds_Categories_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_cruds_Categories_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_cruds_Categories_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_cruds_Categories_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_cruds_Categories_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_cruds_Categories_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_cruds_Categories_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_cruds_Categories_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_cruds_Categories_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_cruds_Categories_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Categories/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_cruds_Categories_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_cruds_Categories_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_cruds_Permissions_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_cruds_Permissions_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_cruds_Permissions_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_cruds_Permissions_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_cruds_Permissions_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_cruds_Permissions_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_cruds_Permissions_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_cruds_Permissions_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_cruds_Permissions_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_cruds_Permissions_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Permissions/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_cruds_Permissions_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__components_cruds_Permissions_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_cruds_Roles_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_cruds_Roles_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__components_cruds_Roles_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_cruds_Roles_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_cruds_Roles_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_cruds_Roles_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_cruds_Roles_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_cruds_Roles_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_cruds_Roles_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cruds_Roles_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Roles/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cruds_Roles_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_cruds_Roles_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_cruds_Users_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_cruds_Users_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__components_cruds_Users_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_cruds_Users_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_cruds_Users_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_cruds_Users_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cruds_Users_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_cruds_Users_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__components_cruds_Users_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cruds_Users_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/Users/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_cruds_Users_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__components_cruds_Users_Edit_vue__);
 
 
 
@@ -31189,7 +31413,7 @@ function subjectName(item) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
-var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2__components_ChangePassword_vue___default.a, name: 'auth.change_password' }, { path: '/surveys', component: __WEBPACK_IMPORTED_MODULE_3__components_cruds_Surveys_Index_vue___default.a, name: 'surveys.index' }, { path: '/surveys/create', component: __WEBPACK_IMPORTED_MODULE_4__components_cruds_Surveys_Create_vue___default.a, name: 'surveys.create' }, { path: '/surveys/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_cruds_Surveys_Show_vue___default.a, name: 'surveys.show' }, { path: '/surveys/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_cruds_Surveys_Edit_vue___default.a, name: 'surveys.edit' }, { path: '/institutions', component: __WEBPACK_IMPORTED_MODULE_7__components_cruds_Institutions_Index_vue___default.a, name: 'institutions.index' }, { path: '/institutions/create', component: __WEBPACK_IMPORTED_MODULE_8__components_cruds_Institutions_Create_vue___default.a, name: 'institutions.create' }, { path: '/institutions/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_cruds_Institutions_Show_vue___default.a, name: 'institutions.show' }, { path: '/institutions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_10__components_cruds_Institutions_Edit_vue___default.a, name: 'institutions.edit' }, { path: '/categories', component: __WEBPACK_IMPORTED_MODULE_11__components_cruds_Categories_Index_vue___default.a, name: 'categories.index' }, { path: '/categories/create', component: __WEBPACK_IMPORTED_MODULE_12__components_cruds_Categories_Create_vue___default.a, name: 'categories.create' }, { path: '/categories/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_cruds_Categories_Show_vue___default.a, name: 'categories.show' }, { path: '/categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_14__components_cruds_Categories_Edit_vue___default.a, name: 'categories.edit' }, { path: '/permissions', component: __WEBPACK_IMPORTED_MODULE_15__components_cruds_Permissions_Index_vue___default.a, name: 'permissions.index' }, { path: '/permissions/create', component: __WEBPACK_IMPORTED_MODULE_16__components_cruds_Permissions_Create_vue___default.a, name: 'permissions.create' }, { path: '/permissions/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_cruds_Permissions_Show_vue___default.a, name: 'permissions.show' }, { path: '/permissions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_18__components_cruds_Permissions_Edit_vue___default.a, name: 'permissions.edit' }, { path: '/roles', component: __WEBPACK_IMPORTED_MODULE_19__components_cruds_Roles_Index_vue___default.a, name: 'roles.index' }, { path: '/roles/create', component: __WEBPACK_IMPORTED_MODULE_20__components_cruds_Roles_Create_vue___default.a, name: 'roles.create' }, { path: '/roles/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_cruds_Roles_Show_vue___default.a, name: 'roles.show' }, { path: '/roles/:id/edit', component: __WEBPACK_IMPORTED_MODULE_22__components_cruds_Roles_Edit_vue___default.a, name: 'roles.edit' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_23__components_cruds_Users_Index_vue___default.a, name: 'users.index' }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_24__components_cruds_Users_Create_vue___default.a, name: 'users.create' }, { path: '/users/:id', component: __WEBPACK_IMPORTED_MODULE_25__components_cruds_Users_Show_vue___default.a, name: 'users.show' }, { path: '/users/:id/edit', component: __WEBPACK_IMPORTED_MODULE_26__components_cruds_Users_Edit_vue___default.a, name: 'users.edit' }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_27__components_cruds_Groups_Index_vue___default.a, name: 'groups.index' }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_28__components_cruds_Groups_Create_vue___default.a, name: 'groups.create' }, { path: '/groups/:id', component: __WEBPACK_IMPORTED_MODULE_29__components_cruds_Groups_Show_vue___default.a, name: 'groups.show' }, { path: '/groups/:id/edit', component: __WEBPACK_IMPORTED_MODULE_30__components_cruds_Groups_Edit_vue___default.a, name: 'groups.edit' }];
+var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2__components_ChangePassword_vue___default.a, name: 'auth.change_password' }, { path: '/surveys', component: __WEBPACK_IMPORTED_MODULE_3__components_cruds_Surveys_Index_vue___default.a, name: 'surveys.index' }, { path: '/surveys/create', component: __WEBPACK_IMPORTED_MODULE_4__components_cruds_Surveys_Create_vue___default.a, name: 'surveys.create' }, { path: '/surveys/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_cruds_Surveys_Show_vue___default.a, name: 'surveys.show' }, { path: '/surveys/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_cruds_Surveys_Edit_vue___default.a, name: 'surveys.edit' }, { path: '/institutions', component: __WEBPACK_IMPORTED_MODULE_7__components_cruds_Institutions_Index_vue___default.a, name: 'institutions.index' }, { path: '/institutions/create', component: __WEBPACK_IMPORTED_MODULE_8__components_cruds_Institutions_Create_vue___default.a, name: 'institutions.create' }, { path: '/institutions/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_cruds_Institutions_Show_vue___default.a, name: 'institutions.show' }, { path: '/institutions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_10__components_cruds_Institutions_Edit_vue___default.a, name: 'institutions.edit' }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_11__components_cruds_Groups_Index_vue___default.a, name: 'groups.index' }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_12__components_cruds_Groups_Create_vue___default.a, name: 'groups.create' }, { path: '/groups/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_cruds_Groups_Show_vue___default.a, name: 'groups.show' }, { path: '/groups/:id/edit', component: __WEBPACK_IMPORTED_MODULE_14__components_cruds_Groups_Edit_vue___default.a, name: 'groups.edit' }, { path: '/categories', component: __WEBPACK_IMPORTED_MODULE_15__components_cruds_Categories_Index_vue___default.a, name: 'categories.index' }, { path: '/categories/create', component: __WEBPACK_IMPORTED_MODULE_16__components_cruds_Categories_Create_vue___default.a, name: 'categories.create' }, { path: '/categories/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_cruds_Categories_Show_vue___default.a, name: 'categories.show' }, { path: '/categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_18__components_cruds_Categories_Edit_vue___default.a, name: 'categories.edit' }, { path: '/permissions', component: __WEBPACK_IMPORTED_MODULE_19__components_cruds_Permissions_Index_vue___default.a, name: 'permissions.index' }, { path: '/permissions/create', component: __WEBPACK_IMPORTED_MODULE_20__components_cruds_Permissions_Create_vue___default.a, name: 'permissions.create' }, { path: '/permissions/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_cruds_Permissions_Show_vue___default.a, name: 'permissions.show' }, { path: '/permissions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_22__components_cruds_Permissions_Edit_vue___default.a, name: 'permissions.edit' }, { path: '/roles', component: __WEBPACK_IMPORTED_MODULE_23__components_cruds_Roles_Index_vue___default.a, name: 'roles.index' }, { path: '/roles/create', component: __WEBPACK_IMPORTED_MODULE_24__components_cruds_Roles_Create_vue___default.a, name: 'roles.create' }, { path: '/roles/:id', component: __WEBPACK_IMPORTED_MODULE_25__components_cruds_Roles_Show_vue___default.a, name: 'roles.show' }, { path: '/roles/:id/edit', component: __WEBPACK_IMPORTED_MODULE_26__components_cruds_Roles_Edit_vue___default.a, name: 'roles.edit' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_27__components_cruds_Users_Index_vue___default.a, name: 'users.index' }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_28__components_cruds_Users_Create_vue___default.a, name: 'users.create' }, { path: '/users/:id', component: __WEBPACK_IMPORTED_MODULE_29__components_cruds_Users_Show_vue___default.a, name: 'users.show' }, { path: '/users/:id/edit', component: __WEBPACK_IMPORTED_MODULE_30__components_cruds_Users_Edit_vue___default.a, name: 'users.edit' }];
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
     mode: 'history',
@@ -31213,16 +31437,16 @@ var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_Surveys_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Surveys/single.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_Institutions__ = __webpack_require__("./resources/client/assets/js/store/modules/Institutions/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_Institutions_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Institutions/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_Categories__ = __webpack_require__("./resources/client/assets/js/store/modules/Categories/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_Categories_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Categories/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_Permissions__ = __webpack_require__("./resources/client/assets/js/store/modules/Permissions/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_Permissions_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Permissions/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_Roles__ = __webpack_require__("./resources/client/assets/js/store/modules/Roles/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_Roles_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Roles/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_Users__ = __webpack_require__("./resources/client/assets/js/store/modules/Users/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_Users_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Users/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_Groups__ = __webpack_require__("./resources/client/assets/js/store/modules/Groups/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_Groups_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Groups/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_Groups__ = __webpack_require__("./resources/client/assets/js/store/modules/Groups/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_Groups_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Groups/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_Categories__ = __webpack_require__("./resources/client/assets/js/store/modules/Categories/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_Categories_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Categories/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_Permissions__ = __webpack_require__("./resources/client/assets/js/store/modules/Permissions/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_Permissions_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Permissions/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_Roles__ = __webpack_require__("./resources/client/assets/js/store/modules/Roles/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_Roles_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Roles/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_Users__ = __webpack_require__("./resources/client/assets/js/store/modules/Users/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_Users_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Users/single.js");
 
 
 
@@ -31256,16 +31480,16 @@ var debug = "development" !== 'production';
         SurveysSingle: __WEBPACK_IMPORTED_MODULE_6__modules_Surveys_single__["a" /* default */],
         InstitutionsIndex: __WEBPACK_IMPORTED_MODULE_7__modules_Institutions__["a" /* default */],
         InstitutionsSingle: __WEBPACK_IMPORTED_MODULE_8__modules_Institutions_single__["a" /* default */],
-        CategoriesIndex: __WEBPACK_IMPORTED_MODULE_9__modules_Categories__["a" /* default */],
-        CategoriesSingle: __WEBPACK_IMPORTED_MODULE_10__modules_Categories_single__["a" /* default */],
-        PermissionsIndex: __WEBPACK_IMPORTED_MODULE_11__modules_Permissions__["a" /* default */],
-        PermissionsSingle: __WEBPACK_IMPORTED_MODULE_12__modules_Permissions_single__["a" /* default */],
-        RolesIndex: __WEBPACK_IMPORTED_MODULE_13__modules_Roles__["a" /* default */],
-        RolesSingle: __WEBPACK_IMPORTED_MODULE_14__modules_Roles_single__["a" /* default */],
-        UsersIndex: __WEBPACK_IMPORTED_MODULE_15__modules_Users__["a" /* default */],
-        UsersSingle: __WEBPACK_IMPORTED_MODULE_16__modules_Users_single__["a" /* default */],
-        GroupsIndex: __WEBPACK_IMPORTED_MODULE_17__modules_Groups__["a" /* default */],
-        GroupsSingle: __WEBPACK_IMPORTED_MODULE_18__modules_Groups_single__["a" /* default */]
+        GroupsIndex: __WEBPACK_IMPORTED_MODULE_9__modules_Groups__["a" /* default */],
+        GroupsSingle: __WEBPACK_IMPORTED_MODULE_10__modules_Groups_single__["a" /* default */],
+        CategoriesIndex: __WEBPACK_IMPORTED_MODULE_11__modules_Categories__["a" /* default */],
+        CategoriesSingle: __WEBPACK_IMPORTED_MODULE_12__modules_Categories_single__["a" /* default */],
+        PermissionsIndex: __WEBPACK_IMPORTED_MODULE_13__modules_Permissions__["a" /* default */],
+        PermissionsSingle: __WEBPACK_IMPORTED_MODULE_14__modules_Permissions_single__["a" /* default */],
+        RolesIndex: __WEBPACK_IMPORTED_MODULE_15__modules_Roles__["a" /* default */],
+        RolesSingle: __WEBPACK_IMPORTED_MODULE_16__modules_Roles_single__["a" /* default */],
+        UsersIndex: __WEBPACK_IMPORTED_MODULE_17__modules_Users__["a" /* default */],
+        UsersSingle: __WEBPACK_IMPORTED_MODULE_18__modules_Users_single__["a" /* default */]
     },
     strict: debug
 }));
@@ -32724,7 +32948,10 @@ function initialState() {
             title: null,
             institution: null,
             category: [],
-            group: null
+            group: null,
+            introduction: null,
+            notes: null,
+            completed: false
         },
         institutionsAll: [],
         categoriesAll: [],
@@ -32797,6 +33024,7 @@ var actions = {
             } else {
                 params.set('group_id', state.item.group.id);
             }
+            params.set('completed', state.item.completed ? 1 : 0);
 
             axios.post('/api/v1/surveys', params).then(function (response) {
                 commit('resetState');
@@ -32857,6 +33085,7 @@ var actions = {
             } else {
                 params.set('group_id', state.item.group.id);
             }
+            params.set('completed', state.item.completed ? 1 : 0);
 
             axios.post('/api/v1/surveys/' + state.item.id, params).then(function (response) {
                 commit('setItem', response.data.data);
@@ -32926,8 +33155,23 @@ var actions = {
 
         commit('setGroup', value);
     },
-    resetState: function resetState(_ref11) {
+    setIntroduction: function setIntroduction(_ref11, value) {
         var commit = _ref11.commit;
+
+        commit('setIntroduction', value);
+    },
+    setNotes: function setNotes(_ref12, value) {
+        var commit = _ref12.commit;
+
+        commit('setNotes', value);
+    },
+    setCompleted: function setCompleted(_ref13, value) {
+        var commit = _ref13.commit;
+
+        commit('setCompleted', value);
+    },
+    resetState: function resetState(_ref14) {
+        var commit = _ref14.commit;
 
         commit('resetState');
     }
@@ -32948,6 +33192,15 @@ var mutations = {
     },
     setGroup: function setGroup(state, value) {
         state.item.group = value;
+    },
+    setIntroduction: function setIntroduction(state, value) {
+        state.item.introduction = value;
+    },
+    setNotes: function setNotes(state, value) {
+        state.item.notes = value;
+    },
+    setCompleted: function setCompleted(state, value) {
+        state.item.completed = value;
     },
     setInstitutionsAll: function setInstitutionsAll(state, value) {
         state.institutionsAll = value;

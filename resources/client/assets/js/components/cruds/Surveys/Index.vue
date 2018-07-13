@@ -71,6 +71,7 @@ export default {
                 { title: 'Institution', field: 'institution', tdComp: DatatableSingle },
                 { title: 'Category', field: 'category', tdComp: DatatableList },
                 { title: 'Class', field: 'group', tdComp: DatatableSingle },
+                { title: 'Completed', field: 'completed', tdComp: DatatableCheckbox, colStyle: 'width: 50px;' },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },

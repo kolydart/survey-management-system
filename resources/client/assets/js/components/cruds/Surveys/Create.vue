@@ -62,6 +62,42 @@
                                             :options="groupsAll"
                                             />
                                 </div>
+                                <div class="form-group">
+                                    <label for="introduction">Introduction</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            name="introduction"
+                                            placeholder="Enter Introduction"
+                                            :value="item.introduction"
+                                            @input="updateIntroduction"
+                                            >
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Notes</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            name="notes"
+                                            placeholder="Enter Notes"
+                                            :value="item.notes"
+                                            @input="updateNotes"
+                                            >
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input
+                                                    type="checkbox"
+                                                    name="completed"
+                                                    :value="item.completed"
+                                                    :checked="item.completed == true"
+                                                    @change="updateCompleted"
+                                                    >
+                                            Completed
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -103,7 +139,7 @@ export default {
         this.resetState()
     },
     methods: {
-        ...mapActions('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']),
+        ...mapActions('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']),
         updateTitle(e) {
             this.setTitle(e.target.value)
         },
@@ -115,6 +151,15 @@ export default {
         },
         updateGroup(value) {
             this.setGroup(value)
+        },
+        updateIntroduction(e) {
+            this.setIntroduction(e.target.value)
+        },
+        updateNotes(e) {
+            this.setNotes(e.target.value)
+        },
+        updateCompleted(e) {
+            this.setCompleted(e.target.checked)
         },
         submitForm() {
             this.storeData()

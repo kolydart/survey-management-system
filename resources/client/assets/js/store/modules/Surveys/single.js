@@ -6,6 +6,9 @@ function initialState() {
             institution: null,
             category: [],
             group: null,
+            introduction: null,
+            notes: null,
+            completed: false,
         },
         institutionsAll: [],
         categoriesAll: [],
@@ -64,6 +67,7 @@ const actions = {
             } else {
                 params.set('group_id', state.item.group.id)
             }
+            params.set('completed', state.item.completed ? 1 : 0)
 
             axios.post('/api/v1/surveys', params)
                 .then(response => {
@@ -126,6 +130,7 @@ const actions = {
             } else {
                 params.set('group_id', state.item.group.id)
             }
+            params.set('completed', state.item.completed ? 1 : 0)
 
             axios.post('/api/v1/surveys/' + state.item.id, params)
                 .then(response => {
@@ -188,6 +193,15 @@ const actions = {
     setGroup({ commit }, value) {
         commit('setGroup', value)
     },
+    setIntroduction({ commit }, value) {
+        commit('setIntroduction', value)
+    },
+    setNotes({ commit }, value) {
+        commit('setNotes', value)
+    },
+    setCompleted({ commit }, value) {
+        commit('setCompleted', value)
+    },
     resetState({ commit }) {
         commit('resetState')
     }
@@ -208,6 +222,15 @@ const mutations = {
     },
     setGroup(state, value) {
         state.item.group = value
+    },
+    setIntroduction(state, value) {
+        state.item.introduction = value
+    },
+    setNotes(state, value) {
+        state.item.notes = value
+    },
+    setCompleted(state, value) {
+        state.item.completed = value
     },
     setInstitutionsAll(state, value) {
         state.institutionsAll = value

@@ -7,6 +7,8 @@ import SurveysIndex from './modules/Surveys'
 import SurveysSingle from './modules/Surveys/single'
 import InstitutionsIndex from './modules/Institutions'
 import InstitutionsSingle from './modules/Institutions/single'
+import GroupsIndex from './modules/Groups'
+import GroupsSingle from './modules/Groups/single'
 import CategoriesIndex from './modules/Categories'
 import CategoriesSingle from './modules/Categories/single'
 import PermissionsIndex from './modules/Permissions'
@@ -15,8 +17,6 @@ import RolesIndex from './modules/Roles'
 import RolesSingle from './modules/Roles/single'
 import UsersIndex from './modules/Users'
 import UsersSingle from './modules/Users/single'
-import GroupsIndex from './modules/Groups'
-import GroupsSingle from './modules/Groups/single'
 
 Vue.use(Vuex)
 
@@ -31,6 +31,8 @@ export default new Vuex.Store({
         SurveysSingle,
         InstitutionsIndex,
         InstitutionsSingle,
+        GroupsIndex,
+        GroupsSingle,
         CategoriesIndex,
         CategoriesSingle,
         PermissionsIndex,
@@ -39,8 +41,6 @@ export default new Vuex.Store({
         RolesSingle,
         UsersIndex,
         UsersSingle,
-        GroupsIndex,
-        GroupsSingle,
     },
     strict: debug,
 })

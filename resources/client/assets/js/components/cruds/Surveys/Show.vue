@@ -53,6 +53,18 @@
                                                 </span>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th>Introduction</th>
+                                            <td>{{ item.introduction }}</td>
+                                            </tr>
+                                        <tr>
+                                            <th>Notes</th>
+                                            <td>{{ item.notes }}</td>
+                                            </tr>
+                                        <tr>
+                                            <th>Completed</th>
+                                            <td>{{ item.completed }}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
