@@ -64,14 +64,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="introduction">Introduction</label>
-                                    <input
-                                            type="text"
+                                    <textarea
+                                            rows="3"
                                             class="form-control"
                                             name="introduction"
                                             placeholder="Enter Introduction"
                                             :value="item.introduction"
                                             @input="updateIntroduction"
                                             >
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="notes">Notes</label>
