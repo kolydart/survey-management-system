@@ -13,12 +13,12 @@ import GroupsIndex from './modules/Groups'
 import GroupsSingle from './modules/Groups/single'
 import CategoriesIndex from './modules/Categories'
 import CategoriesSingle from './modules/Categories/single'
-import PermissionsIndex from './modules/Permissions'
-import PermissionsSingle from './modules/Permissions/single'
-import RolesIndex from './modules/Roles'
-import RolesSingle from './modules/Roles/single'
 import UsersIndex from './modules/Users'
 import UsersSingle from './modules/Users/single'
+import RolesIndex from './modules/Roles'
+import RolesSingle from './modules/Roles/single'
+import PermissionsIndex from './modules/Permissions'
+import PermissionsSingle from './modules/Permissions/single'
 
 Vue.use(Vuex)
 
@@ -39,12 +39,12 @@ export default new Vuex.Store({
         GroupsSingle,
         CategoriesIndex,
         CategoriesSingle,
-        PermissionsIndex,
-        PermissionsSingle,
-        RolesIndex,
-        RolesSingle,
         UsersIndex,
         UsersSingle,
+        RolesIndex,
+        RolesSingle,
+        PermissionsIndex,
+        PermissionsSingle,
     },
     strict: debug,
 })

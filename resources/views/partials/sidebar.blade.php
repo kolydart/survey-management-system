@@ -51,10 +51,10 @@
                             <span>@lang('quickadmin.category.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('permission_access')">
-                        <router-link :to="{ name: 'permissions.index' }">
-                            <i class="fa fa-briefcase"></i>
-                            <span>@lang('quickadmin.permissions.title')</span>
+                    <li v-if="$can('user_access')">
+                        <router-link :to="{ name: 'users.index' }">
+                            <i class="fa fa-user"></i>
+                            <span>@lang('quickadmin.users.title')</span>
                         </router-link>
                     </li>
                     <li v-if="$can('role_access')">
@@ -63,10 +63,10 @@
                             <span>@lang('quickadmin.roles.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('user_access')">
-                        <router-link :to="{ name: 'users.index' }">
-                            <i class="fa fa-user"></i>
-                            <span>@lang('quickadmin.users.title')</span>
+                    <li v-if="$can('permission_access')">
+                        <router-link :to="{ name: 'permissions.index' }">
+                            <i class="fa fa-briefcase"></i>
+                            <span>@lang('quickadmin.permissions.title')</span>
                         </router-link>
                     </li>
                 </ul>
