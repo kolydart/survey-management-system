@@ -94,17 +94,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="answers">Answers *</label>
-                                    <v-select
-                                            name="answers"
-                                            label="title"
-                                            @input="updateAnswers"
-                                            :value="item.answers"
-                                            :options="answersAll"
-                                            multiple
-                                            />
-                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -135,24 +124,21 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('AnswerlistsSingle', ['item', 'loading', 'answersAll'])
+        ...mapGetters('AnswerlistsSingle', ['item', 'loading'])
     },
     created() {
-        this.fetchAnswersAll()
+        // Code ...
     },
     destroyed() {
         this.resetState()
     },
     methods: {
-        ...mapActions('AnswerlistsSingle', ['storeData', 'resetState', 'setTitle', 'setType', 'setAnswers', 'fetchAnswersAll']),
+        ...mapActions('AnswerlistsSingle', ['storeData', 'resetState', 'setTitle', 'setType']),
         updateTitle(e) {
             this.setTitle(e.target.value)
         },
         updateType(value) {
             this.setType(value)
-        },
-        updateAnswers(value) {
-            this.setAnswers(value)
         },
         submitForm() {
             this.storeData()

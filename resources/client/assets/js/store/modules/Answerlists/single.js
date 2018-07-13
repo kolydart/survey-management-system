@@ -4,9 +4,8 @@ function initialState() {
             id: null,
             title: null,
             type: null,
-            answers: [],
         },
-        answersAll: [],
+        
         
         loading: false,
     }
@@ -15,7 +14,7 @@ function initialState() {
 const getters = {
     item: state => state.item,
     loading: state => state.loading,
-    answersAll: state => state.answersAll,
+    
     
 }
 
@@ -42,13 +41,7 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.answers)) {
-                params.delete('answers')
-            } else {
-                for (let index in state.item.answers) {
-                    params.set('answers['+index+']', state.item.answers[index].id)
-                }
-            }
+            
 
             axios.post('/api/v1/answerlists', params)
                 .then(response => {
@@ -94,13 +87,7 @@ const actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.answers)) {
-                params.delete('answers')
-            } else {
-                for (let index in state.item.answers) {
-                    params.set('answers['+index+']', state.item.answers[index].id)
-                }
-            }
+            
 
             axios.post('/api/v1/answerlists/' + state.item.id, params)
                 .then(response => {
@@ -129,22 +116,14 @@ const actions = {
                 commit('setItem', response.data.data)
             })
 
-        dispatch('fetchAnswersAll')
+        
     },
-    fetchAnswersAll({ commit }) {
-        axios.get('/api/v1/answers')
-            .then(response => {
-                commit('setAnswersAll', response.data.data)
-            })
-    },
+    
     setTitle({ commit }, value) {
         commit('setTitle', value)
     },
     setType({ commit }, value) {
         commit('setType', value)
-    },
-    setAnswers({ commit }, value) {
-        commit('setAnswers', value)
     },
     resetState({ commit }) {
         commit('resetState')
@@ -161,12 +140,7 @@ const mutations = {
     setType(state, value) {
         state.item.type = value
     },
-    setAnswers(state, value) {
-        state.item.answers = value
-    },
-    setAnswersAll(state, value) {
-        state.answersAll = value
-    },
+    
     
     setLoading(state, loading) {
         state.loading = loading

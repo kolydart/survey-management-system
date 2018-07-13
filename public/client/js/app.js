@@ -459,17 +459,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -480,23 +469,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])('AnswerlistsSingle', ['item', 'loading', 'answersAll'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])('AnswerlistsSingle', ['item', 'loading'])),
     created: function created() {
-        this.fetchAnswersAll();
+        // Code ...
     },
     destroyed: function destroyed() {
         this.resetState();
     },
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('AnswerlistsSingle', ['storeData', 'resetState', 'setTitle', 'setType', 'setAnswers', 'fetchAnswersAll']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('AnswerlistsSingle', ['storeData', 'resetState', 'setTitle', 'setType']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
         updateType: function updateType(value) {
             this.setType(value);
-        },
-        updateAnswers: function updateAnswers(value) {
-            this.setAnswers(value);
         },
         submitForm: function submitForm() {
             var _this = this;
@@ -637,17 +623,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -658,7 +633,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])('AnswerlistsSingle', ['item', 'loading', 'answersAll'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])('AnswerlistsSingle', ['item', 'loading'])),
     created: function created() {
         this.fetchData(this.$route.params.id);
     },
@@ -672,15 +647,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.fetchData(this.$route.params.id);
         }
     },
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('AnswerlistsSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setType', 'setAnswers']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('AnswerlistsSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setType']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
         updateType: function updateType(value) {
             this.setType(value);
-        },
-        updateAnswers: function updateAnswers(value) {
-            this.setAnswers(value);
         },
         submitForm: function submitForm() {
             var _this = this;
@@ -779,7 +751,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Type', field: 'type', sortable: true }, { title: 'Answers', field: 'answers', tdComp: __WEBPACK_IMPORTED_MODULE_3__dtmodules_DatatableList___default.a }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Type', field: 'type', sortable: true }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
             query: { sort: 'id', order: 'desc' },
             xprops: {
                 module: 'AnswerlistsIndex',
@@ -819,14 +791,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7987,7 +7951,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8107,7 +8071,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8497,7 +8461,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8557,7 +8521,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -31507,29 +31471,7 @@ var render = function() {
                             )
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "answers" } }, [
-                            _vm._v("Answers *")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              name: "answers",
-                              label: "title",
-                              value: _vm.item.answers,
-                              options: _vm.answersAll,
-                              multiple: ""
-                            },
-                            on: { input: _vm.updateAnswers }
-                          })
-                        ],
-                        1
-                      )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c(
@@ -35788,27 +35730,6 @@ var render = function() {
                             _c("th", [_vm._v("Type")]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(_vm.item.type))])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("th", [_vm._v("Answers")]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              _vm._l(_vm.item.answers, function(answers) {
-                                return _c(
-                                  "span",
-                                  { staticClass: "label label-info" },
-                                  [
-                                    _vm._v(
-                                      "\n                                                " +
-                                        _vm._s(answers.title) +
-                                        "\n                                            "
-                                    )
-                                  ]
-                                )
-                              })
-                            )
                           ])
                         ])
                       ]
@@ -36319,29 +36240,7 @@ var render = function() {
                             )
                           ])
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "form-group" },
-                        [
-                          _c("label", { attrs: { for: "answers" } }, [
-                            _vm._v("Answers *")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-select", {
-                            attrs: {
-                              name: "answers",
-                              label: "title",
-                              value: _vm.item.answers,
-                              options: _vm.answersAll,
-                              multiple: ""
-                            },
-                            on: { input: _vm.updateAnswers }
-                          })
-                        ],
-                        1
-                      )
+                      ])
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43905,9 +43804,7 @@ var debug = "development" !== 'production';
 function initialState() {
     return {
         all: [],
-        relationships: {
-            'answers': 'title'
-        },
+        relationships: {},
         query: {},
         loading: false
     };
@@ -44013,10 +43910,8 @@ function initialState() {
         item: {
             id: null,
             title: null,
-            type: null,
-            answers: []
+            type: null
         },
-        answersAll: [],
 
         loading: false
     };
@@ -44028,9 +43923,6 @@ var getters = {
     },
     loading: function loading(state) {
         return state.loading;
-    },
-    answersAll: function answersAll(state) {
-        return state.answersAll;
     }
 
 };
@@ -44059,14 +43951,6 @@ var actions = {
                             params.set(fieldName + '[' + index + ']', fieldValue[index]);
                         }
                     }
-                }
-            }
-
-            if (_.isEmpty(state.item.answers)) {
-                params.delete('answers');
-            } else {
-                for (var _index in state.item.answers) {
-                    params.set('answers[' + _index + ']', state.item.answers[_index].id);
                 }
             }
 
@@ -44112,14 +43996,6 @@ var actions = {
                 }
             }
 
-            if (_.isEmpty(state.item.answers)) {
-                params.delete('answers');
-            } else {
-                for (var _index2 in state.item.answers) {
-                    params.set('answers[' + _index2 + ']', state.item.answers[_index2].id);
-                }
-            }
-
             axios.post('/api/v1/answerlists/' + state.item.id, params).then(function (response) {
                 commit('setItem', response.data.data);
                 resolve();
@@ -44142,33 +44018,19 @@ var actions = {
         axios.get('/api/v1/answerlists/' + id).then(function (response) {
             commit('setItem', response.data.data);
         });
-
-        dispatch('fetchAnswersAll');
     },
-    fetchAnswersAll: function fetchAnswersAll(_ref4) {
+    setTitle: function setTitle(_ref4, value) {
         var commit = _ref4.commit;
-
-        axios.get('/api/v1/answers').then(function (response) {
-            commit('setAnswersAll', response.data.data);
-        });
-    },
-    setTitle: function setTitle(_ref5, value) {
-        var commit = _ref5.commit;
 
         commit('setTitle', value);
     },
-    setType: function setType(_ref6, value) {
-        var commit = _ref6.commit;
+    setType: function setType(_ref5, value) {
+        var commit = _ref5.commit;
 
         commit('setType', value);
     },
-    setAnswers: function setAnswers(_ref7, value) {
-        var commit = _ref7.commit;
-
-        commit('setAnswers', value);
-    },
-    resetState: function resetState(_ref8) {
-        var commit = _ref8.commit;
+    resetState: function resetState(_ref6) {
+        var commit = _ref6.commit;
 
         commit('resetState');
     }
@@ -44183,12 +44045,6 @@ var mutations = {
     },
     setType: function setType(state, value) {
         state.item.type = value;
-    },
-    setAnswers: function setAnswers(state, value) {
-        state.item.answers = value;
-    },
-    setAnswersAll: function setAnswersAll(state, value) {
-        state.answersAll = value;
     },
     setLoading: function setLoading(state, loading) {
         state.loading = loading;

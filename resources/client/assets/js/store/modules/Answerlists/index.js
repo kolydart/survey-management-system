@@ -2,7 +2,7 @@ function initialState() {
     return {
         all: [],
         relationships: {
-            'answers': 'title',
+            
         },
         query: {},
         loading: false

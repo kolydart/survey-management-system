@@ -23,9 +23,7 @@ class Answerlist extends Model
     {
         return [
             'title' => 'max:191|required|unique:answerlists,title',
-            'type' => 'in:Radio,Radio + Text,Checkbox,Checkbox + Text,Text|max:191|required',
-            'answers' => 'array|required',
-            'answers.*' => 'integer|exists:answers,id|max:4294967295|required'
+            'type' => 'in:Radio,Radio + Text,Checkbox,Checkbox + Text,Text|max:191|required'
         ];
     }
 
@@ -33,20 +31,13 @@ class Answerlist extends Model
     {
         return [
             'title' => 'max:191|required|unique:answerlists,title,'.$request->route('answerlist'),
-            'type' => 'in:Radio,Radio + Text,Checkbox,Checkbox + Text,Text|max:191|required',
-            'answers' => 'array|required',
-            'answers.*' => 'integer|exists:answers,id|max:4294967295|required'
+            'type' => 'in:Radio,Radio + Text,Checkbox,Checkbox + Text,Text|max:191|required'
         ];
     }
 
     
 
     
-    
-    public function answers()
-    {
-        return $this->belongsToMany(Answer::class, 'answer_answerlist')->withTrashed();
-    }
     
     
 }

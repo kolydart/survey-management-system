@@ -69,7 +69,6 @@ export default {
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
                 { title: 'Title', field: 'title', sortable: true },
                 { title: 'Type', field: 'type', sortable: true },
-                { title: 'Answers', field: 'answers', tdComp: DatatableList },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },

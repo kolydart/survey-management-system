@@ -32,7 +32,7 @@
             </li>
             <li class="treeview" v-if="$can('design_access')">
                 <a href="#">
-                    <i class="fa fa-pencil-square-o"></i>
+                    <i class="fa fa-paint-brush"></i>
                     <span>@lang('quickadmin.design.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>

@@ -18,7 +18,7 @@ class AnswerlistsController extends Controller
     {
         
 
-        return new AnswerlistResource(Answerlist::with(['answers'])->get());
+        return new AnswerlistResource(Answerlist::with([])->get());
     }
 
     public function show($id)
@@ -27,7 +27,7 @@ class AnswerlistsController extends Controller
             return abort(401);
         }
 
-        $answerlist = Answerlist::with(['answers'])->findOrFail($id);
+        $answerlist = Answerlist::with([])->findOrFail($id);
 
         return new AnswerlistResource($answerlist);
     }
@@ -39,7 +39,7 @@ class AnswerlistsController extends Controller
         }
 
         $answerlist = Answerlist::create($request->all());
-        $answerlist->answers()->sync($request->input('answers', []));
+        
         
 
         return (new AnswerlistResource($answerlist))
@@ -55,7 +55,7 @@ class AnswerlistsController extends Controller
 
         $answerlist = Answerlist::findOrFail($id);
         $answerlist->update($request->all());
-        $answerlist->answers()->sync($request->input('answers', []));
+        
         
         
 

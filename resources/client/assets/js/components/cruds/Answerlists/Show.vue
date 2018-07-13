@@ -33,14 +33,6 @@
                                             <th>Type</th>
                                             <td>{{ item.type }}</td>
                                             </tr>
-                                        <tr>
-                                            <th>Answers</th>
-                                            <td>
-                                                <span class="label label-info" v-for="answers in item.answers">
-                                                    {{ answers.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
