@@ -112,10 +112,10 @@
                     </li>
                 </ul>
             </li>
-            <li class="treeview" v-if="$can('content_management_access')">
+            <li class="treeview" v-if="$can('content_access')">
                 <a href="#">
                     <i class="fa fa-book"></i>
-                    <span>@lang('quickadmin.content-management.title')</span>
+                    <span>@lang('quickadmin.content.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -127,16 +127,16 @@
                             <span>@lang('quickadmin.content-categories.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('content_tag_access')">
-                        <router-link :to="{ name: 'content_tags.index' }">
-                            <i class="fa fa-tags"></i>
-                            <span>@lang('quickadmin.content-tags.title')</span>
-                        </router-link>
-                    </li>
                     <li v-if="$can('content_page_access')">
                         <router-link :to="{ name: 'content_pages.index' }">
                             <i class="fa fa-file-o"></i>
                             <span>@lang('quickadmin.content-pages.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('content_tag_access')">
+                        <router-link :to="{ name: 'content_tags.index' }">
+                            <i class="fa fa-tags"></i>
+                            <span>@lang('quickadmin.content-tags.title')</span>
                         </router-link>
                     </li>
                 </ul>

@@ -31,10 +31,10 @@ import PermissionsIndex from './modules/Permissions'
 import PermissionsSingle from './modules/Permissions/single'
 import ContentCategoriesIndex from './modules/ContentCategories'
 import ContentCategoriesSingle from './modules/ContentCategories/single'
-import ContentTagsIndex from './modules/ContentTags'
-import ContentTagsSingle from './modules/ContentTags/single'
 import ContentPagesIndex from './modules/ContentPages'
 import ContentPagesSingle from './modules/ContentPages/single'
+import ContentTagsIndex from './modules/ContentTags'
+import ContentTagsSingle from './modules/ContentTags/single'
 
 Vue.use(Vuex)
 
@@ -73,10 +73,10 @@ export default new Vuex.Store({
         PermissionsSingle,
         ContentCategoriesIndex,
         ContentCategoriesSingle,
-        ContentTagsIndex,
-        ContentTagsSingle,
         ContentPagesIndex,
         ContentPagesSingle,
+        ContentTagsIndex,
+        ContentTagsSingle,
     },
     strict: debug,
 })

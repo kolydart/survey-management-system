@@ -29564,7 +29564,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Σελίδες")])
+      _c("h1", [_vm._v("Pages")])
     ])
   },
   function() {
@@ -30134,7 +30134,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Σελίδες")])
+      _c("h1", [_vm._v("Pages")])
     ])
   },
   function() {
@@ -31963,7 +31963,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Κατηγορίες")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -32081,7 +32081,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Κατηγορίες")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -32749,7 +32749,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Κατηγορίες")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -33122,7 +33122,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Ετικέτες")])
+      _c("h1", [_vm._v("Tags")])
     ])
   },
   function() {
@@ -33263,7 +33263,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Ετικέτες")])
+      _c("h1", [_vm._v("Tags")])
     ])
   },
   function() {
@@ -33845,7 +33845,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Κατηγορίες")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -34455,7 +34455,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Σελίδες")])
+      _c("h1", [_vm._v("Pages")])
     ])
   },
   function() {
@@ -35947,7 +35947,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Ετικέτες")])
+      _c("h1", [_vm._v("Tags")])
     ])
   },
   function() {
@@ -36099,7 +36099,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Ετικέτες")])
+      _c("h1", [_vm._v("Tags")])
     ])
   },
   function() {
@@ -37208,7 +37208,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Σελίδες")])
+      _c("h1", [_vm._v("Pages")])
     ])
   },
   function() {
@@ -43676,22 +43676,22 @@ function subjectName(item) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__components_cruds_ContentCategories_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_55__components_cruds_ContentCategories_Show_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_cruds_ContentCategories_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentCategories/Edit.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_cruds_ContentCategories_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_56__components_cruds_ContentCategories_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentTags_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentTags_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentTags_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentTags_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentTags_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentTags_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentTags_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentTags_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentTags_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentTags_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentTags_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentTags_Edit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentPages_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentPages_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentPages_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentPages_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Create.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentPages_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentPages_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentPages_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Show.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentPages_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentPages_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentPages_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Edit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentPages_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentPages_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentPages_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentPages_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentPages_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentPages_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentPages_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentPages_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentPages_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentPages_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentPages_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentPages_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentPages/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentPages_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentPages_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentTags_Index_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentTags_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentTags_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentTags_Create_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Create.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentTags_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentTags_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentTags_Show_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Show.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentTags_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentTags_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentTags_Edit_vue__ = __webpack_require__("./resources/client/assets/js/components/cruds/ContentTags/Edit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentTags_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentTags_Edit_vue__);
 
 
 
@@ -43761,7 +43761,7 @@ function subjectName(item) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
-var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2__components_ChangePassword_vue___default.a, name: 'auth.change_password' }, { path: '/surveys', component: __WEBPACK_IMPORTED_MODULE_3__components_cruds_Surveys_Index_vue___default.a, name: 'surveys.index' }, { path: '/surveys/create', component: __WEBPACK_IMPORTED_MODULE_4__components_cruds_Surveys_Create_vue___default.a, name: 'surveys.create' }, { path: '/surveys/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_cruds_Surveys_Show_vue___default.a, name: 'surveys.show' }, { path: '/surveys/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_cruds_Surveys_Edit_vue___default.a, name: 'surveys.edit' }, { path: '/questionnaires', component: __WEBPACK_IMPORTED_MODULE_7__components_cruds_Questionnaires_Index_vue___default.a, name: 'questionnaires.index' }, { path: '/questionnaires/create', component: __WEBPACK_IMPORTED_MODULE_8__components_cruds_Questionnaires_Create_vue___default.a, name: 'questionnaires.create' }, { path: '/questionnaires/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_cruds_Questionnaires_Show_vue___default.a, name: 'questionnaires.show' }, { path: '/questionnaires/:id/edit', component: __WEBPACK_IMPORTED_MODULE_10__components_cruds_Questionnaires_Edit_vue___default.a, name: 'questionnaires.edit' }, { path: '/responses', component: __WEBPACK_IMPORTED_MODULE_11__components_cruds_Responses_Index_vue___default.a, name: 'responses.index' }, { path: '/responses/create', component: __WEBPACK_IMPORTED_MODULE_12__components_cruds_Responses_Create_vue___default.a, name: 'responses.create' }, { path: '/responses/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_cruds_Responses_Show_vue___default.a, name: 'responses.show' }, { path: '/responses/:id/edit', component: __WEBPACK_IMPORTED_MODULE_14__components_cruds_Responses_Edit_vue___default.a, name: 'responses.edit' }, { path: '/items', component: __WEBPACK_IMPORTED_MODULE_15__components_cruds_Items_Index_vue___default.a, name: 'items.index' }, { path: '/items/create', component: __WEBPACK_IMPORTED_MODULE_16__components_cruds_Items_Create_vue___default.a, name: 'items.create' }, { path: '/items/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_cruds_Items_Show_vue___default.a, name: 'items.show' }, { path: '/items/:id/edit', component: __WEBPACK_IMPORTED_MODULE_18__components_cruds_Items_Edit_vue___default.a, name: 'items.edit' }, { path: '/questions', component: __WEBPACK_IMPORTED_MODULE_19__components_cruds_Questions_Index_vue___default.a, name: 'questions.index' }, { path: '/questions/create', component: __WEBPACK_IMPORTED_MODULE_20__components_cruds_Questions_Create_vue___default.a, name: 'questions.create' }, { path: '/questions/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_cruds_Questions_Show_vue___default.a, name: 'questions.show' }, { path: '/questions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_22__components_cruds_Questions_Edit_vue___default.a, name: 'questions.edit' }, { path: '/answerlists', component: __WEBPACK_IMPORTED_MODULE_23__components_cruds_Answerlists_Index_vue___default.a, name: 'answerlists.index' }, { path: '/answerlists/create', component: __WEBPACK_IMPORTED_MODULE_24__components_cruds_Answerlists_Create_vue___default.a, name: 'answerlists.create' }, { path: '/answerlists/:id', component: __WEBPACK_IMPORTED_MODULE_25__components_cruds_Answerlists_Show_vue___default.a, name: 'answerlists.show' }, { path: '/answerlists/:id/edit', component: __WEBPACK_IMPORTED_MODULE_26__components_cruds_Answerlists_Edit_vue___default.a, name: 'answerlists.edit' }, { path: '/answers', component: __WEBPACK_IMPORTED_MODULE_27__components_cruds_Answers_Index_vue___default.a, name: 'answers.index' }, { path: '/answers/create', component: __WEBPACK_IMPORTED_MODULE_28__components_cruds_Answers_Create_vue___default.a, name: 'answers.create' }, { path: '/answers/:id', component: __WEBPACK_IMPORTED_MODULE_29__components_cruds_Answers_Show_vue___default.a, name: 'answers.show' }, { path: '/answers/:id/edit', component: __WEBPACK_IMPORTED_MODULE_30__components_cruds_Answers_Edit_vue___default.a, name: 'answers.edit' }, { path: '/institutions', component: __WEBPACK_IMPORTED_MODULE_31__components_cruds_Institutions_Index_vue___default.a, name: 'institutions.index' }, { path: '/institutions/create', component: __WEBPACK_IMPORTED_MODULE_32__components_cruds_Institutions_Create_vue___default.a, name: 'institutions.create' }, { path: '/institutions/:id', component: __WEBPACK_IMPORTED_MODULE_33__components_cruds_Institutions_Show_vue___default.a, name: 'institutions.show' }, { path: '/institutions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_34__components_cruds_Institutions_Edit_vue___default.a, name: 'institutions.edit' }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_35__components_cruds_Groups_Index_vue___default.a, name: 'groups.index' }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_36__components_cruds_Groups_Create_vue___default.a, name: 'groups.create' }, { path: '/groups/:id', component: __WEBPACK_IMPORTED_MODULE_37__components_cruds_Groups_Show_vue___default.a, name: 'groups.show' }, { path: '/groups/:id/edit', component: __WEBPACK_IMPORTED_MODULE_38__components_cruds_Groups_Edit_vue___default.a, name: 'groups.edit' }, { path: '/categories', component: __WEBPACK_IMPORTED_MODULE_39__components_cruds_Categories_Index_vue___default.a, name: 'categories.index' }, { path: '/categories/create', component: __WEBPACK_IMPORTED_MODULE_40__components_cruds_Categories_Create_vue___default.a, name: 'categories.create' }, { path: '/categories/:id', component: __WEBPACK_IMPORTED_MODULE_41__components_cruds_Categories_Show_vue___default.a, name: 'categories.show' }, { path: '/categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_42__components_cruds_Categories_Edit_vue___default.a, name: 'categories.edit' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_43__components_cruds_Users_Index_vue___default.a, name: 'users.index' }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_44__components_cruds_Users_Create_vue___default.a, name: 'users.create' }, { path: '/users/:id', component: __WEBPACK_IMPORTED_MODULE_45__components_cruds_Users_Show_vue___default.a, name: 'users.show' }, { path: '/users/:id/edit', component: __WEBPACK_IMPORTED_MODULE_46__components_cruds_Users_Edit_vue___default.a, name: 'users.edit' }, { path: '/roles', component: __WEBPACK_IMPORTED_MODULE_47__components_cruds_Roles_Index_vue___default.a, name: 'roles.index' }, { path: '/roles/create', component: __WEBPACK_IMPORTED_MODULE_48__components_cruds_Roles_Create_vue___default.a, name: 'roles.create' }, { path: '/roles/:id', component: __WEBPACK_IMPORTED_MODULE_49__components_cruds_Roles_Show_vue___default.a, name: 'roles.show' }, { path: '/roles/:id/edit', component: __WEBPACK_IMPORTED_MODULE_50__components_cruds_Roles_Edit_vue___default.a, name: 'roles.edit' }, { path: '/permissions', component: __WEBPACK_IMPORTED_MODULE_51__components_cruds_Permissions_Index_vue___default.a, name: 'permissions.index' }, { path: '/permissions/:id', component: __WEBPACK_IMPORTED_MODULE_52__components_cruds_Permissions_Show_vue___default.a, name: 'permissions.show' }, { path: '/content-categories', component: __WEBPACK_IMPORTED_MODULE_53__components_cruds_ContentCategories_Index_vue___default.a, name: 'content_categories.index' }, { path: '/content-categories/create', component: __WEBPACK_IMPORTED_MODULE_54__components_cruds_ContentCategories_Create_vue___default.a, name: 'content_categories.create' }, { path: '/content-categories/:id', component: __WEBPACK_IMPORTED_MODULE_55__components_cruds_ContentCategories_Show_vue___default.a, name: 'content_categories.show' }, { path: '/content-categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_56__components_cruds_ContentCategories_Edit_vue___default.a, name: 'content_categories.edit' }, { path: '/content-tags', component: __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentTags_Index_vue___default.a, name: 'content_tags.index' }, { path: '/content-tags/create', component: __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentTags_Create_vue___default.a, name: 'content_tags.create' }, { path: '/content-tags/:id', component: __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentTags_Show_vue___default.a, name: 'content_tags.show' }, { path: '/content-tags/:id/edit', component: __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentTags_Edit_vue___default.a, name: 'content_tags.edit' }, { path: '/content-pages', component: __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentPages_Index_vue___default.a, name: 'content_pages.index' }, { path: '/content-pages/create', component: __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentPages_Create_vue___default.a, name: 'content_pages.create' }, { path: '/content-pages/:id', component: __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentPages_Show_vue___default.a, name: 'content_pages.show' }, { path: '/content-pages/:id/edit', component: __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentPages_Edit_vue___default.a, name: 'content_pages.edit' }];
+var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2__components_ChangePassword_vue___default.a, name: 'auth.change_password' }, { path: '/surveys', component: __WEBPACK_IMPORTED_MODULE_3__components_cruds_Surveys_Index_vue___default.a, name: 'surveys.index' }, { path: '/surveys/create', component: __WEBPACK_IMPORTED_MODULE_4__components_cruds_Surveys_Create_vue___default.a, name: 'surveys.create' }, { path: '/surveys/:id', component: __WEBPACK_IMPORTED_MODULE_5__components_cruds_Surveys_Show_vue___default.a, name: 'surveys.show' }, { path: '/surveys/:id/edit', component: __WEBPACK_IMPORTED_MODULE_6__components_cruds_Surveys_Edit_vue___default.a, name: 'surveys.edit' }, { path: '/questionnaires', component: __WEBPACK_IMPORTED_MODULE_7__components_cruds_Questionnaires_Index_vue___default.a, name: 'questionnaires.index' }, { path: '/questionnaires/create', component: __WEBPACK_IMPORTED_MODULE_8__components_cruds_Questionnaires_Create_vue___default.a, name: 'questionnaires.create' }, { path: '/questionnaires/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_cruds_Questionnaires_Show_vue___default.a, name: 'questionnaires.show' }, { path: '/questionnaires/:id/edit', component: __WEBPACK_IMPORTED_MODULE_10__components_cruds_Questionnaires_Edit_vue___default.a, name: 'questionnaires.edit' }, { path: '/responses', component: __WEBPACK_IMPORTED_MODULE_11__components_cruds_Responses_Index_vue___default.a, name: 'responses.index' }, { path: '/responses/create', component: __WEBPACK_IMPORTED_MODULE_12__components_cruds_Responses_Create_vue___default.a, name: 'responses.create' }, { path: '/responses/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_cruds_Responses_Show_vue___default.a, name: 'responses.show' }, { path: '/responses/:id/edit', component: __WEBPACK_IMPORTED_MODULE_14__components_cruds_Responses_Edit_vue___default.a, name: 'responses.edit' }, { path: '/items', component: __WEBPACK_IMPORTED_MODULE_15__components_cruds_Items_Index_vue___default.a, name: 'items.index' }, { path: '/items/create', component: __WEBPACK_IMPORTED_MODULE_16__components_cruds_Items_Create_vue___default.a, name: 'items.create' }, { path: '/items/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_cruds_Items_Show_vue___default.a, name: 'items.show' }, { path: '/items/:id/edit', component: __WEBPACK_IMPORTED_MODULE_18__components_cruds_Items_Edit_vue___default.a, name: 'items.edit' }, { path: '/questions', component: __WEBPACK_IMPORTED_MODULE_19__components_cruds_Questions_Index_vue___default.a, name: 'questions.index' }, { path: '/questions/create', component: __WEBPACK_IMPORTED_MODULE_20__components_cruds_Questions_Create_vue___default.a, name: 'questions.create' }, { path: '/questions/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_cruds_Questions_Show_vue___default.a, name: 'questions.show' }, { path: '/questions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_22__components_cruds_Questions_Edit_vue___default.a, name: 'questions.edit' }, { path: '/answerlists', component: __WEBPACK_IMPORTED_MODULE_23__components_cruds_Answerlists_Index_vue___default.a, name: 'answerlists.index' }, { path: '/answerlists/create', component: __WEBPACK_IMPORTED_MODULE_24__components_cruds_Answerlists_Create_vue___default.a, name: 'answerlists.create' }, { path: '/answerlists/:id', component: __WEBPACK_IMPORTED_MODULE_25__components_cruds_Answerlists_Show_vue___default.a, name: 'answerlists.show' }, { path: '/answerlists/:id/edit', component: __WEBPACK_IMPORTED_MODULE_26__components_cruds_Answerlists_Edit_vue___default.a, name: 'answerlists.edit' }, { path: '/answers', component: __WEBPACK_IMPORTED_MODULE_27__components_cruds_Answers_Index_vue___default.a, name: 'answers.index' }, { path: '/answers/create', component: __WEBPACK_IMPORTED_MODULE_28__components_cruds_Answers_Create_vue___default.a, name: 'answers.create' }, { path: '/answers/:id', component: __WEBPACK_IMPORTED_MODULE_29__components_cruds_Answers_Show_vue___default.a, name: 'answers.show' }, { path: '/answers/:id/edit', component: __WEBPACK_IMPORTED_MODULE_30__components_cruds_Answers_Edit_vue___default.a, name: 'answers.edit' }, { path: '/institutions', component: __WEBPACK_IMPORTED_MODULE_31__components_cruds_Institutions_Index_vue___default.a, name: 'institutions.index' }, { path: '/institutions/create', component: __WEBPACK_IMPORTED_MODULE_32__components_cruds_Institutions_Create_vue___default.a, name: 'institutions.create' }, { path: '/institutions/:id', component: __WEBPACK_IMPORTED_MODULE_33__components_cruds_Institutions_Show_vue___default.a, name: 'institutions.show' }, { path: '/institutions/:id/edit', component: __WEBPACK_IMPORTED_MODULE_34__components_cruds_Institutions_Edit_vue___default.a, name: 'institutions.edit' }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_35__components_cruds_Groups_Index_vue___default.a, name: 'groups.index' }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_36__components_cruds_Groups_Create_vue___default.a, name: 'groups.create' }, { path: '/groups/:id', component: __WEBPACK_IMPORTED_MODULE_37__components_cruds_Groups_Show_vue___default.a, name: 'groups.show' }, { path: '/groups/:id/edit', component: __WEBPACK_IMPORTED_MODULE_38__components_cruds_Groups_Edit_vue___default.a, name: 'groups.edit' }, { path: '/categories', component: __WEBPACK_IMPORTED_MODULE_39__components_cruds_Categories_Index_vue___default.a, name: 'categories.index' }, { path: '/categories/create', component: __WEBPACK_IMPORTED_MODULE_40__components_cruds_Categories_Create_vue___default.a, name: 'categories.create' }, { path: '/categories/:id', component: __WEBPACK_IMPORTED_MODULE_41__components_cruds_Categories_Show_vue___default.a, name: 'categories.show' }, { path: '/categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_42__components_cruds_Categories_Edit_vue___default.a, name: 'categories.edit' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_43__components_cruds_Users_Index_vue___default.a, name: 'users.index' }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_44__components_cruds_Users_Create_vue___default.a, name: 'users.create' }, { path: '/users/:id', component: __WEBPACK_IMPORTED_MODULE_45__components_cruds_Users_Show_vue___default.a, name: 'users.show' }, { path: '/users/:id/edit', component: __WEBPACK_IMPORTED_MODULE_46__components_cruds_Users_Edit_vue___default.a, name: 'users.edit' }, { path: '/roles', component: __WEBPACK_IMPORTED_MODULE_47__components_cruds_Roles_Index_vue___default.a, name: 'roles.index' }, { path: '/roles/create', component: __WEBPACK_IMPORTED_MODULE_48__components_cruds_Roles_Create_vue___default.a, name: 'roles.create' }, { path: '/roles/:id', component: __WEBPACK_IMPORTED_MODULE_49__components_cruds_Roles_Show_vue___default.a, name: 'roles.show' }, { path: '/roles/:id/edit', component: __WEBPACK_IMPORTED_MODULE_50__components_cruds_Roles_Edit_vue___default.a, name: 'roles.edit' }, { path: '/permissions', component: __WEBPACK_IMPORTED_MODULE_51__components_cruds_Permissions_Index_vue___default.a, name: 'permissions.index' }, { path: '/permissions/:id', component: __WEBPACK_IMPORTED_MODULE_52__components_cruds_Permissions_Show_vue___default.a, name: 'permissions.show' }, { path: '/content-categories', component: __WEBPACK_IMPORTED_MODULE_53__components_cruds_ContentCategories_Index_vue___default.a, name: 'content_categories.index' }, { path: '/content-categories/create', component: __WEBPACK_IMPORTED_MODULE_54__components_cruds_ContentCategories_Create_vue___default.a, name: 'content_categories.create' }, { path: '/content-categories/:id', component: __WEBPACK_IMPORTED_MODULE_55__components_cruds_ContentCategories_Show_vue___default.a, name: 'content_categories.show' }, { path: '/content-categories/:id/edit', component: __WEBPACK_IMPORTED_MODULE_56__components_cruds_ContentCategories_Edit_vue___default.a, name: 'content_categories.edit' }, { path: '/content-pages', component: __WEBPACK_IMPORTED_MODULE_57__components_cruds_ContentPages_Index_vue___default.a, name: 'content_pages.index' }, { path: '/content-pages/create', component: __WEBPACK_IMPORTED_MODULE_58__components_cruds_ContentPages_Create_vue___default.a, name: 'content_pages.create' }, { path: '/content-pages/:id', component: __WEBPACK_IMPORTED_MODULE_59__components_cruds_ContentPages_Show_vue___default.a, name: 'content_pages.show' }, { path: '/content-pages/:id/edit', component: __WEBPACK_IMPORTED_MODULE_60__components_cruds_ContentPages_Edit_vue___default.a, name: 'content_pages.edit' }, { path: '/content-tags', component: __WEBPACK_IMPORTED_MODULE_61__components_cruds_ContentTags_Index_vue___default.a, name: 'content_tags.index' }, { path: '/content-tags/create', component: __WEBPACK_IMPORTED_MODULE_62__components_cruds_ContentTags_Create_vue___default.a, name: 'content_tags.create' }, { path: '/content-tags/:id', component: __WEBPACK_IMPORTED_MODULE_63__components_cruds_ContentTags_Show_vue___default.a, name: 'content_tags.show' }, { path: '/content-tags/:id/edit', component: __WEBPACK_IMPORTED_MODULE_64__components_cruds_ContentTags_Edit_vue___default.a, name: 'content_tags.edit' }];
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
     mode: 'history',
@@ -43809,10 +43809,10 @@ var routes = [{ path: '/change-password', component: __WEBPACK_IMPORTED_MODULE_2
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_Permissions_single__ = __webpack_require__("./resources/client/assets/js/store/modules/Permissions/single.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_ContentCategories__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentCategories/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_ContentCategories_single__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentCategories/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_ContentTags__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentTags/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_ContentTags_single__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentTags/single.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modules_ContentPages__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentPages/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modules_ContentPages_single__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentPages/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_ContentPages__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentPages/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_ContentPages_single__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentPages/single.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modules_ContentTags__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentTags/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modules_ContentTags_single__ = __webpack_require__("./resources/client/assets/js/store/modules/ContentTags/single.js");
 
 
 
@@ -43888,10 +43888,10 @@ var debug = "development" !== 'production';
         PermissionsSingle: __WEBPACK_IMPORTED_MODULE_30__modules_Permissions_single__["a" /* default */],
         ContentCategoriesIndex: __WEBPACK_IMPORTED_MODULE_31__modules_ContentCategories__["a" /* default */],
         ContentCategoriesSingle: __WEBPACK_IMPORTED_MODULE_32__modules_ContentCategories_single__["a" /* default */],
-        ContentTagsIndex: __WEBPACK_IMPORTED_MODULE_33__modules_ContentTags__["a" /* default */],
-        ContentTagsSingle: __WEBPACK_IMPORTED_MODULE_34__modules_ContentTags_single__["a" /* default */],
-        ContentPagesIndex: __WEBPACK_IMPORTED_MODULE_35__modules_ContentPages__["a" /* default */],
-        ContentPagesSingle: __WEBPACK_IMPORTED_MODULE_36__modules_ContentPages_single__["a" /* default */]
+        ContentPagesIndex: __WEBPACK_IMPORTED_MODULE_33__modules_ContentPages__["a" /* default */],
+        ContentPagesSingle: __WEBPACK_IMPORTED_MODULE_34__modules_ContentPages_single__["a" /* default */],
+        ContentTagsIndex: __WEBPACK_IMPORTED_MODULE_35__modules_ContentTags__["a" /* default */],
+        ContentTagsSingle: __WEBPACK_IMPORTED_MODULE_36__modules_ContentTags_single__["a" /* default */]
     },
     strict: debug
 }));
