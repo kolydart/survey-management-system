@@ -21,6 +21,10 @@ return [
 		'answerlists' => [		'title' => 'Answerlists',		'fields' => [			'title' => 'Title',			'type' => 'Type',			'answers' => 'Answers',		],	],
 		'answers' => [		'title' => 'Answers',		'fields' => [			'title' => 'Title',			'answerlists' => 'Answerlists',		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
+		'content-management' => [		'title' => 'Διαχείριση περιεχομένου',		'fields' => [		],	],
+		'content-categories' => [		'title' => 'Κατηγορίες',		'fields' => [			'title' => 'Κατηγορία',			'slug' => 'Slug',		],	],
+		'content-tags' => [		'title' => 'Ετικέτες',		'fields' => [			'title' => 'Ετικέτα',			'slug' => 'Slug',		],	],
+		'content-pages' => [		'title' => 'Σελίδες',		'fields' => [			'title' => 'Τίτλος',			'category-id' => 'Κατηγορίες',			'tag-id' => 'Ετικέτες',			'page-text' => 'Κείμενο',			'excerpt' => 'Excerpt',			'featured-image' => 'Εικόνα εμφάνισης',		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',

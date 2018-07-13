@@ -52,6 +52,18 @@ import RolesShow from '../components/cruds/Roles/Show.vue'
 import RolesEdit from '../components/cruds/Roles/Edit.vue'
 import PermissionsIndex from '../components/cruds/Permissions/Index.vue'
 import PermissionsShow from '../components/cruds/Permissions/Show.vue'
+import ContentCategoriesIndex from '../components/cruds/ContentCategories/Index.vue'
+import ContentCategoriesCreate from '../components/cruds/ContentCategories/Create.vue'
+import ContentCategoriesShow from '../components/cruds/ContentCategories/Show.vue'
+import ContentCategoriesEdit from '../components/cruds/ContentCategories/Edit.vue'
+import ContentTagsIndex from '../components/cruds/ContentTags/Index.vue'
+import ContentTagsCreate from '../components/cruds/ContentTags/Create.vue'
+import ContentTagsShow from '../components/cruds/ContentTags/Show.vue'
+import ContentTagsEdit from '../components/cruds/ContentTags/Edit.vue'
+import ContentPagesIndex from '../components/cruds/ContentPages/Index.vue'
+import ContentPagesCreate from '../components/cruds/ContentPages/Create.vue'
+import ContentPagesShow from '../components/cruds/ContentPages/Show.vue'
+import ContentPagesEdit from '../components/cruds/ContentPages/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -107,6 +119,18 @@ const routes = [
     { path: '/roles/:id/edit', component: RolesEdit, name: 'roles.edit' },
     { path: '/permissions', component: PermissionsIndex, name: 'permissions.index' },
     { path: '/permissions/:id', component: PermissionsShow, name: 'permissions.show' },
+    { path: '/content-categories', component: ContentCategoriesIndex, name: 'content_categories.index' },
+    { path: '/content-categories/create', component: ContentCategoriesCreate, name: 'content_categories.create' },
+    { path: '/content-categories/:id', component: ContentCategoriesShow, name: 'content_categories.show' },
+    { path: '/content-categories/:id/edit', component: ContentCategoriesEdit, name: 'content_categories.edit' },
+    { path: '/content-tags', component: ContentTagsIndex, name: 'content_tags.index' },
+    { path: '/content-tags/create', component: ContentTagsCreate, name: 'content_tags.create' },
+    { path: '/content-tags/:id', component: ContentTagsShow, name: 'content_tags.show' },
+    { path: '/content-tags/:id/edit', component: ContentTagsEdit, name: 'content_tags.edit' },
+    { path: '/content-pages', component: ContentPagesIndex, name: 'content_pages.index' },
+    { path: '/content-pages/create', component: ContentPagesCreate, name: 'content_pages.create' },
+    { path: '/content-pages/:id', component: ContentPagesShow, name: 'content_pages.show' },
+    { path: '/content-pages/:id/edit', component: ContentPagesEdit, name: 'content_pages.edit' },
 ]
 
 export default new VueRouter({

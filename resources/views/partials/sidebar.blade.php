@@ -112,6 +112,35 @@
                     </li>
                 </ul>
             </li>
+            <li class="treeview" v-if="$can('content_management_access')">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>@lang('quickadmin.content-management.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li v-if="$can('content_category_access')">
+                        <router-link :to="{ name: 'content_categories.index' }">
+                            <i class="fa fa-folder"></i>
+                            <span>@lang('quickadmin.content-categories.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('content_tag_access')">
+                        <router-link :to="{ name: 'content_tags.index' }">
+                            <i class="fa fa-tags"></i>
+                            <span>@lang('quickadmin.content-tags.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('content_page_access')">
+                        <router-link :to="{ name: 'content_pages.index' }">
+                            <i class="fa fa-file-o"></i>
+                            <span>@lang('quickadmin.content-pages.title')</span>
+                        </router-link>
+                    </li>
+                </ul>
+            </li>
 
             <li>
                 <router-link :to="{ name: 'auth.change_password' }">

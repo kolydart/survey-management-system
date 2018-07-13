@@ -29,6 +29,12 @@ import RolesIndex from './modules/Roles'
 import RolesSingle from './modules/Roles/single'
 import PermissionsIndex from './modules/Permissions'
 import PermissionsSingle from './modules/Permissions/single'
+import ContentCategoriesIndex from './modules/ContentCategories'
+import ContentCategoriesSingle from './modules/ContentCategories/single'
+import ContentTagsIndex from './modules/ContentTags'
+import ContentTagsSingle from './modules/ContentTags/single'
+import ContentPagesIndex from './modules/ContentPages'
+import ContentPagesSingle from './modules/ContentPages/single'
 
 Vue.use(Vuex)
 
@@ -65,6 +71,12 @@ export default new Vuex.Store({
         RolesSingle,
         PermissionsIndex,
         PermissionsSingle,
+        ContentCategoriesIndex,
+        ContentCategoriesSingle,
+        ContentTagsIndex,
+        ContentTagsSingle,
+        ContentPagesIndex,
+        ContentPagesSingle,
     },
     strict: debug,
 })
