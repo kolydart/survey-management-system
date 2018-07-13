@@ -16,7 +16,7 @@ class RolesController extends Controller
 {
     public function index()
     {
-        if (! Gate::allows('role_access')) {
+        if (Gate::denies('role_access') && Gate::denies('user_access')) {
             return abort(401);
         }
 
@@ -25,7 +25,7 @@ class RolesController extends Controller
 
     public function show($id)
     {
-        if (! Gate::allows('role_view')) {
+        if (Gate::denies('role_view')) {
             return abort(401);
         }
 
@@ -36,7 +36,7 @@ class RolesController extends Controller
 
     public function store(StoreRolesRequest $request)
     {
-        if (! Gate::allows('role_create')) {
+        if (Gate::denies('role_create')) {
             return abort(401);
         }
 
@@ -51,7 +51,7 @@ class RolesController extends Controller
 
     public function update(UpdateRolesRequest $request, $id)
     {
-        if (! Gate::allows('role_edit')) {
+        if (Gate::denies('role_edit')) {
             return abort(401);
         }
 
@@ -68,7 +68,7 @@ class RolesController extends Controller
 
     public function destroy($id)
     {
-        if (! Gate::allows('role_delete')) {
+        if (Gate::denies('role_delete')) {
             return abort(401);
         }
 

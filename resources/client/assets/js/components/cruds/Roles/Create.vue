@@ -1,13 +1,13 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Ρόλοι</h1>
+            <h1>Roles</h1>
         </section>
 
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    <form @submit.prevent="submitForm">
+                    <form @submit.prevent="submitForm" novalidate>
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Create</h3>
@@ -21,18 +21,18 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="title">Τίτλος</label>
+                                    <label for="title">Τίτλος *</label>
                                     <input
                                             type="text"
                                             class="form-control"
                                             name="title"
-                                            placeholder="Enter Τίτλος"
+                                            placeholder="Enter Τίτλος *"
                                             :value="item.title"
                                             @input="updateTitle"
                                             >
                                 </div>
                                 <div class="form-group">
-                                    <label for="permission">Δικαιώματα</label>
+                                    <label for="permission">Δικαιώματα *</label>
                                     <v-select
                                             name="permission"
                                             label="title"

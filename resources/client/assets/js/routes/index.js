@@ -6,6 +6,10 @@ import SurveysIndex from '../components/cruds/Surveys/Index.vue'
 import SurveysCreate from '../components/cruds/Surveys/Create.vue'
 import SurveysShow from '../components/cruds/Surveys/Show.vue'
 import SurveysEdit from '../components/cruds/Surveys/Edit.vue'
+import QuestionnairesIndex from '../components/cruds/Questionnaires/Index.vue'
+import QuestionnairesCreate from '../components/cruds/Questionnaires/Create.vue'
+import QuestionnairesShow from '../components/cruds/Questionnaires/Show.vue'
+import QuestionnairesEdit from '../components/cruds/Questionnaires/Edit.vue'
 import InstitutionsIndex from '../components/cruds/Institutions/Index.vue'
 import InstitutionsCreate from '../components/cruds/Institutions/Create.vue'
 import InstitutionsShow from '../components/cruds/Institutions/Show.vue'
@@ -39,6 +43,10 @@ const routes = [
     { path: '/surveys/create', component: SurveysCreate, name: 'surveys.create' },
     { path: '/surveys/:id', component: SurveysShow, name: 'surveys.show' },
     { path: '/surveys/:id/edit', component: SurveysEdit, name: 'surveys.edit' },
+    { path: '/questionnaires', component: QuestionnairesIndex, name: 'questionnaires.index' },
+    { path: '/questionnaires/create', component: QuestionnairesCreate, name: 'questionnaires.create' },
+    { path: '/questionnaires/:id', component: QuestionnairesShow, name: 'questionnaires.show' },
+    { path: '/questionnaires/:id/edit', component: QuestionnairesEdit, name: 'questionnaires.edit' },
     { path: '/institutions', component: InstitutionsIndex, name: 'institutions.index' },
     { path: '/institutions/create', component: InstitutionsCreate, name: 'institutions.create' },
     { path: '/institutions/:id', component: InstitutionsShow, name: 'institutions.show' },

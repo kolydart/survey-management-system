@@ -21,8 +21,34 @@ class User extends Authenticatable
     use Notifiable;
     use HasApiTokens;
 
+    
     protected $fillable = ['name', 'email', 'password', 'remember_token'];
     protected $hidden = ['password', 'remember_token'];
+
+    public static function storeValidation($request)
+    {
+        return [
+            'name' => 'max:191|required',
+            'email' => 'email|max:191|required|unique:users,email',
+            'password' => 'required',
+            'role' => 'array|required',
+            'role.*' => 'integer|exists:roles,id|max:4294967295|required',
+            'remember_token' => 'max:191|nullable'
+        ];
+    }
+
+    public static function updateValidation($request)
+    {
+        return [
+            'name' => 'max:191|required',
+            'email' => 'email|max:191|required|unique:users,email,'.$request->route('user'),
+            'password' => '',
+            'role' => 'array|required',
+            'role.*' => 'integer|exists:roles,id|max:4294967295|required',
+            'remember_token' => 'max:191|nullable'
+        ];
+    }
+
     
     
     

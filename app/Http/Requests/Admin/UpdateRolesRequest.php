@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Requests\Admin;
 
+use App\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRolesRequest extends FormRequest
@@ -22,11 +23,6 @@ class UpdateRolesRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            
-            'title' => 'required',
-            'permission' => 'required',
-            'permission.*' => 'exists:permissions,id',
-        ];
+        return Role::updateValidation($this);
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Surveys</h1>
+            <h1>Questionnaires</h1>
         </section>
 
         <section class="content">
@@ -67,18 +67,15 @@ export default {
         return {
             columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
-                { title: 'Title', field: 'title', sortable: true },
-                { title: 'Institution', field: 'institution', tdComp: DatatableSingle },
-                { title: 'Category', field: 'category', tdComp: DatatableList },
-                { title: 'Group', field: 'group', tdComp: DatatableSingle },
-                { title: 'Completed', field: 'completed', tdComp: DatatableCheckbox, colStyle: 'width: 50px;' },
+                { title: 'Survey', field: 'survey', tdComp: DatatableSingle },
+                { title: 'Name', field: 'name', sortable: true },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
             query: { sort: 'id', order: 'desc' },
             xprops: {
-                module: 'SurveysIndex',
-                route: 'surveys',
-                permission_prefix: 'survey_'
+                module: 'QuestionnairesIndex',
+                route: 'questionnaires',
+                permission_prefix: 'questionnaire_'
             }
         }
     },
@@ -90,7 +87,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('SurveysIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('QuestionnairesIndex', ['data', 'total', 'loading', 'relationships']),
     },
     watch: {
         query: {
@@ -101,7 +98,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SurveysIndex', ['fetchData', 'setQuery', 'resetState']),
+        ...mapActions('QuestionnairesIndex', ['fetchData', 'setQuery', 'resetState']),
     }
 }
 </script>

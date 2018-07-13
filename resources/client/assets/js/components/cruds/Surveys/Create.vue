@@ -53,7 +53,7 @@
                                             />
                                 </div>
                                 <div class="form-group">
-                                    <label for="group">Class</label>
+                                    <label for="group">Group</label>
                                     <v-select
                                             name="group"
                                             label="title"

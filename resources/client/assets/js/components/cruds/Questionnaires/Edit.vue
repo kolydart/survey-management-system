@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Users</h1>
+            <h1>Questionnaires</h1>
         </section>
 
         <section class="content">
@@ -21,47 +21,25 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="name">Όνομα *</label>
+                                    <label for="survey">Survey *</label>
+                                    <v-select
+                                            name="survey"
+                                            label="title"
+                                            @input="updateSurvey"
+                                            :value="item.survey"
+                                            :options="surveysAll"
+                                            />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
                                     <input
                                             type="text"
                                             class="form-control"
                                             name="name"
-                                            placeholder="Enter Όνομα *"
+                                            placeholder="Enter Name"
                                             :value="item.name"
                                             @input="updateName"
                                             >
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input
-                                            type="email"
-                                            class="form-control"
-                                            name="email"
-                                            placeholder="Enter Email *"
-                                            :value="item.email"
-                                            @input="updateEmail"
-                                            >
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Κωδικός *</label>
-                                    <input
-                                            type="password"
-                                            class="form-control"
-                                            name="password"
-                                            placeholder="Enter Κωδικός *"
-                                            @input="updatePassword"
-                                            >
-                                </div>
-                                <div class="form-group">
-                                    <label for="role">Ρόλος *</label>
-                                    <v-select
-                                            name="role"
-                                            label="title"
-                                            @input="updateRole"
-                                            :value="item.role"
-                                            :options="rolesAll"
-                                            multiple
-                                            />
                                 </div>
                             </div>
 
@@ -93,7 +71,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('UsersSingle', ['item', 'loading', 'rolesAll']),
+        ...mapGetters('QuestionnairesSingle', ['item', 'loading', 'surveysAll']),
     },
     created() {
         this.fetchData(this.$route.params.id)
@@ -108,23 +86,17 @@ export default {
         }
     },
     methods: {
-        ...mapActions('UsersSingle', ['fetchData', 'updateData', 'resetState', 'setName', 'setEmail', 'setPassword', 'setRole']),
+        ...mapActions('QuestionnairesSingle', ['fetchData', 'updateData', 'resetState', 'setSurvey', 'setName']),
+        updateSurvey(value) {
+            this.setSurvey(value)
+        },
         updateName(e) {
             this.setName(e.target.value)
-        },
-        updateEmail(e) {
-            this.setEmail(e.target.value)
-        },
-        updatePassword(e) {
-            this.setPassword(e.target.value)
-        },
-        updateRole(value) {
-            this.setRole(value)
         },
         submitForm() {
             this.updateData()
                 .then(() => {
-                    this.$router.push({ name: 'users.index' })
+                    this.$router.push({ name: 'questionnaires.index' })
                     this.$eventHub.$emit('update-success')
                 })
                 .catch((error) => {

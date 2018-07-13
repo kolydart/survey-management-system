@@ -1,13 +1,13 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Χρήστες</h1>
+            <h1>Users</h1>
         </section>
 
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-                    <form @submit.prevent="submitForm">
+                    <form @submit.prevent="submitForm" novalidate>
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Create</h3>
@@ -21,40 +21,39 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="name">Όνομα</label>
+                                    <label for="name">Όνομα *</label>
                                     <input
                                             type="text"
                                             class="form-control"
                                             name="name"
-                                            placeholder="Enter Όνομα"
+                                            placeholder="Enter Όνομα *"
                                             :value="item.name"
                                             @input="updateName"
                                             >
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email *</label>
                                     <input
                                             type="email"
                                             class="form-control"
                                             name="email"
-                                            placeholder="Enter Email"
+                                            placeholder="Enter Email *"
                                             :value="item.email"
                                             @input="updateEmail"
                                             >
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Κωδικός</label>
+                                    <label for="password">Κωδικός *</label>
                                     <input
                                             type="password"
                                             class="form-control"
                                             name="password"
-                                            placeholder="Enter Κωδικός"
-                                            :value="item.password"
+                                            placeholder="Enter Κωδικός *"
                                             @input="updatePassword"
                                             >
                                 </div>
                                 <div class="form-group">
-                                    <label for="role">Ρόλος</label>
+                                    <label for="role">Ρόλος *</label>
                                     <v-select
                                             name="role"
                                             label="title"

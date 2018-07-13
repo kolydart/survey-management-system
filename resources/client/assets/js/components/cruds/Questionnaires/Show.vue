@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Surveys</h1>
+            <h1>Questionnaires</h1>
         </section>
 
         <section class="content">
@@ -26,44 +26,16 @@
                                             <td>{{ item.id }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Title</th>
-                                            <td>{{ item.title }}</td>
-                                            </tr>
-                                        <tr>
-                                            <th>Institution</th>
+                                            <th>Survey</th>
                                             <td>
-                                                <span class="label label-info" v-if="item.institution !== null">
-                                                    {{ item.institution.title }}
+                                                <span class="label label-info" v-if="item.survey !== null">
+                                                    {{ item.survey.title }}
                                                 </span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Category</th>
-                                            <td>
-                                                <span class="label label-info" v-for="category in item.category">
-                                                    {{ category.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Group</th>
-                                            <td>
-                                                <span class="label label-info" v-if="item.group !== null">
-                                                    {{ item.group.title }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Introduction</th>
-                                            <td>{{ item.introduction }}</td>
-                                            </tr>
-                                        <tr>
-                                            <th>Notes</th>
-                                            <td>{{ item.notes }}</td>
-                                            </tr>
-                                        <tr>
-                                            <th>Completed</th>
-                                            <td>{{ item.completed }}</td>
+                                            <th>Name</th>
+                                            <td>{{ item.name }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -94,7 +66,7 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('SurveysSingle', ['item'])
+        ...mapGetters('QuestionnairesSingle', ['item'])
     },
     watch: {
         "$route.params.id": function() {
@@ -103,7 +75,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SurveysSingle', ['fetchData', 'resetState'])
+        ...mapActions('QuestionnairesSingle', ['fetchData', 'resetState'])
     }
 }
 </script>

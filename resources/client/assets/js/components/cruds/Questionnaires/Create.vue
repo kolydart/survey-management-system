@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Roles</h1>
+            <h1>Questionnaires</h1>
         </section>
 
         <section class="content">
@@ -10,7 +10,7 @@
                     <form @submit.prevent="submitForm" novalidate>
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Edit</h3>
+                                <h3 class="box-title">Create</h3>
                             </div>
 
                             <div class="box-body">
@@ -21,26 +21,25 @@
 
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="title">Τίτλος *</label>
+                                    <label for="survey">Survey *</label>
+                                    <v-select
+                                            name="survey"
+                                            label="title"
+                                            @input="updateSurvey"
+                                            :value="item.survey"
+                                            :options="surveysAll"
+                                            />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
                                     <input
                                             type="text"
                                             class="form-control"
-                                            name="title"
-                                            placeholder="Enter Τίτλος *"
-                                            :value="item.title"
-                                            @input="updateTitle"
+                                            name="name"
+                                            placeholder="Enter Name"
+                                            :value="item.name"
+                                            @input="updateName"
                                             >
-                                </div>
-                                <div class="form-group">
-                                    <label for="permission">Δικαιώματα *</label>
-                                    <v-select
-                                            name="permission"
-                                            label="title"
-                                            @input="updatePermission"
-                                            :value="item.permission"
-                                            :options="permissionsAll"
-                                            multiple
-                                            />
                                 </div>
                             </div>
 
@@ -72,33 +71,27 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('RolesSingle', ['item', 'loading', 'permissionsAll']),
+        ...mapGetters('QuestionnairesSingle', ['item', 'loading', 'surveysAll'])
     },
     created() {
-        this.fetchData(this.$route.params.id)
+        this.fetchSurveysAll()
     },
     destroyed() {
         this.resetState()
     },
-    watch: {
-        "$route.params.id": function() {
-            this.resetState()
-            this.fetchData(this.$route.params.id)
-        }
-    },
     methods: {
-        ...mapActions('RolesSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setPermission']),
-        updateTitle(e) {
-            this.setTitle(e.target.value)
+        ...mapActions('QuestionnairesSingle', ['storeData', 'resetState', 'setSurvey', 'setName', 'fetchSurveysAll']),
+        updateSurvey(value) {
+            this.setSurvey(value)
         },
-        updatePermission(value) {
-            this.setPermission(value)
+        updateName(e) {
+            this.setName(e.target.value)
         },
         submitForm() {
-            this.updateData()
+            this.storeData()
                 .then(() => {
-                    this.$router.push({ name: 'roles.index' })
-                    this.$eventHub.$emit('update-success')
+                    this.$router.push({ name: 'questionnaires.index' })
+                    this.$eventHub.$emit('create-success')
                 })
                 .catch((error) => {
                     console.error(error)

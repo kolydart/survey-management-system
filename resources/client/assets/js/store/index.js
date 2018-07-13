@@ -5,6 +5,8 @@ import ChangePassword from './modules/change_password'
 import Rules from './modules/rules'
 import SurveysIndex from './modules/Surveys'
 import SurveysSingle from './modules/Surveys/single'
+import QuestionnairesIndex from './modules/Questionnaires'
+import QuestionnairesSingle from './modules/Questionnaires/single'
 import InstitutionsIndex from './modules/Institutions'
 import InstitutionsSingle from './modules/Institutions/single'
 import GroupsIndex from './modules/Groups'
@@ -29,6 +31,8 @@ export default new Vuex.Store({
         Rules,
         SurveysIndex,
         SurveysSingle,
+        QuestionnairesIndex,
+        QuestionnairesSingle,
         InstitutionsIndex,
         InstitutionsSingle,
         GroupsIndex,

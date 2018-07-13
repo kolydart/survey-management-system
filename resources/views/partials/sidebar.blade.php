@@ -18,10 +18,16 @@
                     <span>@lang('quickadmin.surveys.title')</span>
                 </router-link>
             </li>
-            <li class="treeview" v-if="$can('Διαχείριση_κατηγοριών_access')">
+            <li v-if="$can('questionnaire_access')">
+                <router-link :to="{ name: 'questionnaires.index' }">
+                    <i class="fa fa-clipboard"></i>
+                    <span>@lang('quickadmin.questionnaires.title')</span>
+                </router-link>
+            </li>
+            <li class="treeview" v-if="$can('entity_access')">
                 <a href="#">
                     <i class="fa fa-gears"></i>
-                    <span>@lang('quickadmin.diaxeirish-kathgoriwn.title')</span>
+                    <span>@lang('quickadmin.entities.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -45,17 +51,6 @@
                             <span>@lang('quickadmin.category.title')</span>
                         </router-link>
                     </li>
-                </ul>
-            </li>
-            <li class="treeview" v-if="$can('user_management_access')">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span>@lang('quickadmin.user-management.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
                     <li v-if="$can('permission_access')">
                         <router-link :to="{ name: 'permissions.index' }">
                             <i class="fa fa-briefcase"></i>

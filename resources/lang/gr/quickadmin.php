@@ -1,19 +1,20 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'Διαχείριση χρηστών',		'fields' => [		],	],
-		'permissions' => [		'title' => 'Δικαιώματα',		'fields' => [			'title' => 'Τίτλος',		],	],
-		'roles' => [		'title' => 'Ρόλοι',		'fields' => [			'title' => 'Τίτλος',			'permission' => 'Δικαιώματα',		],	],
-		'users' => [		'title' => 'Χρήστες',		'fields' => [			'name' => 'Όνομα',			'email' => 'Email',			'password' => 'Κωδικός',			'role' => 'Ρόλος',			'remember-token' => 'Να με θυμάσαι',		],	],
+		'entities' => [		'title' => 'Entities',		'fields' => [		],	],
+		'permissions' => [		'title' => 'Permissions',		'fields' => [			'title' => 'Τίτλος',		],	],
+		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Τίτλος',			'permission' => 'Δικαιώματα',		],	],
+		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Όνομα',			'email' => 'Email',			'password' => 'Κωδικός',			'role' => 'Ρόλος',			'remember-token' => 'Να με θυμάσαι',		],	],
 		'survey' => [		'title' => 'Surveys',		'fields' => [		],	],
-		'diaxeirish-kathgoriwn' => [		'title' => 'Διαχείριση κατηγοριών',		'fields' => [		],	],
-		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Class',			'introduction' => 'Introduction',			'notes' => 'Notes',			'completed' => 'Completed',		],	],
+		'entities' => [		'title' => 'Entities',		'fields' => [		],	],
+		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'completed' => 'Completed',		],	],
 		'surveyclass' => [		'title' => 'SurveyClass',		'fields' => [		],	],
 		'surveyinstitution' => [		'title' => 'SurveyInstitution',		'fields' => [		],	],
 		'class' => [		'title' => 'Class',		'fields' => [		],	],
 		'institution' => [		'title' => 'Institution',		'fields' => [			'title' => 'Title',		],	],
 		'category' => [		'title' => 'Category',		'fields' => [			'title' => 'Title',		],	],
-		'group' => [		'title' => 'Class',		'fields' => [			'title' => 'Title',		],	],
+		'group' => [		'title' => 'Group',		'fields' => [			'title' => 'Title',		],	],
+		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',

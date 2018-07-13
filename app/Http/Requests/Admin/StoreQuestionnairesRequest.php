@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use App\Role;
+use App\Questionnaire;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRolesRequest extends FormRequest
+class StoreQuestionnairesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,6 +23,6 @@ class StoreRolesRequest extends FormRequest
      */
     public function rules()
     {
-        return Role::storeValidation($this);
+        return Questionnaire::storeValidation($this);
     }
 }

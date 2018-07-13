@@ -16,7 +16,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        if (! Gate::allows('user_access')) {
+        if (Gate::denies('user_access')) {
             return abort(401);
         }
 
@@ -25,7 +25,7 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        if (! Gate::allows('user_view')) {
+        if (Gate::denies('user_view')) {
             return abort(401);
         }
 
@@ -36,7 +36,7 @@ class UsersController extends Controller
 
     public function store(StoreUsersRequest $request)
     {
-        if (! Gate::allows('user_create')) {
+        if (Gate::denies('user_create')) {
             return abort(401);
         }
 
@@ -51,7 +51,7 @@ class UsersController extends Controller
 
     public function update(UpdateUsersRequest $request, $id)
     {
-        if (! Gate::allows('user_edit')) {
+        if (Gate::denies('user_edit')) {
             return abort(401);
         }
 
@@ -68,7 +68,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        if (! Gate::allows('user_delete')) {
+        if (Gate::denies('user_delete')) {
             return abort(401);
         }
 
