@@ -7,14 +7,14 @@ import SurveysIndex from './modules/Surveys'
 import SurveysSingle from './modules/Surveys/single'
 import QuestionnairesIndex from './modules/Questionnaires'
 import QuestionnairesSingle from './modules/Questionnaires/single'
-import ItemsIndex from './modules/Items'
-import ItemsSingle from './modules/Items/single'
-import AnswerlistsIndex from './modules/Answerlists'
-import AnswerlistsSingle from './modules/Answerlists/single'
 import ResponsesIndex from './modules/Responses'
 import ResponsesSingle from './modules/Responses/single'
+import ItemsIndex from './modules/Items'
+import ItemsSingle from './modules/Items/single'
 import QuestionsIndex from './modules/Questions'
 import QuestionsSingle from './modules/Questions/single'
+import AnswerlistsIndex from './modules/Answerlists'
+import AnswerlistsSingle from './modules/Answerlists/single'
 import AnswersIndex from './modules/Answers'
 import AnswersSingle from './modules/Answers/single'
 import InstitutionsIndex from './modules/Institutions'
@@ -43,14 +43,14 @@ export default new Vuex.Store({
         SurveysSingle,
         QuestionnairesIndex,
         QuestionnairesSingle,
-        ItemsIndex,
-        ItemsSingle,
-        AnswerlistsIndex,
-        AnswerlistsSingle,
         ResponsesIndex,
         ResponsesSingle,
+        ItemsIndex,
+        ItemsSingle,
         QuestionsIndex,
         QuestionsSingle,
+        AnswerlistsIndex,
+        AnswerlistsSingle,
         AnswersIndex,
         AnswersSingle,
         InstitutionsIndex,

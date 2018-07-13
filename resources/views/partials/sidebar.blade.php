@@ -24,35 +24,46 @@
                     <span>@lang('quickadmin.questionnaires.title')</span>
                 </router-link>
             </li>
-            <li v-if="$can('item_access')">
-                <router-link :to="{ name: 'items.index' }">
-                    <i class="fa fa-commenting-o"></i>
-                    <span>@lang('quickadmin.items.title')</span>
-                </router-link>
-            </li>
-            <li v-if="$can('answerlist_access')">
-                <router-link :to="{ name: 'answerlists.index' }">
-                    <i class="fa fa-chain"></i>
-                    <span>@lang('quickadmin.answerlists.title')</span>
-                </router-link>
-            </li>
             <li v-if="$can('response_access')">
                 <router-link :to="{ name: 'responses.index' }">
                     <i class="fa fa-comments-o"></i>
                     <span>@lang('quickadmin.responses.title')</span>
                 </router-link>
             </li>
-            <li v-if="$can('question_access')">
-                <router-link :to="{ name: 'questions.index' }">
-                    <i class="fa fa-comment-o"></i>
-                    <span>@lang('quickadmin.questions.title')</span>
-                </router-link>
-            </li>
-            <li v-if="$can('answer_access')">
-                <router-link :to="{ name: 'answers.index' }">
-                    <i class="fa fa-comment"></i>
-                    <span>@lang('quickadmin.answers.title')</span>
-                </router-link>
+            <li class="treeview" v-if="$can('design_access')">
+                <a href="#">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>@lang('quickadmin.design.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li v-if="$can('item_access')">
+                        <router-link :to="{ name: 'items.index' }">
+                            <i class="fa fa-commenting-o"></i>
+                            <span>@lang('quickadmin.items.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('question_access')">
+                        <router-link :to="{ name: 'questions.index' }">
+                            <i class="fa fa-comment-o"></i>
+                            <span>@lang('quickadmin.questions.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('answerlist_access')">
+                        <router-link :to="{ name: 'answerlists.index' }">
+                            <i class="fa fa-chain"></i>
+                            <span>@lang('quickadmin.answerlists.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('answer_access')">
+                        <router-link :to="{ name: 'answers.index' }">
+                            <i class="fa fa-comment"></i>
+                            <span>@lang('quickadmin.answers.title')</span>
+                        </router-link>
+                    </li>
+                </ul>
             </li>
             <li class="treeview" v-if="$can('entity_access')">
                 <a href="#">

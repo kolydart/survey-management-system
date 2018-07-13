@@ -20,6 +20,7 @@ return [
 		'responses' => [		'title' => 'Responses',		'fields' => [			'question' => 'Question',			'content' => 'Content',			'answer' => 'Answer',		],	],
 		'answerlists' => [		'title' => 'Answerlists',		'fields' => [			'title' => 'Title',			'type' => 'Type',			'answers' => 'Answers',		],	],
 		'answers' => [		'title' => 'Answers',		'fields' => [			'title' => 'Title',			'answerlists' => 'Answerlists',		],	],
+		'design' => [		'title' => 'Design',		'fields' => [		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',

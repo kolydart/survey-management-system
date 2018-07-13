@@ -10,22 +10,22 @@ import QuestionnairesIndex from '../components/cruds/Questionnaires/Index.vue'
 import QuestionnairesCreate from '../components/cruds/Questionnaires/Create.vue'
 import QuestionnairesShow from '../components/cruds/Questionnaires/Show.vue'
 import QuestionnairesEdit from '../components/cruds/Questionnaires/Edit.vue'
-import ItemsIndex from '../components/cruds/Items/Index.vue'
-import ItemsCreate from '../components/cruds/Items/Create.vue'
-import ItemsShow from '../components/cruds/Items/Show.vue'
-import ItemsEdit from '../components/cruds/Items/Edit.vue'
-import AnswerlistsIndex from '../components/cruds/Answerlists/Index.vue'
-import AnswerlistsCreate from '../components/cruds/Answerlists/Create.vue'
-import AnswerlistsShow from '../components/cruds/Answerlists/Show.vue'
-import AnswerlistsEdit from '../components/cruds/Answerlists/Edit.vue'
 import ResponsesIndex from '../components/cruds/Responses/Index.vue'
 import ResponsesCreate from '../components/cruds/Responses/Create.vue'
 import ResponsesShow from '../components/cruds/Responses/Show.vue'
 import ResponsesEdit from '../components/cruds/Responses/Edit.vue'
+import ItemsIndex from '../components/cruds/Items/Index.vue'
+import ItemsCreate from '../components/cruds/Items/Create.vue'
+import ItemsShow from '../components/cruds/Items/Show.vue'
+import ItemsEdit from '../components/cruds/Items/Edit.vue'
 import QuestionsIndex from '../components/cruds/Questions/Index.vue'
 import QuestionsCreate from '../components/cruds/Questions/Create.vue'
 import QuestionsShow from '../components/cruds/Questions/Show.vue'
 import QuestionsEdit from '../components/cruds/Questions/Edit.vue'
+import AnswerlistsIndex from '../components/cruds/Answerlists/Index.vue'
+import AnswerlistsCreate from '../components/cruds/Answerlists/Create.vue'
+import AnswerlistsShow from '../components/cruds/Answerlists/Show.vue'
+import AnswerlistsEdit from '../components/cruds/Answerlists/Edit.vue'
 import AnswersIndex from '../components/cruds/Answers/Index.vue'
 import AnswersCreate from '../components/cruds/Answers/Create.vue'
 import AnswersShow from '../components/cruds/Answers/Show.vue'
@@ -65,22 +65,22 @@ const routes = [
     { path: '/questionnaires/create', component: QuestionnairesCreate, name: 'questionnaires.create' },
     { path: '/questionnaires/:id', component: QuestionnairesShow, name: 'questionnaires.show' },
     { path: '/questionnaires/:id/edit', component: QuestionnairesEdit, name: 'questionnaires.edit' },
-    { path: '/items', component: ItemsIndex, name: 'items.index' },
-    { path: '/items/create', component: ItemsCreate, name: 'items.create' },
-    { path: '/items/:id', component: ItemsShow, name: 'items.show' },
-    { path: '/items/:id/edit', component: ItemsEdit, name: 'items.edit' },
-    { path: '/answerlists', component: AnswerlistsIndex, name: 'answerlists.index' },
-    { path: '/answerlists/create', component: AnswerlistsCreate, name: 'answerlists.create' },
-    { path: '/answerlists/:id', component: AnswerlistsShow, name: 'answerlists.show' },
-    { path: '/answerlists/:id/edit', component: AnswerlistsEdit, name: 'answerlists.edit' },
     { path: '/responses', component: ResponsesIndex, name: 'responses.index' },
     { path: '/responses/create', component: ResponsesCreate, name: 'responses.create' },
     { path: '/responses/:id', component: ResponsesShow, name: 'responses.show' },
     { path: '/responses/:id/edit', component: ResponsesEdit, name: 'responses.edit' },
+    { path: '/items', component: ItemsIndex, name: 'items.index' },
+    { path: '/items/create', component: ItemsCreate, name: 'items.create' },
+    { path: '/items/:id', component: ItemsShow, name: 'items.show' },
+    { path: '/items/:id/edit', component: ItemsEdit, name: 'items.edit' },
     { path: '/questions', component: QuestionsIndex, name: 'questions.index' },
     { path: '/questions/create', component: QuestionsCreate, name: 'questions.create' },
     { path: '/questions/:id', component: QuestionsShow, name: 'questions.show' },
     { path: '/questions/:id/edit', component: QuestionsEdit, name: 'questions.edit' },
+    { path: '/answerlists', component: AnswerlistsIndex, name: 'answerlists.index' },
+    { path: '/answerlists/create', component: AnswerlistsCreate, name: 'answerlists.create' },
+    { path: '/answerlists/:id', component: AnswerlistsShow, name: 'answerlists.show' },
+    { path: '/answerlists/:id/edit', component: AnswerlistsEdit, name: 'answerlists.edit' },
     { path: '/answers', component: AnswersIndex, name: 'answers.index' },
     { path: '/answers/create', component: AnswersCreate, name: 'answers.create' },
     { path: '/answers/:id', component: AnswersShow, name: 'answers.show' },

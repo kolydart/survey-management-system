@@ -5,10 +5,10 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::apiResource('rules', 'RulesController', ['only' => ['index']]);
     Route::apiResource('surveys', 'SurveysController');
     Route::apiResource('questionnaires', 'QuestionnairesController');
-    Route::apiResource('items', 'ItemsController');
-    Route::apiResource('answerlists', 'AnswerlistsController');
     Route::apiResource('responses', 'ResponsesController');
+    Route::apiResource('items', 'ItemsController');
     Route::apiResource('questions', 'QuestionsController');
+    Route::apiResource('answerlists', 'AnswerlistsController');
     Route::apiResource('answers', 'AnswersController');
     Route::apiResource('institutions', 'InstitutionsController');
     Route::apiResource('groups', 'GroupsController');
