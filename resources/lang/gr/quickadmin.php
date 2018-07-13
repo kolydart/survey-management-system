@@ -15,6 +15,8 @@ return [
 		'category' => [		'title' => 'Category',		'fields' => [			'title' => 'Title',		],	],
 		'group' => [		'title' => 'Group',		'fields' => [			'title' => 'Title',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
+		'questions' => [		'title' => 'Questions',		'fields' => [			'title' => 'Title',		],	],
+		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'order' => 'Order',		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',

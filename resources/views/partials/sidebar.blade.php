@@ -18,6 +18,12 @@
                     <span>@lang('quickadmin.surveys.title')</span>
                 </router-link>
             </li>
+            <li v-if="$can('item_access')">
+                <router-link :to="{ name: 'items.index' }">
+                    <i class="fa fa-cube"></i>
+                    <span>@lang('quickadmin.items.title')</span>
+                </router-link>
+            </li>
             <li v-if="$can('questionnaire_access')">
                 <router-link :to="{ name: 'questionnaires.index' }">
                     <i class="fa fa-clipboard"></i>
@@ -47,8 +53,14 @@
                     </li>
                     <li v-if="$can('category_access')">
                         <router-link :to="{ name: 'categories.index' }">
-                            <i class="fa fa-list-ul"></i>
+                            <i class="fa fa-sitemap"></i>
                             <span>@lang('quickadmin.category.title')</span>
+                        </router-link>
+                    </li>
+                    <li v-if="$can('question_access')">
+                        <router-link :to="{ name: 'questions.index' }">
+                            <i class="fa fa-comment-o"></i>
+                            <span>@lang('quickadmin.questions.title')</span>
                         </router-link>
                     </li>
                     <li v-if="$can('user_access')">
