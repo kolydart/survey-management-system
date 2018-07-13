@@ -5,10 +5,14 @@ import ChangePassword from './modules/change_password'
 import Rules from './modules/rules'
 import SurveysIndex from './modules/Surveys'
 import SurveysSingle from './modules/Surveys/single'
-import ItemsIndex from './modules/Items'
-import ItemsSingle from './modules/Items/single'
 import QuestionnairesIndex from './modules/Questionnaires'
 import QuestionnairesSingle from './modules/Questionnaires/single'
+import ItemsIndex from './modules/Items'
+import ItemsSingle from './modules/Items/single'
+import AnswerlistsIndex from './modules/Answerlists'
+import AnswerlistsSingle from './modules/Answerlists/single'
+import ResponsesIndex from './modules/Responses'
+import ResponsesSingle from './modules/Responses/single'
 import InstitutionsIndex from './modules/Institutions'
 import InstitutionsSingle from './modules/Institutions/single'
 import GroupsIndex from './modules/Groups'
@@ -35,10 +39,14 @@ export default new Vuex.Store({
         Rules,
         SurveysIndex,
         SurveysSingle,
-        ItemsIndex,
-        ItemsSingle,
         QuestionnairesIndex,
         QuestionnairesSingle,
+        ItemsIndex,
+        ItemsSingle,
+        AnswerlistsIndex,
+        AnswerlistsSingle,
+        ResponsesIndex,
+        ResponsesSingle,
         InstitutionsIndex,
         InstitutionsSingle,
         GroupsIndex,

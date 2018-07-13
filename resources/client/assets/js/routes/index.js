@@ -6,14 +6,22 @@ import SurveysIndex from '../components/cruds/Surveys/Index.vue'
 import SurveysCreate from '../components/cruds/Surveys/Create.vue'
 import SurveysShow from '../components/cruds/Surveys/Show.vue'
 import SurveysEdit from '../components/cruds/Surveys/Edit.vue'
-import ItemsIndex from '../components/cruds/Items/Index.vue'
-import ItemsCreate from '../components/cruds/Items/Create.vue'
-import ItemsShow from '../components/cruds/Items/Show.vue'
-import ItemsEdit from '../components/cruds/Items/Edit.vue'
 import QuestionnairesIndex from '../components/cruds/Questionnaires/Index.vue'
 import QuestionnairesCreate from '../components/cruds/Questionnaires/Create.vue'
 import QuestionnairesShow from '../components/cruds/Questionnaires/Show.vue'
 import QuestionnairesEdit from '../components/cruds/Questionnaires/Edit.vue'
+import ItemsIndex from '../components/cruds/Items/Index.vue'
+import ItemsCreate from '../components/cruds/Items/Create.vue'
+import ItemsShow from '../components/cruds/Items/Show.vue'
+import ItemsEdit from '../components/cruds/Items/Edit.vue'
+import AnswerlistsIndex from '../components/cruds/Answerlists/Index.vue'
+import AnswerlistsCreate from '../components/cruds/Answerlists/Create.vue'
+import AnswerlistsShow from '../components/cruds/Answerlists/Show.vue'
+import AnswerlistsEdit from '../components/cruds/Answerlists/Edit.vue'
+import ResponsesIndex from '../components/cruds/Responses/Index.vue'
+import ResponsesCreate from '../components/cruds/Responses/Create.vue'
+import ResponsesShow from '../components/cruds/Responses/Show.vue'
+import ResponsesEdit from '../components/cruds/Responses/Edit.vue'
 import InstitutionsIndex from '../components/cruds/Institutions/Index.vue'
 import InstitutionsCreate from '../components/cruds/Institutions/Create.vue'
 import InstitutionsShow from '../components/cruds/Institutions/Show.vue'
@@ -49,14 +57,22 @@ const routes = [
     { path: '/surveys/create', component: SurveysCreate, name: 'surveys.create' },
     { path: '/surveys/:id', component: SurveysShow, name: 'surveys.show' },
     { path: '/surveys/:id/edit', component: SurveysEdit, name: 'surveys.edit' },
-    { path: '/items', component: ItemsIndex, name: 'items.index' },
-    { path: '/items/create', component: ItemsCreate, name: 'items.create' },
-    { path: '/items/:id', component: ItemsShow, name: 'items.show' },
-    { path: '/items/:id/edit', component: ItemsEdit, name: 'items.edit' },
     { path: '/questionnaires', component: QuestionnairesIndex, name: 'questionnaires.index' },
     { path: '/questionnaires/create', component: QuestionnairesCreate, name: 'questionnaires.create' },
     { path: '/questionnaires/:id', component: QuestionnairesShow, name: 'questionnaires.show' },
     { path: '/questionnaires/:id/edit', component: QuestionnairesEdit, name: 'questionnaires.edit' },
+    { path: '/items', component: ItemsIndex, name: 'items.index' },
+    { path: '/items/create', component: ItemsCreate, name: 'items.create' },
+    { path: '/items/:id', component: ItemsShow, name: 'items.show' },
+    { path: '/items/:id/edit', component: ItemsEdit, name: 'items.edit' },
+    { path: '/answerlists', component: AnswerlistsIndex, name: 'answerlists.index' },
+    { path: '/answerlists/create', component: AnswerlistsCreate, name: 'answerlists.create' },
+    { path: '/answerlists/:id', component: AnswerlistsShow, name: 'answerlists.show' },
+    { path: '/answerlists/:id/edit', component: AnswerlistsEdit, name: 'answerlists.edit' },
+    { path: '/responses', component: ResponsesIndex, name: 'responses.index' },
+    { path: '/responses/create', component: ResponsesCreate, name: 'responses.create' },
+    { path: '/responses/:id', component: ResponsesShow, name: 'responses.show' },
+    { path: '/responses/:id/edit', component: ResponsesEdit, name: 'responses.edit' },
     { path: '/institutions', component: InstitutionsIndex, name: 'institutions.index' },
     { path: '/institutions/create', component: InstitutionsCreate, name: 'institutions.create' },
     { path: '/institutions/:id', component: InstitutionsShow, name: 'institutions.show' },

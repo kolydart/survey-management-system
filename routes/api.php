@@ -4,8 +4,10 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::post('change-password', 'ChangePasswordController@changePassword')->name('auth.change_password');
     Route::apiResource('rules', 'RulesController', ['only' => ['index']]);
     Route::apiResource('surveys', 'SurveysController');
-    Route::apiResource('items', 'ItemsController');
     Route::apiResource('questionnaires', 'QuestionnairesController');
+    Route::apiResource('items', 'ItemsController');
+    Route::apiResource('answerlists', 'AnswerlistsController');
+    Route::apiResource('responses', 'ResponsesController');
     Route::apiResource('institutions', 'InstitutionsController');
     Route::apiResource('groups', 'GroupsController');
     Route::apiResource('categories', 'CategoriesController');

@@ -18,16 +18,28 @@
                     <span>@lang('quickadmin.surveys.title')</span>
                 </router-link>
             </li>
-            <li v-if="$can('item_access')">
-                <router-link :to="{ name: 'items.index' }">
-                    <i class="fa fa-cube"></i>
-                    <span>@lang('quickadmin.items.title')</span>
-                </router-link>
-            </li>
             <li v-if="$can('questionnaire_access')">
                 <router-link :to="{ name: 'questionnaires.index' }">
                     <i class="fa fa-clipboard"></i>
                     <span>@lang('quickadmin.questionnaires.title')</span>
+                </router-link>
+            </li>
+            <li v-if="$can('item_access')">
+                <router-link :to="{ name: 'items.index' }">
+                    <i class="fa fa-commenting-o"></i>
+                    <span>@lang('quickadmin.items.title')</span>
+                </router-link>
+            </li>
+            <li v-if="$can('answerlist_access')">
+                <router-link :to="{ name: 'answerlists.index' }">
+                    <i class="fa fa-chain"></i>
+                    <span>@lang('quickadmin.answerlists.title')</span>
+                </router-link>
+            </li>
+            <li v-if="$can('response_access')">
+                <router-link :to="{ name: 'responses.index' }">
+                    <i class="fa fa-comments-o"></i>
+                    <span>@lang('quickadmin.responses.title')</span>
                 </router-link>
             </li>
             <li class="treeview" v-if="$can('entity_access')">
