@@ -19,6 +19,13 @@ class Questionnaire extends Model
     protected $fillable = ['name', 'survey_id'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Questionnaire::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

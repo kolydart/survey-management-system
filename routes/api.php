@@ -19,4 +19,5 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::apiResource('content-categories', 'ContentCategoriesController');
     Route::apiResource('content-pages', 'ContentPagesController');
     Route::apiResource('content-tags', 'ContentTagsController');
+    Route::apiResource('user-actions', 'UserActionsController');
 });

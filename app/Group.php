@@ -18,6 +18,13 @@ class Group extends Model
     protected $fillable = ['title'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Group::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

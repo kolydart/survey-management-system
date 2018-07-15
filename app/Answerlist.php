@@ -19,6 +19,13 @@ class Answerlist extends Model
     protected $fillable = ['title', 'type'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Answerlist::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

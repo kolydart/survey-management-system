@@ -35,6 +35,7 @@ import ContentPagesIndex from './modules/ContentPages'
 import ContentPagesSingle from './modules/ContentPages/single'
 import ContentTagsIndex from './modules/ContentTags'
 import ContentTagsSingle from './modules/ContentTags/single'
+import UserActionsIndex from './modules/UserActions'
 
 Vue.use(Vuex)
 
@@ -77,6 +78,7 @@ export default new Vuex.Store({
         ContentPagesSingle,
         ContentTagsIndex,
         ContentTagsSingle,
+        UserActionsIndex,
     },
     strict: debug,
 })

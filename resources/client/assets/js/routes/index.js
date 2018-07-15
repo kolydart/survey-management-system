@@ -64,6 +64,7 @@ import ContentTagsIndex from '../components/cruds/ContentTags/Index.vue'
 import ContentTagsCreate from '../components/cruds/ContentTags/Create.vue'
 import ContentTagsShow from '../components/cruds/ContentTags/Show.vue'
 import ContentTagsEdit from '../components/cruds/ContentTags/Edit.vue'
+import UserActionsIndex from '../components/cruds/UserActions/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -131,6 +132,7 @@ const routes = [
     { path: '/content-tags/create', component: ContentTagsCreate, name: 'content_tags.create' },
     { path: '/content-tags/:id', component: ContentTagsShow, name: 'content_tags.show' },
     { path: '/content-tags/:id/edit', component: ContentTagsEdit, name: 'content_tags.edit' },
+    { path: '/user-actions', component: UserActionsIndex, name: 'user_actions.index' },
 ]
 
 export default new VueRouter({

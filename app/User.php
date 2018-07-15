@@ -51,6 +51,13 @@ class User extends Authenticatable
 
     
     
+
+    public static function boot()
+    {
+        parent::boot();
+
+        User::observe(new \App\Observers\UserActionsObserver);
+    }
     
     /**
      * Hash password

@@ -16,6 +16,13 @@ class ContentTag extends Model
     protected $fillable = ['title', 'slug'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        ContentTag::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

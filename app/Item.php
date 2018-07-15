@@ -20,6 +20,13 @@ class Item extends Model
     protected $fillable = ['order', 'survey_id', 'question_id'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Item::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

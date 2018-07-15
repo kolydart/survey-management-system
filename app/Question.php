@@ -18,6 +18,13 @@ class Question extends Model
     protected $fillable = ['title'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Question::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

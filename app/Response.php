@@ -20,6 +20,13 @@ class Response extends Model
     protected $fillable = ['content', 'question_id', 'answer_id'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Response::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

@@ -16,6 +16,13 @@ class ContentCategory extends Model
     protected $fillable = ['title', 'slug'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        ContentCategory::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

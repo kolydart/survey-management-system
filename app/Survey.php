@@ -23,6 +23,13 @@ class Survey extends Model
     protected $fillable = ['title', 'introduction', 'notes', 'completed', 'institution_id', 'group_id'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        Survey::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

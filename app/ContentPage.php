@@ -24,6 +24,13 @@ class ContentPage extends Model implements HasMedia
     protected $with = ['media'];
     
 
+    public static function boot()
+    {
+        parent::boot();
+
+        ContentPage::observe(new \App\Observers\UserActionsObserver);
+    }
+
     public static function storeValidation($request)
     {
         return [

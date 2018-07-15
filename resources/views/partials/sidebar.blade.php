@@ -110,6 +110,12 @@
                             <span>@lang('quickadmin.permissions.title')</span>
                         </router-link>
                     </li>
+                    <li v-if="$can('user_action_access')">
+                        <router-link :to="{ name: 'user_actions.index' }">
+                            <i class="fa fa-th-list"></i>
+                            <span>@lang('quickadmin.user-actions.title')</span>
+                        </router-link>
+                    </li>
                 </ul>
             </li>
             <li class="treeview" v-if="$can('content_access')">
