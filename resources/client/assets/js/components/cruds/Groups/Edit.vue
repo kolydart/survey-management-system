@@ -1,7 +1,7 @@
 <template>
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
-            <h1>Group</h1>
+            <h1>Groups</h1>
         </section>
 
         <section class="content">

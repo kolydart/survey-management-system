@@ -29289,7 +29289,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Group")])
+      _c("h1", [_vm._v("Groups")])
     ])
   },
   function() {
@@ -29413,7 +29413,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Institution")])
+      _c("h1", [_vm._v("Institutions")])
     ])
   },
   function() {
@@ -29972,7 +29972,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Ενέργειες χρηστών")])
+      _c("h1", [_vm._v("User actions")])
     ])
   },
   function() {
@@ -32011,7 +32011,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Category")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -33073,7 +33073,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Category")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -33223,7 +33223,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Institution")])
+      _c("h1", [_vm._v("Institutions")])
     ])
   },
   function() {
@@ -34245,7 +34245,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Group")])
+      _c("h1", [_vm._v("Groups")])
     ])
   },
   function() {
@@ -34877,7 +34877,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Category")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -36897,7 +36897,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Category")])
+      _c("h1", [_vm._v("Categories")])
     ])
   },
   function() {
@@ -37047,7 +37047,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Group")])
+      _c("h1", [_vm._v("Groups")])
     ])
   },
   function() {
@@ -37447,7 +37447,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Institution")])
+      _c("h1", [_vm._v("Institutions")])
     ])
   },
   function() {
@@ -37739,7 +37739,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Group")])
+      _c("h1", [_vm._v("Groups")])
     ])
   },
   function() {
@@ -37863,7 +37863,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("Institution")])
+      _c("h1", [_vm._v("Institutions")])
     ])
   },
   function() {

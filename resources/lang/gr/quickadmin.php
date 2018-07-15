@@ -11,9 +11,9 @@ return [
 		'surveyclass' => [		'title' => 'SurveyClass',		'fields' => [		],	],
 		'surveyinstitution' => [		'title' => 'SurveyInstitution',		'fields' => [		],	],
 		'class' => [		'title' => 'Class',		'fields' => [		],	],
-		'institution' => [		'title' => 'Institution',		'fields' => [			'title' => 'Title',		],	],
-		'category' => [		'title' => 'Category',		'fields' => [			'title' => 'Title',		],	],
-		'group' => [		'title' => 'Group',		'fields' => [			'title' => 'Title',		],	],
+		'institution' => [		'title' => 'Institutions',		'fields' => [			'title' => 'Title',		],	],
+		'category' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',		],	],
+		'group' => [		'title' => 'Groups',		'fields' => [			'title' => 'Title',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
 		'questions' => [		'title' => 'Questions',		'fields' => [			'title' => 'Title',		],	],
 		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'order' => 'Order',		],	],
@@ -25,7 +25,7 @@ return [
 		'content-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Κατηγορία',			'slug' => 'Slug',		],	],
 		'content-tags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Ετικέτα',			'slug' => 'Slug',		],	],
 		'content-pages' => [		'title' => 'Pages',		'fields' => [			'title' => 'Τίτλος',			'category-id' => 'Κατηγορίες',			'tag-id' => 'Ετικέτες',			'page-text' => 'Κείμενο',			'excerpt' => 'Excerpt',			'featured-image' => 'Εικόνα εμφάνισης',		],	],
-		'user-actions' => [		'title' => 'Ενέργειες χρηστών',		'created_at' => 'Time',		'fields' => [			'user' => 'Χρήστης',			'action' => 'Ενέργεια',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
+		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Time',		'fields' => [			'user' => 'Χρήστης',			'action' => 'Ενέργεια',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
 	'qa_create' => 'Δημιουργία',
 	'qa_save' => 'Αποθήκευση',
 	'qa_edit' => 'Επεξεργασία',
