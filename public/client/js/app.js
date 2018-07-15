@@ -6488,6 +6488,45 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6506,7 +6545,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.resetState();
     },
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['storeData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setAccess', 'setCompleted', 'fetchInstitutionsAll', 'fetchCategoriesAll', 'fetchGroupsAll']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
@@ -6524,6 +6563,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         updateNotes: function updateNotes(e) {
             this.setNotes(e.target.value);
+        },
+        updateAccess: function updateAccess(value) {
+            this.setAccess(value);
         },
         updateCompleted: function updateCompleted(e) {
             this.setCompleted(e.target.checked);
@@ -6672,6 +6714,45 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6696,7 +6777,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.fetchData(this.$route.params.id);
         }
     },
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setAccess', 'setCompleted']), {
         updateTitle: function updateTitle(e) {
             this.setTitle(e.target.value);
         },
@@ -6714,6 +6795,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         updateNotes: function updateNotes(e) {
             this.setNotes(e.target.value);
+        },
+        updateAccess: function updateAccess(value) {
+            this.setAccess(value);
         },
         updateCompleted: function updateCompleted(e) {
             this.setCompleted(e.target.checked);
@@ -6815,7 +6899,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Institution', field: 'institution', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Category', field: 'category', tdComp: __WEBPACK_IMPORTED_MODULE_3__dtmodules_DatatableList___default.a }, { title: 'Group', field: 'group', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Completed', field: 'completed', tdComp: __WEBPACK_IMPORTED_MODULE_4__dtmodules_DatatableCheckbox___default.a, colStyle: 'width: 50px;' }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
+            columns: [{ title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' }, { title: 'Title', field: 'title', sortable: true }, { title: 'Institution', field: 'institution', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Category', field: 'category', tdComp: __WEBPACK_IMPORTED_MODULE_3__dtmodules_DatatableList___default.a }, { title: 'Group', field: 'group', tdComp: __WEBPACK_IMPORTED_MODULE_2__dtmodules_DatatableSingle___default.a }, { title: 'Access', field: 'access', sortable: true }, { title: 'Completed', field: 'completed', tdComp: __WEBPACK_IMPORTED_MODULE_4__dtmodules_DatatableCheckbox___default.a, colStyle: 'width: 50px;' }, { title: 'Actions', tdComp: __WEBPACK_IMPORTED_MODULE_1__dtmodules_DatatableActions___default.a, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }],
             query: { sort: 'id', order: 'desc' },
             xprops: {
                 module: 'SurveysIndex',
@@ -6855,6 +6939,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
 //
 //
 //
@@ -7990,7 +8078,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8035,7 +8123,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8455,7 +8543,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -8500,7 +8588,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -30728,6 +30816,12 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("tr", [
+                            _c("th", [_vm._v("Access")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.item.access))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
                             _c("th", [_vm._v("Completed")]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(_vm.item.completed))])
@@ -31199,6 +31293,72 @@ var render = function() {
                           domProps: { value: _vm.item.notes },
                           on: { input: _vm.updateNotes }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "access" } }, [
+                          _vm._v("Access")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "public"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("public")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        public\n                                    "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "invited"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("invited")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        invited\n                                    "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "registered"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("registered")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        registered\n                                    "
+                            )
+                          ])
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -35203,6 +35363,72 @@ var render = function() {
                           domProps: { value: _vm.item.notes },
                           on: { input: _vm.updateNotes }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "access" } }, [
+                          _vm._v("Access")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "public"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("public")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        public\n                                    "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "invited"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("invited")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        invited\n                                    "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "radio" }, [
+                          _c("label", [
+                            _c("input", {
+                              attrs: { type: "radio", name: "access" },
+                              domProps: {
+                                value: _vm.item.access,
+                                checked: _vm.item.access === "registered"
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.updateAccess("registered")
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        registered\n                                    "
+                            )
+                          ])
+                        ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [
@@ -48289,6 +48515,7 @@ function initialState() {
             group: null,
             introduction: null,
             notes: null,
+            access: null,
             completed: false
         },
         institutionsAll: [],
@@ -48503,13 +48730,18 @@ var actions = {
 
         commit('setNotes', value);
     },
-    setCompleted: function setCompleted(_ref13, value) {
+    setAccess: function setAccess(_ref13, value) {
         var commit = _ref13.commit;
+
+        commit('setAccess', value);
+    },
+    setCompleted: function setCompleted(_ref14, value) {
+        var commit = _ref14.commit;
 
         commit('setCompleted', value);
     },
-    resetState: function resetState(_ref14) {
-        var commit = _ref14.commit;
+    resetState: function resetState(_ref15) {
+        var commit = _ref15.commit;
 
         commit('resetState');
     }
@@ -48536,6 +48768,9 @@ var mutations = {
     },
     setNotes: function setNotes(state, value) {
         state.item.notes = value;
+    },
+    setAccess: function setAccess(state, value) {
+        state.item.access = value;
     },
     setCompleted: function setCompleted(state, value) {
         state.item.completed = value;

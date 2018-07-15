@@ -8,6 +8,7 @@ function initialState() {
             group: null,
             introduction: null,
             notes: null,
+            access: null,
             completed: false,
         },
         institutionsAll: [],
@@ -199,6 +200,9 @@ const actions = {
     setNotes({ commit }, value) {
         commit('setNotes', value)
     },
+    setAccess({ commit }, value) {
+        commit('setAccess', value)
+    },
     setCompleted({ commit }, value) {
         commit('setCompleted', value)
     },
@@ -228,6 +232,9 @@ const mutations = {
     },
     setNotes(state, value) {
         state.item.notes = value
+    },
+    setAccess(state, value) {
+        state.item.access = value
     },
     setCompleted(state, value) {
         state.item.completed = value

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $group
  * @property text $introduction
  * @property string $notes
+ * @property string $access
  * @property tinyInteger $completed
 */
 class Survey extends Model
@@ -20,7 +21,7 @@ class Survey extends Model
     use SoftDeletes;
 
     
-    protected $fillable = ['title', 'introduction', 'notes', 'completed', 'institution_id', 'group_id'];
+    protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id', 'group_id'];
     
 
     public static function boot()
@@ -40,6 +41,7 @@ class Survey extends Model
             'group_id' => 'integer|exists:groups,id|max:4294967295|nullable',
             'introduction' => 'max:65535|nullable',
             'notes' => 'max:191|nullable',
+            'access' => 'in:public,invited,registered|max:191|nullable',
             'completed' => 'boolean|nullable'
         ];
     }
@@ -54,6 +56,7 @@ class Survey extends Model
             'group_id' => 'integer|exists:groups,id|max:4294967295|nullable',
             'introduction' => 'max:65535|nullable',
             'notes' => 'max:191|nullable',
+            'access' => 'in:public,invited,registered|max:191|nullable',
             'completed' => 'boolean|nullable'
         ];
     }

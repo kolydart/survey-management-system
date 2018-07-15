@@ -7,7 +7,7 @@ return [
 		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Όνομα',			'email' => 'Email',			'password' => 'Κωδικός',			'role' => 'Ρόλος',			'remember-token' => 'Να με θυμάσαι',		],	],
 		'survey' => [		'title' => 'Surveys',		'fields' => [		],	],
 		'entities' => [		'title' => 'Entities',		'fields' => [		],	],
-		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'completed' => 'Completed',		],	],
+		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'access' => 'Access',			'completed' => 'Completed',		],	],
 		'surveyclass' => [		'title' => 'SurveyClass',		'fields' => [		],	],
 		'surveyinstitution' => [		'title' => 'SurveyInstitution',		'fields' => [		],	],
 		'class' => [		'title' => 'Class',		'fields' => [		],	],
