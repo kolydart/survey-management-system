@@ -15,7 +15,7 @@ class Update1531640717SurveysTable extends Migration
         Schema::table('surveys', function (Blueprint $table) {
             
 if (!Schema::hasColumn('surveys', 'access')) {
-                $table->string('access')->nullable();
+                $table->string('access')->nullable()->default('invited');
                 }
         });
 
