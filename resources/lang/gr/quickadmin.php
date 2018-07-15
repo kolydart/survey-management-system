@@ -169,5 +169,5 @@ return [
 	'qa_deselect_all' => 'Αποεπιλογή όλων',
 	'qa_team-management' => 'Ομάδες',
 	'qa_team-management-singular' => 'Ομάδα',
-	'quickadmin_title' => 'qst',
+	'quickadmin_title' => 'Survey',
 ];
