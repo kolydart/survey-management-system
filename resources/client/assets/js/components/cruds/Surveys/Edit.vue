@@ -86,6 +86,45 @@
                                             >
                                 </div>
                                 <div class="form-group">
+                                    <label for="access">Access</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input
+                                                    type="radio"
+                                                    name="access"
+                                                    :value="item.access"
+                                                    :checked="item.access === 'public'"
+                                                    @change="updateAccess('public')"
+                                                    >
+                                            public
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input
+                                                    type="radio"
+                                                    name="access"
+                                                    :value="item.access"
+                                                    :checked="item.access === 'invited'"
+                                                    @change="updateAccess('invited')"
+                                                    >
+                                            invited
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input
+                                                    type="radio"
+                                                    name="access"
+                                                    :value="item.access"
+                                                    :checked="item.access === 'registered'"
+                                                    @change="updateAccess('registered')"
+                                                    >
+                                            registered
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="checkbox">
                                         <label>
                                             <input
@@ -144,7 +183,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setCompleted']),
+        ...mapActions('SurveysSingle', ['fetchData', 'updateData', 'resetState', 'setTitle', 'setInstitution', 'setCategory', 'setGroup', 'setIntroduction', 'setNotes', 'setAccess', 'setCompleted']),
         updateTitle(e) {
             this.setTitle(e.target.value)
         },
@@ -162,6 +201,9 @@ export default {
         },
         updateNotes(e) {
             this.setNotes(e.target.value)
+        },
+        updateAccess(value) {
+            this.setAccess(value)
         },
         updateCompleted(e) {
             this.setCompleted(e.target.checked)

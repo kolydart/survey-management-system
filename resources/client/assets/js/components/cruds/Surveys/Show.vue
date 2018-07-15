@@ -62,6 +62,10 @@
                                             <td>{{ item.notes }}</td>
                                             </tr>
                                         <tr>
+                                            <th>Access</th>
+                                            <td>{{ item.access }}</td>
+                                            </tr>
+                                        <tr>
                                             <th>Completed</th>
                                             <td>{{ item.completed }}</td>
                                             </tr>
