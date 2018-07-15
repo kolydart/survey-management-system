@@ -13,7 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('tmp_questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('text');
             $table->string('template'); // temporary
@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        Schema::create('question_questionnaire', function (Blueprint $table) {
+        Schema::create('tmp_question_questionnaire', function (Blueprint $table) {
             $table->integer('questionnaire_id');
             $table->integer('question_id');
             $table->integer('answer_order');
@@ -40,7 +40,7 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
-        Schema::dropIfExists('question_questionnaire');
+        Schema::dropIfExists('tmp_questions');
+        Schema::dropIfExists('tmp_question_questionnaire');
     }
 }

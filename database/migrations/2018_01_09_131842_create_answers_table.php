@@ -13,7 +13,7 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('tmp_answers', function (Blueprint $table) {
             $table->integer('id');
             $table->integer('order');
             $table->primary(['id', 'order']);
@@ -22,7 +22,7 @@ class CreateAnswersTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('answer_question', function (Blueprint $table) {
+        Schema::create('tmp_answer_question', function (Blueprint $table) {
             $table->integer('question_id');
             $table->integer('answer_id');
             $table->primary(['question_id', 'answer_id']);
@@ -37,7 +37,7 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
-        Schema::dropIfExists('answer_question');
+        Schema::dropIfExists('tmp_answers');
+        Schema::dropIfExists('tmp_answer_question');
     }
 }

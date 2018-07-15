@@ -13,7 +13,7 @@ class CreateQuestionnairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('questionnaires', function (Blueprint $table) {
+        Schema::create('tmp_questionnaires', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('survey_id');
             $table->string('name')->comment('User name who filed the qstnr');
@@ -29,6 +29,6 @@ class CreateQuestionnairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questionnaires');
+        Schema::dropIfExists('tmp_questionnaires');
     }
 }

@@ -13,7 +13,7 @@ class CreateSurveysTable extends Migration
      */
     public function up()
     {
-        Schema::create('surveys', function (Blueprint $table) {
+        Schema::create('tmp_surveys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('institution');
             $table->string('subject');
@@ -25,7 +25,7 @@ class CreateSurveysTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        Schema::create('question_survey', function (Blueprint $table) {
+        Schema::create('tmp_question_survey', function (Blueprint $table) {
             $table->integer('survey_id');
             $table->integer('question_id');
             $table->string('code')->nullable()->comment('Ο κωδικός του ερωτήματος');
@@ -41,7 +41,7 @@ class CreateSurveysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surveys');
-        Schema::dropIfExists('question_survey');
+        Schema::dropIfExists('tmp_surveys');
+        Schema::dropIfExists('tmp_question_survey');
     }
 }
