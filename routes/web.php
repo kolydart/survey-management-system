@@ -1,8 +1,5 @@
 <?php
-
-Route::get('/', function () {
-    return redirect('/admin/home');
-});
+Route::get('/', function () { return redirect('/admin/home'); });
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -20,5 +17,14 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+    Route::get('/home', 'HomeController@index');
+    
+    Route::resource('roles', 'Admin\RolesController');
+    Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+    Route::resource('users', 'Admin\UsersController');
+    Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
+
+
+
+ 
 });

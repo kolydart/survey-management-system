@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUsersRequest extends FormRequest
@@ -23,6 +22,11 @@ class StoreUsersRequest extends FormRequest
      */
     public function rules()
     {
-        return User::storeValidation($this);
+        return [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+            'role_id' => 'required',
+        ];
     }
 }

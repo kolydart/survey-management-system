@@ -5,7 +5,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Hash;
-use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
@@ -14,50 +13,16 @@ use Laravel\Passport\HasApiTokens;
  * @property string $name
  * @property string $email
  * @property string $password
+ * @property string $role
  * @property string $remember_token
 */
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasApiTokens;
-
-    
-    protected $fillable = ['name', 'email', 'password', 'remember_token'];
+    protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
     protected $hidden = ['password', 'remember_token'];
-
-    public static function storeValidation($request)
-    {
-        return [
-            'name' => 'max:191|required',
-            'email' => 'email|max:191|required|unique:users,email',
-            'password' => 'required',
-            'role' => 'array|required',
-            'role.*' => 'integer|exists:roles,id|max:4294967295|required',
-            'remember_token' => 'max:191|nullable'
-        ];
-    }
-
-    public static function updateValidation($request)
-    {
-        return [
-            'name' => 'max:191|required',
-            'email' => 'email|max:191|required|unique:users,email,'.$request->route('user'),
-            'password' => '',
-            'role' => 'array|required',
-            'role.*' => 'integer|exists:roles,id|max:4294967295|required',
-            'remember_token' => 'max:191|nullable'
-        ];
-    }
-
     
     
-
-    public static function boot()
-    {
-        parent::boot();
-
-        User::observe(new \App\Observers\UserActionsObserver);
-    }
     
     /**
      * Hash password
@@ -65,14 +30,23 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($input)
     {
-        if ($input) {
+        if ($input)
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
-        }
+    }
+    
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setRoleIdAttribute($input)
+    {
+        $this->attributes['role_id'] = $input ? $input : null;
     }
     
     public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user');
+        return $this->belongsTo(Role::class, 'role_id');
     }
     
     

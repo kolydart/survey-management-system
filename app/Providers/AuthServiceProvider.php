@@ -6,7 +6,6 @@ use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -28,27 +27,47 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes();
-        Passport::tokensExpireIn(now()->addDays(15));
-        Passport::refreshTokensExpireIn(now()->addDays(30));
-
         $user = \Auth::user();
 
         
-        if (! app()->runningInConsole()) {
-            $roles = Role::with('permission')->get();
+        // Auth gates for: User management
+        Gate::define('user_management_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
 
-            foreach ($roles as $role) {
-                foreach ($role->permission as $permission) {
-                    $permissionArray[$permission->title][] = $role->id;
-                }
-            }
+        // Auth gates for: Roles
+        Gate::define('role_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('role_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('role_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('role_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('role_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
 
-            foreach ($permissionArray as $title => $roles) {
-                Gate::define($title, function (User $user) use ($roles) {
-                    return count(array_intersect($user->role->pluck('id')->toArray(), $roles));
-                });
-            }
-        }
+        // Auth gates for: Users
+        Gate::define('user_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('user_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('user_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('user_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('user_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
     }
 }

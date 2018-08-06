@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use App\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRolesRequest extends FormRequest
@@ -23,6 +22,8 @@ class StoreRolesRequest extends FormRequest
      */
     public function rules()
     {
-        return Role::storeValidation($this);
+        return [
+            'title' => 'required',
+        ];
     }
 }
