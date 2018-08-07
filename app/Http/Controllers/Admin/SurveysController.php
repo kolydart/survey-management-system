@@ -129,9 +129,15 @@ class SurveysController extends Controller
         if (! Gate::allows('survey_view')) {
             return abort(401);
         }
+        
+        $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $categories = \App\Category::get()->pluck('title', 'id');
+
+        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$questionnaires = \App\Questionnaire::where('survey_id', $id)->get();
+
         $survey = Survey::findOrFail($id);
 
-        return view('admin.surveys.show', compact('survey'));
+        return view('admin.surveys.show', compact('survey', 'questionnaires'));
     }
 
 
