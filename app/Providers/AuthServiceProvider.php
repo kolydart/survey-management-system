@@ -154,8 +154,64 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
-        // Auth gates for: Entities
-        Gate::define('entity_access', function ($user) {
+        // Auth gates for: Content
+        Gate::define('content_access', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+
+        // Auth gates for: Content pages
+        Gate::define('content_page_access', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_page_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_page_edit', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_page_view', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_page_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Content categories
+        Gate::define('content_category_access', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_category_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_category_edit', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_category_view', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_category_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Content tags
+        Gate::define('content_tag_access', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_tag_create', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_tag_edit', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_tag_view', function ($user) {
+            return in_array($user->role_id, [1, 2]);
+        });
+        Gate::define('content_tag_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Config
+        Gate::define('config_access', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
@@ -244,59 +300,17 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
-        // Auth gates for: Content
-        Gate::define('content_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-
-        // Auth gates for: Content pages
-        Gate::define('content_page_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_page_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_page_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_page_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_page_delete', function ($user) {
+        // Auth gates for: Activitylog
+        Gate::define('activitylog_access', function ($user) {
             return in_array($user->role_id, [1]);
         });
-
-        // Auth gates for: Content categories
-        Gate::define('content_category_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_category_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_category_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_category_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_category_delete', function ($user) {
+        Gate::define('activitylog_edit', function ($user) {
             return in_array($user->role_id, [1]);
         });
-
-        // Auth gates for: Content tags
-        Gate::define('content_tag_access', function ($user) {
-            return in_array($user->role_id, [1, 2]);
+        Gate::define('activitylog_view', function ($user) {
+            return in_array($user->role_id, [1]);
         });
-        Gate::define('content_tag_create', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_tag_edit', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_tag_view', function ($user) {
-            return in_array($user->role_id, [1, 2]);
-        });
-        Gate::define('content_tag_delete', function ($user) {
+        Gate::define('activitylog_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
