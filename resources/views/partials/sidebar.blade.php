@@ -32,6 +32,14 @@
                         </a>
                     </li>@endcan
                     
+                    @can('answer_access')
+                    <li>
+                        <a href="{{ route('admin.answers.index') }}">
+                            <i class="fa fa-comment"></i>
+                            <span>@lang('quickadmin.answers.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                 </ul>
             </li>@endcan
             

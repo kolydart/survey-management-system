@@ -142,5 +142,22 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
+        // Auth gates for: Answers
+        Gate::define('answer_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
     }
 }

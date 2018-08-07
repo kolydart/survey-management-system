@@ -115,9 +115,14 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_view')) {
             return abort(401);
         }
+        $answers = \App\Answer::whereHas('answerlists',
+                    function ($query) use ($id) {
+                        $query->where('id', $id);
+                    })->get();
+
         $answerlist = Answerlist::findOrFail($id);
 
-        return view('admin.answerlists.show', compact('answerlist'));
+        return view('admin.answerlists.show', compact('answerlist', 'answers'));
     }
 
 
