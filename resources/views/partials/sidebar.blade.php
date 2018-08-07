@@ -174,7 +174,23 @@
             </li>@endcan
             
 
-            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-line-chart"></i>
+                    <span class="title">Generated Reports</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                   <li class="{{ $request->is('/reports/questionnaires') }}">
+                        <a href="{{ url('/admin/reports/questionnaires') }}">
+                            <i class="fa fa-line-chart"></i>
+                            <span class="title">Questionnaires</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             
 
