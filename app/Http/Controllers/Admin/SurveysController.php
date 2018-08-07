@@ -133,11 +133,11 @@ class SurveysController extends Controller
         $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $categories = \App\Category::get()->pluck('title', 'id');
 
-        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$questionnaires = \App\Questionnaire::where('survey_id', $id)->get();
+        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$questionnaires = \App\Questionnaire::where('survey_id', $id)->get();$items = \App\Item::where('survey_id', $id)->get();
 
         $survey = Survey::findOrFail($id);
 
-        return view('admin.surveys.show', compact('survey', 'questionnaires'));
+        return view('admin.surveys.show', compact('survey', 'questionnaires', 'items'));
     }
 
 
