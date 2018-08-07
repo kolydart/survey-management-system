@@ -30,8 +30,76 @@ class AuthServiceProvider extends ServiceProvider
         $user = \Auth::user();
 
         
+        // Auth gates for: Surveys
+        Gate::define('survey_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('survey_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('survey_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('survey_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('survey_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
         // Auth gates for: Design
         Gate::define('design_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Questions
+        Gate::define('question_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('question_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('question_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('question_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('question_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Answerlists
+        Gate::define('answerlist_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Answers
+        Gate::define('answer_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answer_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
@@ -122,57 +190,6 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
         Gate::define('user_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Answerlists
-        Gate::define('answerlist_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answerlist_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answerlist_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answerlist_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answerlist_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Answers
-        Gate::define('answer_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answer_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answer_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answer_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('answer_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Questions
-        Gate::define('question_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('question_create', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('question_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('question_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('question_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 

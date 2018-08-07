@@ -61,6 +61,9 @@ class GroupsController extends Controller
         }
         $group = Group::create($request->all());
 
+        foreach ($request->input('surveys', []) as $data) {
+            $group->surveys()->create($data);
+        }
 
 
         return redirect()->route('admin.groups.index');
@@ -98,6 +101,23 @@ class GroupsController extends Controller
         $group = Group::findOrFail($id);
         $group->update($request->all());
 
+        $surveys           = $group->surveys;
+        $currentSurveyData = [];
+        foreach ($request->input('surveys', []) as $index => $data) {
+            if (is_integer($index)) {
+                $group->surveys()->create($data);
+            } else {
+                $id                          = explode('-', $index)[1];
+                $currentSurveyData[$id] = $data;
+            }
+        }
+        foreach ($surveys as $item) {
+            if (isset($currentSurveyData[$item->id])) {
+                $item->update($currentSurveyData[$item->id]);
+            } else {
+                $item->delete();
+            }
+        }
 
 
         return redirect()->route('admin.groups.index');
@@ -115,9 +135,11 @@ class GroupsController extends Controller
         if (! Gate::allows('group_view')) {
             return abort(401);
         }
+        $surveys = \App\Survey::where('group_id', $id)->get();
+
         $group = Group::findOrFail($id);
 
-        return view('admin.groups.show', compact('group'));
+        return view('admin.groups.show', compact('group', 'surveys'));
     }
 
 

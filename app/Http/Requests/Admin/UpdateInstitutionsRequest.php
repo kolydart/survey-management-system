@@ -25,6 +25,7 @@ class UpdateInstitutionsRequest extends FormRequest
         return [
             
             'title' => 'required',
+            'surveys.*.title' => 'required',
         ];
     }
 }

@@ -3,7 +3,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInstitutionsRequest extends FormRequest
+class StoreSurveysRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class StoreInstitutionsRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'surveys.*.title' => 'required',
+            'category.*' => 'exists:categories,id',
+            'access' => 'required',
         ];
     }
 }

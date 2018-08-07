@@ -61,6 +61,9 @@ class InstitutionsController extends Controller
         }
         $institution = Institution::create($request->all());
 
+        foreach ($request->input('surveys', []) as $data) {
+            $institution->surveys()->create($data);
+        }
 
 
         return redirect()->route('admin.institutions.index');
@@ -98,6 +101,23 @@ class InstitutionsController extends Controller
         $institution = Institution::findOrFail($id);
         $institution->update($request->all());
 
+        $surveys           = $institution->surveys;
+        $currentSurveyData = [];
+        foreach ($request->input('surveys', []) as $index => $data) {
+            if (is_integer($index)) {
+                $institution->surveys()->create($data);
+            } else {
+                $id                          = explode('-', $index)[1];
+                $currentSurveyData[$id] = $data;
+            }
+        }
+        foreach ($surveys as $item) {
+            if (isset($currentSurveyData[$item->id])) {
+                $item->update($currentSurveyData[$item->id]);
+            } else {
+                $item->delete();
+            }
+        }
 
 
         return redirect()->route('admin.institutions.index');
@@ -115,9 +135,11 @@ class InstitutionsController extends Controller
         if (! Gate::allows('institution_view')) {
             return abort(401);
         }
+        $surveys = \App\Survey::where('institution_id', $id)->get();
+
         $institution = Institution::findOrFail($id);
 
-        return view('admin.institutions.show', compact('institution'));
+        return view('admin.institutions.show', compact('institution', 'surveys'));
     }
 
 
