@@ -27,6 +27,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('questionnaires_mass_destroy', ['uses' => 'Admin\QuestionnairesController@massDestroy', 'as' => 'questionnaires.mass_destroy']);
     Route::post('questionnaires_restore/{id}', ['uses' => 'Admin\QuestionnairesController@restore', 'as' => 'questionnaires.restore']);
     Route::delete('questionnaires_perma_del/{id}', ['uses' => 'Admin\QuestionnairesController@perma_del', 'as' => 'questionnaires.perma_del']);
+    Route::resource('responses', 'Admin\ResponsesController');
+    Route::post('responses_mass_destroy', ['uses' => 'Admin\ResponsesController@massDestroy', 'as' => 'responses.mass_destroy']);
+    Route::post('responses_restore/{id}', ['uses' => 'Admin\ResponsesController@restore', 'as' => 'responses.restore']);
+    Route::delete('responses_perma_del/{id}', ['uses' => 'Admin\ResponsesController@perma_del', 'as' => 'responses.perma_del']);
+    Route::resource('items', 'Admin\ItemsController');
+    Route::post('items_mass_destroy', ['uses' => 'Admin\ItemsController@massDestroy', 'as' => 'items.mass_destroy']);
+    Route::post('items_restore/{id}', ['uses' => 'Admin\ItemsController@restore', 'as' => 'items.restore']);
+    Route::delete('items_perma_del/{id}', ['uses' => 'Admin\ItemsController@perma_del', 'as' => 'items.perma_del']);
     Route::resource('questions', 'Admin\QuestionsController');
     Route::post('questions_mass_destroy', ['uses' => 'Admin\QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
     Route::post('questions_restore/{id}', ['uses' => 'Admin\QuestionsController@restore', 'as' => 'questions.restore']);
@@ -55,10 +63,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('responses', 'Admin\ResponsesController');
-    Route::post('responses_mass_destroy', ['uses' => 'Admin\ResponsesController@massDestroy', 'as' => 'responses.mass_destroy']);
-    Route::post('responses_restore/{id}', ['uses' => 'Admin\ResponsesController@restore', 'as' => 'responses.restore']);
-    Route::delete('responses_perma_del/{id}', ['uses' => 'Admin\ResponsesController@perma_del', 'as' => 'responses.perma_del']);
 
 
 

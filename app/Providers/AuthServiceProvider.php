@@ -64,8 +64,42 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
+        // Auth gates for: Responses
+        Gate::define('response_access', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('response_create', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('response_edit', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('response_view', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('response_delete', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+
         // Auth gates for: Design
         Gate::define('design_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Items
+        Gate::define('item_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('item_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('item_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('item_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('item_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
@@ -208,23 +242,6 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::define('user_delete', function ($user) {
             return in_array($user->role_id, [1]);
-        });
-
-        // Auth gates for: Responses
-        Gate::define('response_access', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
-        });
-        Gate::define('response_create', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
-        });
-        Gate::define('response_edit', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
-        });
-        Gate::define('response_view', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
-        });
-        Gate::define('response_delete', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
         });
 
     }
