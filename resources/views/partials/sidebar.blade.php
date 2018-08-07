@@ -14,16 +14,24 @@
                 </a>
             </li>
 
-            @can('user_management_access')
+            @can('entity_access')
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span>@lang('quickadmin.user-management.title')</span>
+                    <i class="fa fa-gears"></i>
+                    <span>@lang('quickadmin.entities.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    @can('category_access')
+                    <li>
+                        <a href="{{ route('admin.categories.index') }}">
+                            <i class="fa fa-sitemap"></i>
+                            <span>@lang('quickadmin.categories.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                     @can('role_access')
                     <li>
                         <a href="{{ route('admin.roles.index') }}">
