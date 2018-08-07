@@ -83,11 +83,48 @@
                 </ul>
             </li>@endcan
             
-            @can('entity_access')
+            @can('content_access')
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span>@lang('quickadmin.content.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @can('content_page_access')
+                    <li>
+                        <a href="{{ route('admin.content_pages.index') }}">
+                            <i class="fa fa-file-o"></i>
+                            <span>@lang('quickadmin.content-pages.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                    @can('content_category_access')
+                    <li>
+                        <a href="{{ route('admin.content_categories.index') }}">
+                            <i class="fa fa-folder"></i>
+                            <span>@lang('quickadmin.content-categories.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                    @can('content_tag_access')
+                    <li>
+                        <a href="{{ route('admin.content_tags.index') }}">
+                            <i class="fa fa-tags"></i>
+                            <span>@lang('quickadmin.content-tags.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                </ul>
+            </li>@endcan
+            
+            @can('config_access')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i>
-                    <span>@lang('quickadmin.entities.title')</span>
+                    <span>@lang('quickadmin.config.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -130,43 +167,6 @@
                         <a href="{{ route('admin.users.index') }}">
                             <i class="fa fa-user"></i>
                             <span>@lang('quickadmin.users.title')</span>
-                        </a>
-                    </li>@endcan
-                    
-                </ul>
-            </li>@endcan
-            
-            @can('content_access')
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-book"></i>
-                    <span>@lang('quickadmin.content.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    @can('content_page_access')
-                    <li>
-                        <a href="{{ route('admin.content_pages.index') }}">
-                            <i class="fa fa-file-o"></i>
-                            <span>@lang('quickadmin.content-pages.title')</span>
-                        </a>
-                    </li>@endcan
-                    
-                    @can('content_category_access')
-                    <li>
-                        <a href="{{ route('admin.content_categories.index') }}">
-                            <i class="fa fa-folder"></i>
-                            <span>@lang('quickadmin.content-categories.title')</span>
-                        </a>
-                    </li>@endcan
-                    
-                    @can('content_tag_access')
-                    <li>
-                        <a href="{{ route('admin.content_tags.index') }}">
-                            <i class="fa fa-tags"></i>
-                            <span>@lang('quickadmin.content-tags.title')</span>
                         </a>
                     </li>@endcan
                     
