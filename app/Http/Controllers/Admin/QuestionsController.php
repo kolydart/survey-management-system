@@ -115,9 +115,11 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_view')) {
             return abort(401);
         }
+        $responses = \App\Response::where('question_id', $id)->get();
+
         $question = Question::findOrFail($id);
 
-        return view('admin.questions.show', compact('question'));
+        return view('admin.questions.show', compact('question', 'responses'));
     }
 
 
