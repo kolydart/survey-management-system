@@ -19,4 +19,7 @@ class Group extends Model
     
     
     
+    public function surveys() {
+        return $this->hasMany(Survey::class, 'group_id');
+    }
 }

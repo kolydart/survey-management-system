@@ -25,6 +25,7 @@ class UpdateGroupsRequest extends FormRequest
         return [
             
             'title' => 'required',
+            'surveys.*.title' => 'required',
         ];
     }
 }

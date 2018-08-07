@@ -24,6 +24,7 @@ class StoreGroupsRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'surveys.*.title' => 'required',
         ];
     }
 }

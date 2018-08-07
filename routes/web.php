@@ -19,6 +19,22 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/home', 'HomeController@index');
     
+    Route::resource('surveys', 'Admin\SurveysController');
+    Route::post('surveys_mass_destroy', ['uses' => 'Admin\SurveysController@massDestroy', 'as' => 'surveys.mass_destroy']);
+    Route::post('surveys_restore/{id}', ['uses' => 'Admin\SurveysController@restore', 'as' => 'surveys.restore']);
+    Route::delete('surveys_perma_del/{id}', ['uses' => 'Admin\SurveysController@perma_del', 'as' => 'surveys.perma_del']);
+    Route::resource('questions', 'Admin\QuestionsController');
+    Route::post('questions_mass_destroy', ['uses' => 'Admin\QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+    Route::post('questions_restore/{id}', ['uses' => 'Admin\QuestionsController@restore', 'as' => 'questions.restore']);
+    Route::delete('questions_perma_del/{id}', ['uses' => 'Admin\QuestionsController@perma_del', 'as' => 'questions.perma_del']);
+    Route::resource('answerlists', 'Admin\AnswerlistsController');
+    Route::post('answerlists_mass_destroy', ['uses' => 'Admin\AnswerlistsController@massDestroy', 'as' => 'answerlists.mass_destroy']);
+    Route::post('answerlists_restore/{id}', ['uses' => 'Admin\AnswerlistsController@restore', 'as' => 'answerlists.restore']);
+    Route::delete('answerlists_perma_del/{id}', ['uses' => 'Admin\AnswerlistsController@perma_del', 'as' => 'answerlists.perma_del']);
+    Route::resource('answers', 'Admin\AnswersController');
+    Route::post('answers_mass_destroy', ['uses' => 'Admin\AnswersController@massDestroy', 'as' => 'answers.mass_destroy']);
+    Route::post('answers_restore/{id}', ['uses' => 'Admin\AnswersController@restore', 'as' => 'answers.restore']);
+    Route::delete('answers_perma_del/{id}', ['uses' => 'Admin\AnswersController@perma_del', 'as' => 'answers.perma_del']);
     Route::resource('institutions', 'Admin\InstitutionsController');
     Route::post('institutions_mass_destroy', ['uses' => 'Admin\InstitutionsController@massDestroy', 'as' => 'institutions.mass_destroy']);
     Route::post('institutions_restore/{id}', ['uses' => 'Admin\InstitutionsController@restore', 'as' => 'institutions.restore']);
@@ -35,18 +51,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('answerlists', 'Admin\AnswerlistsController');
-    Route::post('answerlists_mass_destroy', ['uses' => 'Admin\AnswerlistsController@massDestroy', 'as' => 'answerlists.mass_destroy']);
-    Route::post('answerlists_restore/{id}', ['uses' => 'Admin\AnswerlistsController@restore', 'as' => 'answerlists.restore']);
-    Route::delete('answerlists_perma_del/{id}', ['uses' => 'Admin\AnswerlistsController@perma_del', 'as' => 'answerlists.perma_del']);
-    Route::resource('answers', 'Admin\AnswersController');
-    Route::post('answers_mass_destroy', ['uses' => 'Admin\AnswersController@massDestroy', 'as' => 'answers.mass_destroy']);
-    Route::post('answers_restore/{id}', ['uses' => 'Admin\AnswersController@restore', 'as' => 'answers.restore']);
-    Route::delete('answers_perma_del/{id}', ['uses' => 'Admin\AnswersController@perma_del', 'as' => 'answers.perma_del']);
-    Route::resource('questions', 'Admin\QuestionsController');
-    Route::post('questions_mass_destroy', ['uses' => 'Admin\QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
-    Route::post('questions_restore/{id}', ['uses' => 'Admin\QuestionsController@restore', 'as' => 'questions.restore']);
-    Route::delete('questions_perma_del/{id}', ['uses' => 'Admin\QuestionsController@perma_del', 'as' => 'questions.perma_del']);
 
 
 

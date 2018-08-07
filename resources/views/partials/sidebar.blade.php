@@ -14,6 +14,14 @@
                 </a>
             </li>
 
+            @can('survey_access')
+            <li>
+                <a href="{{ route('admin.surveys.index') }}">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>@lang('quickadmin.surveys.title')</span>
+                </a>
+            </li>@endcan
+            
             @can('design_access')
             <li class="treeview">
                 <a href="#">

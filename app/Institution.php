@@ -19,4 +19,7 @@ class Institution extends Model
     
     
     
+    public function surveys() {
+        return $this->hasMany(Survey::class, 'institution_id');
+    }
 }

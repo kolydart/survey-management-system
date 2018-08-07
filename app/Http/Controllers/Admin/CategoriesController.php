@@ -115,9 +115,14 @@ class CategoriesController extends Controller
         if (! Gate::allows('category_view')) {
             return abort(401);
         }
+        $surveys = \App\Survey::whereHas('category',
+                    function ($query) use ($id) {
+                        $query->where('id', $id);
+                    })->get();
+
         $category = Category::findOrFail($id);
 
-        return view('admin.categories.show', compact('category'));
+        return view('admin.categories.show', compact('category', 'surveys'));
     }
 
 
