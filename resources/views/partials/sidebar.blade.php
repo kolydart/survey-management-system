@@ -24,6 +24,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    @can('question_access')
+                    <li>
+                        <a href="{{ route('admin.questions.index') }}">
+                            <i class="fa fa-comment-o"></i>
+                            <span>@lang('quickadmin.questions.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                     @can('answerlist_access')
                     <li>
                         <a href="{{ route('admin.answerlists.index') }}">
