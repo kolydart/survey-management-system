@@ -35,6 +35,23 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
+        // Auth gates for: Categories
+        Gate::define('category_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
         // Auth gates for: Roles
         Gate::define('role_access', function ($user) {
             return in_array($user->role_id, [1]);
@@ -69,20 +86,20 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
-        // Auth gates for: Categories
-        Gate::define('category_access', function ($user) {
+        // Auth gates for: Groups
+        Gate::define('group_access', function ($user) {
             return in_array($user->role_id, [1]);
         });
-        Gate::define('category_create', function ($user) {
+        Gate::define('group_create', function ($user) {
             return in_array($user->role_id, [1]);
         });
-        Gate::define('category_edit', function ($user) {
+        Gate::define('group_edit', function ($user) {
             return in_array($user->role_id, [1]);
         });
-        Gate::define('category_view', function ($user) {
+        Gate::define('group_view', function ($user) {
             return in_array($user->role_id, [1]);
         });
-        Gate::define('category_delete', function ($user) {
+        Gate::define('group_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
