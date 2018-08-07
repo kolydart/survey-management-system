@@ -5,6 +5,7 @@ return [
 		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
 		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
 		'categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Title',		],	],
+		'groups' => [		'title' => 'Groups',		'fields' => [			'title' => 'Title',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',

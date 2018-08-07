@@ -24,6 +24,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    @can('group_access')
+                    <li>
+                        <a href="{{ route('admin.groups.index') }}">
+                            <i class="fa fa-group"></i>
+                            <span>@lang('quickadmin.groups.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                     @can('category_access')
                     <li>
                         <a href="{{ route('admin.categories.index') }}">
