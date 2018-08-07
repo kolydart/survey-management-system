@@ -20,6 +20,14 @@ return [
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
 		'responses' => [		'title' => 'Responses',		'fields' => [			'question' => 'Question',			'answer' => 'Answer',			'content' => 'Content',		],	],
 		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'order' => 'Order',		],	],
+		'content' => [		'title' => 'Content',		'fields' => [		],	],
+		'content-categories' => [		'title' => 'Categories',		'fields' => [		],	],
+		'content-tags' => [		'title' => 'Tags',		'fields' => [		],	],
+		'content-pages' => [		'title' => 'Pages',		'fields' => [		],	],
+		'content' => [		'title' => 'Content',		'fields' => [		],	],
+		'content-categories' => [		'title' => 'Categories',		'fields' => [			'title' => 'Category',			'slug' => 'Slug',		],	],
+		'content-tags' => [		'title' => 'Tags',		'fields' => [			'title' => 'Tag',			'slug' => 'Slug',		],	],
+		'content-pages' => [		'title' => 'Pages',		'fields' => [			'title' => 'Title',			'category-id' => 'Categories',			'tag-id' => 'Tags',			'page-text' => 'Text',			'excerpt' => 'Excerpt',			'featured-image' => 'Featured image',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',
