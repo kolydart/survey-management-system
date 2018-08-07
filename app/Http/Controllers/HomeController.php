@@ -24,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $responses = \App\Response::latest()->limit(10)->get(); 
+
+        return view('home', compact( 'responses' ));
     }
 }
