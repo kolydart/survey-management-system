@@ -193,5 +193,22 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
+        // Auth gates for: Questionnaires
+        Gate::define('questionnaire_access', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('questionnaire_create', function ($user) {
+            return in_array($user->role_id, [1, 2, 3]);
+        });
+        Gate::define('questionnaire_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('questionnaire_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('questionnaire_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
     }
 }

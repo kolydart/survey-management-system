@@ -1,75 +1,59 @@
+@inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.surveys.title')</h3>
+    <h3 class="page-title">@lang('quickadmin.questionnaires.title')</h3>
+    @can('questionnaire_create')
+    <p>
+        <a href="{{ route('admin.questionnaires.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        
+    </p>
+    @endcan
+
+    @can('questionnaire_delete')
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.questionnaires.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('quickadmin.qa_all')</a></li> |
+            <li><a href="{{ route('admin.questionnaires.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('quickadmin.qa_trash')</a></li>
+        </ul>
+    </p>
+    @endcan
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_view')
+            @lang('quickadmin.qa_list')
         </div>
 
         <div class="panel-body table-responsive">
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.title')</th>
-                            <td field-key='title'>{{ $survey->title }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.category')</th>
-                            <td field-key='category'>
-                                @foreach ($survey->category as $singleCategory)
-                                    <span class="label label-info label-many">{{ $singleCategory->title }}</span>
-                                @endforeach
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.introduction')</th>
-                            <td field-key='introduction'>{!! $survey->introduction !!}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.notes')</th>
-                            <td field-key='notes'>{!! $survey->notes !!}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.access')</th>
-                            <td field-key='access'>{{ $survey->access }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.surveys.fields.completed')</th>
-                            <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div><!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
-    
-<li role="presentation" class="active"><a href="#questionnaires" aria-controls="questionnaires" role="tab" data-toggle="tab">Questionnaires</a></li>
-</ul>
+            <table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }} @can('questionnaire_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+                <thead>
+                    <tr>
+                        @can('questionnaire_delete')
+                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                        @endcan
 
-<!-- Tab panes -->
-<div class="tab-content">
-    
-<div role="tabpanel" class="tab-pane active" id="questionnaires">
-<table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }}">
-    <thead>
-        <tr>
-            <th>@lang('quickadmin.questionnaires.fields.survey')</th>
+                        <th>@lang('quickadmin.questionnaires.fields.survey')</th>
+                        <th>@lang('quickadmin.surveys.fields.introduction')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
                         <th>&nbsp;</th>
                         @endif
-        </tr>
-    </thead>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    @if (count($questionnaires) > 0)
+                        @foreach ($questionnaires as $questionnaire)
+                            <tr data-entry-id="{{ $questionnaire->id }}">
+                                @can('questionnaire_delete')
+                                    @if ( request('show_deleted') != 1 )<td></td>@endif
+                                @endcan
 
-    <tbody>
-        @if (count($questionnaires) > 0)
-            @foreach ($questionnaires as $questionnaire)
-                <tr data-entry-id="{{ $questionnaire->id }}">
-                    <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
+                                <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
+<td field-key='introduction'>{!! isset($questionnaire->survey) ? $questionnaire->survey->introduction : '' !!}</td>
                                 <td field-key='name'>{{ $questionnaire->name }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
@@ -111,21 +95,24 @@
                                     @endcan
                                 </td>
                                 @endif
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
-            </tr>
-        @endif
-    </tbody>
-</table>
-</div>
-</div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.surveys.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
         </div>
     </div>
 @stop
+
+@section('javascript') 
+    <script>
+        @can('questionnaire_delete')
+            @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.questionnaires.mass_destroy') }}'; @endif
+        @endcan
+
+    </script>
+@endsection

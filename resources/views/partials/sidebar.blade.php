@@ -22,6 +22,14 @@
                 </a>
             </li>@endcan
             
+            @can('questionnaire_access')
+            <li>
+                <a href="{{ route('admin.questionnaires.index') }}">
+                    <i class="fa fa-clipboard"></i>
+                    <span>@lang('quickadmin.questionnaires.title')</span>
+                </a>
+            </li>@endcan
+            
             @can('design_access')
             <li class="treeview">
                 <a href="#">
