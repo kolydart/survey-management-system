@@ -122,7 +122,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Design
         Gate::define('design_access', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1]);
         });
 
     }

@@ -11,6 +11,8 @@ return [
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
+		'design' => [		'title' => 'Design',		'fields' => [		],	],
+		'design' => [		'title' => 'Design',		'fields' => [		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',
