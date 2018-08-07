@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('answers_mass_destroy', ['uses' => 'Admin\AnswersController@massDestroy', 'as' => 'answers.mass_destroy']);
     Route::post('answers_restore/{id}', ['uses' => 'Admin\AnswersController@restore', 'as' => 'answers.restore']);
     Route::delete('answers_perma_del/{id}', ['uses' => 'Admin\AnswersController@perma_del', 'as' => 'answers.perma_del']);
+    Route::resource('questions', 'Admin\QuestionsController');
+    Route::post('questions_mass_destroy', ['uses' => 'Admin\QuestionsController@massDestroy', 'as' => 'questions.mass_destroy']);
+    Route::post('questions_restore/{id}', ['uses' => 'Admin\QuestionsController@restore', 'as' => 'questions.restore']);
+    Route::delete('questions_perma_del/{id}', ['uses' => 'Admin\QuestionsController@perma_del', 'as' => 'questions.perma_del']);
 
 
 
