@@ -30,8 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         $user = \Auth::user();
 
         
-        // Auth gates for: User management
-        Gate::define('user_management_access', function ($user) {
+        // Auth gates for: Entities
+        Gate::define('entity_access', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
@@ -66,6 +66,23 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
         Gate::define('user_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
+        // Auth gates for: Categories
+        Gate::define('category_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('category_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 
