@@ -30,6 +30,11 @@ class AuthServiceProvider extends ServiceProvider
         $user = \Auth::user();
 
         
+        // Auth gates for: Design
+        Gate::define('design_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
         // Auth gates for: Entities
         Gate::define('entity_access', function ($user) {
             return in_array($user->role_id, [1]);
@@ -120,8 +125,20 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
-        // Auth gates for: Design
-        Gate::define('design_access', function ($user) {
+        // Auth gates for: Answerlists
+        Gate::define('answerlist_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('answerlist_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
 

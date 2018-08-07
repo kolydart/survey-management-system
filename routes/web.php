@@ -35,7 +35,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('designs', 'Admin\DesignsController');
+    Route::resource('answerlists', 'Admin\AnswerlistsController');
+    Route::post('answerlists_mass_destroy', ['uses' => 'Admin\AnswerlistsController@massDestroy', 'as' => 'answerlists.mass_destroy']);
+    Route::post('answerlists_restore/{id}', ['uses' => 'Admin\AnswerlistsController@restore', 'as' => 'answerlists.restore']);
+    Route::delete('answerlists_perma_del/{id}', ['uses' => 'Admin\AnswerlistsController@perma_del', 'as' => 'answerlists.perma_del']);
 
 
 

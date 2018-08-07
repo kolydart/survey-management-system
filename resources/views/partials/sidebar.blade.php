@@ -15,11 +15,24 @@
             </li>
 
             @can('design_access')
-            <li class="">
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-paint-brush"></i>
                     <span>@lang('quickadmin.design.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    @can('answerlist_access')
+                    <li>
+                        <a href="{{ route('admin.answerlists.index') }}">
+                            <i class="fa fa-chain"></i>
+                            <span>@lang('quickadmin.answerlists.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                </ul>
             </li>@endcan
             
             @can('entity_access')

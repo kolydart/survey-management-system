@@ -13,6 +13,7 @@ return [
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
+		'answerlists' => [		'title' => 'Answerlists',		'fields' => [			'title' => 'Title',			'type' => 'Type',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',
