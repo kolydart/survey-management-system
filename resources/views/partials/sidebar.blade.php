@@ -170,6 +170,14 @@
                         </a>
                     </li>@endcan
                     
+                    @can('activitylog_access')
+                    <li>
+                        <a href="{{ route('admin.activitylogs.index') }}">
+                            <i class="fa fa-heartbeat"></i>
+                            <span>@lang('quickadmin.activitylog.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                 </ul>
             </li>@endcan
             
