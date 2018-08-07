@@ -125,9 +125,13 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_view')) {
             return abort(401);
         }
+        
+        $answerlists = \App\Answerlist::get()->pluck('title', 'id');
+$responses = \App\Response::where('answer_id', $id)->get();
+
         $answer = Answer::findOrFail($id);
 
-        return view('admin.answers.show', compact('answer'));
+        return view('admin.answers.show', compact('answer', 'responses'));
     }
 
 

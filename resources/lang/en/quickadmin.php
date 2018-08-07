@@ -18,6 +18,7 @@ return [
 		'questions' => [		'title' => 'Questions',		'fields' => [			'title' => 'Title',		],	],
 		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'access' => 'Access',			'completed' => 'Completed',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
+		'responses' => [		'title' => 'Responses',		'fields' => [			'question' => 'Question',			'answer' => 'Answer',			'content' => 'Content',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',

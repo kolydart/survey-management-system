@@ -30,6 +30,14 @@
                 </a>
             </li>@endcan
             
+            @can('response_access')
+            <li>
+                <a href="{{ route('admin.responses.index') }}">
+                    <i class="fa fa-comments-o"></i>
+                    <span>@lang('quickadmin.responses.title')</span>
+                </a>
+            </li>@endcan
+            
             @can('design_access')
             <li class="treeview">
                 <a href="#">
