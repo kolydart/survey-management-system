@@ -1,7 +1,7 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User management',		'fields' => [		],	],
+		'entities' => [		'title' => 'Entities',		'fields' => [		],	],
 		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',		],	],
 		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
 	'qa_create' => 'Create',
