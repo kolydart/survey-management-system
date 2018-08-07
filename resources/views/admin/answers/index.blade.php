@@ -1,55 +1,57 @@
+@inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.answerlists.title')</h3>
+    <h3 class="page-title">@lang('quickadmin.answers.title')</h3>
+    @can('answer_create')
+    <p>
+        <a href="{{ route('admin.answers.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        
+    </p>
+    @endcan
+
+    @can('answer_delete')
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.answers.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('quickadmin.qa_all')</a></li> |
+            <li><a href="{{ route('admin.answers.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('quickadmin.qa_trash')</a></li>
+        </ul>
+    </p>
+    @endcan
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_view')
+            @lang('quickadmin.qa_list')
         </div>
 
         <div class="panel-body table-responsive">
-            <div class="row">
-                <div class="col-md-6">
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>@lang('quickadmin.answerlists.fields.title')</th>
-                            <td field-key='title'>{{ $answerlist->title }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('quickadmin.answerlists.fields.type')</th>
-                            <td field-key='type'>{{ $answerlist->type }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div><!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
-    
-<li role="presentation" class="active"><a href="#answers" aria-controls="answers" role="tab" data-toggle="tab">Answers</a></li>
-</ul>
+            <table class="table table-bordered table-striped {{ count($answers) > 0 ? 'datatable' : '' }} @can('answer_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+                <thead>
+                    <tr>
+                        @can('answer_delete')
+                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                        @endcan
 
-<!-- Tab panes -->
-<div class="tab-content">
-    
-<div role="tabpanel" class="tab-pane active" id="answers">
-<table class="table table-bordered table-striped {{ count($answers) > 0 ? 'datatable' : '' }}">
-    <thead>
-        <tr>
-            <th>@lang('quickadmin.answers.fields.title')</th>
+                        <th>@lang('quickadmin.answers.fields.title')</th>
                         <th>@lang('quickadmin.answers.fields.answerlists')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
                         <th>&nbsp;</th>
                         @endif
-        </tr>
-    </thead>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    @if (count($answers) > 0)
+                        @foreach ($answers as $answer)
+                            <tr data-entry-id="{{ $answer->id }}">
+                                @can('answer_delete')
+                                    @if ( request('show_deleted') != 1 )<td></td>@endif
+                                @endcan
 
-    <tbody>
-        @if (count($answers) > 0)
-            @foreach ($answers as $answer)
-                <tr data-entry-id="{{ $answer->id }}">
-                    <td field-key='title'>{{ $answer->title }}</td>
+                                <td field-key='title'>{{ $answer->title }}</td>
                                 <td field-key='answerlists'>
                                     @foreach ($answer->answerlists as $singleAnswerlists)
                                         <span class="label label-info label-many">{{ $singleAnswerlists->title }}</span>
@@ -95,21 +97,24 @@
                                     @endcan
                                 </td>
                                 @endif
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
-            </tr>
-        @endif
-    </tbody>
-</table>
-</div>
-</div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.answerlists.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
         </div>
     </div>
 @stop
+
+@section('javascript') 
+    <script>
+        @can('answer_delete')
+            @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.answers.mass_destroy') }}'; @endif
+        @endcan
+
+    </script>
+@endsection

@@ -14,6 +14,7 @@ return [
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'answerlists' => [		'title' => 'Answerlists',		'fields' => [			'title' => 'Title',			'type' => 'Type',		],	],
+		'answers' => [		'title' => 'Answers',		'fields' => [			'title' => 'Title',			'answerlists' => 'Answerlists',		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',
 	'qa_edit' => 'Edit',
