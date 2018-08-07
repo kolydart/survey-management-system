@@ -24,6 +24,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    @can('institution_access')
+                    <li>
+                        <a href="{{ route('admin.institutions.index') }}">
+                            <i class="fa fa-institution"></i>
+                            <span>@lang('quickadmin.institutions.title')</span>
+                        </a>
+                    </li>@endcan
+                    
                     @can('group_access')
                     <li>
                         <a href="{{ route('admin.groups.index') }}">
