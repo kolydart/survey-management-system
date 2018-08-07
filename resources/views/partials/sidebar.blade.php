@@ -14,6 +14,14 @@
                 </a>
             </li>
 
+            @can('design_access')
+            <li class="">
+                <a href="#">
+                    <i class="fa fa-paint-brush"></i>
+                    <span>@lang('quickadmin.design.title')</span>
+                </a>
+            </li>@endcan
+            
             @can('entity_access')
             <li class="treeview">
                 <a href="#">
