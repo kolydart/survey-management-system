@@ -5,7 +5,7 @@
     <h3 class="page-title">@lang('quickadmin.activitylog.title')</h3>
     @can('activitylog_create')
     <p>
-        <a href="{{ route('admin.activitylogs.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        
         
     </p>
     @endcan
