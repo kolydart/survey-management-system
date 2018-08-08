@@ -188,7 +188,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-                
+        App\Providers\GatewebServiceProvider::class,        
         /*
          * Application Service Providers...
          */
