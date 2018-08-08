@@ -83,38 +83,6 @@ class ActivitylogsController extends Controller
     }
 
     /**
-     * Show the form for creating new Activitylog.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        if (! Gate::allows('activitylog_create')) {
-            return abort(401);
-        }
-        return view('admin.activitylogs.create');
-    }
-
-    /**
-     * Store a newly created Activitylog in storage.
-     *
-     * @param  \App\Http\Requests\StoreActivitylogsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreActivitylogsRequest $request)
-    {
-        if (! Gate::allows('activitylog_create')) {
-            return abort(401);
-        }
-        $activitylog = Activitylog::create($request->all());
-
-
-
-        return redirect()->route('admin.activitylogs.index');
-    }
-
-
-    /**
      * Show the form for editing Activitylog.
      *
      * @param  int  $id
