@@ -2,7 +2,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Activitylog
@@ -18,8 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Activitylog extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = ['log_name', 'causer_type', 'causer_id', 'description', 'subject_type', 'subject_id', 'properties'];
     protected $hidden = [];
     

@@ -73,8 +73,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     Route::resource('activitylogs', 'Admin\ActivitylogsController');
     Route::post('activitylogs_mass_destroy', ['uses' => 'Admin\ActivitylogsController@massDestroy', 'as' => 'activitylogs.mass_destroy']);
-    Route::post('activitylogs_restore/{id}', ['uses' => 'Admin\ActivitylogsController@restore', 'as' => 'activitylogs.restore']);
-    Route::delete('activitylogs_perma_del/{id}', ['uses' => 'Admin\ActivitylogsController@perma_del', 'as' => 'activitylogs.perma_del']);
 
 
 

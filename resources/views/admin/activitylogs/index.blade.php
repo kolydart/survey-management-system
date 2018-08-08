@@ -10,15 +10,7 @@
     </p>
     @endcan
 
-    @can('activitylog_delete')
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.activitylogs.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('quickadmin.qa_all')</a></li> |
-            <li><a href="{{ route('admin.activitylogs.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('quickadmin.qa_trash')</a></li>
-        </ul>
-    </p>
-    @endcan
-
+    
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -26,22 +18,19 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('activitylog_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('activitylog_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         @can('activitylog_delete')
-                            @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
+                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
                         <th>@lang('quickadmin.activitylog.fields.causer-id')</th>
                         <th>@lang('quickadmin.activitylog.fields.description')</th>
                         <th>@lang('quickadmin.activitylog.fields.subject-type')</th>
                         <th>@lang('quickadmin.activitylog.fields.subject-id')</th>
-                        @if( request('show_deleted') == 1 )
-                        <th>&nbsp;</th>
-                        @else
-                        <th>&nbsp;</th>
-                        @endif
+                                                <th>&nbsp;</th>
+
                     </tr>
                 </thead>
             </table>
@@ -52,14 +41,12 @@
 @section('javascript') 
     <script>
         @can('activitylog_delete')
-            @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.activitylogs.mass_destroy') }}'; @endif
+            window.route_mass_crud_entries_destroy = '{{ route('admin.activitylogs.mass_destroy') }}';
         @endcan
         $(document).ready(function () {
-            window.dtDefaultOptions.ajax = '{!! route('admin.activitylogs.index') !!}?show_deleted={{ request('show_deleted') }}';
+            window.dtDefaultOptions.ajax = '{!! route('admin.activitylogs.index') !!}';
             window.dtDefaultOptions.columns = [@can('activitylog_delete')
-                @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endif
                 @endcan{data: 'causer_id', name: 'causer_id'},
                 {data: 'description', name: 'description'},
                 {data: 'subject_type', name: 'subject_type'},
