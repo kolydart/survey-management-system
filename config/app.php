@@ -187,7 +187,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
-        
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+                
         /*
          * Application Service Providers...
          */
