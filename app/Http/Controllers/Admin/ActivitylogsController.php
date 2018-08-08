@@ -28,14 +28,7 @@ class ActivitylogsController extends Controller
         if (request()->ajax()) {
             $query = Activitylog::query();
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('activitylog_delete')) {
-            return abort(401);
-        }
-                $query->onlyTrashed();
-                $template = 'restoreTemplate';
-            }
+            
             $query->select([
                 'activitylogs.id',
                 'activitylogs.log_name',
@@ -211,38 +204,4 @@ class ActivitylogsController extends Controller
         }
     }
 
-
-    /**
-     * Restore Activitylog from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function restore($id)
-    {
-        if (! Gate::allows('activitylog_delete')) {
-            return abort(401);
-        }
-        $activitylog = Activitylog::onlyTrashed()->findOrFail($id);
-        $activitylog->restore();
-
-        return redirect()->route('admin.activitylogs.index');
-    }
-
-    /**
-     * Permanently delete Activitylog from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function perma_del($id)
-    {
-        if (! Gate::allows('activitylog_delete')) {
-            return abort(401);
-        }
-        $activitylog = Activitylog::onlyTrashed()->findOrFail($id);
-        $activitylog->forceDelete();
-
-        return redirect()->route('admin.activitylogs.index');
-    }
 }
