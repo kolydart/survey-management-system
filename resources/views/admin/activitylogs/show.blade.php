@@ -13,6 +13,10 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
+                            <th>@lang('gw.date')</th>
+                            <td field-key='date'>{{$activitylog->created_at}}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.activitylog.fields.log-name')</th>
                             <td field-key='log_name'>{{ $activitylog->log_name }}</td>
                         </tr>
@@ -22,7 +26,13 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.activitylog.fields.causer-id')</th>
-                            <td field-key='causer_id'>{{ $activitylog->causer_id }}</td>
+                            <td field-key='causer_id'>
+                                @if ($activitylog->causer_type == 'App\User' && App\User::find($activitylog->causer_id))
+                                    <a href="{{route('admin.users.show',$activitylog->causer_id)}}">{{ App\User::find($activitylog->causer_id)->name }}</a>
+                                @else
+                                    {{ $activitylog->causer_id }}
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.activitylog.fields.description')</th>
@@ -38,7 +48,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.activitylog.fields.properties')</th>
-                            <td field-key='properties'>{!! $activitylog->properties !!}</td>
+                            <td field-key='properties'><pre>{!! print_r(json_decode($activitylog->properties,true)) !!}</pre></td>
                         </tr>
                     </table>
                 </div>

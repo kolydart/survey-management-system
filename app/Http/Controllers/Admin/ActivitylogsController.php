@@ -30,14 +30,14 @@ class ActivitylogsController extends Controller
             $template = 'actionsTemplate';
             
             $query->select([
-                'activitylogs.id',
-                'activitylogs.log_name',
-                'activitylogs.causer_type',
-                'activitylogs.causer_id',
-                'activitylogs.description',
-                'activitylogs.subject_type',
-                'activitylogs.subject_id',
-                'activitylogs.properties',
+                'activity_log.id',
+                'activity_log.log_name',
+                'activity_log.causer_type',
+                'activity_log.causer_id',
+                'activity_log.description',
+                'activity_log.subject_type',
+                'activity_log.subject_id',
+                'activity_log.properties',
             ]);
             $table = Datatables::of($query);
 
