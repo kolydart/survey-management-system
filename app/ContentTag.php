@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContentTag extends Model
 {
+	/** activity log */
+	use \Spatie\Activitylog\Traits\LogsActivity;
+	protected static $logFillable = true;
+	protected static $logOnlyDirty = true;
+
     protected $fillable = ['title', 'slug'];
     protected $hidden = [];
     

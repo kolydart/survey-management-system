@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Questionnaire extends Model
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     use SoftDeletes;
 
     protected $fillable = ['name', 'survey_id'];

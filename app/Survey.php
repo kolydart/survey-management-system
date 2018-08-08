@@ -18,6 +18,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Survey extends Model
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     use SoftDeletes;
 
     protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id', 'group_id'];

@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Activitylog extends Model
 {
+    protected $table = 'activity_log';
+    
     use SoftDeletes;
 
     protected $fillable = ['log_name', 'causer_type', 'causer_id', 'description', 'subject_type', 'subject_id', 'properties'];

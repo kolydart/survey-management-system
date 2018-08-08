@@ -18,6 +18,11 @@ use Hash;
 */
 class User extends Authenticatable
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     use Notifiable;
     protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
     protected $hidden = ['password', 'remember_token'];

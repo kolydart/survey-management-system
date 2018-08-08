@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Item extends Model
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     use SoftDeletes;
 
     protected $fillable = ['order', 'survey_id', 'question_id'];

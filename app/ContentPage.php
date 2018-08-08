@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 */
 class ContentPage extends Model
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     protected $fillable = ['title', 'page_text', 'excerpt', 'featured_image'];
     protected $hidden = [];
     

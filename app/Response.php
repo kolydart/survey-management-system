@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 */
 class Response extends Model
 {
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+
     use SoftDeletes;
 
     protected $fillable = ['content', 'question_id', 'answer_id'];
