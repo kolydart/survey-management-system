@@ -34,7 +34,6 @@
                         @endcan
 
                         <th>@lang('quickadmin.questionnaires.fields.survey')</th>
-                        <th>@lang('quickadmin.surveys.fields.introduction')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -53,7 +52,6 @@
                                 @endcan
 
                                 <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
-<td field-key='introduction'>{!! isset($questionnaire->survey) ? $questionnaire->survey->introduction : '' !!}</td>
                                 <td field-key='name'>{{ $questionnaire->name }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
