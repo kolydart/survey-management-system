@@ -26,6 +26,8 @@ class UpdateAnswerlistsRequest extends FormRequest
             
             'title' => 'required',
             'type' => 'required',
+            'answers' => 'required',
+            'answers.*' => 'exists:answers,id',
             'questions.*.title' => 'required',
         ];
     }

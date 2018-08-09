@@ -24,9 +24,4 @@ class Answer extends Model
     
     
     
-    public function answerlists()
-    {
-        return $this->belongsToMany(Answerlist::class, 'answer_answerlist')->withTrashed();
-    }
-    
 }

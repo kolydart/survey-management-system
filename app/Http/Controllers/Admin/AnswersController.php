@@ -45,11 +45,7 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_create')) {
             return abort(401);
         }
-        
-        $answerlists = \App\Answerlist::get()->pluck('title', 'id');
-
-
-        return view('admin.answers.create', compact('answerlists'));
+        return view('admin.answers.create');
     }
 
     /**
@@ -64,7 +60,6 @@ class AnswersController extends Controller
             return abort(401);
         }
         $answer = Answer::create($request->all());
-        $answer->answerlists()->sync(array_filter((array)$request->input('answerlists')));
 
 
 
@@ -83,13 +78,9 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_edit')) {
             return abort(401);
         }
-        
-        $answerlists = \App\Answerlist::get()->pluck('title', 'id');
-
-
         $answer = Answer::findOrFail($id);
 
-        return view('admin.answers.edit', compact('answer', 'answerlists'));
+        return view('admin.answers.edit', compact('answer'));
     }
 
     /**
@@ -106,7 +97,6 @@ class AnswersController extends Controller
         }
         $answer = Answer::findOrFail($id);
         $answer->update($request->all());
-        $answer->answerlists()->sync(array_filter((array)$request->input('answerlists')));
 
 
 
@@ -125,13 +115,14 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_view')) {
             return abort(401);
         }
-        
-        $answerlists = \App\Answerlist::get()->pluck('title', 'id');
-$responses = \App\Response::where('answer_id', $id)->get();
+        $responses = \App\Response::where('answer_id', $id)->get();$answerlists = \App\Answerlist::whereHas('answers',
+                    function ($query) use ($id) {
+                        $query->where('id', $id);
+                    })->get();
 
         $answer = Answer::findOrFail($id);
 
-        return view('admin.answers.show', compact('answer', 'responses'));
+        return view('admin.answers.show', compact('answer', 'responses', 'answerlists'));
     }
 
 

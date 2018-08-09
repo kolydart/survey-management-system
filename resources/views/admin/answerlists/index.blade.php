@@ -35,6 +35,7 @@
 
                         <th>@lang('quickadmin.answerlists.fields.title')</th>
                         <th>@lang('quickadmin.answerlists.fields.type')</th>
+                        <th>@lang('quickadmin.answerlists.fields.answers')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -53,6 +54,11 @@
 
                                 <td field-key='title'>{{ $answerlist->title }}</td>
                                 <td field-key='type'>{{ $answerlist->type }}</td>
+                                <td field-key='answers'>
+                                    @foreach ($answerlist->answers as $singleAnswers)
+                                        <span class="label label-info label-many">{{ $singleAnswers->title }}</span>
+                                    @endforeach
+                                </td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answerlist_delete')
@@ -97,7 +103,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>

@@ -65,6 +65,24 @@
                     
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('answers', trans('quickadmin.answerlists.fields.answers').'*', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-answers">
+                        {{ trans('quickadmin.qa_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-answers">
+                        {{ trans('quickadmin.qa_deselect_all') }}
+                    </button>
+                    {!! Form::select('answers[]', $answers, old('answers') ? old('answers') : $answerlist->answers->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-answers' , 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('answers'))
+                        <p class="help-block">
+                            {{ $errors->first('answers') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
             
         </div>
     </div>
@@ -131,4 +149,14 @@
             return false;
         });
         </script>
+    <script>
+        $("#selectbtn-answers").click(function(){
+            $("#selectall-answers > option").prop("selected","selected");
+            $("#selectall-answers").trigger("change");
+        });
+        $("#deselectbtn-answers").click(function(){
+            $("#selectall-answers > option").prop("selected","");
+            $("#selectall-answers").trigger("change");
+        });
+    </script>
 @stop
