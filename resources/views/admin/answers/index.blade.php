@@ -34,6 +34,7 @@
                         @endcan
 
                         <th>@lang('quickadmin.answers.fields.title')</th>
+                        <th>@lang('quickadmin.answers.fields.open')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -51,6 +52,7 @@
                                 @endcan
 
                                 <td field-key='title'>{{ $answer->title }}</td>
+                                <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answer_delete')
@@ -95,7 +97,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>
