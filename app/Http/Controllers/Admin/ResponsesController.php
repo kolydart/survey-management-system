@@ -46,10 +46,11 @@ class ResponsesController extends Controller
             return abort(401);
         }
         
+        $questionnaires = \App\Questionnaire::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $answers = \App\Answer::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
-        return view('admin.responses.create', compact('questions', 'answers'));
+        return view('admin.responses.create', compact('questionnaires', 'questions', 'answers'));
     }
 
     /**
@@ -83,12 +84,13 @@ class ResponsesController extends Controller
             return abort(401);
         }
         
+        $questionnaires = \App\Questionnaire::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $answers = \App\Answer::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $response = Response::findOrFail($id);
 
-        return view('admin.responses.edit', compact('response', 'questions', 'answers'));
+        return view('admin.responses.edit', compact('response', 'questionnaires', 'questions', 'answers'));
     }
 
     /**

@@ -39,7 +39,8 @@
 <table class="table table-bordered table-striped {{ count($responses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.responses.fields.question')</th>
+            <th>@lang('quickadmin.responses.fields.questionnaire')</th>
+                        <th>@lang('quickadmin.responses.fields.question')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
                         @if( request('show_deleted') == 1 )
@@ -54,7 +55,8 @@
         @if (count($responses) > 0)
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
-                    <td field-key='question'>{{ $response->question->title or '' }}</td>
+                    <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
+                                <td field-key='question'>{{ $response->question->title or '' }}</td>
                                 <td field-key='answer'>{{ $response->answer->title or '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
@@ -101,7 +103,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>

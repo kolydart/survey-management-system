@@ -12,6 +12,18 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('questionnaire_id', trans('quickadmin.responses.fields.questionnaire').'*', ['class' => 'control-label']) !!}
+                    {!! Form::select('questionnaire_id', $questionnaires, old('questionnaire_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('questionnaire_id'))
+                        <p class="help-block">
+                            {{ $errors->first('questionnaire_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('question_id', trans('quickadmin.responses.fields.question').'*', ['class' => 'control-label']) !!}
                     {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>

@@ -25,6 +25,7 @@ class UpdateQuestionsRequest extends FormRequest
         return [
             
             'title' => 'required',
+            'answerlist_id' => 'required',
         ];
     }
 }

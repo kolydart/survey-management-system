@@ -45,7 +45,10 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_create')) {
             return abort(401);
         }
-        return view('admin.questions.create');
+        
+        $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+
+        return view('admin.questions.create', compact('answerlists'));
     }
 
     /**
@@ -78,9 +81,12 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_edit')) {
             return abort(401);
         }
+        
+        $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+
         $question = Question::findOrFail($id);
 
-        return view('admin.questions.edit', compact('question'));
+        return view('admin.questions.edit', compact('question', 'answerlists'));
     }
 
     /**
@@ -115,7 +121,8 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_view')) {
             return abort(401);
         }
-        $responses = \App\Response::where('question_id', $id)->get();$items = \App\Item::where('question_id', $id)->get();
+        
+        $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$responses = \App\Response::where('question_id', $id)->get();$items = \App\Item::where('question_id', $id)->get();
 
         $question = Question::findOrFail($id);
 

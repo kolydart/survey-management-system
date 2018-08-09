@@ -33,6 +33,7 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
+                        <th>@lang('quickadmin.responses.fields.questionnaire')</th>
                         <th>@lang('quickadmin.responses.fields.question')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
@@ -52,6 +53,7 @@
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
+                                <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
                                 <td field-key='question'>{{ $response->question->title or '' }}</td>
                                 <td field-key='answer'>{{ $response->answer->title or '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
@@ -99,7 +101,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>

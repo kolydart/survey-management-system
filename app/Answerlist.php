@@ -25,4 +25,7 @@ class Answerlist extends Model
     
     
     
+    public function questions() {
+        return $this->hasMany(Question::class, 'answerlist_id');
+    }
 }
