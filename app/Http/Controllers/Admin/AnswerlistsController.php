@@ -45,7 +45,11 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_create')) {
             return abort(401);
         }
-        return view('admin.answerlists.create');
+        
+        $answers = \App\Answer::get()->pluck('title', 'id');
+
+
+        return view('admin.answerlists.create', compact('answers'));
     }
 
     /**
@@ -60,6 +64,7 @@ class AnswerlistsController extends Controller
             return abort(401);
         }
         $answerlist = Answerlist::create($request->all());
+        $answerlist->answers()->sync(array_filter((array)$request->input('answers')));
 
         foreach ($request->input('questions', []) as $data) {
             $answerlist->questions()->create($data);
@@ -81,9 +86,13 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_edit')) {
             return abort(401);
         }
+        
+        $answers = \App\Answer::get()->pluck('title', 'id');
+
+
         $answerlist = Answerlist::findOrFail($id);
 
-        return view('admin.answerlists.edit', compact('answerlist'));
+        return view('admin.answerlists.edit', compact('answerlist', 'answers'));
     }
 
     /**
@@ -100,6 +109,7 @@ class AnswerlistsController extends Controller
         }
         $answerlist = Answerlist::findOrFail($id);
         $answerlist->update($request->all());
+        $answerlist->answers()->sync(array_filter((array)$request->input('answers')));
 
         $questions           = $answerlist->questions;
         $currentQuestionData = [];
@@ -135,14 +145,13 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_view')) {
             return abort(401);
         }
-        $questions = \App\Question::where('answerlist_id', $id)->get();$answers = \App\Answer::whereHas('answerlists',
-                    function ($query) use ($id) {
-                        $query->where('id', $id);
-                    })->get();
+        
+        $answers = \App\Answer::get()->pluck('title', 'id');
+$questions = \App\Question::where('answerlist_id', $id)->get();
 
         $answerlist = Answerlist::findOrFail($id);
 
-        return view('admin.answerlists.show', compact('answerlist', 'questions', 'answers'));
+        return view('admin.answerlists.show', compact('answerlist', 'questions'));
     }
 
 

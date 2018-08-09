@@ -20,6 +20,11 @@ class Answerlist extends Model
     
     
     
+    public function answers()
+    {
+        return $this->belongsToMany(Answer::class, 'answer_answerlist')->withTrashed();
+    }
+    
     public function questions() {
         return $this->hasMany(Question::class, 'answerlist_id');
     }

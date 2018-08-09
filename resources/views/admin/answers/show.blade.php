@@ -16,20 +16,13 @@
                             <th>@lang('quickadmin.answers.fields.title')</th>
                             <td field-key='title'>{{ $answer->title }}</td>
                         </tr>
-                        <tr>
-                            <th>@lang('quickadmin.answers.fields.answerlists')</th>
-                            <td field-key='answerlists'>
-                                @foreach ($answer->answerlists as $singleAnswerlists)
-                                    <span class="label label-info label-many">{{ $singleAnswerlists->title }}</span>
-                                @endforeach
-                            </td>
-                        </tr>
                     </table>
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
 <li role="presentation" class="active"><a href="#responses" aria-controls="responses" role="tab" data-toggle="tab">Responses</a></li>
+<li role="presentation" class=""><a href="#answerlists" aria-controls="answerlists" role="tab" data-toggle="tab">Answerlists</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -104,6 +97,82 @@
         @else
             <tr>
                 <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="answerlists">
+<table class="table table-bordered table-striped {{ count($answerlists) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('quickadmin.answerlists.fields.title')</th>
+                        <th>@lang('quickadmin.answerlists.fields.type')</th>
+                        <th>@lang('quickadmin.answerlists.fields.answers')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
+                        @else
+                        <th>&nbsp;</th>
+                        @endif
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($answerlists) > 0)
+            @foreach ($answerlists as $answerlist)
+                <tr data-entry-id="{{ $answerlist->id }}">
+                    <td field-key='title'>{{ $answerlist->title }}</td>
+                                <td field-key='type'>{{ $answerlist->type }}</td>
+                                <td field-key='answers'>
+                                    @foreach ($answerlist->answers as $singleAnswers)
+                                        <span class="label label-info label-many">{{ $singleAnswers->title }}</span>
+                                    @endforeach
+                                </td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    @can('answerlist_delete')
+                                                                        {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['admin.answerlists.restore', $answerlist->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                @endcan
+                                    @can('answerlist_delete')
+                                                                        {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['admin.answerlists.perma_del', $answerlist->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                @endcan
+                                </td>
+                                @else
+                                <td>
+                                    @can('answerlist_view')
+                                    <a href="{{ route('admin.answerlists.show',[$answerlist->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @endcan
+                                    @can('answerlist_edit')
+                                    <a href="{{ route('admin.answerlists.edit',[$answerlist->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    @endcan
+                                    @can('answerlist_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['admin.answerlists.destroy', $answerlist->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
