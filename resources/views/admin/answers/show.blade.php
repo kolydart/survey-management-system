@@ -16,6 +16,10 @@
                             <th>@lang('quickadmin.answers.fields.title')</th>
                             <td field-key='title'>{{ $answer->title }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('quickadmin.answers.fields.open')</th>
+                            <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
                     </table>
                 </div>
             </div><!-- Nav tabs -->

@@ -14,7 +14,7 @@ return [
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'design' => [		'title' => 'Design',		'fields' => [		],	],
 		'answerlists' => [		'title' => 'Answerlists',		'fields' => [			'title' => 'Title',			'type' => 'Type',			'answers' => 'Answers',		],	],
-		'answers' => [		'title' => 'Answers',		'fields' => [			'title' => 'Title',		],	],
+		'answers' => [		'title' => 'Answers',		'fields' => [			'title' => 'Title',			'open' => 'Open',		],	],
 		'questions' => [		'title' => 'Questions',		'fields' => [			'title' => 'Title',			'answerlist' => 'Answerlist',		],	],
 		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'access' => 'Access',			'completed' => 'Completed',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],

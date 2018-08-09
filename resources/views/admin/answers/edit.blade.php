@@ -23,6 +23,19 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('open', trans('quickadmin.answers.fields.open').'', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('open', 0) !!}
+                    {!! Form::checkbox('open', 1, old('open', old('open')), []) !!}
+                    <p class="help-block">open ended question?</p>
+                    @if($errors->has('open'))
+                        <p class="help-block">
+                            {{ $errors->first('open') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
             
         </div>
     </div>
