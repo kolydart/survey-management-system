@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App
  * @property string $title
  * @property string $institution
- * @property string $group
  * @property text $introduction
  * @property text $notes
  * @property string $access
@@ -20,7 +19,7 @@ class Survey extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id', 'group_id'];
+    protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id'];
     protected $hidden = [];
     
     
@@ -32,15 +31,6 @@ class Survey extends Model
     public function setInstitutionIdAttribute($input)
     {
         $this->attributes['institution_id'] = $input ? $input : null;
-    }
-
-    /**
-     * Set to null if empty
-     * @param $input
-     */
-    public function setGroupIdAttribute($input)
-    {
-        $this->attributes['group_id'] = $input ? $input : null;
     }
     
     public function institution()
@@ -55,7 +45,7 @@ class Survey extends Model
     
     public function group()
     {
-        return $this->belongsTo(Group::class, 'group_id')->withTrashed();
+        return $this->belongsToMany(Group::class, 'group_survey')->withTrashed();
     }
     
 }

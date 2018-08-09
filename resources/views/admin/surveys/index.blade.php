@@ -62,7 +62,11 @@
                                         <span class="label label-info label-many">{{ $singleCategory->title }}</span>
                                     @endforeach
                                 </td>
-                                <td field-key='group'>{{ $survey->group->title or '' }}</td>
+                                <td field-key='group'>
+                                    @foreach ($survey->group as $singleGroup)
+                                        <span class="label label-info label-many">{{ $singleGroup->title }}</span>
+                                    @endforeach
+                                </td>
                                 <td field-key='access'>{{ $survey->access }}</td>
                                 <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )

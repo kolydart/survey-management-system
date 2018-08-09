@@ -55,12 +55,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('group_id', trans('quickadmin.surveys.fields.group').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('group_id', $groups, old('group_id'), ['class' => 'form-control select2']) !!}
+                    {!! Form::label('group', trans('quickadmin.surveys.fields.group').'', ['class' => 'control-label']) !!}
+                    <button type="button" class="btn btn-primary btn-xs" id="selectbtn-group">
+                        {{ trans('quickadmin.qa_select_all') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-group">
+                        {{ trans('quickadmin.qa_deselect_all') }}
+                    </button>
+                    {!! Form::select('group[]', $groups, old('group') ? old('group') : $survey->group->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-group' ]) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('group_id'))
+                    @if($errors->has('group'))
                         <p class="help-block">
-                            {{ $errors->first('group_id') }}
+                            {{ $errors->first('group') }}
                         </p>
                     @endif
                 </div>
@@ -151,6 +157,17 @@
         $("#deselectbtn-category").click(function(){
             $("#selectall-category > option").prop("selected","");
             $("#selectall-category").trigger("change");
+        });
+    </script>
+
+    <script>
+        $("#selectbtn-group").click(function(){
+            $("#selectall-group > option").prop("selected","selected");
+            $("#selectall-group").trigger("change");
+        });
+        $("#deselectbtn-group").click(function(){
+            $("#selectall-group > option").prop("selected","");
+            $("#selectall-group").trigger("change");
         });
     </script>
 @stop

@@ -49,7 +49,8 @@ class SurveysController extends Controller
         $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $categories = \App\Category::get()->pluck('title', 'id');
 
-        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $groups = \App\Group::get()->pluck('title', 'id');
+
 
         return view('admin.surveys.create', compact('institutions', 'categories', 'groups'));
     }
@@ -67,6 +68,7 @@ class SurveysController extends Controller
         }
         $survey = Survey::create($request->all());
         $survey->category()->sync(array_filter((array)$request->input('category')));
+        $survey->group()->sync(array_filter((array)$request->input('group')));
 
 
 
@@ -89,7 +91,8 @@ class SurveysController extends Controller
         $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $categories = \App\Category::get()->pluck('title', 'id');
 
-        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $groups = \App\Group::get()->pluck('title', 'id');
+
 
         $survey = Survey::findOrFail($id);
 
@@ -111,6 +114,7 @@ class SurveysController extends Controller
         $survey = Survey::findOrFail($id);
         $survey->update($request->all());
         $survey->category()->sync(array_filter((array)$request->input('category')));
+        $survey->group()->sync(array_filter((array)$request->input('group')));
 
 
 
@@ -133,7 +137,8 @@ class SurveysController extends Controller
         $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $categories = \App\Category::get()->pluck('title', 'id');
 
-        $groups = \App\Group::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$questionnaires = \App\Questionnaire::where('survey_id', $id)->get();$items = \App\Item::where('survey_id', $id)->get();
+        $groups = \App\Group::get()->pluck('title', 'id');
+$questionnaires = \App\Questionnaire::where('survey_id', $id)->get();$items = \App\Item::where('survey_id', $id)->get();
 
         $survey = Survey::findOrFail($id);
 

@@ -25,6 +25,7 @@ class StoreSurveysRequest extends FormRequest
         return [
             'title' => 'required',
             'category.*' => 'exists:categories,id',
+            'group.*' => 'exists:groups,id',
             'access' => 'required',
         ];
     }

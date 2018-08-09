@@ -26,6 +26,7 @@ class UpdateSurveysRequest extends FormRequest
             
             'title' => 'required',
             'category.*' => 'exists:categories,id',
+            'group.*' => 'exists:groups,id',
             'access' => 'required',
         ];
     }

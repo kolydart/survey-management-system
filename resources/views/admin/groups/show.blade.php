@@ -33,6 +33,7 @@
         <tr>
             <th>@lang('quickadmin.surveys.fields.title')</th>
                         <th>@lang('quickadmin.surveys.fields.category')</th>
+                        <th>@lang('quickadmin.surveys.fields.group')</th>
                         <th>@lang('quickadmin.surveys.fields.access')</th>
                         <th>@lang('quickadmin.surveys.fields.completed')</th>
                         @if( request('show_deleted') == 1 )
@@ -51,6 +52,11 @@
                                 <td field-key='category'>
                                     @foreach ($survey->category as $singleCategory)
                                         <span class="label label-info label-many">{{ $singleCategory->title }}</span>
+                                    @endforeach
+                                </td>
+                                <td field-key='group'>
+                                    @foreach ($survey->group as $singleGroup)
+                                        <span class="label label-info label-many">{{ $singleGroup->title }}</span>
                                     @endforeach
                                 </td>
                                 <td field-key='access'>{{ $survey->access }}</td>
