@@ -17,10 +17,6 @@
                             <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.surveys.fields.introduction')</th>
-                            <td field-key='introduction'>{!! isset($questionnaire->survey) ? $questionnaire->survey->introduction : '' !!}</td>
-                        </tr>
-                        <tr>
                             <th>@lang('quickadmin.questionnaires.fields.name')</th>
                             <td field-key='name'>{{ $questionnaire->name }}</td>
                         </tr>
