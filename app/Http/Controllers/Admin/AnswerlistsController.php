@@ -61,6 +61,9 @@ class AnswerlistsController extends Controller
         }
         $answerlist = Answerlist::create($request->all());
 
+        foreach ($request->input('questions', []) as $data) {
+            $answerlist->questions()->create($data);
+        }
 
 
         return redirect()->route('admin.answerlists.index');
@@ -98,6 +101,23 @@ class AnswerlistsController extends Controller
         $answerlist = Answerlist::findOrFail($id);
         $answerlist->update($request->all());
 
+        $questions           = $answerlist->questions;
+        $currentQuestionData = [];
+        foreach ($request->input('questions', []) as $index => $data) {
+            if (is_integer($index)) {
+                $answerlist->questions()->create($data);
+            } else {
+                $id                          = explode('-', $index)[1];
+                $currentQuestionData[$id] = $data;
+            }
+        }
+        foreach ($questions as $item) {
+            if (isset($currentQuestionData[$item->id])) {
+                $item->update($currentQuestionData[$item->id]);
+            } else {
+                $item->delete();
+            }
+        }
 
 
         return redirect()->route('admin.answerlists.index');
@@ -115,14 +135,14 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_view')) {
             return abort(401);
         }
-        $answers = \App\Answer::whereHas('answerlists',
+        $questions = \App\Question::where('answerlist_id', $id)->get();$answers = \App\Answer::whereHas('answerlists',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get();
 
         $answerlist = Answerlist::findOrFail($id);
 
-        return view('admin.answerlists.show', compact('answerlist', 'answers'));
+        return view('admin.answerlists.show', compact('answerlist', 'questions', 'answers'));
     }
 
 

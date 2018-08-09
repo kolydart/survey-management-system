@@ -24,6 +24,7 @@ class UpdateResponsesRequest extends FormRequest
     {
         return [
             
+            'questionnaire_id' => 'required',
             'question_id' => 'required',
             'answer_id' => 'required',
         ];

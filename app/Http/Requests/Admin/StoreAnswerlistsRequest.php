@@ -25,6 +25,7 @@ class StoreAnswerlistsRequest extends FormRequest
         return [
             'title' => 'required',
             'type' => 'required',
+            'questions.*.title' => 'required',
         ];
     }
 }

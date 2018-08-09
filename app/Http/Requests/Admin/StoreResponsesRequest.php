@@ -23,6 +23,7 @@ class StoreResponsesRequest extends FormRequest
     public function rules()
     {
         return [
+            'questionnaire_id' => 'required',
             'question_id' => 'required',
             'answer_id' => 'required',
         ];

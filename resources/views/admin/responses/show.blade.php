@@ -13,6 +13,10 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
+                            <th>@lang('quickadmin.responses.fields.questionnaire')</th>
+                            <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.responses.fields.question')</th>
                             <td field-key='question'>{{ $response->question->title or '' }}</td>
                         </tr>

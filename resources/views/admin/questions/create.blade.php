@@ -22,6 +22,18 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('answerlist_id', trans('quickadmin.questions.fields.answerlist').'*', ['class' => 'control-label']) !!}
+                    {!! Form::select('answerlist_id', $answerlists, old('answerlist_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('answerlist_id'))
+                        <p class="help-block">
+                            {{ $errors->first('answerlist_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
             
         </div>
     </div>

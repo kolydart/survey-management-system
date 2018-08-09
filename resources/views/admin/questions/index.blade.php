@@ -34,6 +34,8 @@
                         @endcan
 
                         <th>@lang('quickadmin.questions.fields.title')</th>
+                        <th>@lang('quickadmin.questions.fields.answerlist')</th>
+                        <th>@lang('quickadmin.answerlists.fields.type')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -51,6 +53,8 @@
                                 @endcan
 
                                 <td field-key='title'>{{ $question->title }}</td>
+                                <td field-key='answerlist'>{{ $question->answerlist->title or '' }}</td>
+<td field-key='type'>{{ isset($question->answerlist) && $question->answerlist->type }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('question_delete')
@@ -95,7 +99,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>
