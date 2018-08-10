@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreActivitylogsRequest;
 use App\Http\Requests\Admin\UpdateActivitylogsRequest;
+use Yajra\DataTables\DataTables;
 
 class ActivitylogsController extends Controller
 {
@@ -23,9 +24,62 @@ class ActivitylogsController extends Controller
         }
 
 
-                $activitylogs = Activitylog::all();
+        
+        if (request()->ajax()) {
+            $query = Activitylog::query();
+            $template = 'actionsTemplate';
+            
+            $query->select([
+                'activitylogs.id',
+                'activitylogs.log_name',
+                'activitylogs.causer_type',
+                'activitylogs.causer_id',
+                'activitylogs.description',
+                'activitylogs.subject_type',
+                'activitylogs.subject_id',
+                'activitylogs.properties',
+            ]);
+            $table = Datatables::of($query);
 
-        return view('admin.activitylogs.index', compact('activitylogs'));
+            $table->setRowAttr([
+                'data-entry-id' => '{{$id}}',
+            ]);
+            $table->addColumn('massDelete', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+            $table->editColumn('actions', function ($row) use ($template) {
+                $gateKey  = 'activitylog_';
+                $routeKey = 'admin.activitylogs';
+
+                return view($template, compact('row', 'gateKey', 'routeKey'));
+            });
+            $table->editColumn('log_name', function ($row) {
+                return $row->log_name ? $row->log_name : '';
+            });
+            $table->editColumn('causer_type', function ($row) {
+                return $row->causer_type ? $row->causer_type : '';
+            });
+            $table->editColumn('causer_id', function ($row) {
+                return $row->causer_id ? $row->causer_id : '';
+            });
+            $table->editColumn('description', function ($row) {
+                return $row->description ? $row->description : '';
+            });
+            $table->editColumn('subject_type', function ($row) {
+                return $row->subject_type ? $row->subject_type : '';
+            });
+            $table->editColumn('subject_id', function ($row) {
+                return $row->subject_id ? $row->subject_id : '';
+            });
+            $table->editColumn('properties', function ($row) {
+                return $row->properties ? $row->properties : '';
+            });
+
+            $table->rawColumns(['actions','massDelete']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.activitylogs.index');
     }
 
     /**

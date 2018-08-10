@@ -18,7 +18,7 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($activitylogs) > 0 ? 'datatable' : '' }} @can('activitylog_delete') dt-select @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('activitylog_delete') dt-select @endcan">
                 <thead>
                     <tr>
                         @can('activitylog_delete')
@@ -33,45 +33,6 @@
 
                     </tr>
                 </thead>
-                
-                <tbody>
-                    @if (count($activitylogs) > 0)
-                        @foreach ($activitylogs as $activitylog)
-                            <tr data-entry-id="{{ $activitylog->id }}">
-                                @can('activitylog_delete')
-                                    <td></td>
-                                @endcan
-
-                                <td field-key='causer_id'>{{ $activitylog->causer_id }}</td>
-                                <td field-key='description'>{{ $activitylog->description }}</td>
-                                <td field-key='subject_type'>{{ $activitylog->subject_type }}</td>
-                                <td field-key='subject_id'>{{ $activitylog->subject_id }}</td>
-                                                                <td>
-                                    @can('activitylog_view')
-                                    <a href="{{ route('admin.activitylogs.show',[$activitylog->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('activitylog_edit')
-                                    <a href="{{ route('admin.activitylogs.edit',[$activitylog->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('activitylog_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.activitylogs.destroy', $activitylog->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
-                        </tr>
-                    @endif
-                </tbody>
             </table>
         </div>
     </div>
@@ -82,6 +43,18 @@
         @can('activitylog_delete')
             window.route_mass_crud_entries_destroy = '{{ route('admin.activitylogs.mass_destroy') }}';
         @endcan
-
+        $(document).ready(function () {
+            window.dtDefaultOptions.ajax = '{!! route('admin.activitylogs.index') !!}';
+            window.dtDefaultOptions.columns = [@can('activitylog_delete')
+                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                @endcan{data: 'causer_id', name: 'causer_id'},
+                {data: 'description', name: 'description'},
+                {data: 'subject_type', name: 'subject_type'},
+                {data: 'subject_id', name: 'subject_id'},
+                
+                {data: 'actions', name: 'actions', searchable: false, sortable: false}
+            ];
+            processAjaxTables();
+        });
     </script>
 @endsection
