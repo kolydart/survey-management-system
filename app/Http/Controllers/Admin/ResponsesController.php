@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreResponsesRequest;
 use App\Http\Requests\Admin\UpdateResponsesRequest;
+use Yajra\DataTables\DataTables;
 
 class ResponsesController extends Controller
 {
@@ -23,16 +24,60 @@ class ResponsesController extends Controller
         }
 
 
-        if (request('show_deleted') == 1) {
-            if (! Gate::allows('response_delete')) {
-                return abort(401);
+        
+        if (request()->ajax()) {
+            $query = Response::query();
+            $query->with("questionnaire");
+            $query->with("question");
+            $query->with("answer");
+            $template = 'actionsTemplate';
+            if(request('show_deleted') == 1) {
+                
+        if (! Gate::allows('response_delete')) {
+            return abort(401);
+        }
+                $query->onlyTrashed();
+                $template = 'restoreTemplate';
             }
-            $responses = Response::onlyTrashed()->get();
-        } else {
-            $responses = Response::all();
+            $query->select([
+                'responses.id',
+                'responses.questionnaire_id',
+                'responses.question_id',
+                'responses.answer_id',
+                'responses.content',
+            ]);
+            $table = Datatables::of($query);
+
+            $table->setRowAttr([
+                'data-entry-id' => '{{$id}}',
+            ]);
+            $table->addColumn('massDelete', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+            $table->editColumn('actions', function ($row) use ($template) {
+                $gateKey  = 'response_';
+                $routeKey = 'admin.responses';
+
+                return view($template, compact('row', 'gateKey', 'routeKey'));
+            });
+            $table->editColumn('questionnaire.name', function ($row) {
+                return $row->questionnaire ? $row->questionnaire->name : '';
+            });
+            $table->editColumn('question.title', function ($row) {
+                return $row->question ? $row->question->title : '';
+            });
+            $table->editColumn('answer.title', function ($row) {
+                return $row->answer ? $row->answer->title : '';
+            });
+            $table->editColumn('content', function ($row) {
+                return $row->content ? $row->content : '';
+            });
+
+            $table->rawColumns(['actions','massDelete']);
+
+            return $table->make(true);
         }
 
-        return view('admin.responses.index', compact('responses'));
+        return view('admin.responses.index');
     }
 
     /**
