@@ -25,9 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         
-        $responses = \App\Response::whereNotNull('content')->where('content','<>','')->
-        latest()->limit(10)->get(); 
+        $responses = \App\Response::whereNotNull('content')->where('content','<>','')->latest()->limit(10)->get();
+        $questionnaires = \App\Questionnaire::latest()->limit(5)->get(); 
 
-        return view('home', compact( 'responses' ));
+        return view('home', compact( 'responses', 'questionnaires' ));
     }
 }
