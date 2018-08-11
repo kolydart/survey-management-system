@@ -47,6 +47,51 @@
             </div>
  </div>
 
+ <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Recently added questionnaires</div>
+
+                <div class="panel-body table-responsive">
+                    <table class="table table-bordered table-striped ajaxTable">
+                        <thead>
+                        <tr>
+                            
+                            <th> @lang('quickadmin.questionnaires.fields.name')</th> 
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        @foreach($questionnaires as $questionnaire)
+                            <tr>
+                               
+                                <td>{{ $questionnaire->name }} </td> 
+                                <td>
+
+                                    @can('questionnaire_view')
+                                    <a href="{{ route('admin.questionnaires.show',[$questionnaire->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @endcan
+
+                                    @can('questionnaire_edit')
+                                    <a href="{{ route('admin.questionnaires.edit',[$questionnaire->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    @endcan
+
+                                    @can('questionnaire_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                
+</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+ </div>
+
 
     </div>
 @endsection
