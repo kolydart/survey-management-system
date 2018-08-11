@@ -86,7 +86,7 @@
             @can('config_access')
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-gears"></i>
+                    <i class="fa fa-gear"></i>
                     <span>@lang('quickadmin.config.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -133,14 +133,6 @@
                         </a>
                     </li>@endcan
                     
-                    @can('activitylog_access')
-                    <li>
-                        <a href="{{ route('admin.activitylogs.index') }}">
-                            <i class="fa fa-heartbeat"></i>
-                            <span>@lang('quickadmin.activitylog.title')</span>
-                        </a>
-                    </li>@endcan
-                    
                 </ul>
             </li>@endcan
             
@@ -175,6 +167,35 @@
                         <a href="{{ route('admin.content_tags.index') }}">
                             <i class="fa fa-tags"></i>
                             <span>@lang('quickadmin.content-tags.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                </ul>
+            </li>@endcan
+            
+            @can('log_access')
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-heartbeat"></i>
+                    <span>@lang('quickadmin.logs.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @can('activitylog_access')
+                    <li>
+                        <a href="{{ route('admin.activitylogs.index') }}">
+                            <i class="fa fa-space-shuttle"></i>
+                            <span>@lang('quickadmin.activitylog.title')</span>
+                        </a>
+                    </li>@endcan
+                    
+                    @can('loguseragent_access')
+                    <li>
+                        <a href="{{ route('admin.loguseragents.index') }}">
+                            <i class="fa fa-user-secret"></i>
+                            <span>@lang('quickadmin.loguseragent.title')</span>
                         </a>
                     </li>@endcan
                     

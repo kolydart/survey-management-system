@@ -114,9 +114,12 @@ class UsersController extends Controller
         if (! Gate::allows('user_view')) {
             return abort(401);
         }
+        
+        $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$loguseragents = \App\Loguseragent::where('user_id', $id)->get();
+
         $user = User::findOrFail($id);
 
-        return view('admin.users.show', compact('user'));
+        return view('admin.users.show', compact('user', 'loguseragents'));
     }
 
 
