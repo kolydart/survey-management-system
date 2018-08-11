@@ -20,6 +20,13 @@
                                
                                 <td>{{ $response->content }} </td> 
                                 <td>
+                                    <a href="{{route('admin.questionnaires.show',$response->questionnaire->id)}}">
+                                        {{ $response->questionnaire->id }} 
+                                        @if ($response->questionnaire->name && Gate::allows('survey_edit')) 
+                                            ({{$response->questionnaire->name}}) 
+                                        @endif
+                                    </a> </td> 
+                                <td>
 
                                     @can('response_view')
                                     <a href="{{ route('admin.responses.show',[$response->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
