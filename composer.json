@@ -15,7 +15,6 @@
         "yajra/laravel-datatables-oracle": "^8.4.1",
         "spatie/laravel-activitylog": "^2.8",
         "unisharp/laravel-filemanager": "^1.8",
-        "phpmailer/phpmailer": "~5.2",
         "sentry/sentry-laravel": "^0.9.2"
     },
     "require-dev": {
@@ -24,14 +23,19 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "nunomaduro/collision": "~2.0",
-        "phpunit/phpunit": "~7.0",
         "symfony/thanks": "^1.0",
     "laravel/dusk": "^3.0.1"
     },
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories"
+            "database/factories",
+            "../_class/vendor"
+        ],
+        "exclude-from-classmap":[
+            "../_class/vendor/illuminate",
+            "../_class/vendor/symfony",
+            "../_class/vendor/psr"
         ],
         "psr-4": {
             "App\\": "app/"
