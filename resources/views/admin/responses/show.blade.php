@@ -14,7 +14,16 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('quickadmin.responses.fields.questionnaire')</th>
-                            <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
+                            <td field-key='questionnaire'>
+                                @if ($response->questionnaire)
+                                    <a href="{{route('admin.questionnaires.show',$response->questionnaire->id)}}">
+                                        {{ $response->questionnaire->id }} 
+                                        @if ($response->questionnaire->name && Gate::allows('survey_edit')) 
+                                            ({{$response->questionnaire->name}}) 
+                                        @endif
+                                    </a>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.question')</th>
