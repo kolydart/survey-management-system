@@ -19,6 +19,9 @@
             <span class="icon-bar"></span>
         </a>
 
+        <div style="margin-top: 7px; margin-left: 60px;">
+            {!! gateweb\common\presenter\Laraview::edit_button() !!}
+        </div>
         
 
         
