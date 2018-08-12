@@ -29,7 +29,7 @@ class QuestionnairesController extends Controller
             }
             $questionnaires = Questionnaire::onlyTrashed()->get();
         } else {
-            $questionnaires = Questionnaire::all();
+            $questionnaires = Questionnaire::latest()->get();
         }
 
         return view('admin.questionnaires.index', compact('questionnaires'));

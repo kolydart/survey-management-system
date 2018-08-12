@@ -14,7 +14,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('quickadmin.questionnaires.fields.survey')</th>
-                            <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
+                            <td field-key='survey'><a href="{{route('admin.surveys.show',$questionnaire->survey->id)}}">{{ $questionnaire->survey->title or '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.questionnaires.fields.name')</th>
@@ -36,7 +36,6 @@
 <table class="table table-bordered table-striped {{ count($responses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.responses.fields.questionnaire')</th>
                         <th>@lang('quickadmin.responses.fields.question')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
@@ -52,7 +51,6 @@
         @if (count($responses) > 0)
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
-                    <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
                                 <td field-key='question'>{{ $response->question->title or '' }}</td>
                                 <td field-key='answer'>{{ $response->answer->title or '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>

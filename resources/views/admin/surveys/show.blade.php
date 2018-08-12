@@ -65,7 +65,8 @@
 <table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.questionnaires.fields.survey')</th>
+            <th>@lang('id')</th>
+            <th>@lang('Date')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -79,7 +80,8 @@
         @if (count($questionnaires) > 0)
             @foreach ($questionnaires as $questionnaire)
                 <tr data-entry-id="{{ $questionnaire->id }}">
-                    <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
+                                <td field-key='id'><a href="{{route('admin.questionnaires.show',$questionnaire->id)}}">{{ $questionnaire->id }}</a></td>
+                                <td field-key='date'>{{ $questionnaire->created_at->toFormattedDateString() }}</td>
                                 <td field-key='name'>{{ $questionnaire->name }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
@@ -135,9 +137,8 @@
 <table class="table table-bordered table-striped {{ count($items) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.items.fields.survey')</th>
+                        <th width="10px;">@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
-                        <th>@lang('quickadmin.items.fields.order')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -150,9 +151,8 @@
         @if (count($items) > 0)
             @foreach ($items as $item)
                 <tr data-entry-id="{{ $item->id }}">
-                    <td field-key='survey'>{{ $item->survey->title or '' }}</td>
-                                <td field-key='question'>{{ $item->question->title or '' }}</td>
                                 <td field-key='order'>{{ $item->order }}</td>
+                                <td field-key='question'>{{ $item->question->title or '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
