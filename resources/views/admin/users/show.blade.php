@@ -40,16 +40,12 @@
     <thead>
         <tr>
             <th>@lang('quickadmin.loguseragent.fields.os')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.os-version')</th>
                         <th>@lang('quickadmin.loguseragent.fields.browser')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.browser-version')</th>
                         <th>@lang('quickadmin.loguseragent.fields.device')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.language')</th>
                         <th>@lang('quickadmin.loguseragent.fields.item-id')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.user')</th>
                         <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
                         <th>@lang('quickadmin.loguseragent.fields.uri')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.form-submitted')</th>
+                        <th>@lang('quickadmin.loguseragent.fields.user')</th>
                                                 <th>&nbsp;</th>
 
         </tr>
@@ -60,16 +56,12 @@
             @foreach ($loguseragents as $loguseragent)
                 <tr data-entry-id="{{ $loguseragent->id }}">
                     <td field-key='os'>{{ $loguseragent->os }}</td>
-                                <td field-key='os_version'>{{ $loguseragent->os_version }}</td>
                                 <td field-key='browser'>{{ $loguseragent->browser }}</td>
-                                <td field-key='browser_version'>{{ $loguseragent->browser_version }}</td>
                                 <td field-key='device'>{{ $loguseragent->device }}</td>
-                                <td field-key='language'>{{ $loguseragent->language }}</td>
                                 <td field-key='item_id'>{{ $loguseragent->item_id }}</td>
-                                <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
                                 <td field-key='ipv6'>{{ $loguseragent->ipv6 }}</td>
                                 <td field-key='uri'>{{ $loguseragent->uri }}</td>
-                                <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
+                                <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
                                                                 <td>
                                     @can('loguseragent_view')
                                     <a href="{{ route('admin.loguseragents.show',[$loguseragent->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -106,3 +98,5 @@
         </div>
     </div>
 @stop
+
+

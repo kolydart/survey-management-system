@@ -189,6 +189,7 @@ return [
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         App\Providers\GatewebServiceProvider::class,        
+
         /*
          * Application Service Providers...
          */

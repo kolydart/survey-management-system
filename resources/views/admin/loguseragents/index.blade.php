@@ -26,16 +26,12 @@
                         @endcan
 
                         <th>@lang('quickadmin.loguseragent.fields.os')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.os-version')</th>
                         <th>@lang('quickadmin.loguseragent.fields.browser')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.browser-version')</th>
                         <th>@lang('quickadmin.loguseragent.fields.device')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.language')</th>
                         <th>@lang('quickadmin.loguseragent.fields.item-id')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.user')</th>
                         <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
                         <th>@lang('quickadmin.loguseragent.fields.uri')</th>
-                        <th>@lang('quickadmin.loguseragent.fields.form-submitted')</th>
+                        <th>@lang('quickadmin.loguseragent.fields.user')</th>
                                                 <th>&nbsp;</th>
 
                     </tr>
@@ -55,16 +51,12 @@
             window.dtDefaultOptions.columns = [@can('loguseragent_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan{data: 'os', name: 'os'},
-                {data: 'os_version', name: 'os_version'},
                 {data: 'browser', name: 'browser'},
-                {data: 'browser_version', name: 'browser_version'},
                 {data: 'device', name: 'device'},
-                {data: 'language', name: 'language'},
                 {data: 'item_id', name: 'item_id'},
-                {data: 'user.name', name: 'user.name'},
                 {data: 'ipv6', name: 'ipv6'},
                 {data: 'uri', name: 'uri'},
-                {data: 'form_submitted', name: 'form_submitted'},
+                {data: 'user.name', name: 'user.name'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

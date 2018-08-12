@@ -9,9 +9,9 @@ $factory->define(App\Loguseragent::class, function (Faker\Generator $faker) {
         "device" => $faker->name,
         "language" => $faker->name,
         "item_id" => $faker->randomNumber(2),
-        "user_id" => factory('App\User')->create(),
         "ipv6" => $faker->name,
         "uri" => $faker->name,
         "form_submitted" => 0,
+        "user_id" => factory('App\User')->create(),
     ];
 });
