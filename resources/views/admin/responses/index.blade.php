@@ -37,6 +37,7 @@
                         <th>@lang('quickadmin.responses.fields.question')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
+                        <th>@lang('Created at')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -64,6 +65,7 @@
                 {data: 'question.title', name: 'question.title'},
                 {data: 'answer.title', name: 'answer.title'},
                 {data: 'content', name: 'content'},
+                {data: 'created_at', name: 'created_at'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

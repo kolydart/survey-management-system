@@ -45,6 +45,7 @@ class ResponsesController extends Controller
                 'responses.question_id',
                 'responses.answer_id',
                 'responses.content',
+                'responses.created_at',
             ]);
             $table = Datatables::of($query);
 
