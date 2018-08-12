@@ -28,6 +28,7 @@
                                 @endforeach
                             </td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($answerlist) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

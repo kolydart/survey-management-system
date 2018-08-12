@@ -20,6 +20,7 @@
                             <th>@lang('quickadmin.questionnaires.fields.name')</th>
                             <td field-key='name'>{{ $questionnaire->name }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($questionnaire) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

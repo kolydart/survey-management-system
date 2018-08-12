@@ -16,6 +16,7 @@
                             <th>@lang('quickadmin.groups.fields.title')</th>
                             <td field-key='title'>{{ $group->title }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($group) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

@@ -16,6 +16,7 @@
                             <th>@lang('quickadmin.questions.fields.title')</th>
                             <td field-key='title'>{{ $question->title }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($question) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

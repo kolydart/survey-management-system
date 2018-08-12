@@ -16,6 +16,7 @@
                             <th>@lang('quickadmin.categories.fields.title')</th>
                             <td field-key='title'>{{ $category->title }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($category) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

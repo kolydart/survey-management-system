@@ -48,6 +48,7 @@
                             <th>@lang('quickadmin.surveys.fields.completed')</th>
                             <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
                     </table>
                 </div>
             </div><!-- Nav tabs -->

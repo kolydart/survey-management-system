@@ -24,6 +24,7 @@
                             <th>@lang('quickadmin.items.fields.order')</th>
                             <td field-key='order'>{{ $item->order }}</td>
                         </tr>
+                        {!! gateweb\common\presenter\Laraview::dates_in_show($item) !!}                        
                     </table>
                 </div>
             </div>
