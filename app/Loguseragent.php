@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $device
  * @property string $language
  * @property integer $item_id
- * @property string $user
  * @property string $ipv6
  * @property string $uri
  * @property tinyInteger $form_submitted
+ * @property string $user
 */
 class Loguseragent extends Model
 {

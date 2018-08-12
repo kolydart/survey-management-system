@@ -39,10 +39,10 @@ class LoguseragentsController extends Controller
                 'loguseragents.device',
                 'loguseragents.language',
                 'loguseragents.item_id',
-                'loguseragents.user_id',
                 'loguseragents.ipv6',
                 'loguseragents.uri',
                 'loguseragents.form_submitted',
+                'loguseragents.user_id',
             ]);
             $table = Datatables::of($query);
 
@@ -78,9 +78,6 @@ class LoguseragentsController extends Controller
             $table->editColumn('item_id', function ($row) {
                 return $row->item_id ? $row->item_id : '';
             });
-            $table->editColumn('user.name', function ($row) {
-                return $row->user ? $row->user->name : '';
-            });
             $table->editColumn('ipv6', function ($row) {
                 return $row->ipv6 ? $row->ipv6 : '';
             });
@@ -89,6 +86,9 @@ class LoguseragentsController extends Controller
             });
             $table->editColumn('form_submitted', function ($row) {
                 return \Form::checkbox("form_submitted", 1, $row->form_submitted == 1, ["disabled"]);
+            });
+            $table->editColumn('user.name', function ($row) {
+                return $row->user ? $row->user->name : '';
             });
 
             $table->rawColumns(['actions','massDelete','form_submitted']);

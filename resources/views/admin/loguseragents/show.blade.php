@@ -41,10 +41,6 @@
                             <td field-key='item_id'>{{ $loguseragent->item_id }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.loguseragent.fields.user')</th>
-                            <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
-                        </tr>
-                        <tr>
                             <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
                             <td field-key='ipv6'>{{ $loguseragent->ipv6 }}</td>
                         </tr>
@@ -56,6 +52,10 @@
                             <th>@lang('quickadmin.loguseragent.fields.form-submitted')</th>
                             <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('quickadmin.loguseragent.fields.user')</th>
+                            <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -66,3 +66,5 @@
         </div>
     </div>
 @stop
+
+

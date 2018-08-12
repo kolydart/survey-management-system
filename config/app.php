@@ -186,7 +186,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Unisharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         
         /*
          * Application Service Providers...

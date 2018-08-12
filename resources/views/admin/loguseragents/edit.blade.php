@@ -97,18 +97,6 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('user_id', trans('quickadmin.loguseragent.fields.user').'', ['class' => 'control-label']) !!}
-                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('user_id'))
-                        <p class="help-block">
-                            {{ $errors->first('user_id') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
                     {!! Form::label('ipv6', trans('quickadmin.loguseragent.fields.ipv6').'', ['class' => 'control-label']) !!}
                     {!! Form::text('ipv6', old('ipv6'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
@@ -140,6 +128,18 @@
                     @if($errors->has('form_submitted'))
                         <p class="help-block">
                             {{ $errors->first('form_submitted') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('user_id', trans('quickadmin.loguseragent.fields.user').'', ['class' => 'control-label']) !!}
+                    {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('user_id'))
+                        <p class="help-block">
+                            {{ $errors->first('user_id') }}
                         </p>
                     @endif
                 </div>
