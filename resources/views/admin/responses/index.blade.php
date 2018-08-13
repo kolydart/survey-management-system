@@ -61,7 +61,8 @@
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
-                @endcan{data: 'questionnaire.name', name: 'questionnaire.name'},
+                @endcan
+                {data: 'questionnaire.id', name: 'questionnaire.id'},
                 {data: 'question.title', name: 'question.title'},
                 {data: 'answer.title', name: 'answer.title'},
                 {data: 'content', name: 'content'},

@@ -60,8 +60,8 @@ class ResponsesController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('questionnaire.name', function ($row) {
-                return $row->questionnaire ? $row->questionnaire->name : '';
+            $table->editColumn('questionnaire.id', function ($row) {
+                return $row->questionnaire ? $row->questionnaire->id : '';
             });
             $table->editColumn('question.title', function ($row) {
                 return $row->question ? $row->question->title : '';

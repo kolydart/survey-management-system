@@ -17,7 +17,7 @@
                             <td field-key='questionnaire'>
                                 @if ($response->questionnaire)
                                     <a href="{{route('admin.questionnaires.show',$response->questionnaire->id)}}">
-                                        {{ $response->questionnaire->id }} 
+                                        {{ $response->questionnaire->id }}: {{ $response->questionnaire->survey->title}}
                                         @if ($response->questionnaire->name && Gate::allows('survey_edit')) 
                                             ({{$response->questionnaire->name}}) 
                                         @endif
@@ -27,11 +27,11 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.question')</th>
-                            <td field-key='question'>{{ $response->question->title or '' }}</td>
+                            <td field-key='question'><a href="{{route('admin.questions.show',$response->question->id)}}">{{ $response->question->title or '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.answer')</th>
-                            <td field-key='answer'>{{ $response->answer->title or '' }}</td>
+                            <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer->id)}}">{{ $response->answer->title or '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.content')</th>
