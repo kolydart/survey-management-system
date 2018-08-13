@@ -26,8 +26,7 @@ class HomeController extends Controller
     {
         
         $responses = \App\Response::whereNotNull('content')->where('content','<>','')->latest()->limit(10)->get();
-        $questionnaires = \App\Questionnaire::latest()->limit(5)->get(); 
-
+        $questionnaires = \App\Questionnaire::latest()->limit(10)->get(); 
         return view('home', compact( 'responses', 'questionnaires' ));
     }
 }

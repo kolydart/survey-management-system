@@ -24,7 +24,7 @@ class UpdateCategoriesRequest extends FormRequest
     {
         return [
             
-            'title' => 'required',
+            'title' => 'required|unique:categories,title,'.$this->route('category'),
         ];
     }
 }
