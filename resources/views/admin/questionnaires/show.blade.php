@@ -27,7 +27,9 @@
                         {!! gateweb\common\presenter\Laraview::dates_in_show($questionnaire) !!}
                     </table>
                 </div>
-            </div><!-- Nav tabs -->
+            </div>
+            
+<!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
 <li role="presentation" class="active"><a href="#responses" aria-controls="responses" role="tab" data-toggle="tab">Responses</a></li>
@@ -40,7 +42,9 @@
 <table class="table table-bordered table-striped {{ count($responses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
+                        <th>@lang('id')</th>
                         <th>@lang('quickadmin.responses.fields.question')</th>
+                        <th>@lang('id')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
                         @if( request('show_deleted') == 1 )
@@ -55,7 +59,9 @@
         @if (count($responses) > 0)
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
+                                <td field-key='question_id'>{{ $response->question->id }}</td>
                                 <td field-key='question'>{{ $response->question->title or '' }}</td>
+                                <td field-key='answer_id'>{{ $response->answer->id }}</td>
                                 <td field-key='answer'>{{ $response->answer->title or '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
