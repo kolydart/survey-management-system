@@ -28,7 +28,9 @@
                     </table>
                 </div>
             </div>
-            
+
+@include('partials.renderQuestionnaire')
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
