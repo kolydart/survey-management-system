@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Item;
+use App\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -38,5 +40,20 @@ class Question extends Model
     {
         return $this->belongsTo(Answerlist::class, 'answerlist_id')->withTrashed();
     }
+
+    /**  --- ✄ ----------------------- */
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'question_id')->withTrashed();
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'question_id')->withTrashed();
+    }
+    
+
+
     
 }

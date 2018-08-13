@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,4 +40,13 @@ class Questionnaire extends Model
         return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
     }
     
+
+    /**  --- ✄ ----------------------- */
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'questionnaire_id')->withTrashed();
+    }
+    
+
 }

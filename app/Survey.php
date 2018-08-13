@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Item;
+use App\Questionnaire;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -52,5 +54,16 @@ class Survey extends Model
     {
         return $this->belongsToMany(Group::class, 'group_survey')->withTrashed();
     }
+    
+    /**  --- ✄ ----------------------- */
+    public function questionnaires(){
+        return $this->hasMany(Questionnaire::class, 'survey_id')->withTrashed();
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)')->withTrashed();
+    }
+
     
 }

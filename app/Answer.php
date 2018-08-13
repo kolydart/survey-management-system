@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use App\Answerlist;
+use App\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +24,20 @@ class Answer extends Model
 
     protected $fillable = ['title', 'open'];
     protected $hidden = [];
+
+
+    
+    /**  --- ✄ ----------------------- */
+
+    public function answerlists()
+    {
+        return $this->belongsToMany(Answerlist::class, 'answer_answerlist')->withTrashed();
+    }
+    
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'answer_id')->withTrashed();
+    }
     
     
     

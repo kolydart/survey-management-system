@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Survey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +23,12 @@ class Category extends Model
     protected $fillable = ['title'];
     protected $hidden = [];
     
+    /**  --- ✄ ----------------------- */
+    
+    public function surveys()
+    {
+        return $this->belongsToMany(Survey::class, 'category_survey')->withTrashed();
+    }
     
     
 }
