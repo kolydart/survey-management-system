@@ -24,7 +24,7 @@ class UpdateInstitutionsRequest extends FormRequest
     {
         return [
             
-            'title' => 'required',
+            'title' => 'required|unique:institutions,title,'.$this->route('institution'),
             'surveys.*.title' => 'required',
         ];
     }

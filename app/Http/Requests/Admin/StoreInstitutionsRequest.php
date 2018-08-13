@@ -23,7 +23,7 @@ class StoreInstitutionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique:institutions,title,'.$this->route('institution'),
             'surveys.*.title' => 'required',
         ];
     }
