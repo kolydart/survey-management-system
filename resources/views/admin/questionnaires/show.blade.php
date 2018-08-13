@@ -20,6 +20,10 @@
                             <th>@lang('quickadmin.questionnaires.fields.name')</th>
                             <td field-key='name'>{{ $questionnaire->name }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('Filled percent')</th>
+                            <td field-key='name'>{{ $questionnaire->filled_percent * 100 }}%</td>
+                        </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($questionnaire) !!}
                     </table>
                 </div>

@@ -66,6 +66,7 @@
     <thead>
         <tr>
             <th>@lang('id')</th>
+            <th>@lang('%')</th>
             <th>@lang('Date')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
                         @if( request('show_deleted') == 1 )
@@ -81,6 +82,7 @@
             @foreach ($questionnaires as $questionnaire)
                 <tr data-entry-id="{{ $questionnaire->id }}">
                                 <td field-key='id'><a href="{{route('admin.questionnaires.show',$questionnaire->id)}}">{{ $questionnaire->id }}</a></td>
+                                <td field-key='completed'> {{ $questionnaire->filled_percent }} </td>
                                 <td field-key='date'>{{ $questionnaire->created_at->toFormattedDateString() }}</td>
                                 <td field-key='name'>{{ $questionnaire->name }}</td>
                                 @if( request('show_deleted') == 1 )

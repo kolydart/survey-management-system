@@ -36,6 +36,7 @@
                         <th>@lang('id')</th>
                         <th>@lang('Created at')</th>
                         <th>@lang('quickadmin.questionnaires.fields.survey')</th>
+                        <th>@lang('%')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -56,6 +57,7 @@
                                 <td field-key='id'><a href="{{route('admin.questionnaires.show',$questionnaire->id)}}">{{ $questionnaire->id }}</a></td>
                                 <td field-key='created_at'>{{ $questionnaire->created_at->toFormattedDateString() }}</td>
                                 <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
+                                <td field-key='completed'> {{ $questionnaire->filled_percent }} </td>
                                 <td field-key='name'>{{ $questionnaire->name }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>

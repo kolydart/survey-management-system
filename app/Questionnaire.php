@@ -23,7 +23,7 @@ class Questionnaire extends Model
 
     protected $fillable = ['name', 'survey_id'];
     protected $hidden = [];
-    
+    protected $appends = ['filled_percent'];
     
 
     /**
@@ -46,6 +46,17 @@ class Questionnaire extends Model
     public function responses()
     {
         return $this->hasMany(Response::class, 'questionnaire_id')->withTrashed();
+    }
+    
+    /**
+     * calculate filled_percent
+     * @return decimal  (0.xx)
+     */
+    public function getFilledPercentAttribute(){
+        $answered = collect($this->responses->pluck('question_id'))->unique();
+        $template = collect($this->survey->items->pluck('question_id'));
+        $percent  = $answered->intersect($template)->count() / $template->count();
+        return number_format((float)$percent, 2, '.', '');
     }
     
 

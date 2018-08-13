@@ -38,6 +38,7 @@
                         <th>@lang('quickadmin.surveys.fields.category')</th>
                         <th>@lang('quickadmin.surveys.fields.group')</th>
                         <th>@lang('quickadmin.surveys.fields.access')</th>
+                        <th>@lang('Replies')</th>
                         <th>{{ Form::checkbox("completed", 1, true , ["disabled"]) }}</th>
                         <th>@lang('Created at')</th>
                         @if( request('show_deleted') == 1 )
@@ -69,6 +70,7 @@
                                     @endforeach
                                 </td>
                                 <td field-key='access'>{{ $survey->access }}</td>
+                                <td field-key='replies'>{{ $survey->questionnaires->count() }}</td>
                                 <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
                                 <td field-key='created_at'>{{ $survey->created_at->toFormattedDateString() }}</td>
                                 @if( request('show_deleted') == 1 )
