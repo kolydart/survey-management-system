@@ -29,18 +29,23 @@
                 </div>
             </div>
 
-@include('partials.renderQuestionnaire')
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
-<li role="presentation" class="active"><a href="#responses" aria-controls="responses" role="tab" data-toggle="tab">Responses</a></li>
+<li role="presentation" class="active"><a href="#render" aria-controls="render" role="tab" data-toggle="tab">Render</a></li>
+<li role="presentation" class=""><a href="#responses" aria-controls="responses" role="tab" data-toggle="tab">Responses</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
+
+<div role="tabpanel" class="tab-pane active" id="render">
+    <br>@include('partials.renderQuestionnaire')
+</div>
+
     
-<div role="tabpanel" class="tab-pane active" id="responses">
+<div role="tabpanel" class="tab-pane" id="responses">
 <table class="table table-bordered table-striped {{ count($responses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
