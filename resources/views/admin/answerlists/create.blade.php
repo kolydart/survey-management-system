@@ -33,32 +33,32 @@
                     @endif
                     <div>
                         <label>
-                            {!! Form::radio('type', 'Radio', false, ['required' => '']) !!}
-                            Radio
+                            {!! Form::radio('type', 'radio', false, ['required' => '']) !!}
+                            radio
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'Radio + Text', false, ['required' => '']) !!}
-                            Radio + Text
+                            {!! Form::radio('type', 'radio + text', false, ['required' => '']) !!}
+                            radio + text
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'Checkbox', false, ['required' => '']) !!}
-                            Checkbox
+                            {!! Form::radio('type', 'checkbox', false, ['required' => '']) !!}
+                            checkbox
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'Checkbox + Text', false, ['required' => '']) !!}
-                            Checkbox + Text
+                            {!! Form::radio('type', 'checkbox + text', false, ['required' => '']) !!}
+                            checkbox + text
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'Text', false, ['required' => '']) !!}
-                            Text
+                            {!! Form::radio('type', 'text', false, ['required' => '']) !!}
+                            text
                         </label>
                     </div>
                     
