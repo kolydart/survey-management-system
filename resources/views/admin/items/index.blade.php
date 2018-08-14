@@ -33,9 +33,10 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
+                        <th>@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.survey')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
-                        <th>@lang('quickadmin.items.fields.order')</th>
+                        <th>@lang('answerlist')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -52,9 +53,10 @@
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
+                                <td field-key='order'>{{ $item->order }}</td>
                                 <td field-key='survey'>{{ $item->survey->title or '' }}</td>
                                 <td field-key='question'>{{ $item->question->title or '' }}</td>
-                                <td field-key='order'>{{ $item->order }}</td>
+                                <td field-key='answerlist'>{{ $item->question->answerlist->title or '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
