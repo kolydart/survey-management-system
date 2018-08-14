@@ -3,7 +3,7 @@
 
 {{-- questionnaire title --}}
 <legend id="qst{{$questionnaire->id}}">{{$questionnaire->survey->title}}</legend>
-
+<div>{!!$questionnaire->survey->introduction or ''!!}</div>
 {{-- questions --}}
 @foreach ($questionnaire->survey->items as $item)
 <div class="form-group">
