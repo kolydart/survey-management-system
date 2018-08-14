@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Questionnaire;
+use App\Response;
+use App\Survey;
 use Illuminate\Http\Request;
 use gateweb\common\database\LogUserAgent;
 
-class QuestionnaireController extends Controller
+/** 
+ * public controller for colecting data
+ */
+class CollectController extends Controller
 {
 
     /**
@@ -20,6 +25,15 @@ class QuestionnaireController extends Controller
          * @todo
          */
         
+        // $questionnaire_id = Questionnaire::create();
+        foreach ($responses as $response) {
+            Response::create([
+                'questionnaire_id' => $response->questionnaire_id,
+                'question_id' => $response->question_id,
+                'answer_id' => $response->answer_id,
+                'content' => $response->content
+            ]);
+        }
         // $questionnaire_id = Questionnaire::create();
         
         $item_id = $questionnaire_id;
@@ -44,9 +58,9 @@ class QuestionnaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Survey $survey)
     {
-        //
+        return $survey->title;
     }
 
     public function index(){
