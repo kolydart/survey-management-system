@@ -36,6 +36,7 @@
                         <th>@lang('quickadmin.answerlists.fields.title')</th>
                         <th>@lang('quickadmin.answerlists.fields.type')</th>
                         <th>@lang('quickadmin.answerlists.fields.answers')</th>
+                        <th>@lang('used by')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -59,6 +60,7 @@
                                         <span class="label label-info label-many">{{ $singleAnswers->title }}</span>
                                     @endforeach
                                 </td>
+                                <td field-key='questions'>{{ $answerlist->questions->count() }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answerlist_delete')

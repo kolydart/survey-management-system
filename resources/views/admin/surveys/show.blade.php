@@ -139,8 +139,11 @@
 <table class="table table-bordered table-striped {{ count($items) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-                        <th width="10px;">@lang('quickadmin.items.fields.order')</th>
+                        <th style="width: 10px;">@lang('id')</th>
+                        <th>@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
+                        <th>@lang('Answerlist')</th>
+                        <th>@lang('Responses')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -153,8 +156,11 @@
         @if (count($items) > 0)
             @foreach ($items as $item)
                 <tr data-entry-id="{{ $item->id }}">
+                                <td field-key='id'><a href="{{route('admin.items.show',$item->id)}}">{{ $item->id }}</a></td>
                                 <td field-key='order'>{{ $item->order }}</td>
-                                <td field-key='question'>{{ $item->question->title or '' }}</td>
+                                <td field-key='question'><a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a></td>
+                                <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
+                                <td field-key='responses'>{{$item->question->responses->count()}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')

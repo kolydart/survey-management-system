@@ -36,6 +36,51 @@
             <p>&nbsp;</p>
 
             <a href="{{ route('admin.items.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <p>&nbsp;</p>
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#responses" aria-controls="responses" role="tab" data-toggle="tab">@lang('Responses')</a>
+                </li>
+            </ul>
+        
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="responses">
+                    <table class="table table-bordered table-striped {{ count($item->question->responses) > 0 ? 'datatable' : '' }}">
+                        <thead>
+                            <tr>
+                                <th>@lang('id')</th>
+                                <th>@lang('Questionnaire')</th>
+                                <th>@lang('Question')</th>
+                                <th>@lang('Answer')</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (count($item->question->responses) > 0)
+                                @foreach ($item->question->responses as $response)
+                                    <tr data-entry-id="{{ $response->id }}">
+                                        <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
+                                        <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }} {{$response->questionnaire->name or ''}}</a></td>
+                                        <td field-key='question'><a href="{{route('admin.questions.show',$response->question_id)}}">{{ $response->question->title or '' }}</a></td>
+                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->title or '' }}</a></td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
         </div>
     </div>
 @stop
