@@ -122,11 +122,12 @@ class QuestionnairesController extends Controller
             return abort(401);
         }
         
-        $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$responses = \App\Response::where('questionnaire_id', $id)->get();
-
+        // $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $responses = \App\Response::where('questionnaire_id', $id)->get();
         $questionnaire = Questionnaire::findOrFail($id);
+        $survey = $questionnaire->survey;
 
-        return view('admin.questionnaires.show', compact('questionnaire', 'responses'));
+        return view('admin.questionnaires.show', compact('survey', 'questionnaire', 'responses'));
     }
 
 
