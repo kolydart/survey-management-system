@@ -17,6 +17,7 @@
     <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
+            @include('partials.messages')
             @if(isset($siteTitle))
                 <h3 class="page-title">
                     {{ $siteTitle }}

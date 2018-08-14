@@ -16,9 +16,15 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-    	// $questionnaire_id = Questionnaire::create();
+        /** 
+         * @todo
+         */
+        
+        // $questionnaire_id = Questionnaire::create();
+        
+        $item_id = $questionnaire_id;
 
-        (new LogUserAgent())->snapshot(['item_id'=>3],false);
+        (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
     }
 
     /**
@@ -43,5 +49,9 @@ class QuestionnaireController extends Controller
         //
     }
 
+    public function index(){
+        return view('public.welcome');
+    }
+    
 
 }
