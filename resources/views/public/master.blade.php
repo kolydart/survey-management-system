@@ -9,10 +9,7 @@
 
     <title>{{ config('app.name') }}</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <link rel="icon" href="/favicon.ico">
+    {{-- <link rel="icon" href="/favicon.ico"> --}}
     {{-- <link href="{{ mix('/css/app.css') }}" rel="stylesheet" > --}}
     {{-- <script src="{{ mix('/js/app.js') }}"></script> --}}
 
@@ -24,7 +21,9 @@
 
   <body @if (!Auth::check()) class="bg-dark" @endif>
     <div id="app">
-      @include('public.nav')
+
+      @yield('menu','')
+
       @include('partials.messages')
 
       <div class="container">
