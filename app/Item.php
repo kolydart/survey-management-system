@@ -46,12 +46,18 @@ class Item extends Model
     
     public function survey()
     {
-        return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
+        else
+            return $this->belongsTo(Survey::class, 'survey_id');
     }
     
     public function question()
     {
-        return $this->belongsTo(Question::class, 'question_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Question::class, 'question_id')->withTrashed();
+        else
+            return $this->belongsTo(Question::class, 'question_id');
     }
     
 }

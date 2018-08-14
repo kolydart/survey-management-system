@@ -31,12 +31,18 @@ class Answer extends Model
 
     public function answerlists()
     {
-        return $this->belongsToMany(Answerlist::class, 'answer_answerlist')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsToMany(Answerlist::class, 'answer_answerlist')->withTrashed();
+        else
+            return $this->belongsToMany(Answerlist::class, 'answer_answerlist');
     }
     
     public function responses()
     {
-        return $this->hasMany(Response::class, 'answer_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Response::class, 'answer_id')->withTrashed();
+        else
+            return $this->hasMany(Response::class, 'answer_id');
     }
     
     

@@ -37,7 +37,10 @@ class Questionnaire extends Model
     
     public function survey()
     {
-        return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
+        else
+            return $this->belongsTo(Survey::class, 'survey_id');
     }
     
 
@@ -45,7 +48,10 @@ class Questionnaire extends Model
 
     public function responses()
     {
-        return $this->hasMany(Response::class, 'questionnaire_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Response::class, 'questionnaire_id')->withTrashed();
+        else
+            return $this->hasMany(Response::class, 'questionnaire_id');
     }
     
     /**

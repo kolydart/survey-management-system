@@ -38,19 +38,28 @@ class Question extends Model
     
     public function answerlist()
     {
-        return $this->belongsTo(Answerlist::class, 'answerlist_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Answerlist::class, 'answerlist_id')->withTrashed();
+        else
+            return $this->belongsTo(Answerlist::class, 'answerlist_id');
     }
 
     /**  --- ✄ ----------------------- */
 
     public function items()
     {
-        return $this->hasMany(Item::class, 'question_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Item::class, 'question_id')->withTrashed();
+        else
+            return $this->hasMany(Item::class, 'question_id');
     }
 
     public function responses()
     {
-        return $this->hasMany(Response::class, 'question_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Response::class, 'question_id')->withTrashed();
+        else
+            return $this->hasMany(Response::class, 'question_id');
     }
     
 

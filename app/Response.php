@@ -56,17 +56,26 @@ class Response extends Model
     
     public function questionnaire()
     {
-        return $this->belongsTo(Questionnaire::class, 'questionnaire_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Questionnaire::class, 'questionnaire_id')->withTrashed();
+        else
+            return $this->belongsTo(Questionnaire::class, 'questionnaire_id');
     }
     
     public function question()
     {
-        return $this->belongsTo(Question::class, 'question_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Question::class, 'question_id')->withTrashed();
+        else
+            return $this->belongsTo(Question::class, 'question_id');
     }
     
     public function answer()
     {
-        return $this->belongsTo(Answer::class, 'answer_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Answer::class, 'answer_id')->withTrashed();
+        else
+            return $this->belongsTo(Answer::class, 'answer_id');
     }
     
 }

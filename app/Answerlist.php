@@ -27,7 +27,10 @@ class Answerlist extends Model
     
     public function answers()
     {
-        return $this->belongsToMany(Answer::class, 'answer_answerlist')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsToMany(Answer::class, 'answer_answerlist')->withTrashed();
+        else
+            return $this->belongsToMany(Answer::class, 'answer_answerlist');
     }
     
     public function questions() {

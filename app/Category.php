@@ -27,7 +27,10 @@ class Category extends Model
     
     public function surveys()
     {
-        return $this->belongsToMany(Survey::class, 'category_survey')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsToMany(Survey::class, 'category_survey')->withTrashed();
+        else
+            return $this->belongsToMany(Survey::class, 'category_survey');
     }
     
     

@@ -42,27 +42,42 @@ class Survey extends Model
     
     public function institution()
     {
-        return $this->belongsTo(Institution::class, 'institution_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsTo(Institution::class, 'institution_id')->withTrashed();
+        else
+            return $this->belongsTo(Institution::class, 'institution_id');
     }
     
     public function category()
     {
-        return $this->belongsToMany(Category::class, 'category_survey')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsToMany(Category::class, 'category_survey')->withTrashed();
+        else
+            return $this->belongsToMany(Category::class, 'category_survey');
     }
     
     public function group()
     {
-        return $this->belongsToMany(Group::class, 'group_survey')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->belongsToMany(Group::class, 'group_survey')->withTrashed();
+        else
+            return $this->belongsToMany(Group::class, 'group_survey');
     }
     
     /**  --- ✄ ----------------------- */
     public function questionnaires(){
-        return $this->hasMany(Questionnaire::class, 'survey_id')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Questionnaire::class, 'survey_id')->withTrashed();
+        else
+            return $this->hasMany(Questionnaire::class, 'survey_id');
     }
 
     public function items()
     {
-        return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)')->withTrashed();
+        if(request('show_deleted') == 1)
+            return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)')->withTrashed();
+        else
+            return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)');
     }
 
     
