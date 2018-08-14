@@ -19,26 +19,10 @@ class CollectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Survey $survey)
     {
-        /** 
-         * @todo
-         */
-        
-        // $questionnaire_id = Questionnaire::create();
-        foreach ($responses as $response) {
-            Response::create([
-                'questionnaire_id' => $response->questionnaire_id,
-                'question_id' => $response->question_id,
-                'answer_id' => $response->answer_id,
-                'content' => $response->content
-            ]);
-        }
-        // $questionnaire_id = Questionnaire::create();
-        
-        $item_id = $questionnaire_id;
-
-        (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
+        $questionnaire = new Questionnaire;
+        return view('public.create',compact('survey','questionnaire'));
     }
 
     /**
@@ -49,18 +33,24 @@ class CollectController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        /** 
+         * @todo
+         */
+        return \gateweb\common\Presenter::dd($request->all());
+        // $questionnaire_id = Questionnaire::create();
+        // foreach ($responses as $response) {
+        //     Response::create([
+        //         'questionnaire_id' => $response->questionnaire_id,
+        //         'question_id' => $response->question_id,
+        //         'answer_id' => $response->answer_id,
+        //         'content' => $response->content
+        //     ]);
+        // }
+        // $questionnaire_id = Questionnaire::create();
+        
+        $item_id = $questionnaire_id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Survey $survey)
-    {
-        return $survey->title;
+        (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
     }
 
     public function index(){
