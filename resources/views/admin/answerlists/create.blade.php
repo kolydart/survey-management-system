@@ -39,26 +39,14 @@
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'radio + text', false, ['required' => '']) !!}
-                            radio + text
-                        </label>
-                    </div>
-                    <div>
-                        <label>
                             {!! Form::radio('type', 'checkbox', false, ['required' => '']) !!}
                             checkbox
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'checkbox + text', false, ['required' => '']) !!}
-                            checkbox + text
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('type', 'text', false, ['required' => '']) !!}
-                            text
+                            {!! Form::radio('type', 'NULL', false, ['required' => '']) !!}
+                            NULL
                         </label>
                     </div>
                     
