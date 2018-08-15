@@ -30,7 +30,7 @@
 
             {{-- label --}}
             <label class="col-md-6 {{-- control-label --}}" 
-                for="{{str_plural(gateweb\common\Presenter::get_firstWordInString($item->question->answerlist->type))}}" 
+                for="{{str_plural($item->question->answerlist->type)}}" 
                 >
                     {{$item->order.". ".$item->question->title}}
             </label>
@@ -39,36 +39,56 @@
             <div class="col-md-6">
             @foreach ($item->question->answerlist->answers as $answer)
                 {{-- answer --}}
-                <div class="{{gateweb\common\Presenter::get_firstWordInString($item->question->answerlist->type)}} {{-- form-check --}}" >
+                <div class="{{$item->question->answerlist->type}} {{-- form-check --}}" >
 
                     {{-- label --}}
                     <label 
                         class="form-check-label" 
                         style="font-weight: normal;" 
-                        for="{{$item->question->id}}_{{$answer->id}}"
+                        for="{{$item->question->id}}_{{$answer->id}}_select"
                         >
                         
                         {{-- input --}}
                         <input 
-                            type="{{gateweb\common\Presenter::get_firstWordInString($item->question->answerlist->type)}}" 
+                            type="{{$item->question->answerlist->type}}" 
                             class="form-check-input" 
-                            id="{{$item->question->id}}_{{$answer->id}}"
-                            value="" 
-                            name="{{$item->question->id}}_{{$answer->id}}"
+                            id="{{$item->question->id}}_{{$answer->id}}_select"
+                            name="{{$item->question->id}}[id]"
+                            value="{{$answer->id}}" 
 
                             {{-- disable input on show/index --}}
                             @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
-                                disabled 
+                                disabled = "disabled"
                             @endif
                             
                             {{-- is checked --}}
-                            @if ( $questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->count() )
-                                checked
+                            @if ( 
+                                    /** display filled questionnaire */
+                                    (
+                                        \Route::getCurrentRoute()->getActionMethod() != 'create' 
+                                        && $questionnaire->is_question_answered($item->question_id,$answer->id)
+                                    ) ||
+                                    /** radio input returning from error */
+                                    (
+                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                        && $item->question->answerlist->type == 'radio'
+                                        && old($item->question->id['id']) == $answer->id
+                                    ) ||
+                                    /** radio input returning from error */
+                                    (
+                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                        && $item->question->answerlist->type == 'checkbox'
+                                        && old($item->question->id['id'][$answer->id]) == $answer->id
+                                    ) 
+                                )
+
+                                checked="checked"
+
                             @endif
                         >
                         
                         {{-- label text --}}
-                        <span @if ( $questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->count() ) style="font-weight:bold;"@endif>
+                        <span @if ( $questionnaire->is_question_answered($item->question_id,$answer->id) ) style="font-weight:bold;"@endif>
                             {{ $answer->title }}
                         </span>
 

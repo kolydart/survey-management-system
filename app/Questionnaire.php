@@ -68,13 +68,28 @@ class Questionnaire extends Model
     /**
      * detect outliers in survey design
      * array of answered questions not part of $this->survey->items
-     * @return array question_ids
+     * @return eloquent Question
      */
     public function outliers(){
         $answered = collect($this->responses->pluck('question_id'))->unique();
         $template = collect($this->survey->items->pluck('question_id'));
         return Question::find($answered->diff($template)->intersect($answered));
-        
+    }
+
+
+    /**
+     * is given question answered in this questionnaire
+     * @param  int  $question_id
+     * @param  int  $answer_id  
+     * @return boolean
+     */
+    public function is_question_answered($question_id, $answer_id){
+        if(!is_int($question_id) || ! is_int($answer_id))
+            abort(500,'wrong input type');
+        if($this->responses->where('answer_id',$answer_id)->where('question_id',$question_id)->count() > 0)
+            return true;
+        else
+            return false;
     }
     
 
