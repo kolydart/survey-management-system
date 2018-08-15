@@ -40,64 +40,82 @@
             @foreach ($item->question->answerlist->answers as $answer)
                 {{-- answer --}}
                 <div class="{{$item->question->answerlist->type}} {{-- form-check --}}" >
-
                     {{-- label --}}
                     <label 
-                        class="form-check-label" 
-                        style="font-weight: normal;" 
+                        class="form-check-label"
+                        style="font-weight: normal;"
+
                         for="{{$item->question->id}}_{{$answer->id}}_select"
                         >
-                        
-                        {{-- input --}}
-                        <input 
-                            type="{{$item->question->answerlist->type}}" 
-                            class="form-check-input" 
-                            id="{{$item->question->id}}_{{$answer->id}}_select"
-                            name="{{$item->question->id}}[id]"
-                            value="{{$answer->id}}" 
 
-                            {{-- disable input on show/index --}}
-                            @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
-                                disabled = "disabled"
-                            @endif
+                        {{-- hide-if-text begin--}}
+                        @if($item->question->answerlist->type)
+    
+                            {{-- input --}}
+                            <input 
+                                type="{{$item->question->answerlist->type}}" 
+                                class="form-check-input" 
+                                id="{{$item->question->id}}_{{$answer->id}}_select"
+                                
+                                {{-- name --}}
+                                @if($item->question->answerlist->type == 'checkbox')
+                                    name="{{$item->question->id}}[id][{{$answer->id}}]"
+                                @else
+                                    name="{{$item->question->id}}[id]"
+                                @endif
+
+                                value="{{$answer->id}}" 
+
+                                {{-- disable input on show/index --}}
+                                @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                                    disabled = "disabled"
+                                @endif
+                                
+                                {{-- is checked --}}
+                                @if ( 
+                                        /** display filled questionnaire */
+                                        (
+                                            \Route::getCurrentRoute()->getActionMethod() != 'create' 
+                                            && $questionnaire->is_question_answered($item->question_id,$answer->id)
+                                        ) ||
+                                        /** radio input returning from error */
+                                        (
+                                            \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                            && $item->question->answerlist->type == 'radio'
+                                            && old($item->question->id['id']) == $answer->id
+                                        ) ||
+                                        /** checkbox input returning from error */
+                                        (
+                                            \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                            && $item->question->answerlist->type == 'checkbox'
+                                            && old($item->question->id['id'][$answer->id]) == $answer->id
+                                        ) 
+                                    )
+
+                                    checked="checked"
+
+                                @endif
+                            >
                             
-                            {{-- is checked --}}
-                            @if ( 
-                                    /** display filled questionnaire */
-                                    (
-                                        \Route::getCurrentRoute()->getActionMethod() != 'create' 
-                                        && $questionnaire->is_question_answered($item->question_id,$answer->id)
-                                    ) ||
-                                    /** radio input returning from error */
-                                    (
-                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
-                                        && $item->question->answerlist->type == 'radio'
-                                        && old($item->question->id['id']) == $answer->id
-                                    ) ||
-                                    /** radio input returning from error */
-                                    (
-                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
-                                        && $item->question->answerlist->type == 'checkbox'
-                                        && old($item->question->id['id'][$answer->id]) == $answer->id
-                                    ) 
-                                )
+                            {{-- label text --}}
+                            <span 
+                                @if ( $questionnaire->is_question_answered($item->question_id,$answer->id) ) 
+                                    style="font-weight:bold;"
+                                @endif
+                                >
+                                {{ $answer->title }}
+                            </span>
 
-                                checked="checked"
+                        {{-- hide-if-text end --}}
+                        @endif
 
-                            @endif
-                        >
-                        
-                        {{-- label text --}}
-                        <span @if ( $questionnaire->is_question_answered($item->question_id,$answer->id) ) style="font-weight:bold;"@endif>
-                            {{ $answer->title }}
-                        </span>
-
-                        {{-- response content --}}
+                        {{-- textarea response content --}}
                         @if ( 
                             \Route::getCurrentRoute()->getActionMethod() == 'show' && 
                             !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
                             )
-                            <br>{{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content or ''}}
+                            <br>
+                            {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
                             {{-- @todo --}}
                         {{-- @elseif (\Route::getCurrentRoute()->getActionMethod() == 'create')
                             <textarea 
