@@ -92,7 +92,7 @@ class ResponsesController extends Controller
             return abort(401);
         }
         
-        $questionnaires = \App\Questionnaire::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $questionnaires = \App\Questionnaire::get()->pluck('id', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $answers = \App\Answer::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
