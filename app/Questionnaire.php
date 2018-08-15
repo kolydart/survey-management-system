@@ -23,7 +23,7 @@ class Questionnaire extends Model
 
     protected $fillable = ['name', 'survey_id'];
     protected $hidden = [];
-    protected $appends = ['filled_percent', 'outliers'];
+    protected $appends = ['filled_percent'];
     
 
     /**
@@ -70,10 +70,10 @@ class Questionnaire extends Model
      * array of answered questions not part of $this->survey->items
      * @return array question_ids
      */
-    public function getOutliersAttribute(){
+    public function outliers(){
         $answered = collect($this->responses->pluck('question_id'))->unique();
         $template = collect($this->survey->items->pluck('question_id'));
-        return $answered->diff($template)->intersect($answered);        
+        return Question::find($answered->diff($template)->intersect($answered));
         
     }
     
