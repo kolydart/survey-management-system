@@ -6,6 +6,7 @@ use App\Questionnaire;
 use App\Response;
 use App\Survey;
 use Illuminate\Http\Request;
+use gateweb\common\Presenter;
 use gateweb\common\database\LogUserAgent;
 
 /** 
@@ -21,8 +22,15 @@ class CollectController extends Controller
      */
     public function create(Survey $survey)
     {
-        $questionnaire = new Questionnaire;
-        return view('public.create',compact('survey','questionnaire'));
+        if($survey->completed){
+            Presenter::message('Η έρευνα έχει ολοκληρωθεί.','warning');
+            $content = '';
+            return view('public.main',compact('content'));
+        }
+        else{
+            $questionnaire = new Questionnaire;
+            return view('public.create',compact('survey','questionnaire'));
+        }
     }
 
     /**
@@ -54,7 +62,14 @@ class CollectController extends Controller
     }
 
     public function index(){
-        return view('public.welcome');
+        $content = <<<HTML
+            <div class="jumbotron">
+                <h1>Survey application</h1>
+                <p>Houston, we have contact!...</p>
+                <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
+            </div>
+HTML;
+        return view('public.main',compact('content'));
     }
     
 

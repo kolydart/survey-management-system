@@ -24,10 +24,12 @@
 
       @yield('menu','')
 
-      @include('partials.messages')
-
       <div class="container">
+
+          @include('partials.messages')
+
           @yield('content')
+
       </div>  
       
     </div>
