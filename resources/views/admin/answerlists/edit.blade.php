@@ -46,8 +46,8 @@
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'NULL', false, ['required' => '']) !!}
-                            NULL
+                            {!! Form::radio('type', '0', false, ['required' => '']) !!}
+                            text only
                         </label>
                     </div>
                     
