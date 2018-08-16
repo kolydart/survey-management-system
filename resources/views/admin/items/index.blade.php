@@ -35,8 +35,11 @@
 
                         <th>@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.survey')</th>
+                        <th>@lang('s_id')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
+                        <th>@lang('q_id')</th>
                         <th>@lang('answerlist')</th>
+                        <th>@lang('a_id')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -55,8 +58,11 @@
 
                                 <td field-key='order'>{{ $item->order }}</td>
                                 <td field-key='survey'>{{ $item->survey->title or '' }}</td>
+                                <td field-key='survey_id'>{{$item->survey->id}}</td>
                                 <td field-key='question'>{{ $item->question->title or '' }}</td>
+                                <td field-key='question_id'>{{$item->question->id}}</td>
                                 <td field-key='answerlist'>{{ $item->question->answerlist->title or '' }}</td>
+                                <td field-key='answerlist_id'>{{$item->question->answerlist->id}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
