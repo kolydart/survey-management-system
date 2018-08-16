@@ -44,7 +44,6 @@
                     <label 
                         class="form-check-label"
                         style="font-weight: normal;"
-
                         for="{{$item->question->id}}_{{$answer->id}}_select"
                         >
 
@@ -82,13 +81,13 @@
                                         (
                                             \Route::getCurrentRoute()->getActionMethod() == 'create' 
                                             && $item->question->answerlist->type == 'radio'
-                                            && old($item->question->id['id']) == $answer->id
+                                            && old($item->question->id.'_id') == $answer->id
                                         ) ||
                                         /** checkbox input returning from error */
                                         (
                                             \Route::getCurrentRoute()->getActionMethod() == 'create' 
                                             && $item->question->answerlist->type == 'checkbox'
-                                            && old($item->question->id['id'][$answer->id]) == $answer->id
+                                            && old($item->question->id.'_id_'.$answer->id) == $answer->id
                                         ) 
                                     )
 
@@ -128,7 +127,38 @@
                                 rows="5" 
                                 placeholder=""
                                 required="required"
-                                ></textarea>
+                                >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
+
+                            {{-- show / hide textarea on load/reload --}}
+                            <script>
+                                jQuery(document).ready(function($) {
+                                    /** show/hide if input == $answer->id */
+                                    function check(){
+                                        if ($('input#{{$item->question->id}}_{{$answer->id}}_select:checked').val() == {{$answer->id}}) {
+                                            $('#{{$item->question->id}}_content_{{$answer->id}}')
+                                                .attr('required', true)
+                                                .attr('disabled', false)
+                                                .show(300);
+                                        }
+                                        else {
+                                            $('#{{$item->question->id}}_content_{{$answer->id}}')
+                                                .val('')
+                                                .attr('required', false)
+                                                .attr('disabled', true)
+                                                .hide(300);
+                                        }                
+                                    };
+                                    /** run on first load */
+                                    $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
+                                        check();
+                                    })
+
+                                    /** run on every change */
+                                    $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
+                                        check();
+                                    });
+                                });
+                            </script> 
                         @endif
                     </label>
                 </div>
@@ -147,3 +177,4 @@
 </form>
 
 @endif
+
