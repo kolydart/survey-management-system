@@ -24,7 +24,7 @@
                             <th>@lang('quickadmin.answerlists.fields.answers')</th>
                             <td field-key='answers'>
                                 @foreach ($answerlist->answers as $singleAnswers)
-                                    <span class="label label-info label-many">{{ $singleAnswers->title }}</span>
+                                    <a class="btn btn-info btn-sm" href="{{route('admin.answers.show',$singleAnswers->id)}}">{{ $singleAnswers->title }}</a>
                                 @endforeach
                             </td>
                         </tr>
