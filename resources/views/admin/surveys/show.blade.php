@@ -51,6 +51,7 @@
                         {!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
                     </table>
                 </div>
+                <a href="{{route('public.create',$survey->id)}}" class="btn btn-success">@lang('Fill questionnaire')</a>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
