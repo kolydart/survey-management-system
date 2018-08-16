@@ -1,7 +1,6 @@
 {{-- injected: 
     $survey, 
-    (if rendering filled) 
-    $questionnaire 
+    (if Questionnaire@show): $questionnaire 
     --}}
 
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
@@ -10,6 +9,7 @@
     class="form form-horizontal" 
     role="form"
     style="margin-top: 10px; margin-bottom: 30px;"
+    id="questionnaire"
     >
 {{ csrf_field() }}
 @endif
@@ -59,9 +59,9 @@
                                 
                                 {{-- name --}}
                                 @if($item->question->answerlist->type == 'checkbox')
-                                    name="{{$item->question->id}}[id][{{$answer->id}}]"
+                                    name="{{$item->question->id}}_id_{{$answer->id}}"
                                 @else
-                                    name="{{$item->question->id}}[id]"
+                                    name="{{$item->question->id}}_id"
                                 @endif
 
                                 value="{{$answer->id}}" 
@@ -108,27 +108,28 @@
 
                         {{-- hide-if-text end --}}
                         @endif
-
                         {{-- textarea response content --}}
                         @if ( 
-                            \Route::getCurrentRoute()->getActionMethod() == 'show' && 
-                            !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
+                            /** display filled */
+                            \Route::getCurrentRoute()->getActionMethod() == 'show' 
+                            && !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
                             )
                             <br>
                             {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
-                            {{-- @todo --}}
-                        {{-- @elseif (\Route::getCurrentRoute()->getActionMethod() == 'create')
-                            <textarea 
-                                name="content" 
-                                id="c{{$answer->id}}" 
-                                class="form-control hide" 
+                        @elseif (
+                            /** create new */
+                            \Route::getCurrentRoute()->getActionMethod() == 'create'
+                            && $answer->open == 1
+                            )
+                            <textarea
+                                name="{{$item->question->id}}_content_{{$answer->id}}" 
+                                id="{{$item->question->id}}_content_{{$answer->id}}" 
+                                class="form-control" 
                                 rows="5" 
-                                required="required" 
                                 placeholder=""
-                                name="{{$item->question->id}}[{{$answer->id}}][content]"
-                                ></textarea> --}}
+                                required="required"
+                                ></textarea>
                         @endif
-
                     </label>
                 </div>
             @endforeach
