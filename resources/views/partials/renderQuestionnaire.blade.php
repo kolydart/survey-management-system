@@ -43,8 +43,7 @@
                 <div class="{{$item->question->answerlist->type}} {{-- form-check --}}" >
                     {{-- label --}}
                     <label 
-                        class="form-check-label"
-                        style="font-weight: normal;"
+                        class="form-check-label font-weight-normal"
                         for="{{$item->question->id}}_{{$answer->id}}_select"
                         >
 
@@ -99,9 +98,8 @@
                             
                             {{-- label text --}}
                             <span 
-                                @if ( $questionnaire->is_question_answered($item->question_id,$answer->id) ) 
-                                    style="font-weight:bold;"
-                                @endif
+                                id="{{$item->question->id}}_{{$answer->id}}_text"
+                                class="@if ( $questionnaire->is_question_answered($item->question_id,$answer->id) ) font-weight-bold @endif "
                                 >
                                 {{ $answer->title }}
                             </span>
@@ -140,6 +138,9 @@
                                                 .attr('required', true)
                                                 .attr('disabled', false)
                                                 .show(300);
+                                            $('label[for={{$item->question->id}}_{{$answer->id}}_select]')
+                                                .removeClass('font-weight-normal')
+                                                .addClass('font-weight-bold');
                                         }
                                         else {
                                             $('#{{$item->question->id}}_content_{{$answer->id}}')
@@ -147,6 +148,9 @@
                                                 .attr('required', false)
                                                 .attr('disabled', true)
                                                 .hide(300);
+                                            $('label[for={{$item->question->id}}_{{$answer->id}}_select]')
+                                                .removeClass('font-weight-bold')
+                                                .addClass('font-weight-normal');
                                         }                
                                     };
                                     /** run on first load */

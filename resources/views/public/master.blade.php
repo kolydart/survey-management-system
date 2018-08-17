@@ -21,6 +21,9 @@
     <script src="/js/jquery-1.12.4.min.js"></script>
 
     @yield('head','')
+
+    <link rel="stylesheet" href="/css/custom.css"> 
+    
   </head>
 
   <body @if (!Auth::check()) class="bg-dark" @endif>
