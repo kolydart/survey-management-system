@@ -1,7 +1,7 @@
 @extends('public.master')
 
 @section('menu')
-	@include('public.nav')
+	{{-- @include('public.nav') --}}
 @endsection
 
 @section('content')
