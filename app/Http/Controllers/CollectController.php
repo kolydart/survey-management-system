@@ -80,8 +80,8 @@ class CollectController extends Controller
                 ]);
 
             } elseif($arr[1] != 'content'){
-                Presenter::mail("Error rkBECq.\nResponse was not created.\n$key => $value\n".Presenter::dd($request));
-                Presenter::message(__('A question was not submitted, due to invalid data.'));
+                Presenter::mail("Error rkBECq.\nResponse was not created.\n$key => $value\n");
+                Presenter::message(__('A question was not submitted, due to invalid data.')." Question $question_id");
             }
 
         }

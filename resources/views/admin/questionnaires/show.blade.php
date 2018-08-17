@@ -49,9 +49,9 @@
 <table class="table table-bordered table-striped {{ count($responses) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-                        <th>@lang('id')</th>
+                        <th style="width: 10px;">@lang('q_id')</th>
                         <th>@lang('quickadmin.responses.fields.question')</th>
-                        <th>@lang('id')</th>
+                        <th>@lang('a_id')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
                         <th>@lang('quickadmin.responses.fields.content')</th>
                         @if( request('show_deleted') == 1 )

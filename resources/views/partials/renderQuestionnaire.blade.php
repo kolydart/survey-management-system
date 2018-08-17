@@ -15,7 +15,7 @@
 <input type="hidden" name="survey_id" id="survey_id" class="form-control" value="{{$survey->id}}">
 @endif
 
-<fieldset>
+<fieldset @if (\Route::getCurrentRoute()->getActionMethod() == 'create') style="font-size: 120%;" @endif>
 
     {{-- questionnaire title --}}
     <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
@@ -196,7 +196,7 @@
     
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
     <button type="submit" 
-        class="btn btn-primary"
+        class="btn btn-primary btn-lg"
         >
         <i class="fa fa-save"></i>  @lang('Send')
     </button>
