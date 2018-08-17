@@ -7,6 +7,7 @@ use App\Questionnaire;
 use App\Response;
 use App\Survey;
 use Illuminate\Http\Request;
+use gateweb\common\Cipher;
 use gateweb\common\Presenter;
 use gateweb\common\Router;
 use gateweb\common\database\LogUserAgent;
@@ -45,18 +46,27 @@ class CollectController extends Controller
      */
     public function store(StoreQuestionnaire $request)
     {
+        /** abort if survey is completed */
         if(Survey::find($request->survey_id)->completed == 1)
             abort(404,__('Survey is completed'));
 
         $router = new Router();
-        /** notice that $request->validated() does not return wildcarderd field names */
 
-        $name = (\Auth::user()->name)?:'';
+        /**
+         * get name if exists
+         * variable name: "check"
+         * 
+         */
+        if(\Auth::id())
+            $name = \Auth::user()->name;
+        elseif($router->get_var('check') && env('CIPHER_KEY')){
+            $name = (new Cipher)->decrypt($router->get_var('check'), env('CIPHER_KEY'));
+        }
 
         /** create questionnaire */
         $questionnaire = Questionnaire::create(['survey_id'=>$request->survey_id, 'name' => $name]);
 
-        $request_array = $request->except(['_token','survey_id']);
+        $request_array = $request->except(['_token','survey_id']); // notice that $request->validated() does not return wildcarderd field names
 
         /** create responses */
         foreach ($request_array as $key => $value) {
