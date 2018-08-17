@@ -24,15 +24,10 @@ class CollectController extends Controller
      */
     public function create(Survey $survey)
     {
-        if($survey->completed){
-            Presenter::message('Η έρευνα έχει ολοκληρωθεί.','warning');
-            $content = '';
-            return view('public.index',compact('content'));
-        }
-        else{
-            $questionnaire = new Questionnaire;
-            return view('public.create',compact('survey','questionnaire'));
-        }
+        if($survey->completed)
+            Presenter::message('Survey is completed.','warning');
+        $questionnaire = new Questionnaire();
+        return view('public.create',compact('survey','questionnaire'));
     }
 
     /**
@@ -50,6 +45,9 @@ class CollectController extends Controller
      */
     public function store(StoreQuestionnaire $request)
     {
+        if(Survey::find($request->survey_id)->completed == 1)
+            abort(404,__('Survey is completed'));
+
         $router = new Router();
         /** notice that $request->validated() does not return wildcarderd field names */
 

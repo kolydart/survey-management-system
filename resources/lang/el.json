@@ -4,5 +4,6 @@
     "Error validating data.": "Σφάλμα επικύρωσης δεδομένων.",
     "Empty field during data validation.":"Βρέθηκε κενο πεδίο κατά την επικύρωση των δεδομένων.",
     "Please contact administrator.":"Παρακαλούμε επικοινωνήστε με τον διαχειριστή.",
-    "Send": "Αποστολή"
+    "Send": "Αποστολή",
+    "Survey is completed.":"Η έρευνα έχει ολοκληρωθεί."
 }
