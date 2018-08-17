@@ -12,6 +12,7 @@
     id="questionnaire"
     >
 {{ csrf_field() }}
+<input type="hidden" name="survey_id" id="survey_id" class="form-control" value="{{$survey->id}}">
 @endif
 
 <fieldset>

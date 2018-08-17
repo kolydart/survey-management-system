@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionnaire;
 use App\Questionnaire;
 use App\Response;
 use App\Survey;
@@ -39,12 +40,20 @@ class CollectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionnaire $request)
     {
-        /** 
-         * @todo
-         */
-        return \gateweb\common\Presenter::dd($request->all());
+
+        $validated = $request->validated();
+dd($validated);
+        // return \gateweb\common\Presenter::dd($request->all());
+        foreach ($validated as $key => $value) {
+            echo "$key: $value<br>";
+        }
+        
+        // $validatedData = $request->validate([
+        //         'title' => 'required|unique:posts|max:255',
+        //         'body' => 'required',
+        //     ]);        
         // $questionnaire_id = Questionnaire::create();
         // foreach ($responses as $response) {
         //     Response::create([
@@ -56,9 +65,9 @@ class CollectController extends Controller
         // }
         // $questionnaire_id = Questionnaire::create();
         
-        $item_id = $questionnaire_id;
+        // $item_id = $questionnaire_id;
 
-        (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
+        // (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
     }
 
     public function index(){

@@ -1,0 +1,7 @@
+{
+    "Special characters ($, ^, $ etc.) are not allowed in text fields. Please remove special characters and try again.": "Στα πεδία κειμένου δεν επιτρέπονται ειδικοί χαρακτήρες. Διαγράψτε τυχόν χαρακτήρες όπως < $ κ.λπ. και δοκιμάστε ξανά.",
+    "Text fields are not allowed to be empty.": "Στα πεδία κειμένου δεν επιτρέπεται το κενό.",
+    "Error validating data.": "Σφάλμα επικύρωσης δεδομένων.",
+    "Empty field during data validation.":"Βρέθηκε κενο πεδίο κατά την επικύρωση των δεδομένων.",
+    "Please contact administrator.":"Παρακαλούμε επικοινωνήστε με τον διαχειριστή."
+}
