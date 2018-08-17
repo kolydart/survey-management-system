@@ -8,6 +8,7 @@ use App\Response;
 use App\Survey;
 use Illuminate\Http\Request;
 use gateweb\common\Presenter;
+use gateweb\common\Router;
 use gateweb\common\database\LogUserAgent;
 
 /** 
@@ -26,7 +27,7 @@ class CollectController extends Controller
         if($survey->completed){
             Presenter::message('Η έρευνα έχει ολοκληρωθεί.','warning');
             $content = '';
-            return view('public.main',compact('content'));
+            return view('public.index',compact('content'));
         }
         else{
             $questionnaire = new Questionnaire;
@@ -36,38 +37,64 @@ class CollectController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @example data received: 
+     *  [
+     *    "2136_id" => "68"
+     *    "2141_id_71" => "71"
+     *    "2141_id_74" => "74"
+     *    "2141_content_74" => "asdf"
+     *  ]
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreQuestionnaire $request)
     {
+        $router = new Router();
+        /** notice that $request->validated() does not return wildcarderd field names */
 
-        $validated = $request->validated();
-dd($validated);
-        // return \gateweb\common\Presenter::dd($request->all());
-        foreach ($validated as $key => $value) {
-            echo "$key: $value<br>";
+        $name = (\Auth::user()->name)?:'';
+
+        /** create questionnaire */
+        $questionnaire = Questionnaire::create(['survey_id'=>$request->survey_id, 'name' => $name]);
+
+        $request_array = $request->except(['_token','survey_id']);
+
+        /** create responses */
+        foreach ($request_array as $key => $value) {
+            $arr = explode('_',$key);
+
+            if($arr[1] == 'id'){
+                $question_id = $router->sanitize($arr[0],'int');
+                $answer_id = $router->sanitize($value,'int');
+                $content = $router->sanitize(
+                    isset($request_array[$question_id.'_content_'.$answer_id])?$request_array[$question_id.'_content_'.$answer_id]:'',
+                    'text',
+                    ''
+                );
+                Response::create([
+                    'questionnaire_id' => $questionnaire->id,
+                    'question_id' => $question_id,
+                    'answer_id' => $answer_id,
+                    'content' => $content
+                ]);
+
+            } elseif($arr[1] != 'content'){
+                Presenter::mail("Error rkBECq.\nResponse was not created.\n$key => $value\n".Presenter::dd($request));
+                Presenter::message(__('A question was not submitted, due to invalid data.'));
+            }
+
         }
         
-        // $validatedData = $request->validate([
-        //         'title' => 'required|unique:posts|max:255',
-        //         'body' => 'required',
-        //     ]);        
-        // $questionnaire_id = Questionnaire::create();
-        // foreach ($responses as $response) {
-        //     Response::create([
-        //         'questionnaire_id' => $response->questionnaire_id,
-        //         'question_id' => $response->question_id,
-        //         'answer_id' => $response->answer_id,
-        //         'content' => $response->content
-        //     ]);
-        // }
-        // $questionnaire_id = Questionnaire::create();
-        
-        // $item_id = $questionnaire_id;
+        (new LogUserAgent())->snapshot(['item_id'=>$questionnaire->id],false);
 
-        // (new LogUserAgent())->snapshot(['item_id'=>$item_id],false);
+        $content = '
+            <div class="alert alert-success col-md-8 col-md-offset-2" style="margin-top:30px;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h3 class="text-center">'.__('Thank you!').'</h3>
+            </div>'
+            ;       
+        return view('public.index',compact('content'));        
     }
 
     public function index(){
@@ -78,7 +105,7 @@ dd($validated);
                 <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
             </div>
 HTML;
-        return view('public.main',compact('content'));
+        return view('public.index',compact('content'));
     }
     
 
