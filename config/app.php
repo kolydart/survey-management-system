@@ -255,6 +255,9 @@ return [
         
     ],
 
-    
+    'languages' => [
+        'en' => 'English',
+        'gr' => 'Greek',
+    ],
 
 ];
