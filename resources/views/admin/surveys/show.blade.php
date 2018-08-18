@@ -48,21 +48,30 @@
                             <th>@lang('quickadmin.surveys.fields.completed')</th>
                             <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('Filled Questionnaires')</th>
+                            <td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
+                        </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
                     </table>
                 </div>
                 <a href="{{route('public.create',$survey->id)}}" class="btn btn-success">@lang('Fill questionnaire')</a>
-            </div><!-- Nav tabs -->
+            </div>
+
+<!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-    
-<li role="presentation" class="active"><a href="#questionnaires" aria-controls="questionnaires" role="tab" data-toggle="tab">Questionnaires</a></li>
+<li role="presentation" class="active"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Report</a></li>
+<li role="presentation" class=""><a href="#questionnaires" aria-controls="questionnaires" role="tab" data-toggle="tab">Questionnaires</a></li>
 <li role="presentation" class=""><a href="#items" aria-controls="items" role="tab" data-toggle="tab">Items</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
     
-<div role="tabpanel" class="tab-pane active" id="questionnaires">
+<div role="tabpanel" class="tab-pane active" id="report">
+    @include('partials.renderQuestionnaire')
+</div>
+<div role="tabpanel" class="tab-pane" id="questionnaires">
 <table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
