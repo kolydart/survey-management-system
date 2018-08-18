@@ -32,7 +32,7 @@
 <script>
     $.extend(true, $.fn.dataTable.defaults, {
         "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/English.json"
+            "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/{{ array_key_exists(app()->getLocale(), config('app.languages')) ? config('app.languages')[app()->getLocale()] : 'English' }}.json"
         }
     });
 

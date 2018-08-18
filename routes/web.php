@@ -78,7 +78,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 
 
- 
-});
+    Route::get('language/{lang}', function ($lang) {
+        return redirect()->back()->withCookie(cookie()->forever('language', $lang));
+    })->name('language');});
 
 include __DIR__ .'/gw.php';
