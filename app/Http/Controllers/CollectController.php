@@ -27,8 +27,12 @@ class CollectController extends Controller
     {
         if($survey->completed)
             Presenter::message('Survey is completed.','warning');
-        $questionnaire = new Questionnaire();
-        return view('public.create',compact('survey','questionnaire'));
+        if(\Auth::id()){
+            $questionnaire = new Questionnaire();
+            return view('public.create',compact('survey','questionnaire'));
+        }else{
+            return view('public.index',['content'=>'']);
+        }
     }
 
     /**

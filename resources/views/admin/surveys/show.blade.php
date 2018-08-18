@@ -55,7 +55,7 @@
                         {!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
                     </table>
                 </div>
-                <a href="{{route('public.create',$survey->id)}}" class="btn btn-success">@lang('Fill questionnaire')</a>
+                <a href="{{route('public.create',$survey->id)}}" class="btn btn-success">@lang('Form')</a>
             </div>
 
 <!-- Nav tabs -->
@@ -71,11 +71,12 @@
 <div role="tabpanel" class="tab-pane active" id="report">
     @include('partials.renderQuestionnaire')
 </div>
+
 <div role="tabpanel" class="tab-pane" id="questionnaires">
 <table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('id')</th>
+            <th style="width: 10px;">@lang('id')</th>
             <th>@lang('%')</th>
             <th>@lang('Date')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
