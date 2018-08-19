@@ -36,6 +36,7 @@
                         <th>@lang('id')</th>
                         <th>@lang('quickadmin.answers.fields.title')</th>
                         <th>@lang('quickadmin.answers.fields.open')</th>
+                        <th>@lang('Responses')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -55,6 +56,7 @@
                                 <td field-key='id'>{{ $answer->id }}</td>
                                 <td field-key='title'>{{ $answer->title }}</td>
                                 <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
+                                <td field-key='title'>{{ $answer->responses->count() }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answer_delete')
