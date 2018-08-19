@@ -33,10 +33,11 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
+                        <th>@lang('id')</th>
                         <th>@lang('quickadmin.answerlists.fields.title')</th>
                         <th>@lang('quickadmin.answerlists.fields.type')</th>
                         <th>@lang('quickadmin.answerlists.fields.answers')</th>
-                        <th>@lang('used by')</th>
+                        <th>@lang('Questions')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -53,11 +54,12 @@
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
+                                <td field-key='id'>{{ $answerlist->id }}</td>
                                 <td field-key='title'>{{ $answerlist->title }}</td>
                                 <td field-key='type'>{{ $answerlist->type }}</td>
                                 <td field-key='answers'>
                                     @foreach ($answerlist->answers as $singleAnswers)
-                                        <span class="label label-info label-many">{{ $singleAnswers->title }}</span>
+                                        <a class="btn btn-info btn-sm" href="{{route('admin.answers.show',$singleAnswers->id)}}">{{ $singleAnswers->title }}</a>
                                     @endforeach
                                 </td>
                                 <td field-key='questions'>{{ $answerlist->questions->count() }}</td>

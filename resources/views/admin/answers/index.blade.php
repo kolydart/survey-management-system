@@ -33,6 +33,7 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
+                        <th>@lang('id')</th>
                         <th>@lang('quickadmin.answers.fields.title')</th>
                         <th>@lang('quickadmin.answers.fields.open')</th>
                         @if( request('show_deleted') == 1 )
@@ -51,6 +52,7 @@
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
+                                <td field-key='id'>{{ $answer->id }}</td>
                                 <td field-key='title'>{{ $answer->title }}</td>
                                 <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )

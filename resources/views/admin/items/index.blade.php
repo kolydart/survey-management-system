@@ -33,6 +33,7 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
+                        <th>@lang('id')</th>
                         <th>@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.survey')</th>
                         <th>@lang('s_id')</th>
@@ -40,6 +41,7 @@
                         <th>@lang('q_id')</th>
                         <th>@lang('answerlist')</th>
                         <th>@lang('a_id')</th>
+                        <th>@lang('Responses')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -56,6 +58,7 @@
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
 
+                                <td field-key='id'>{{ $item->id }}</td>
                                 <td field-key='order'>{{ $item->order }}</td>
                                 <td field-key='survey'>{{ $item->survey->title or '' }}</td>
                                 <td field-key='survey_id'>{{$item->survey->id}}</td>
@@ -63,6 +66,7 @@
                                 <td field-key='question_id'>{{$item->question->id}}</td>
                                 <td field-key='answerlist'>{{ $item->question->answerlist->title or '' }}</td>
                                 <td field-key='answerlist_id'>{{$item->question->answerlist->id}}</td>
+                                <td field-key='responses_count'>{{$item->question->responses->count()}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
