@@ -32,6 +32,7 @@
                         <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
                         <th>@lang('quickadmin.loguseragent.fields.uri')</th>
                         <th>@lang('quickadmin.loguseragent.fields.user')</th>
+                        <th>@lang('Date')</th>
                                                 <th>&nbsp;</th>
 
                     </tr>
@@ -57,6 +58,7 @@
                 {data: 'ipv6', name: 'ipv6'},
                 {data: 'uri', name: 'uri'},
                 {data: 'user.name', name: 'user.name'},
+                {data: 'created_at', name: 'created_at'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

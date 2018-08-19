@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Loguseragent;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLoguseragentsRequest;
 use App\Http\Requests\Admin\UpdateLoguseragentsRequest;
+use App\Loguseragent;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
+use gateweb\common\Presenter;
 
 class LoguseragentsController extends Controller
 {
@@ -43,6 +44,7 @@ class LoguseragentsController extends Controller
                 'loguseragents.uri',
                 'loguseragents.form_submitted',
                 'loguseragents.user_id',
+                'loguseragents.created_at',
             ]);
             $table = Datatables::of($query);
 
@@ -79,7 +81,7 @@ class LoguseragentsController extends Controller
                 return $row->item_id ? $row->item_id : '';
             });
             $table->editColumn('ipv6', function ($row) {
-                return $row->ipv6 ? $row->ipv6 : '';
+                return $row->ipv6 ? Presenter::convert_hex2ip($row->ipv6) : '';
             });
             $table->editColumn('uri', function ($row) {
                 return $row->uri ? $row->uri : '';
@@ -89,6 +91,9 @@ class LoguseragentsController extends Controller
             });
             $table->editColumn('user.name', function ($row) {
                 return $row->user ? $row->user->name : '';
+            });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at : '';
             });
 
             $table->rawColumns(['actions','massDelete','form_submitted']);

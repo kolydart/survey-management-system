@@ -25,6 +25,8 @@ class CollectController extends Controller
      */
     public function create(Survey $survey)
     {
+        (new LogUserAgent())->snapshot($survey->id,false);
+
         if($survey->completed)
             Presenter::message('Survey is completed.','warning');
         if(\Auth::id()){
@@ -117,6 +119,9 @@ class CollectController extends Controller
                 <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
             </div>
 HTML;
+
+        (new LogUserAgent())->snapshot(null,false);
+
         return view('public.index',compact('content'));
     }
     
