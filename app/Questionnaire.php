@@ -61,6 +61,9 @@ class Questionnaire extends Model
     public function getFilledPercentAttribute(){
         $answered = collect($this->responses->pluck('question_id'))->unique();
         $template = collect($this->survey->items->pluck('question_id'));
+        /** protect divide-by-zero */
+        if($template->count() == 0)
+        	return false;
         $percent  = $answered->intersect($template)->count() / $template->count();
         return number_format((float)$percent, 2, '.', '');
     }
