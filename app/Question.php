@@ -22,6 +22,10 @@ class Question extends Model
 
     use SoftDeletes;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['items','responses'];
+
     protected $fillable = ['title', 'answerlist_id'];
     protected $hidden = [];
     

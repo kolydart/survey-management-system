@@ -19,6 +19,10 @@ class Institution extends Model
 
     use SoftDeletes;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['surveys'];
+
     protected $fillable = ['title'];
     protected $hidden = [];
     

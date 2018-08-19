@@ -20,6 +20,10 @@ class Answer extends Model
 	protected static $logFillable = true;
 	protected static $logOnlyDirty = true;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['responses'];
+
     use SoftDeletes;
 
     protected $fillable = ['title', 'open'];

@@ -26,6 +26,10 @@ class Survey extends Model
 
     use SoftDeletes;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['questionnaires','items'];
+
     protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id'];
     protected $hidden = [];
     

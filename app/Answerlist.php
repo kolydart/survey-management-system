@@ -20,6 +20,10 @@ class Answerlist extends Model
 
     use SoftDeletes;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['questions'];
+
     protected $fillable = ['title', 'type'];
     protected $hidden = [];
     

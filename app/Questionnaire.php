@@ -21,6 +21,10 @@ class Questionnaire extends Model
 
     use SoftDeletes;
 
+    /** softCascade */
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+    protected $softCascade = ['responses'];
+
     protected $fillable = ['name', 'survey_id'];
     protected $hidden = [];
     protected $appends = ['filled_percent'];
