@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Survey;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreSurveysRequest;
 use App\Http\Requests\Admin\UpdateSurveysRequest;
+use App\Item;
+use App\Survey;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SurveysController extends Controller
 {
@@ -216,4 +217,38 @@ $questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();$
 
         return redirect()->route('admin.surveys.index');
     }
+
+
+    /**
+     * clone Survey
+     *
+     * @param  App\Survey  $survey
+     * @return \Illuminate\Http\Response
+     */
+    public function clone(Survey $survey)
+    {
+        if (! Gate::allows('survey_create')) {
+            return abort(401);
+        }
+
+        $newSurvey = $survey->replicate();
+        $newSurvey->push(); //Push before to get id of $clone
+
+        foreach(Item::where('survey_id',$survey->id)->get() as $item) {
+            $newItem = $item->replicate();
+            $newItem->survey_id = $newSurvey->id;
+            $newItem->save();
+        }
+
+        foreach ($survey->category as $category) {
+            $newSurvey->category()->attach($category);
+        }
+
+        foreach ($survey->group as $group) {
+            $newSurvey->group()->attach($group);
+        }
+
+        return redirect()->route('admin.surveys.show',$newSurvey);
+    }
+
 }

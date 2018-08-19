@@ -55,7 +55,12 @@
                         {!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
                     </table>
                 </div>
-                <a href="{{route('public.create',$survey->id)}}" class="btn btn-success">@lang('Form')</a>
+                <div class="col-sm-2">
+                    <a href="{{route('public.create',$survey->id)}}" class="btn btn-success"><i class="fa fa-clipboard"></i> @lang('Form')</a>
+                </div>
+                <div class="col-sm-2">
+                    <a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning"><i class="fa fa-copy"></i> @lang('Clone')</a>
+                </div>
             </div>
 
 <!-- Nav tabs -->
