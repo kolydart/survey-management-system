@@ -105,7 +105,7 @@
                     @endif
                     <div>
                         <label>
-                            {!! Form::radio('access', 'public', false, ['required' => '']) !!}
+                            {!! Form::radio('access', 'public', true, ['required' => '']) !!}
                             public
                         </label>
                     </div>
