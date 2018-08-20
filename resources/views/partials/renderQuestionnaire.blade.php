@@ -40,7 +40,7 @@
                 for="{{str_plural($item->question->answerlist->type)}}" 
                 >
                     {{-- text --}}
-                    {{$item->order}} {{$item->question->title}}
+                    {!! $item->order !!} {!! $item->question->title !!}
                     {{-- info tooltip for checkbox --}}
                     @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
                         <i data-toggle="tooltip" data-placement="top" title="@lang('Μία ή περισσότερες απαντήσεις')" class="fa fa-info-circle text-info"></i>
