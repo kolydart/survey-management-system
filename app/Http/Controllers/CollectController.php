@@ -25,7 +25,7 @@ class CollectController extends Controller
      */
     public function create(Survey $survey)
     {
-        (new LogUserAgent())->snapshot($survey->id,false);
+        (new LogUserAgent())->snapshot(['item_id'=>$survey->id],false);
 
         if($survey->completed)
             Presenter::message('Survey is completed.','warning');
