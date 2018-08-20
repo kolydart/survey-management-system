@@ -139,7 +139,7 @@ class SurveysController extends Controller
         $categories = \App\Category::get()->pluck('title', 'id');
 
         $groups = \App\Group::get()->pluck('title', 'id');
-$questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();$items = \App\Item::where('survey_id', $id)->get();
+$questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();$items = \App\Item::where('survey_id', $id)->orderBy('order')->get();
 
         $survey = Survey::findOrFail($id);
 

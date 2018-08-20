@@ -29,7 +29,7 @@ class InstitutionsController extends Controller
             }
             $institutions = Institution::onlyTrashed()->get();
         } else {
-            $institutions = Institution::all();
+            $institutions = Institution::latest()->get();
         }
 
         return view('admin.institutions.index', compact('institutions'));

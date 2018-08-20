@@ -29,7 +29,7 @@ class QuestionsController extends Controller
             }
             $questions = Question::onlyTrashed()->get();
         } else {
-            $questions = Question::all();
+            $questions = Question::latest()->get();
         }
 
         return view('admin.questions.index', compact('questions'));

@@ -29,7 +29,7 @@ class ItemsController extends Controller
             }
             $items = Item::onlyTrashed()->get();
         } else {
-            $items = Item::all();
+            $items = Item::latest()->get();
         }
 
         return view('admin.items.index', compact('items'));
