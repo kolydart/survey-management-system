@@ -232,6 +232,7 @@ $questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();$
         }
 
         $newSurvey = $survey->replicate();
+        $newSurvey->completed = 0;
         $newSurvey->push(); //Push before to get id of $clone
 
         foreach(Item::where('survey_id',$survey->id)->get() as $item) {
