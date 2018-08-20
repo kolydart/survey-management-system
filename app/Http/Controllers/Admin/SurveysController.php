@@ -47,7 +47,7 @@ class SurveysController extends Controller
             return abort(401);
         }
         
-        $institutions = \App\Institution::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $institutions = \App\Institution::latest()->get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $categories = \App\Category::get()->pluck('title', 'id');
 
         $groups = \App\Group::get()->pluck('title', 'id');
