@@ -24,11 +24,25 @@
                 label: '%',
                 data: [
                     @foreach ($item->question->answerlist->answers as $answer)
-                        "{{ round($item->question->responses->where('answer_id',$answer->id)->count()/$item->question->responses->count()*100,2)}}", 
+                        @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
+                            "{{round(
+                                App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()
+                                /
+                                App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()
+                                *100
+                                ,2
+                                )}}",                       
+                        @else
+                            "0",
+                        @endif
                     @endforeach
                     ],
                 borderWidth: 1,
-                count: [@foreach ($item->question->answerlist->answers as $answer) "{{$item->question->responses->where('answer_id',$answer->id)->count()}}", @endforeach ]
+                count: [
+                    @foreach ($item->question->answerlist->answers as $answer) 
+                        "{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()}}", 
+                    @endforeach
+                    ]
             }]
         },
         options: {

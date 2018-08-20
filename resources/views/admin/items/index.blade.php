@@ -66,7 +66,7 @@
                                 <td field-key='question_id'>{{$item->question->id}}</td>
                                 <td field-key='answerlist'>{{ $item->question->answerlist->title or '' }}</td>
                                 <td field-key='answerlist_id'>{{$item->question->answerlist->id}}</td>
-                                <td field-key='responses_count'>{{$item->question->responses->count()}}</td>
+                                <td field-key='responses_count'>{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')

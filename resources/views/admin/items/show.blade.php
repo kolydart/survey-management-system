@@ -60,8 +60,8 @@
                         </thead>
 
                         <tbody>
-                            @if (count($item->question->responses) > 0)
-                                @foreach ($item->question->responses as $response)
+                            @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
+                                @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->get() as $response)
                                     <tr data-entry-id="{{ $response->id }}">
                                         <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
                                         <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }} {{$response->questionnaire->name or ''}}</a></td>

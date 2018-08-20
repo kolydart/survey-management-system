@@ -176,7 +176,7 @@
                                 <td field-key='order'>{{ $item->order }}</td>
                                 <td field-key='question'><a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a></td>
                                 <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
-                                <td field-key='responses'>{{$item->question->responses->count()}}</td>
+                                <td field-key='responses'>{{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
