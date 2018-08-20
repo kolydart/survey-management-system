@@ -16,8 +16,17 @@
                             <th>@lang('quickadmin.questions.fields.title')</th>
                             <td field-key='title'>{{ $question->title }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('Responses')</th>
+                            <td field-key='responses'>{{ $responses->count() }}</td>
+                        </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($question) !!}
                     </table>
+                </div>
+                {{-- report --}}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                <div class="col-md-6">
+                    @include('partials.chartAnswer')
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">

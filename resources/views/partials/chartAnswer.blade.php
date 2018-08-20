@@ -1,4 +1,4 @@
-<canvas id="chart_{{$item->id}}"></canvas>
+<canvas id="chart_{{$item->id or ''}}"></canvas>
 
 <script>
     function splitter(str, l){
@@ -15,33 +15,66 @@
         strs.push(str);
         return strs;
     }
-    var ctx = document.getElementById("chart_{{$item->id}}");
+    var ctx = document.getElementById("chart_{{$item->id or ''}}");
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: [@foreach ($item->question->answerlist->answers as $answer) "{{$answer->title}}", @endforeach ],
+            labels: [
+                @if (Route::currentRouteName() == 'admin.surveys.show')
+                    @foreach ($item->question->answerlist->answers as $answer) 
+                        "{{$answer->title}}", 
+                    @endforeach 
+                @elseif(Route::currentRouteName() == 'admin.questions.show')
+                    @foreach ($question->answerlist->answers as $answer) 
+                        "{{$answer->title}}", 
+                    @endforeach 
+                @endif
+                ],
             datasets: [{
                 label: '%',
                 data: [
-                    @foreach ($item->question->answerlist->answers as $answer)
-                        @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
-                            "{{round(
-                                App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()
-                                /
-                                App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()
-                                *100
-                                ,2
-                                )}}",                       
-                        @else
-                            "0",
-                        @endif
-                    @endforeach
+                    @if (Route::currentRouteName() == 'admin.surveys.show')
+                        @foreach ($item->question->answerlist->answers as $answer)
+                            @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
+                                "{{round(
+                                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()
+                                    /
+                                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()
+                                    *100
+                                    ,2
+                                    )}}",                       
+                            @else
+                                "0",
+                            @endif
+                        @endforeach
+
+                    @elseif(Route::currentRouteName() == 'admin.questions.show')
+                        @foreach ($question->answerlist->answers as $answer)
+                            @if ($responses->count() > 0)
+                                "{{round(
+                                    $responses->where('answer_id',$answer->id)->count()
+                                    /
+                                    $responses->count()
+                                    *100
+                                    ,2
+                                    )}}",                       
+                            @else
+                                "0",
+                            @endif
+                        @endforeach
+                    @endif
                     ],
                 borderWidth: 1,
                 count: [
-                    @foreach ($item->question->answerlist->answers as $answer) 
-                        "{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()}}", 
-                    @endforeach
+                    @if (Route::currentRouteName() == 'admin.surveys.show')
+                        @foreach ($item->question->answerlist->answers as $answer) 
+                            "{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()}}", 
+                        @endforeach
+                    @elseif(Route::currentRouteName() == 'admin.questions.show')
+                        @foreach ($question->answerlist->answers as $answer) 
+                            "{{$responses->where('answer_id',$answer->id)->count()}}", 
+                        @endforeach
+                    @endif
                     ]
             }]
         },
