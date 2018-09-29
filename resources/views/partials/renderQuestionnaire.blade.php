@@ -26,7 +26,7 @@
     {{-- questionnaire title --}}
     <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
     {{-- introduction --}}
-    <div>{!! $survey->introduction or '' !!}</div>
+    <div class="mb-4" style="margin-bottom:40px;">{!! $survey->introduction or '' !!}</div>
     {{-- questions --}}
     @foreach ($survey->items()->orderBy('order')->get() as $item)
         {{-- question --}}
