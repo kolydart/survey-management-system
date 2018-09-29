@@ -70,6 +70,8 @@ class CollectController extends Controller
             $name = \Auth::user()->name;
         elseif($router->get_var('check') && env('CIPHER_KEY')){
             $name = (new Cipher)->decrypt($router->get_var('check'), env('CIPHER_KEY'));
+        }else{
+            $name = null;
         }
 
         /** create questionnaire */
