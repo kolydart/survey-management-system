@@ -118,11 +118,10 @@ class CollectController extends Controller
 
     public function index(){
         $content = <<<HTML
-            <div class="jumbotron">
-                <h1>Survey application</h1>
-                <p>Houston, we have contact!...</p>
-                <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
-            </div>
+        <div class="jumbotron bg-white" style="background-color:white;">
+            <h1 class="display-1 text-light display-fix">survey</h1>
+            <span class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων.</span>
+        </div>
 HTML;
 
         (new LogUserAgent())->snapshot(null,false);
