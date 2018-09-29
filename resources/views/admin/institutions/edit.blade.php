@@ -35,6 +35,7 @@
                 <thead>
                 <tr>
                     <th>@lang('quickadmin.surveys.fields.title')</th>
+                        <th>@lang('quickadmin.surveys.fields.alias')</th>
                         
                     <th>Actions</th>
                 </tr>

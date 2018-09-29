@@ -25,6 +25,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('alias', trans('quickadmin.surveys.fields.alias').'*', ['class' => 'control-label']) !!}
+                    {!! Form::text('alias', old('alias'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('alias'))
+                        <p class="help-block">
+                            {{ $errors->first('alias') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('institution_id', trans('quickadmin.surveys.fields.institution').'', ['class' => 'control-label']) !!}
                     {!! Form::select('institution_id', $institutions, old('institution_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>

@@ -33,6 +33,7 @@
     <thead>
         <tr>
             <th>@lang('quickadmin.surveys.fields.title')</th>
+                        <th>@lang('quickadmin.surveys.fields.alias')</th>
                         <th>@lang('quickadmin.surveys.fields.category')</th>
                         <th>@lang('quickadmin.surveys.fields.group')</th>
                         <th>@lang('quickadmin.surveys.fields.access')</th>
@@ -50,6 +51,7 @@
             @foreach ($surveys as $survey)
                 <tr data-entry-id="{{ $survey->id }}">
                     <td field-key='title'>{{ $survey->title }}</td>
+                                <td field-key='alias'>{{ $survey->alias }}</td>
                                 <td field-key='category'>
                                     @foreach ($survey->category as $singleCategory)
                                         <span class="label label-info label-many">{{ $singleCategory->title }}</span>
@@ -106,7 +108,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="13">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="14">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
@@ -120,3 +122,5 @@
         </div>
     </div>
 @stop
+
+

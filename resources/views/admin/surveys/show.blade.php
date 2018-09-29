@@ -17,6 +17,10 @@
                             <td field-key='title'>{{ $survey->title }}</td>
                         </tr>
                         <tr>
+                            <th>@lang('quickadmin.surveys.fields.alias')</th>
+                            <td field-key='alias'>{{ $survey->alias }}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.surveys.fields.category')</th>
                             <td field-key='category'>
                                 @foreach ($survey->category as $singleCategory)
@@ -235,3 +239,5 @@
         </div>
     </div>
 @stop
+
+
