@@ -25,6 +25,7 @@ class StoreInstitutionsRequest extends FormRequest
         return [
             'title' => 'required|unique:institutions,title,'.$this->route('institution'),
             'surveys.*.title' => 'required',
+            'surveys.*.alias' => 'required|unique:surveys,alias,'.$this->route('survey'),
         ];
     }
 }

@@ -25,6 +25,7 @@ class UpdateSurveysRequest extends FormRequest
         return [
             
             'title' => 'required',
+            'alias' => 'required|unique:surveys,alias,'.$this->route('survey'),
             'category.*' => 'exists:categories,id',
             'group.*' => 'exists:groups,id',
             'access' => 'required',

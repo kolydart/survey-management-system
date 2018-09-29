@@ -34,6 +34,7 @@
                         @endcan
 
                         <th>@lang('quickadmin.surveys.fields.title')</th>
+                        <th>@lang('quickadmin.surveys.fields.alias')</th>
                         <th>@lang('quickadmin.surveys.fields.institution')</th>
                         <th>@lang('quickadmin.surveys.fields.category')</th>
                         <th>@lang('quickadmin.surveys.fields.group')</th>
@@ -56,6 +57,7 @@
                                 @endcan
 
                                 <td field-key='title'>{{ $survey->title }}</td>
+                                <td field-key='alias'>{{ $survey->alias }}</td>
                                 <td field-key='institution'>{{ $survey->institution->title or '' }}</td>
                                 <td field-key='category'>
                                     @foreach ($survey->category as $singleCategory)
@@ -113,7 +115,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="13">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="14">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>

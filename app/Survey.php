@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App
  * @property string $title
+ * @property string $alias
  * @property string $institution
  * @property text $introduction
  * @property text $notes
@@ -19,7 +20,7 @@ class Survey extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'introduction', 'notes', 'access', 'completed', 'institution_id'];
+    protected $fillable = ['title', 'alias', 'introduction', 'notes', 'access', 'completed', 'institution_id'];
     protected $hidden = [];
     
     
