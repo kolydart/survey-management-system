@@ -60,7 +60,7 @@
                     </table>
                 </div>
                 <div class="col-sm-2">
-                    <a href="{{route('public.create',$survey->id)}}" class="btn btn-success"><i class="fa fa-clipboard"></i> @lang('Form')</a>
+                    <a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success"><i class="fa fa-clipboard"></i> @lang('Form')</a>
                 </div>
                 <div class="col-sm-2">
                     <a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning"><i class="fa fa-copy"></i> @lang('Clone')</a>

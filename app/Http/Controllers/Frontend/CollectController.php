@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionnaire;
 use App\Questionnaire;
 use App\Response;
@@ -23,17 +24,19 @@ class CollectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Survey $survey)
+    public function create($alias)
     {
+        $survey = Survey::where('alias',$alias)->firstOrFail();
+
         (new LogUserAgent())->snapshot(['item_id'=>$survey->id],false);
 
-        if($survey->completed)
+        if($survey->completed){
             Presenter::message('Survey is completed.','warning');
-        if(\Auth::id()){
+            return view('frontend.index',['content'=>'']);
+        }
+        else{
             $questionnaire = new Questionnaire();
-            return view('public.create',compact('survey','questionnaire'));
-        }else{
-            return view('public.index',['content'=>'']);
+            return view('frontend.create',compact('survey','questionnaire'));
         }
     }
 
@@ -108,7 +111,7 @@ class CollectController extends Controller
                 <h3 class="text-center">'.__('Thank you!').'</h3>
             </div>'
             ;       
-        return view('public.index',compact('content'));        
+        return view('frontend.index',compact('content'));        
     }
 
     public function index(){
@@ -122,7 +125,7 @@ HTML;
 
         (new LogUserAgent())->snapshot(null,false);
 
-        return view('public.index',compact('content'));
+        return view('frontend.index',compact('content'));
     }
     
 

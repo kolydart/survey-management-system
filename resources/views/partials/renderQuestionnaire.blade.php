@@ -10,7 +10,7 @@
 
 
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
-<form action="{{route('public.store')}}" 
+<form action="{{route('frontend.store')}}" 
     method="POST"
     class="form form-horizontal" 
     role="form"
