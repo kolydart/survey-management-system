@@ -119,8 +119,8 @@ class CollectController extends Controller
     public function index(){
         $content = <<<HTML
         <div class="jumbotron bg-white" style="background-color:white;">
-            <h1 class="display-1 text-light display-fix">survey</h1>
-            <span class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων.</span>
+            <h1 class="lead text-light display-fix">survey</h1>
+            <p class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων,</p>
         </div>
 HTML;
 
