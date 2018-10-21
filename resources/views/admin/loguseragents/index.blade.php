@@ -25,6 +25,7 @@
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
+                        <th>@lang('Date')</th>
                         <th>@lang('quickadmin.loguseragent.fields.os')</th>
                         <th>@lang('quickadmin.loguseragent.fields.browser')</th>
                         <th>@lang('quickadmin.loguseragent.fields.device')</th>
@@ -32,7 +33,6 @@
                         <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
                         <th>@lang('quickadmin.loguseragent.fields.uri')</th>
                         <th>@lang('quickadmin.loguseragent.fields.user')</th>
-                        <th>@lang('Date')</th>
                                                 <th>&nbsp;</th>
 
                     </tr>
@@ -51,14 +51,15 @@
             window.dtDefaultOptions.ajax = '{!! route('admin.loguseragents.index') !!}';
             window.dtDefaultOptions.columns = [@can('loguseragent_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
-                @endcan{data: 'os', name: 'os'},
+                @endcan
+                {data: 'created_at', name: 'created_at'},
+                {data: 'os', name: 'os'},
                 {data: 'browser', name: 'browser'},
                 {data: 'device', name: 'device'},
                 {data: 'item_id', name: 'item_id'},
                 {data: 'ipv6', name: 'ipv6'},
                 {data: 'uri', name: 'uri'},
                 {data: 'user.name', name: 'user.name'},
-                {data: 'created_at', name: 'created_at'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
