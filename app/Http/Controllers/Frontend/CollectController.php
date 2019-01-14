@@ -120,7 +120,7 @@ class CollectController extends Controller
         $content = <<<HTML
         <div class="jumbotron bg-white" style="background-color:white;">
             <h1 class="lead text-light display-fix">survey</h1>
-            <p class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων,</p>
+            <p class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων</p>
         </div>
 HTML;
 
