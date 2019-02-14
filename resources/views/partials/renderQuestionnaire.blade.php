@@ -14,7 +14,7 @@
     method="POST"
     class="form form-horizontal" 
     role="form"
-    style="margin-top: 10px; margin-bottom: 30px;"
+    style="margin-top: 50px; margin-bottom: 30px;"
     id="questionnaire"
     >
 {{ csrf_field() }}
