@@ -61,6 +61,17 @@
              return this.href == url;
         }).parentsUntil('.sidebar-menu > .treeview-menu').addClass('menu-open').css('display', 'block');
     });
+
+
+    /**
+     * custom jquery code
+     */
+    jQuery(document).ready(function($) {
+
+
+
+
+    });
 </script>
 
  

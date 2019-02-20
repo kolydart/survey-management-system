@@ -64,9 +64,9 @@
                                 <td field-key='survey'>{{ $item->survey->title or '' }}</td>
                                 <td field-key='survey_id'>{{$item->survey->id}}</td>
                                 <td field-key='question'>{{ $item->question->title or '' }}</td>
-                                <td field-key='question_id'>{{$item->question->id}}</td>
-                                <td field-key='answerlist'>{{ $item->question->answerlist->title or '' }}</td>
-                                <td field-key='answerlist_id'>{{$item->question->answerlist->id}}</td>
+                                <td field-key='question_id'>{{$item->question->id ?? '' }}</td>
+                                <td field-key='answerlist'>{{ $item->question->answerlist->title ?? '' }}</td>
+                                <td field-key='answerlist_id'>{{$item->question->answerlist->id ?? '' }}</td>
                                 <td field-key='responses_count'>{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()}}</td>
                                 <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
