@@ -187,7 +187,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\GatewebServiceProvider::class,        
-        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        // UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
 
         /*
          * Application Service Providers...
