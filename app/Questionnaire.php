@@ -64,7 +64,7 @@ class Questionnaire extends Model
      */
     public function getFilledPercentAttribute(){
         $answered = collect($this->responses->pluck('question_id'))->unique();
-        $template = collect($this->survey->items->pluck('question_id'));
+        $template = collect($this->survey->items->where('label','<>','1')->pluck('question_id'));
         /** protect divide-by-zero */
         if($template->count() == 0)
         	return false;
@@ -79,7 +79,7 @@ class Questionnaire extends Model
      */
     public function outliers(){
         $answered = collect($this->responses->pluck('question_id'))->unique();
-        $template = collect($this->survey->items->pluck('question_id'));
+        $template = collect($this->survey->items->where('label','<>','1')->pluck('question_id'));
         return Question::find($answered->diff($template)->intersect($answered));
     }
 
