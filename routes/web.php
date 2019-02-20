@@ -49,6 +49,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('answers_mass_destroy', ['uses' => 'Admin\AnswersController@massDestroy', 'as' => 'answers.mass_destroy']);
     Route::post('answers_restore/{id}', ['uses' => 'Admin\AnswersController@restore', 'as' => 'answers.restore']);
     Route::delete('answers_perma_del/{id}', ['uses' => 'Admin\AnswersController@perma_del', 'as' => 'answers.perma_del']);
+    Route::resource('content_pages', 'Admin\ContentPagesController');
+    Route::post('content_pages_mass_destroy', ['uses' => 'Admin\ContentPagesController@massDestroy', 'as' => 'content_pages.mass_destroy']);
+    Route::resource('content_categories', 'Admin\ContentCategoriesController');
+    Route::post('content_categories_mass_destroy', ['uses' => 'Admin\ContentCategoriesController@massDestroy', 'as' => 'content_categories.mass_destroy']);
+    Route::resource('content_tags', 'Admin\ContentTagsController');
+    Route::post('content_tags_mass_destroy', ['uses' => 'Admin\ContentTagsController@massDestroy', 'as' => 'content_tags.mass_destroy']);
     Route::resource('institutions', 'Admin\InstitutionsController');
     Route::post('institutions_mass_destroy', ['uses' => 'Admin\InstitutionsController@massDestroy', 'as' => 'institutions.mass_destroy']);
     Route::post('institutions_restore/{id}', ['uses' => 'Admin\InstitutionsController@restore', 'as' => 'institutions.restore']);
@@ -63,18 +69,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::delete('categories_perma_del/{id}', ['uses' => 'Admin\CategoriesController@perma_del', 'as' => 'categories.perma_del']);
     Route::resource('roles', 'Admin\RolesController');
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
-    Route::resource('users', 'Admin\UsersController');
-    Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     Route::resource('activitylogs', 'Admin\ActivitylogsController');
     Route::post('activitylogs_mass_destroy', ['uses' => 'Admin\ActivitylogsController@massDestroy', 'as' => 'activitylogs.mass_destroy']);
-    Route::resource('content_pages', 'Admin\ContentPagesController');
-    Route::post('content_pages_mass_destroy', ['uses' => 'Admin\ContentPagesController@massDestroy', 'as' => 'content_pages.mass_destroy']);
-    Route::resource('content_categories', 'Admin\ContentCategoriesController');
-    Route::post('content_categories_mass_destroy', ['uses' => 'Admin\ContentCategoriesController@massDestroy', 'as' => 'content_categories.mass_destroy']);
-    Route::resource('content_tags', 'Admin\ContentTagsController');
-    Route::post('content_tags_mass_destroy', ['uses' => 'Admin\ContentTagsController@massDestroy', 'as' => 'content_tags.mass_destroy']);
     Route::resource('loguseragents', 'Admin\LoguseragentsController');
     Route::post('loguseragents_mass_destroy', ['uses' => 'Admin\LoguseragentsController@massDestroy', 'as' => 'loguseragents.mass_destroy']);
+    Route::resource('users', 'Admin\UsersController');
+    Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
 
 
 

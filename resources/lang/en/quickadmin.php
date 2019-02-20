@@ -19,7 +19,7 @@ return [
 		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'alias' => 'Alias',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'access' => 'Access',			'completed' => 'Completed',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
 		'responses' => [		'title' => 'Responses',		'fields' => [			'questionnaire' => 'Questionnaire',			'question' => 'Question',			'answer' => 'Answer',			'content' => 'Content',		],	],
-		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'order' => 'Order',		],	],
+		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'label' => 'Label',			'order' => 'Order',		],	],
 		'content' => [		'title' => 'Content',		'fields' => [		],	],
 		'content-categories' => [		'title' => 'Categories',		'fields' => [		],	],
 		'content-tags' => [		'title' => 'Tags',		'fields' => [		],	],

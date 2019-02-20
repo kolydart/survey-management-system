@@ -21,6 +21,10 @@
                             <td field-key='question'>{{ $item->question->title or '' }}</td>
                         </tr>
                         <tr>
+                            <th>@lang('quickadmin.items.fields.label')</th>
+                            <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.items.fields.order')</th>
                             <td field-key='order'>{{ $item->order }}</td>
                         </tr>
@@ -34,3 +38,5 @@
         </div>
     </div>
 @stop
+
+
