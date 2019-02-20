@@ -28,7 +28,7 @@
     {{-- introduction --}}
     <div class="mb-4" style="margin-bottom:40px;">{!! $survey->introduction or '' !!}</div>
     {{-- questions --}}
-    @foreach ($survey->items()->orderBy('order')->get() as $item)
+    @foreach ($survey->items()->where('label','<>','1')->orderBy('order')->get() as $item)
         {{-- question --}}
         <div 
             class="form-group"
