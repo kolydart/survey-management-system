@@ -118,6 +118,7 @@
         <tr>
             <th>@lang('quickadmin.items.fields.survey')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
+                        <th>@lang('quickadmin.items.fields.label')</th>
                         <th>@lang('quickadmin.items.fields.order')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -133,6 +134,7 @@
                 <tr data-entry-id="{{ $item->id }}">
                     <td field-key='survey'>{{ $item->survey->title or '' }}</td>
                                 <td field-key='question'>{{ $item->question->title or '' }}</td>
+                                <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                                 <td field-key='order'>{{ $item->order }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
@@ -178,7 +180,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
@@ -192,3 +194,5 @@
         </div>
     </div>
 @stop
+
+

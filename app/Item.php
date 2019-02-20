@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App
  * @property string $survey
  * @property string $question
+ * @property tinyInteger $label
  * @property string $order
 */
 class Item extends Model
@@ -21,7 +22,7 @@ class Item extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['order', 'survey_id', 'question_id'];
+    protected $fillable = ['label', 'order', 'survey_id', 'question_id'];
     protected $hidden = [];
     
     

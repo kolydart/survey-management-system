@@ -28,6 +28,10 @@
                             <th>@lang('answerlist')</th>
                             <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
                         </tr>
+                        <tr>
+                            <th>@lang('quickadmin.items.fields.label')</th>
+                            <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($item) !!}                        
                     </table>
                 </div>
@@ -84,3 +88,5 @@
         </div>
     </div>
 @stop
+
+

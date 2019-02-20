@@ -164,6 +164,7 @@
                         <th>@lang('quickadmin.items.fields.question')</th>
                         <th>@lang('Answerlist')</th>
                         <th>@lang('Responses')</th>
+                        <th>@lang('quickadmin.items.fields.label')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -181,6 +182,7 @@
                                 <td field-key='question'><a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a></td>
                                 <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
                                 <td field-key='responses'>{{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}</td>
+                                <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('item_delete')
@@ -225,7 +227,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>

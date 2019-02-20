@@ -36,6 +36,19 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('label', trans('quickadmin.items.fields.label').'', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('label', 0) !!}
+                    {!! Form::checkbox('label', 1, old('label', false), []) !!}
+                    <p class="help-block">Category label. Do not show content.</p>
+                    @if($errors->has('label'))
+                        <p class="help-block">
+                            {{ $errors->first('label') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('order', trans('quickadmin.items.fields.order').'', ['class' => 'control-label']) !!}
                     {!! Form::text('order', old('order'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>

@@ -19,7 +19,7 @@ return [
 		'surveys' => [		'title' => 'Surveys',		'fields' => [			'title' => 'Title',			'alias' => 'Alias',			'institution' => 'Institution',			'category' => 'Category',			'group' => 'Group',			'introduction' => 'Introduction',			'notes' => 'Notes',			'access' => 'Access',			'completed' => 'Completed',		],	],
 		'questionnaires' => [		'title' => 'Questionnaires',		'fields' => [			'survey' => 'Survey',			'name' => 'Name',		],	],
 		'responses' => [		'title' => 'Responses',		'fields' => [			'questionnaire' => 'Questionnaire',			'question' => 'Question',			'answer' => 'Answer',			'content' => 'Content',		],	],
-		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'order' => 'Order',		],	],
+		'items' => [		'title' => 'Items',		'fields' => [			'survey' => 'Survey',			'question' => 'Question',			'label' => 'Label',			'order' => 'Order',		],	],
 		'content' => [		'title' => 'Content',		'fields' => [		],	],
 		'content-categories' => [		'title' => 'Categories',		'fields' => [		],	],
 		'content-tags' => [		'title' => 'Tags',		'fields' => [		],	],
@@ -250,5 +250,19 @@ return [
 	'qa_is_created' => 'δημιουργήθηκε',
 	'qa_is_updated' => 'ενημερώθηκε',
 	'qa_is_deleted' => 'διαγράφηκε',
+	'qa_not_approved_p' => 'Ο λογαριασμός σας ακόμα δεν έχει εγκριθεί από τον διαχειριστή. Παρακαλώ, να έχετε υπομονή και δοκιμάστε αργότερα.',
+	'qa_action_model' => 'Μοντέλο Ενέργειας',
+	'qa_action_id' => 'Id Ενέργειας',
+	'qa_time_entries' => 'Εισαγωγές Χρόνου',
+	'qa_due_date' => 'Ημερομηνία που',
+	'qa_assigned_user' => 'Ορισμένος (χρήστης)',
+	'qa_select_dt_placeholder' => 'Παρακαλώ επιλέξτε ένα από τα πεδία Ημερομηνίας/Ώρας',
+	'qa_integer_float_placeholder' => 'Παρακαλώ επιλέξτε ένα από τα πεδία Ακέραιου / Δεκαδικού',
+	'qa_change_notifications_field_1_label' => 'Στείλε email ειδοποίησης στο Χρήστη',
+	'qa_when_crud' => 'Όταν το CRUD',
+	'qa_crud_date_field' => 'Crud πεδίο Ημερομηνίας',
+	'qa_label_field' => 'Πεδίο Ετικέτας',
+	'qa_crud_event_field' => 'Ετικέτα πεδίου γεγονότος ',
+	'qa_fee_percent' => 'Ποσοστό άδειας',
 	'quickadmin_title' => 'survey',
 ];
