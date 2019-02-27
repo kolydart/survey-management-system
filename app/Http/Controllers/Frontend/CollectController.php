@@ -117,6 +117,10 @@ class CollectController extends Controller
     }
 
     public function index(){
+        /** redirect to admin panel if user is logged-in */
+        if (\Auth::check() && \Gate::allows('survey_access')) {
+            return redirect(route('admin.home'));
+        }
         $content = <<<HTML
         <div class="jumbotron bg-white" style="background-color:white;">
             <h1 class="lead text-light display-fix">survey</h1>
