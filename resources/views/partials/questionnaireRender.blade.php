@@ -57,7 +57,7 @@
             {{-- report-or-answer begin--}}
             @if (\Route::currentRouteName() == 'admin.surveys.show')
                 {{-- report --}}
-                @include('partials.chartAnswer')
+                @include('partials.answerChart')
             @else
                 {{-- answer --}}
                 @foreach ($item->question->answerlist->answers as $answer)

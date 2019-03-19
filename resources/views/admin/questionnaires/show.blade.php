@@ -41,7 +41,7 @@
 <div class="tab-content">
 
 <div role="tabpanel" class="tab-pane active" id="render">
-    <br>@include('partials.renderQuestionnaire')
+    <br>@include('partials.questionnaireRender')
 </div>
 
     

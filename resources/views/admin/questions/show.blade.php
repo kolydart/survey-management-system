@@ -26,7 +26,7 @@
                 {{-- report --}}
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
                 <div class="col-md-6">
-                    @include('partials.chartAnswer')
+                    @include('partials.answerChart')
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
