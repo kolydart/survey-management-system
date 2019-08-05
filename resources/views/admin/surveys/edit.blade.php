@@ -14,6 +14,7 @@
 
         <div class="panel-body">
             <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('title', trans('quickadmin.surveys.fields.title').'*', ['class' => 'control-label']) !!}
                     {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
@@ -25,7 +26,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('alias', trans('quickadmin.surveys.fields.alias').'*', ['class' => 'control-label']) !!}
                     {!! Form::text('alias', old('alias'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
@@ -37,7 +38,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('institution_id', trans('quickadmin.surveys.fields.institution').'', ['class' => 'control-label']) !!}
                     {!! Form::select('institution_id', $institutions, old('institution_id'), ['class' => 'form-control select2']) !!}
@@ -49,7 +50,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('category', trans('quickadmin.surveys.fields.category').'', ['class' => 'control-label']) !!}
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-category">
@@ -67,7 +68,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('group', trans('quickadmin.surveys.fields.group').'', ['class' => 'control-label']) !!}
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-group">
@@ -85,7 +86,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-10 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('introduction', trans('quickadmin.surveys.fields.introduction').'', ['class' => 'control-label']) !!}
                     {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control ', 'placeholder' => '']) !!}
@@ -98,7 +99,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('notes', trans('quickadmin.surveys.fields.notes').'', ['class' => 'control-label']) !!}
                     {!! Form::textarea('notes', old('notes'), ['class' => 'form-control ', 'placeholder' => '']) !!}
@@ -111,7 +112,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('access', trans('quickadmin.surveys.fields.access').'*', ['class' => 'control-label']) !!}
                     <p class="help-block"></p>
@@ -141,7 +142,7 @@
                     
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('completed', trans('quickadmin.surveys.fields.completed').'', ['class' => 'control-label']) !!}
                     {!! Form::hidden('completed', 0) !!}
@@ -155,6 +156,7 @@
                 </div>
             </div>
             
+            </div>
         </div>
     </div>
 
