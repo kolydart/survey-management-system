@@ -41,7 +41,7 @@
             >
 
             {{-- label --}}
-            <label class="col-md-6 {{-- control-label --}} gw-label" 
+            <label class="col-xs-12 {{-- control-label --}} gw-label" 
                 for="{{str_plural($item->question->answerlist->type ?? '')}}" 
                 >
                     {{-- text --}}
@@ -53,7 +53,7 @@
             </label>
 
             {{-- answers --}}
-            <div class="col-md-6 gw-answer">
+            <div class="col-xs-12 gw-answer">
             {{-- report-or-answer begin--}}
             @if (\Route::currentRouteName() == 'admin.surveys.show')
                 {{-- report --}}
