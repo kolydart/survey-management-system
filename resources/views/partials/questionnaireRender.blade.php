@@ -12,7 +12,7 @@
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
 <form action="{{route('frontend.store')}}" 
     method="POST"
-    class="form form-horizontal" 
+    class="form form-horizontal gw-form" 
     role="form"
     style="margin-top: 50px; margin-bottom: 30px;"
     id="questionnaire"
@@ -21,12 +21,14 @@
 <input type="hidden" name="survey_id" id="survey_id" class="form-control" value="{{$survey->id}}">
 @endif
 
-<fieldset @if (\Route::getCurrentRoute()->getActionMethod() == 'create') style="font-size: 120%;" @endif>
+<fieldset @if (\Route::getCurrentRoute()->getActionMethod() == 'create') class="gw-fieldset" @endif>
 
     {{-- questionnaire title --}}
     <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
+
     {{-- introduction --}}
     <div class="mb-4" style="margin-bottom:40px;">{!! $survey->introduction or '' !!}</div>
+    
     {{-- questions --}}
     @foreach (
         \Route::currentRouteName()=='frontend.create' ? 
@@ -46,9 +48,10 @@
                     col-xs-12 
                     {{-- control-label --}}
                     gw-label
-                    
+
                     @if ($item->label)
                         bg-primary
+                        gw-item-label
                     @endif
                 " 
                 for="{{str_plural($item->question->answerlist->type ?? '')}}" 
@@ -61,173 +64,181 @@
                     @endif
             </label>
 
+            {{-- hide if is null --}}            
+            @if( $item->question->id != 3392 )
             {{-- answers --}}
-            <div class="col-xs-10 col-xs-offset-1 gw-answer">
-            {{-- report-or-answer begin--}}
-            @if (\Route::currentRouteName() == 'admin.surveys.show')
-                {{-- report --}}
-                @if (\Request::query('rawdata'))
-                    @include('partials.answerData')
+                <div class="col-xs-10 col-xs-offset-1 gw-answers">
+
+                {{-- report-or-answer begin--}}
+                @if (\Route::currentRouteName() == 'admin.surveys.show')
+                    {{-- report --}}
+                    @if (\Request::query('rawdata'))
+                        @include('partials.answerData')
+                    @else
+                        @include('partials.answerChart')
+                    @endif
                 @else
-                    @include('partials.answerChart')
-                @endif
-            @else
-                {{-- answer --}}
-                @foreach ($item->question->answerlist->answers as $answer)
-                    <div class="{{$item->question->answerlist->type}} {{-- form-check --}}" >
-                        {{-- label --}}
-                        <label 
-                            class="form-check-label font-weight-normal"
-                            for="{{$item->question->id}}_{{$answer->id}}_select"
-                            >
-
-                            {{-- hide-if-text begin--}}
-                            @if($item->question->answerlist->type)
-        
-                                {{-- input --}}
-                                <input 
-                                    type="{{$item->question->answerlist->type}}" 
-                                    class="form-check-input" 
-                                    id="{{$item->question->id}}_{{$answer->id}}_select"
-                                    
-                                    {{-- name --}}
-                                    @if($item->question->answerlist->type == 'checkbox')
-                                        name="{{$item->question->id}}_id_{{$answer->id}}"
-                                    @else
-                                        name="{{$item->question->id}}_id"
-                                    @endif
-
-                                    value="{{$answer->id}}" 
-
-                                    {{-- disable input on show/index --}}
-                                    @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
-                                        disabled = "disabled"
-                                    @endif
-                                    
-                                    {{-- is checked --}}
-                                    @if ( 
-                                            /** display filled questionnaire */
-                                            (
-                                                \Route::getCurrentRoute()->getActionMethod() != 'create' 
-                                                && isset($questionnaire)
-                                                && $questionnaire->is_question_answered($item->question_id,$answer->id)
-                                            ) ||
-                                            /** radio input returning from error */
-                                            (
-                                                \Route::getCurrentRoute()->getActionMethod() == 'create' 
-                                                && $item->question->answerlist->type == 'radio'
-                                                && old($item->question->id.'_id') == $answer->id
-                                            ) ||
-                                            /** checkbox input returning from error */
-                                            (
-                                                \Route::getCurrentRoute()->getActionMethod() == 'create' 
-                                                && $item->question->answerlist->type == 'checkbox'
-                                                && old($item->question->id.'_id_'.$answer->id) == $answer->id
-                                            ) 
-                                        )
-
-                                        checked="checked"
-
-                                    @endif
+                    {{-- answer --}}
+                    @foreach ($item->question->answerlist->answers as $answer)
+                        <div class="{{$item->question->answerlist->type}} {{-- form-check --}} gw-answer" >
+                            {{-- label --}}
+                            <label 
+                                class="form-check-label font-weight-normal"
+                                for="{{$item->question->id}}_{{$answer->id}}_select"
                                 >
-                                
-                                {{-- label text --}}
-                                <span 
-                                    id="{{$item->question->id}}_{{$answer->id}}_text"
-                                    class="@if ( isset($questionnaire) && $questionnaire->is_question_answered($item->question_id,$answer->id) ) font-weight-bold @endif "
+
+                                {{-- hide-if-text begin--}}
+                                @if($item->question->answerlist->type)
+            
+                                    {{-- input --}}
+                                    <input 
+                                        type="{{$item->question->answerlist->type}}" 
+                                        class="form-check-input" 
+                                        id="{{$item->question->id}}_{{$answer->id}}_select"
+                                        
+                                        {{-- name --}}
+                                        @if($item->question->answerlist->type == 'checkbox')
+                                            name="{{$item->question->id}}_id_{{$answer->id}}"
+                                        @else
+                                            name="{{$item->question->id}}_id"
+                                        @endif
+
+                                        value="{{$answer->id}}" 
+
+                                        {{-- disable input on show/index --}}
+                                        @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                                            disabled = "disabled"
+                                        @endif
+                                        
+                                        {{-- is checked --}}
+                                        @if ( 
+                                                /** display filled questionnaire */
+                                                (
+                                                    \Route::getCurrentRoute()->getActionMethod() != 'create' 
+                                                    && isset($questionnaire)
+                                                    && $questionnaire->is_question_answered($item->question_id,$answer->id)
+                                                ) ||
+                                                /** radio input returning from error */
+                                                (
+                                                    \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                                    && $item->question->answerlist->type == 'radio'
+                                                    && old($item->question->id.'_id') == $answer->id
+                                                ) ||
+                                                /** checkbox input returning from error */
+                                                (
+                                                    \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                                    && $item->question->answerlist->type == 'checkbox'
+                                                    && old($item->question->id.'_id_'.$answer->id) == $answer->id
+                                                ) 
+                                            )
+
+                                            checked="checked"
+
+                                        @endif
                                     >
-                                    {{ $answer->title }}
-                                </span>
-                                {{-- show / hide textarea on load/reload --}}
-                                <script>
-                                    jQuery(document).ready(function($) {
-                                        function check(){
-                                            /** font-weight-normal|bold */
-                                            if ($('input#{{$item->question->id}}_{{$answer->id}}_select').prop('checked')) {
-                                                $('span#{{$item->question->id}}_{{$answer->id}}_text')
-                                                    .removeClass('font-weight-normal')
-                                                    .addClass('font-weight-bold');
-                                            }else{
-                                                $('span#{{$item->question->id}}_{{$answer->id}}_text')
-                                                    .removeClass('font-weight-bold')
-                                                    .addClass('font-weight-normal');
-                                            }
+                                    
+                                    {{-- label text --}}
+                                    <span 
+                                        id="{{$item->question->id}}_{{$answer->id}}_text"
+                                        class="@if ( isset($questionnaire) && $questionnaire->is_question_answered($item->question_id,$answer->id) ) font-weight-bold @endif "
+                                        >
+                                        {{ $answer->title }}
+                                    </span>
+                                    {{-- show / hide textarea on load/reload --}}
+                                    <script>
+                                        jQuery(document).ready(function($) {
+                                            function check(){
+                                                /** font-weight-normal|bold */
+                                                if ($('input#{{$item->question->id}}_{{$answer->id}}_select').prop('checked')) {
+                                                    $('span#{{$item->question->id}}_{{$answer->id}}_text')
+                                                        .removeClass('font-weight-normal')
+                                                        .addClass('font-weight-bold');
+                                                }else{
+                                                    $('span#{{$item->question->id}}_{{$answer->id}}_text')
+                                                        .removeClass('font-weight-bold')
+                                                        .addClass('font-weight-normal');
+                                                }
 
-                                        };
-                                        /** run on first load */
-                                        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
-                                            check();
-                                        })
+                                            };
+                                            /** run on first load */
+                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
+                                                check();
+                                            })
 
-                                        /** run on every change */
-                                        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
-                                            check();
+                                            /** run on every change */
+                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
+                                                check();
+                                            });
                                         });
-                                    });
-                                </script> 
+                                    </script> 
 
 
-                            {{-- hide-if-text end --}}
-                            @endif
-                            {{-- textarea response content --}}
-                            @if ( 
-                                /** display filled */
-                                \Route::getCurrentRoute()->getActionMethod() == 'show' 
-                                && isset($questionnaire)
-                                && !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
-                                )
-                                <br>
-                                {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
-                            @elseif (
-                                /** create new */
-                                \Route::getCurrentRoute()->getActionMethod() == 'create'
-                                && $answer->open == 1
-                                )
-                                <textarea
-                                    name="{{$item->question->id}}_content_{{$answer->id}}" 
-                                    id="{{$item->question->id}}_content_{{$answer->id}}" 
-                                    class="form-control" 
-                                    rows="5" 
-                                    placeholder=""
-                                    required="required"
-                                    >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
+                                {{-- hide-if-text end --}}
+                                @endif
+                                {{-- textarea response content --}}
+                                @if ( 
+                                    /** display filled */
+                                    \Route::getCurrentRoute()->getActionMethod() == 'show' 
+                                    && isset($questionnaire)
+                                    && !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
+                                    )
+                                    <br>
+                                    {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
+                                @elseif (
+                                    /** create new */
+                                    \Route::getCurrentRoute()->getActionMethod() == 'create'
+                                    && $answer->open == 1
+                                    )
+                                    <textarea
+                                        name="{{$item->question->id}}_content_{{$answer->id}}" 
+                                        id="{{$item->question->id}}_content_{{$answer->id}}" 
+                                        class="form-control" 
+                                        rows="5" 
+                                        placeholder=""
+                                        required="required"
+                                        >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
 
-                                {{-- show / hide textarea on load/reload --}}
-                                <script>
-                                    jQuery(document).ready(function($) {
-                                        /** show/hide if input == $answer->id */
-                                        function check(){
-                                            if ($('input#{{$item->question->id}}_{{$answer->id}}_select:checked').val() == {{$answer->id}}) {
-                                                $('#{{$item->question->id}}_content_{{$answer->id}}')
-                                                    .attr('required', true)
-                                                    .attr('disabled', false)
-                                                    .show(300);
-                                            }else {
-                                                $('#{{$item->question->id}}_content_{{$answer->id}}')
-                                                    .val('')
-                                                    .attr('required', false)
-                                                    .attr('disabled', true)
-                                                    .hide(300);
-                                            }                
-                                        };
-                                        /** run on first load */
-                                        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
-                                            check();
-                                        })
+                                    {{-- show / hide textarea on load/reload --}}
+                                    <script>
+                                        jQuery(document).ready(function($) {
+                                            /** show/hide if input == $answer->id */
+                                            function check(){
+                                                if ($('input#{{$item->question->id}}_{{$answer->id}}_select:checked').val() == {{$answer->id}}) {
+                                                    $('#{{$item->question->id}}_content_{{$answer->id}}')
+                                                        .attr('required', true)
+                                                        .attr('disabled', false)
+                                                        .show(300);
+                                                }else {
+                                                    $('#{{$item->question->id}}_content_{{$answer->id}}')
+                                                        .val('')
+                                                        .attr('required', false)
+                                                        .attr('disabled', true)
+                                                        .hide(300);
+                                                }                
+                                            };
+                                            /** run on first load */
+                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
+                                                check();
+                                            })
 
-                                        /** run on every change */
-                                        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
-                                            check();
+                                            /** run on every change */
+                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
+                                                check();
+                                            });
                                         });
-                                    });
-                                </script> 
-                            @endif
-                        </label>
-                    </div>
-                @endforeach
-            {{-- report-or-answer end--}}
-            @endif
+                                    </script> 
+                                @endif
+                            </label>
+                        </div>
+                    @endforeach
+                {{-- report-or-answer end--}}
+                @endif
+                
+            {{-- answers end --}}
             </div>
+            {{-- end hide if null --}}
+            @endif
+
         </div>
     @endforeach
 </fieldset>

@@ -6,6 +6,15 @@
 	font-weight: normal;
 }
 
+.gw-item-label{
+	margin-top: 30px;
+}
+
 .gw-item{
-	padding-top: 25px;
+	margin-top: 10px;
+}
+
+.gw-fieldset{
+	margin-bottom: 30px;
+	font-size: 120%;
 }
