@@ -34,14 +34,14 @@
             $survey->items()->where('label','<>','1')->orderBy('order')->get() 
             as $item
         )
-        {{-- question --}}
+        {{-- item --}}
         <div 
-            class="form-group"
+            class="form-group gw-item"
             id="q_{{$item->question->id ?? ''}}"
             >
 
             {{-- label --}}
-            <label class="col-md-6 {{-- control-label --}}" 
+            <label class="col-md-6 {{-- control-label --}} gw-label" 
                 for="{{str_plural($item->question->answerlist->type ?? '')}}" 
                 >
                     {{-- text --}}
@@ -53,7 +53,7 @@
             </label>
 
             {{-- answers --}}
-            <div class="col-md-6">
+            <div class="col-md-6 gw-answer">
             {{-- report-or-answer begin--}}
             @if (\Route::currentRouteName() == 'admin.surveys.show')
                 {{-- report --}}
