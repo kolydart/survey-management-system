@@ -53,7 +53,7 @@
             </label>
 
             {{-- answers --}}
-            <div class="col-xs-12 gw-answer">
+            <div class="col-xs-10 col-xs-offset-1 gw-answer">
             {{-- report-or-answer begin--}}
             @if (\Route::currentRouteName() == 'admin.surveys.show')
                 {{-- report --}}
