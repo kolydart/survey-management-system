@@ -41,7 +41,16 @@
             >
 
             {{-- label --}}
-            <label class="col-xs-12 {{-- control-label --}} gw-label" 
+            <label 
+                class="
+                    col-xs-12 
+                    {{-- control-label --}}
+                    gw-label
+                    
+                    @if ($item->label)
+                        bg-primary
+                    @endif
+                " 
                 for="{{str_plural($item->question->answerlist->type ?? '')}}" 
                 >
                     {{-- text --}}
