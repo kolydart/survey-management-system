@@ -58,10 +58,7 @@
                 >
                     {{-- text --}}
                     {!! $item->order !!} {!! $item->question->title ?? '' !!}
-                    {{-- info tooltip for checkbox --}}
-                    @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
-                        <i data-toggle="tooltip" data-placement="top" title="@lang('Μία ή περισσότερες απαντήσεις')" class="fa fa-info-circle text-info"></i>
-                    @endif
+
             </label>
 
             {{-- hide if is null --}}            
@@ -234,8 +231,14 @@
                 {{-- report-or-answer end--}}
                 @endif
                 
+            {{-- info tooltip for checkbox --}}
+            @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
+                <i class="fa fa-info-circle text-muted"></i> <small class="text-muted">@lang('Επιλέξτε όσα ισχύουν')</small>
+            @endif
+
             {{-- answers end --}}
             </div>
+
             {{-- end hide if null --}}
             @endif
 
