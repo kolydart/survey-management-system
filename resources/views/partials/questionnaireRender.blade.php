@@ -42,7 +42,7 @@
 
             {{-- answers --}}
 
-            {{-- hide answers if question is "null" (3392) --}}
+            {{-- if question is "null" (3392), display none --}}
             @if( $item->question->id == 3392 ) {{-- @todo, remove custom id --}}
 
             {{-- if answerlist type is radio|checkbox --}}
@@ -171,14 +171,16 @@
                 <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
                 {{-- input (content) --}}
                 <input 
-                    type="{{$item->question->answerlist->type}}" 
+                    {{-- type="{{$item->question->answerlist->type}}"  --}}
+                    type="text" 
                     name="{{$item->question->id}}_content_129" 
                     id="{{$item->question->id}}_content_129" 
-                    class="col-xs-3 col-xs-offset-1" 
-                    value="{{old($item->question->id.'_content_129')}}"
-                    required="required"
-                    {{-- disable input on show/index --}}
-                    @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                    class="col-xs-3 col-xs-offset-1"
+                    @if (\Route::getCurrentRoute()->getActionMethod() == 'create')
+                        value="{{old($item->question->id.'_content_129')}}"
+                        required="required"
+                    @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
+                        value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
                         disabled = "disabled"
                     @endif
                     >
