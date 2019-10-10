@@ -28,12 +28,17 @@
     {{-- questions as item --}}
     @foreach ( $survey->items()->orderBy('order')->get() as $item)
 
+
         {{-- item --}}
         <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
-
             {{-- label (question) --}}
             <label 
                 class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif "for="{{str_plural($item->question->answerlist->type ?? '')}}">
+
+                {{-- debug --}}
+                {{-- @if ($survey->id == 2023)
+                    q_{{$item->question->id ?? ''}}
+                @endif --}}
 
                 {{-- question text --}}
                 {!! $item->order !!} {!! $item->question->title ?? '' !!}
@@ -118,6 +123,12 @@
                                             id="{{$item->question->id}}_{{$answer->id}}_text"
                                             class="@if ( isset($questionnaire) && $questionnaire->is_question_answered($item->question_id,$answer->id) ) font-weight-bold @endif "
                                             >
+
+                                            {{-- debug --}}
+                                            {{-- @if ($survey->id == 2023)
+                                                {{$item->question->id}}_{{$answer->id}}_select
+                                            @endif --}}
+
                                             {{ $answer->title }}
                                         </span>
                                         
