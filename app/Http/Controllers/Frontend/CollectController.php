@@ -111,7 +111,7 @@ class CollectController extends Controller
             <div class="alert alert-success col-md-8 col-md-offset-2" style="margin-top:30px;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h3 class="text-center">'.__('Thank you!').'</h3>
-                <p class="text-center">'.__('Το ερωτηματολόγιό σας υποβλήθηκε με επιτυχία!').'</p>
+                <p class="text-center">'.__('Το ερωτηματολόγιο υποβλήθηκε με επιτυχία!').'</p>
             </div>'
             ;       
         return view('frontend.index',compact('content'));        
