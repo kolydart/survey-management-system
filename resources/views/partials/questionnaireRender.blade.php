@@ -44,6 +44,26 @@
             {{-- hide answers if question is "null" (3392) --}}
             @if( $item->question->id == 3392 ) {{-- @todo, remove custom id --}}
 
+            {{-- if answerlist->type is text --}}
+            @elseif ($item->question->answerlist->type == '0')
+
+                {{-- hidden value (id) --}}
+                <input type="hidden" class="hidden" id="3429_129_select" name="3429_id_129" value="129" >
+                {{-- input (content) --}}
+                <input 
+                    type="text" 
+                    name="{{$item->question->id}}_content_129" 
+                    id="{{$item->question->id}}_content_129" 
+                    class="form-control" 
+                    value="{{old($item->question->id.'_content_129')}}"
+                    required="required"
+                    {{-- disable input on show/index --}}
+                    @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                        disabled = "disabled"
+                    @endif
+                    >
+
+            {{-- if answerlist type is radio|checkbox --}}
             @else
 
                 <div class="col-xs-10 col-xs-offset-1 gw-answers">
