@@ -3,11 +3,6 @@
     (if Questionnaire@show): $questionnaire 
     --}}
 
-{{-- chart js --}}
-@if (\Route::currentRouteName() == 'admin.surveys.show')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-@endif
-
 
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
 <form action="{{route('frontend.store')}}" 
@@ -200,6 +195,11 @@
         <i class="fa fa-save"></i>  @lang('Send')
     </button>
 </form>
-
 @endif
 
+{{-- chart js --}}
+@if (\Route::currentRouteName() == 'admin.surveys.show')
+    @section('head')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    @endsection
+@endif

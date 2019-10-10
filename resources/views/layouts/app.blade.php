@@ -3,6 +3,7 @@
 
 <head>
     @include('partials.head')
+    @yield('head')
 </head>
 
 
@@ -55,5 +56,7 @@
 {!! Form::close() !!}
 
 @include('partials.javascripts')
+@yield('javascript')
+
 </body>
 </html>
