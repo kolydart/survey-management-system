@@ -79,9 +79,6 @@
                                 for="{{$item->question->id}}_{{$answer->id}}_select"
                                 >
 
-                                {{-- hide-if-text begin--}}
-                                @if($item->question->answerlist->type)
-            
                                     {{-- input --}}
                                     <input 
                                         type="{{$item->question->answerlist->type}}" 
@@ -136,10 +133,6 @@
                                     </span>
                                     
                                     @include('partials.js.boldOnSelect')
-
-
-                                {{-- hide-if-text end --}}
-                                @endif
 
                                 {{-- textarea response content --}}
                                 @if ( 
