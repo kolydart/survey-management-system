@@ -3,7 +3,7 @@
     (if Questionnaire@show): $questionnaire 
     --}}
 
-
+{{-- form tag only on create --}}
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
 <form action="{{route('frontend.store')}}" 
     method="POST"
@@ -16,21 +16,23 @@
 <input type="hidden" name="survey_id" id="survey_id" class="form-control" value="{{$survey->id}}">
 @endif
 
+{{-- fields everywhere --}}
 <fieldset @if (\Route::getCurrentRoute()->getActionMethod() == 'create') class="gw-fieldset" @endif>
 
     {{-- questionnaire title --}}
     <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
 
     {{-- introduction --}}
-    <div class="mb-4" style="margin-bottom:40px;">{!! $survey->introduction or '' !!}</div>
+    <div class="mb-4 gw-introduction">{!! $survey->introduction or '' !!}</div>
     
-    {{-- questions --}}
+    {{-- questions as item --}}
     @foreach (
         \Route::currentRouteName()=='frontend.create' ? 
             $survey->items()->orderBy('order')->get():
             $survey->items()->where('label','<>','1')->orderBy('order')->get() 
             as $item
         )
+
         {{-- item --}}
         <div 
             class="form-group gw-item"
@@ -55,20 +57,18 @@
                     {!! $item->order !!} {!! $item->question->title ?? '' !!}
             </label>
 
-            {{-- hide if is null --}}
+            {{-- hide answers if question is "null" (3392) --}}
             @if( $item->question->id != 3392 ) {{-- @todo, remove custom id --}}
             
             {{-- answers --}}
                 <div class="col-xs-10 col-xs-offset-1 gw-answers">
 
                 {{-- report-or-answer begin--}}
+                {{-- if report, just show chart --}}
                 @if (\Route::currentRouteName() == 'admin.surveys.show')
                     {{-- report --}}
-                    @if (\Request::query('rawdata'))
-                        @include('partials.answerData')
-                    @else
-                        @include('partials.answerChart')
-                    @endif
+                    @if (\Request::query('rawdata')) @include('partials.answerData') @else @include('partials.answerChart') @endif
+
                 @else
                     {{-- answer --}}
                     @foreach ($item->question->answerlist->answers as $answer)
@@ -187,7 +187,8 @@
         </div>
     @endforeach
 </fieldset>
-    
+
+{{-- close form tag (on create) --}}
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
     <button type="submit" 
         class="btn btn-success btn-lg"
