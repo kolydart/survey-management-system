@@ -167,10 +167,11 @@
             @else
 
                 {{-- hidden value (id) --}}
-                <input type="hidden" class="hidden" id="3429_129_select" name="3429_id_129" value="129" >
+                {{-- you may improve this (custom value 129) --}}
+                <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
                 {{-- input (content) --}}
                 <input 
-                    type="text" 
+                    type="{{$item->question->answerlist->type}}" 
                     name="{{$item->question->id}}_content_129" 
                     id="{{$item->question->id}}_content_129" 
                     class="col-xs-3 col-xs-offset-1" 
