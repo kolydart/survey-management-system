@@ -8,3 +8,8 @@
 </div>
 
 @endsection
+
+
+@section('javascript')
+	<script>{{!! $survey->javascript !!}}</script>
+@endsection

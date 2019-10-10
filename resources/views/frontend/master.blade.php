@@ -43,5 +43,6 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    @yield('javascript','')
   </body>
 </html>
