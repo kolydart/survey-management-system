@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $alias
  * @property string $institution
  * @property text $introduction
+ * @property text $javascript
  * @property text $notes
  * @property string $access
  * @property tinyInteger $completed
@@ -31,7 +32,7 @@ class Survey extends Model
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     protected $softCascade = ['questionnaires','items'];
 
-    protected $fillable = ['title', 'alias', 'introduction', 'notes', 'access', 'completed', 'institution_id'];
+    protected $fillable = ['title', 'alias', 'introduction', 'javascript', 'notes', 'access', 'completed', 'institution_id'];
     protected $hidden = [];
     
     

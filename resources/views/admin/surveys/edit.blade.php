@@ -101,6 +101,18 @@
             </div>
             <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('javascript', trans('quickadmin.surveys.fields.javascript').'', ['class' => 'control-label']) !!}
+                    {!! Form::textarea('javascript', old('javascript'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('javascript'))
+                        <p class="help-block">
+                            {{ $errors->first('javascript') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('notes', trans('quickadmin.surveys.fields.notes').'', ['class' => 'control-label']) !!}
                     {!! Form::textarea('notes', old('notes'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <script>CKEDITOR.replace( 'notes' );</script>                    
