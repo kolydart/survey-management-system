@@ -61,8 +61,9 @@
 
             </label>
 
-            {{-- hide if is null --}}            
+            {{-- hide if is null --}}         
             @if( $item->question->id != 3392 )
+            
             {{-- answers --}}
                 <div class="col-xs-10 col-xs-offset-1 gw-answers">
 
@@ -141,33 +142,8 @@
                                         >
                                         {{ $answer->title }}
                                     </span>
-                                    {{-- show / hide textarea on load/reload --}}
-                                    <script>
-                                        jQuery(document).ready(function($) {
-                                            function check(){
-                                                /** font-weight-normal|bold */
-                                                if ($('input#{{$item->question->id}}_{{$answer->id}}_select').prop('checked')) {
-                                                    $('span#{{$item->question->id}}_{{$answer->id}}_text')
-                                                        .removeClass('font-weight-normal')
-                                                        .addClass('font-weight-bold');
-                                                }else{
-                                                    $('span#{{$item->question->id}}_{{$answer->id}}_text')
-                                                        .removeClass('font-weight-bold')
-                                                        .addClass('font-weight-normal');
-                                                }
-
-                                            };
-                                            /** run on first load */
-                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
-                                                check();
-                                            })
-
-                                            /** run on every change */
-                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
-                                                check();
-                                            });
-                                        });
-                                    </script> 
+                                    
+                                    @include('partials.js.boldOnSelect')
 
 
                                 {{-- hide-if-text end --}}
@@ -195,35 +171,8 @@
                                         required="required"
                                         >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
 
-                                    {{-- show / hide textarea on load/reload --}}
-                                    <script>
-                                        jQuery(document).ready(function($) {
-                                            /** show/hide if input == $answer->id */
-                                            function check(){
-                                                if ($('input#{{$item->question->id}}_{{$answer->id}}_select:checked').val() == {{$answer->id}}) {
-                                                    $('#{{$item->question->id}}_content_{{$answer->id}}')
-                                                        .attr('required', true)
-                                                        .attr('disabled', false)
-                                                        .show(300);
-                                                }else {
-                                                    $('#{{$item->question->id}}_content_{{$answer->id}}')
-                                                        .val('')
-                                                        .attr('required', false)
-                                                        .attr('disabled', true)
-                                                        .hide(300);
-                                                }                
-                                            };
-                                            /** run on first load */
-                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
-                                                check();
-                                            })
-
-                                            /** run on every change */
-                                            $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
-                                                check();
-                                            });
-                                        });
-                                    </script> 
+                                    @include('partials.js.toggleTextarea')
+                                
                                 @endif
                             </label>
                         </div>
