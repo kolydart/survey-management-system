@@ -34,10 +34,7 @@
         )
 
         {{-- item --}}
-        <div 
-            class="form-group gw-item"
-            id="q_{{$item->question->id ?? ''}}"
-            >
+        <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
 
             {{-- label --}}
             <label 
@@ -57,11 +54,12 @@
                     {!! $item->order !!} {!! $item->question->title ?? '' !!}
             </label>
 
+            {{-- answers --}}
+
             {{-- hide answers if question is "null" (3392) --}}
             @if( $item->question->id != 3392 ) {{-- @todo, remove custom id --}}
-            
-            {{-- answers --}}
-                <div class="col-xs-10 col-xs-offset-1 gw-answers">
+
+            <div class="col-xs-10 col-xs-offset-1 gw-answers">
 
                 {{-- report-or-answer begin--}}
                 {{-- if report, just show chart --}}
@@ -166,18 +164,19 @@
                 {{-- report-or-answer end--}}
                 @endif
                 
-            {{-- info tooltip for checkbox --}}
-            @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
-                <i class="fa fa-info-circle text-muted"></i> <small class="text-muted">@lang('Επιλέξτε όσα ισχύουν')</small>
-            @endif
+                {{-- info tooltip for checkbox --}}
+                @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
+                    <i class="fa fa-info-circle text-muted"></i> <small class="text-muted">@lang('Επιλέξτε όσα ισχύουν')</small>
+                @endif
 
-            {{-- answers end --}}
             </div>
 
             {{-- end hide if null --}}
             @endif
-
+            
+            {{-- answers end --}}
         </div>
+
     @endforeach
 </fieldset>
 
