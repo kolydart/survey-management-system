@@ -58,11 +58,10 @@
                 >
                     {{-- text --}}
                     {!! $item->order !!} {!! $item->question->title ?? '' !!}
-
             </label>
 
-            {{-- hide if is null --}}         
-            @if( $item->question->id != 3392 )
+            {{-- hide if is null --}}
+            @if( $item->question->id != 3392 ) {{-- @todo, remove custom id --}}
             
             {{-- answers --}}
                 <div class="col-xs-10 col-xs-offset-1 gw-answers">
@@ -129,9 +128,7 @@
                                                     && old($item->question->id.'_id_'.$answer->id) == $answer->id
                                                 ) 
                                             )
-
                                             checked="checked"
-
                                         @endif
                                     >
                                     
@@ -148,6 +145,7 @@
 
                                 {{-- hide-if-text end --}}
                                 @endif
+
                                 {{-- textarea response content --}}
                                 @if ( 
                                     /** display filled */
