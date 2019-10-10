@@ -182,6 +182,10 @@
                     @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
                         value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
                         disabled = "disabled"
+                    @elseif (\Route::currentRouteName() == 'admin.surveys.show')
+                        value="{{ App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
+                                    ->where('question_id',$item->question_id)->pluck('content') }}"
+                        disabled = "disabled"
                     @endif
                     >
 
