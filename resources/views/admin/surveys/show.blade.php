@@ -41,6 +41,10 @@
                             <td field-key='introduction'>{!! $survey->introduction !!}</td>
                         </tr>
                         <tr>
+                            <th>@lang('quickadmin.surveys.fields.javascript')</th>
+                            <td field-key='javascript'>{!! $survey->javascript !!}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.surveys.fields.notes')</th>
                             <td field-key='notes'>{!! $survey->notes !!}</td>
                         </tr>

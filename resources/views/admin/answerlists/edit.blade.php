@@ -46,8 +46,56 @@
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', '0', false, ['required' => '']) !!}
-                            text only
+                            {!! Form::radio('type', 'text', false, ['required' => '']) !!}
+                            text
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'number', false, ['required' => '']) !!}
+                            number
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'range', false, ['required' => '']) !!}
+                            range
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'color', false, ['required' => '']) !!}
+                            color
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'date', false, ['required' => '']) !!}
+                            date
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'time', false, ['required' => '']) !!}
+                            time
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'datetime', false, ['required' => '']) !!}
+                            datetime
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'email', false, ['required' => '']) !!}
+                            email
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'url', false, ['required' => '']) !!}
+                            url
                         </label>
                     </div>
                     
