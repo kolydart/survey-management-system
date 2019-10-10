@@ -31,22 +31,12 @@
         {{-- item --}}
         <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
 
-            {{-- label --}}
-            <label 
-                class="
-                    col-xs-12 
-                    {{-- control-label --}}
-                    gw-label
+            {{-- label (question) --}}
+            <label class="col-xs-12 {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif "for="{{str_plural($item->question->answerlist->type ?? '')}}">
 
-                    @if ($item->label)
-                        bg-primary
-                        gw-item-label
-                    @endif
-                " 
-                for="{{str_plural($item->question->answerlist->type ?? '')}}" 
-                >
-                    {{-- text --}}
-                    {!! $item->order !!} {!! $item->question->title ?? '' !!}
+                {{-- question text --}}
+                {!! $item->order !!} {!! $item->question->title ?? '' !!}
+
             </label>
 
             {{-- answers --}}
