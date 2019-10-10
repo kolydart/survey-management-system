@@ -32,7 +32,8 @@
         <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
 
             {{-- label (question) --}}
-            <label class="col-xs-12 {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif "for="{{str_plural($item->question->answerlist->type ?? '')}}">
+            <label 
+                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif "for="{{str_plural($item->question->answerlist->type ?? '')}}">
 
                 {{-- question text --}}
                 {!! $item->order !!} {!! $item->question->title ?? '' !!}
@@ -44,29 +45,10 @@
             {{-- hide answers if question is "null" (3392) --}}
             @if( $item->question->id == 3392 ) {{-- @todo, remove custom id --}}
 
-            {{-- if answerlist->type is text --}}
-            @elseif ($item->question->answerlist->type == '0')
-
-                {{-- hidden value (id) --}}
-                <input type="hidden" class="hidden" id="3429_129_select" name="3429_id_129" value="129" >
-                {{-- input (content) --}}
-                <input 
-                    type="text" 
-                    name="{{$item->question->id}}_content_129" 
-                    id="{{$item->question->id}}_content_129" 
-                    class="form-control" 
-                    value="{{old($item->question->id.'_content_129')}}"
-                    required="required"
-                    {{-- disable input on show/index --}}
-                    @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
-                        disabled = "disabled"
-                    @endif
-                    >
-
             {{-- if answerlist type is radio|checkbox --}}
-            @else
+            @elseif ($item->question->answerlist->type == 'radio' || $item->question->answerlist->type == 'checkbox')
 
-                <div class="col-xs-10 col-xs-offset-1 gw-answers">
+                <div class="gw-answers @if (\Route::currentRouteName() == 'admin.surveys.show') col-md-6 @else col-xs-10 col-xs-offset-1 @endif ">
 
                     {{-- report-or-answer begin--}}
                     {{-- if report, just show chart --}}
@@ -170,6 +152,7 @@
                                 </label>
                             </div>
                         @endforeach
+
                     {{-- report-or-answer end--}}
                     @endif
                     
@@ -179,6 +162,25 @@
                     @endif
 
                 </div>
+
+            {{-- if answerlist->type is anything else --}}
+            @else
+
+                {{-- hidden value (id) --}}
+                <input type="hidden" class="hidden" id="3429_129_select" name="3429_id_129" value="129" >
+                {{-- input (content) --}}
+                <input 
+                    type="text" 
+                    name="{{$item->question->id}}_content_129" 
+                    id="{{$item->question->id}}_content_129" 
+                    class="col-xs-3 col-xs-offset-1" 
+                    value="{{old($item->question->id.'_content_129')}}"
+                    required="required"
+                    {{-- disable input on show/index --}}
+                    @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                        disabled = "disabled"
+                    @endif
+                    >
 
             {{-- end hide if null --}}
             @endif
