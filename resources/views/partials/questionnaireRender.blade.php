@@ -131,6 +131,7 @@
                                         </span>
                                         
                                         @include('partials.js.boldOnSelect')
+                                </label>
 
                                     {{-- textarea response content --}}
                                     @if ( 
@@ -158,7 +159,6 @@
                                         @include('partials.js.toggleTextarea')
                                     
                                     @endif
-                                </label>
                             </div>
                         @endforeach
 
