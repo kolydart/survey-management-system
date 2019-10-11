@@ -211,9 +211,9 @@
 {{-- close form tag (on create) --}}
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
     <button type="submit" 
-        {{-- class="btn btn-success btn-lg" --}}
+        class="btn btn-success btn-lg"
         >
-        {{-- <i class="fa fa-save"></i> --}}  @lang('Send')
+        <i class="fa fa-save"></i>  @lang('Send')
     </button>
 </form>
 @endif
