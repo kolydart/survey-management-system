@@ -34,8 +34,8 @@
                 class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif " for="{{str_plural($item->question->answerlist->type ?? '')}}">
 
                 {{-- debug --}}
-                {{-- @if ($survey->id == 2023)
-                    q_{{$item->question->id ?? ''}}
+                {{-- @if ($survey->id == 2023 and Auth::check() )
+                    i_{{$item->id ?? ''}} (q_{{$item->question->id ?? ''}})
                 @endif --}}
 
                 {{-- question text --}}
@@ -123,7 +123,7 @@
                                             >
 
                                             {{-- debug --}}
-                                            {{-- @if ($survey->id == 2023)
+                                            {{-- @if ($survey->id == 2023 and Auth::check())
                                                 {{$item->question->id}}_{{$answer->id}}_select
                                             @endif --}}
 
