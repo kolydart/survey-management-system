@@ -211,9 +211,9 @@
 {{-- close form tag (on create) --}}
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
     <button type="submit" 
-        class="btn btn-success btn-lg"
+        {{-- class="btn btn-success btn-lg" --}}
         >
-        <i class="fa fa-save"></i>  @lang('Send')
+        {{-- <i class="fa fa-save"></i> --}}  @lang('Send')
     </button>
 </form>
 @endif
@@ -221,6 +221,6 @@
 {{-- chart js --}}
 @if (\Route::currentRouteName() == 'admin.surveys.show')
     @section('head')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="/js/chart.2.5.0.min.js"></script>
     @endsection
 @endif
