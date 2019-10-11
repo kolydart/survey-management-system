@@ -17,12 +17,12 @@
             }                
         };
         /** run on first load */
-        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
+        $('#i_{{$item->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
             check();
         })
 
         /** run on every change */
-        $('#q_{{$item->question->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
+        $('#i_{{$item->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
             check();
         });
     });

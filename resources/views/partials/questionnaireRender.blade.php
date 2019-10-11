@@ -27,9 +27,8 @@
     {{-- questions as item --}}
     @foreach ( $survey->items()->orderBy('order')->get() as $item)
 
-
         {{-- item --}}
-        <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
+        <div class="form-group gw-item q_{{$item->question->id ?? ''}}" id="i_{{$item->id ?? ''}}">
             {{-- label (question) --}}
             <label 
                 class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif " for="{{str_plural($item->question->answerlist->type ?? '')}}">
