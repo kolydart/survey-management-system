@@ -8,7 +8,6 @@
 <form action="{{route('frontend.store')}}" 
     method="POST"
     class="form form-horizontal gw-form" 
-    role="form"
     style="margin-top: 50px; margin-bottom: 30px;"
     id="questionnaire"
     >
@@ -33,7 +32,7 @@
         <div class="form-group gw-item" id="q_{{$item->question->id ?? ''}}">
             {{-- label (question) --}}
             <label 
-                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif "for="{{str_plural($item->question->answerlist->type ?? '')}}">
+                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif " for="{{str_plural($item->question->answerlist->type ?? '')}}">
 
                 {{-- debug --}}
                 {{-- @if ($survey->id == 2023)
