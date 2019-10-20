@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Questionnaire;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreQuestionnairesRequest;
 use App\Http\Requests\Admin\UpdateQuestionnairesRequest;
+use App\Questionnaire;
+use App\User;
+use gateweb\common\Mailer;
+use gateweb\common\Presenter;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionnairesController extends Controller
 {
@@ -64,7 +67,13 @@ class QuestionnairesController extends Controller
         }
         $questionnaire = Questionnaire::create($request->all());
 
-
+        $mailer = new Mailer();
+        $mailer->set_subject("New questionnaire for survey $survey->id");
+        $mailer->set_body("$questionnaire->survey->title:\n$questionnaire->id\n$questionnaire->created_at");
+        $mailer->set_to(User::first()->email, User::first()->name);
+        if (!$mailer->Send()){
+           Presenter::mail("Error in mailer. kBSaSOfrFchbehAa.".$mailer->get_error());
+        }
 
         return redirect()->route('admin.questionnaires.index');
     }
