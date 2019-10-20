@@ -49,6 +49,10 @@
                             <td field-key='notes'>{!! $survey->notes !!}</td>
                         </tr>
                         <tr>
+                            <th>@lang('quickadmin.surveys.fields.inform')</th>
+                            <td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
+                        <tr>
                             <th>@lang('quickadmin.surveys.fields.access')</th>
                             <td field-key='access'>{{ $survey->access }}</td>
                         </tr>
