@@ -7,8 +7,10 @@ use App\Http\Requests\StoreQuestionnaire;
 use App\Questionnaire;
 use App\Response;
 use App\Survey;
+use App\User;
 use Illuminate\Http\Request;
 use gateweb\common\Cipher;
+use gateweb\common\Mailer;
 use gateweb\common\Presenter;
 use gateweb\common\Router;
 use gateweb\common\database\LogUserAgent;
@@ -107,6 +109,18 @@ class CollectController extends Controller
         
         (new LogUserAgent())->snapshot(['item_id'=>$questionnaire->id],false);
 
+        /** send email if field "informed" is checked */
+        if ($questionnaire->survey->inform) {
+            $mailer = new Mailer();
+            $mailer->set_subject("New questionnaire for survey $questionnaire->survey->id");
+            $mailer->set_body("$questionnaire->survey->title:\n$questionnaire->id\n$questionnaire->created_at");
+            $mailer->set_to(User::first()->email, User::first()->name);
+            if (!$mailer->Send()){
+               Presenter::mail("Error in mailer. kBSaSOfrFchbehAa.".$mailer->get_error());
+            }
+        }
+
+        /** Thank you message */
         $content = '
             <div class="alert alert-success col-md-8 col-md-offset-2" style="margin-top:30px;">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
