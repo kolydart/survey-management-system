@@ -135,7 +135,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('access', trans('quickadmin.surveys.fields.access').'*', ['class' => 'control-label']) !!}
                     <p class="help-block"></p>
