@@ -120,6 +120,19 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('inform', trans('quickadmin.surveys.fields.inform').'', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('inform', 0) !!}
+                    {!! Form::checkbox('inform', 1, old('inform', false), []) !!}
+                    <p class="help-block">send email on new questionnaire</p>
+                    @if($errors->has('inform'))
+                        <p class="help-block">
+                            {{ $errors->first('inform') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('access', trans('quickadmin.surveys.fields.access').'*', ['class' => 'control-label']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('access'))

@@ -38,6 +38,7 @@
                         <th>@lang('quickadmin.surveys.fields.institution')</th>
                         <th>@lang('quickadmin.surveys.fields.category')</th>
                         <th>@lang('quickadmin.surveys.fields.group')</th>
+                        <th>@lang('quickadmin.surveys.fields.inform')</th>
                         <th>@lang('quickadmin.surveys.fields.access')</th>
                         <th>@lang('quickadmin.surveys.fields.completed')</th>
                         @if( request('show_deleted') == 1 )
@@ -69,6 +70,7 @@
                                         <span class="label label-info label-many">{{ $singleGroup->title }}</span>
                                     @endforeach
                                 </td>
+                                <td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
                                 <td field-key='access'>{{ $survey->access }}</td>
                                 <td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
@@ -115,7 +117,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="15">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="16">@lang('quickadmin.qa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>
