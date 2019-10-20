@@ -26,23 +26,17 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($items) > 0 ? 'datatable' : '' }} @can('item_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('item_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('item_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('id')</th>
-                        <th>@lang('quickadmin.items.fields.order')</th>
                         <th>@lang('quickadmin.items.fields.survey')</th>
-                        <th>@lang('s_id')</th>
                         <th>@lang('quickadmin.items.fields.question')</th>
-                        <th>@lang('q_id')</th>
-                        <th>@lang('answerlist')</th>
-                        <th>@lang('a_id')</th>
-                        <th>@lang('Responses')</th>
                         <th>@lang('quickadmin.items.fields.label')</th>
+                        <th>@lang('quickadmin.items.fields.order')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -50,73 +44,6 @@
                         @endif
                     </tr>
                 </thead>
-                
-                <tbody>
-                    @if (count($items) > 0)
-                        @foreach ($items as $item)
-                            <tr data-entry-id="{{ $item->id }}">
-                                @can('item_delete')
-                                    @if ( request('show_deleted') != 1 )<td></td>@endif
-                                @endcan
-
-                                <td field-key='id'>{{ $item->id }}</td>
-                                <td field-key='order'>{{ $item->order }}</td>
-                                <td field-key='survey'>{{ $item->survey->title or '' }}</td>
-                                <td field-key='survey_id'>{{$item->survey->id}}</td>
-                                <td field-key='question'>{{ $item->question->title or '' }}</td>
-                                <td field-key='question_id'>{{$item->question->id ?? '' }}</td>
-                                <td field-key='answerlist'>{{ $item->question->answerlist->title ?? '' }}</td>
-                                <td field-key='answerlist_id'>{{$item->question->answerlist->id ?? '' }}</td>
-                                <td field-key='responses_count'>{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count()}}</td>
-                                <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
-                                @if( request('show_deleted') == 1 )
-                                <td>
-                                    @can('item_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'POST',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.items.restore', $item->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                    {!! Form::close() !!}
-                                @endcan
-                                    @can('item_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.items.perma_del', $item->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                @endcan
-                                </td>
-                                @else
-                                <td>
-                                    @can('item_view')
-                                    <a href="{{ route('admin.items.show',[$item->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('item_edit')
-                                    <a href="{{ route('admin.items.edit',[$item->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('item_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.items.destroy', $item->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
-                        </tr>
-                    @endif
-                </tbody>
             </table>
         </div>
     </div>
@@ -127,6 +54,20 @@
         @can('item_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.items.mass_destroy') }}'; @endif
         @endcan
-
+        $(document).ready(function () {
+            window.dtDefaultOptions.ajax = '{!! route('admin.items.index') !!}?show_deleted={{ request('show_deleted') }}';
+            window.dtDefaultOptions.columns = [@can('item_delete')
+                @if ( request('show_deleted') != 1 )
+                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                @endif
+                @endcan{data: 'survey.title', name: 'survey.title'},
+                {data: 'question.title', name: 'question.title'},
+                {data: 'label', name: 'label'},
+                {data: 'order', name: 'order'},
+                
+                {data: 'actions', name: 'actions', searchable: false, sortable: false}
+            ];
+            processAjaxTables();
+        });
     </script>
 @endsection
