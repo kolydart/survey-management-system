@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreItemsRequest;
 use App\Http\Requests\Admin\UpdateItemsRequest;
+use Yajra\DataTables\DataTables;
 
 class ItemsController extends Controller
 {
@@ -23,16 +24,59 @@ class ItemsController extends Controller
         }
 
 
-        if (request('show_deleted') == 1) {
-            if (! Gate::allows('item_delete')) {
-                return abort(401);
+        
+        if (request()->ajax()) {
+            $query = Item::query();
+            $query->with("survey");
+            $query->with("question");
+            $template = 'actionsTemplate';
+            if(request('show_deleted') == 1) {
+                
+        if (! Gate::allows('item_delete')) {
+            return abort(401);
+        }
+                $query->onlyTrashed();
+                $template = 'restoreTemplate';
             }
-            $items = Item::onlyTrashed()->get();
-        } else {
-            $items = Item::all();
+            $query->select([
+                'items.id',
+                'items.survey_id',
+                'items.question_id',
+                'items.label',
+                'items.order',
+            ]);
+            $table = Datatables::of($query);
+
+            $table->setRowAttr([
+                'data-entry-id' => '{{$id}}',
+            ]);
+            $table->addColumn('massDelete', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+            $table->editColumn('actions', function ($row) use ($template) {
+                $gateKey  = 'item_';
+                $routeKey = 'admin.items';
+
+                return view($template, compact('row', 'gateKey', 'routeKey'));
+            });
+            $table->editColumn('survey.title', function ($row) {
+                return $row->survey ? $row->survey->title : '';
+            });
+            $table->editColumn('question.title', function ($row) {
+                return $row->question ? $row->question->title : '';
+            });
+            $table->editColumn('label', function ($row) {
+                return \Form::checkbox("label", 1, $row->label == 1, ["disabled"]);
+            });
+            $table->editColumn('order', function ($row) {
+                return $row->order ? $row->order : '';
+            });
+
+            $table->rawColumns(['actions','massDelete','label']);
+
+            return $table->make(true);
         }
 
-        return view('admin.items.index', compact('items'));
+        return view('admin.items.index');
     }
 
     /**

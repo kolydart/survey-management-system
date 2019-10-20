@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreQuestionnairesRequest;
 use App\Http\Requests\Admin\UpdateQuestionnairesRequest;
+use Yajra\DataTables\DataTables;
 
 class QuestionnairesController extends Controller
 {
@@ -23,16 +24,50 @@ class QuestionnairesController extends Controller
         }
 
 
-        if (request('show_deleted') == 1) {
-            if (! Gate::allows('questionnaire_delete')) {
-                return abort(401);
+        
+        if (request()->ajax()) {
+            $query = Questionnaire::query();
+            $query->with("survey");
+            $template = 'actionsTemplate';
+            if(request('show_deleted') == 1) {
+                
+        if (! Gate::allows('questionnaire_delete')) {
+            return abort(401);
+        }
+                $query->onlyTrashed();
+                $template = 'restoreTemplate';
             }
-            $questionnaires = Questionnaire::onlyTrashed()->get();
-        } else {
-            $questionnaires = Questionnaire::all();
+            $query->select([
+                'questionnaires.id',
+                'questionnaires.survey_id',
+                'questionnaires.name',
+            ]);
+            $table = Datatables::of($query);
+
+            $table->setRowAttr([
+                'data-entry-id' => '{{$id}}',
+            ]);
+            $table->addColumn('massDelete', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+            $table->editColumn('actions', function ($row) use ($template) {
+                $gateKey  = 'questionnaire_';
+                $routeKey = 'admin.questionnaires';
+
+                return view($template, compact('row', 'gateKey', 'routeKey'));
+            });
+            $table->editColumn('survey.title', function ($row) {
+                return $row->survey ? $row->survey->title : '';
+            });
+            $table->editColumn('name', function ($row) {
+                return $row->name ? $row->name : '';
+            });
+
+            $table->rawColumns(['actions','massDelete']);
+
+            return $table->make(true);
         }
 
-        return view('admin.questionnaires.index', compact('questionnaires'));
+        return view('admin.questionnaires.index');
     }
 
     /**

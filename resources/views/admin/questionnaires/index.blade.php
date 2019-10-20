@@ -26,7 +26,7 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($questionnaires) > 0 ? 'datatable' : '' }} @can('questionnaire_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('questionnaire_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('questionnaire_delete')
@@ -42,65 +42,6 @@
                         @endif
                     </tr>
                 </thead>
-                
-                <tbody>
-                    @if (count($questionnaires) > 0)
-                        @foreach ($questionnaires as $questionnaire)
-                            <tr data-entry-id="{{ $questionnaire->id }}">
-                                @can('questionnaire_delete')
-                                    @if ( request('show_deleted') != 1 )<td></td>@endif
-                                @endcan
-
-                                <td field-key='survey'>{{ $questionnaire->survey->title or '' }}</td>
-                                <td field-key='name'>{{ $questionnaire->name }}</td>
-                                @if( request('show_deleted') == 1 )
-                                <td>
-                                    @can('questionnaire_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'POST',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.questionnaires.restore', $questionnaire->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                    {!! Form::close() !!}
-                                @endcan
-                                    @can('questionnaire_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.questionnaires.perma_del', $questionnaire->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                @endcan
-                                </td>
-                                @else
-                                <td>
-                                    @can('questionnaire_view')
-                                    <a href="{{ route('admin.questionnaires.show',[$questionnaire->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('questionnaire_edit')
-                                    <a href="{{ route('admin.questionnaires.edit',[$questionnaire->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('questionnaire_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>
-                                @endif
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
-                        </tr>
-                    @endif
-                </tbody>
             </table>
         </div>
     </div>
@@ -111,6 +52,18 @@
         @can('questionnaire_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.questionnaires.mass_destroy') }}'; @endif
         @endcan
-
+        $(document).ready(function () {
+            window.dtDefaultOptions.ajax = '{!! route('admin.questionnaires.index') !!}?show_deleted={{ request('show_deleted') }}';
+            window.dtDefaultOptions.columns = [@can('questionnaire_delete')
+                @if ( request('show_deleted') != 1 )
+                    {data: 'massDelete', name: 'id', searchable: false, sortable: false},
+                @endif
+                @endcan{data: 'survey.title', name: 'survey.title'},
+                {data: 'name', name: 'name'},
+                
+                {data: 'actions', name: 'actions', searchable: false, sortable: false}
+            ];
+            processAjaxTables();
+        });
     </script>
 @endsection
