@@ -27,9 +27,9 @@ class QuestionnairesController extends Controller
             if (! Gate::allows('questionnaire_delete')) {
                 return abort(401);
             }
-            $questionnaires = Questionnaire::onlyTrashed()->get();
+            $questionnaires = Questionnaire::onlyTrashed()->with('survey')->get();
         } else {
-            $questionnaires = Questionnaire::latest()->get();
+            $questionnaires = Questionnaire::latest()->with('survey')->get();
         }
 
         return view('admin.questionnaires.index', compact('questionnaires'));
