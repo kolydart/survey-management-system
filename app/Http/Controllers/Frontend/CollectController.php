@@ -112,8 +112,8 @@ class CollectController extends Controller
         /** send email if field "informed" is checked */
         if ($questionnaire->survey->inform) {
             $mailer = new Mailer();
-            $mailer->set_subject("New questionnaire for survey $questionnaire->survey->id");
-            $mailer->set_body("$questionnaire->survey->title:\n$questionnaire->id\n$questionnaire->created_at");
+            $mailer->set_subject("New questionnaire for survey ".$questionnaire->survey->id);
+            $mailer->set_body($questionnaire->survey->title.":\n$questionnaire->id\n$questionnaire->created_at");
             $mailer->set_to(User::first()->email, User::first()->name);
             if (!$mailer->Send()){
                Presenter::mail("Error in mailer. kBSaSOfrFchbehAa.".$mailer->get_error());
