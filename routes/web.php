@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('questionnaires_restore/{id}', ['uses' => 'Admin\QuestionnairesController@restore', 'as' => 'questionnaires.restore']);
     Route::delete('questionnaires_perma_del/{id}', ['uses' => 'Admin\QuestionnairesController@perma_del', 'as' => 'questionnaires.perma_del']);
     Route::resource('responses', 'Admin\ResponsesController');
+    Route::get('responses/index/content', 'Admin\ResponsesController@index_content')->name('responses.index.content');
     Route::post('responses_mass_destroy', ['uses' => 'Admin\ResponsesController@massDestroy', 'as' => 'responses.mass_destroy']);
     Route::post('responses_restore/{id}', ['uses' => 'Admin\ResponsesController@restore', 'as' => 'responses.restore']);
     Route::delete('responses_perma_del/{id}', ['uses' => 'Admin\ResponsesController@perma_del', 'as' => 'responses.perma_del']);
