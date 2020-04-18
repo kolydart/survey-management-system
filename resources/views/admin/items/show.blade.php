@@ -60,6 +60,7 @@
                                 <th>@lang('Questionnaire')</th>
                                 <th>@lang('Question')</th>
                                 <th>@lang('Answer')</th>
+                                <th>@lang('Content')</th>
                             </tr>
                         </thead>
 
@@ -71,6 +72,7 @@
                                         <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }} {{$response->questionnaire->name or ''}}</a></td>
                                         <td field-key='question'><a href="{{route('admin.questions.show',$response->question_id)}}">{{ $response->question->title or '' }}</a></td>
                                         <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->title or '' }}</a></td>
+                                        <td field-key='content'>{{ $response->content or '' }}</td>
                                     </tr>
                                 @endforeach
                             @else
