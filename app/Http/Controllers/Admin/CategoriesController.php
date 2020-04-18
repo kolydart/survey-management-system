@@ -27,9 +27,9 @@ class CategoriesController extends Controller
             if (! Gate::allows('category_delete')) {
                 return abort(401);
             }
-            $categories = Category::onlyTrashed()->get();
+            $categories = Category::onlyTrashed()->orderBy('title')->withCount('surveys')->get();
         } else {
-            $categories = Category::orderBy('title')->get();
+            $categories = Category::orderBy('title')->withCount('surveys')->get();
         }
 
         return view('admin.categories.index', compact('categories'));

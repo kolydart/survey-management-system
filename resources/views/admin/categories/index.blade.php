@@ -34,6 +34,7 @@
                         @endcan
 
                         <th>@lang('quickadmin.categories.fields.title')</th>
+                        <th>count</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -51,6 +52,7 @@
                                 @endcan
 
                                 <td field-key='title'>{{ $category->title }}</td>
+                                <td field-key='surveys_count'>{{ $category->surveys_count }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('category_delete')
