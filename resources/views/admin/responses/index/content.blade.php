@@ -25,6 +25,7 @@
                         <th>@lang('Survey')</th>
                         <th>@lang('quickadmin.responses.fields.question')</th>
                         <th>@lang('quickadmin.responses.fields.answer')</th>
+                        <th>@lang('created_at')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -42,6 +43,7 @@
                                 <td field-key='question'>{{ $response->questionnaire->survey->title or '' }}</td>
                                 <td field-key='question'>{{ $response->question->title or '' }}</td>
                                 <td field-key='answer'>{{ $response->answer->title or '' }}</td>
+                                <td field-key='created_at'>{{ $response->created_at or '' }}</td>
                                 <td>
                                     @can('response_view')
                                     <a href="{{ route('admin.responses.show',[$response->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
