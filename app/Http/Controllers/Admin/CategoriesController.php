@@ -29,7 +29,7 @@ class CategoriesController extends Controller
             }
             $categories = Category::onlyTrashed()->get();
         } else {
-            $categories = Category::all();
+            $categories = Category::orderBy('title')->get();
         }
 
         return view('admin.categories.index', compact('categories'));
