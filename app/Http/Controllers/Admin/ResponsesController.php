@@ -247,4 +247,23 @@ class ResponsesController extends Controller
 
         return redirect()->route('admin.responses.index');
     }
+
+    public function index_content(){
+        if (! Gate::allows('response_access')) {
+            return abort(401);
+        }
+
+
+        if (request('show_deleted') == 1) {
+            if (! Gate::allows('response_delete')) {
+                return abort(401);
+            }
+            $responses = Response::onlyTrashed()->whereRaw('content <> ""')->orderBy('created_at','DESC')->get();
+        } else {
+            $responses = Response::whereRaw('content <> ""')->orderBy('created_at','DESC')->get();
+        }
+
+        return view('admin.responses.index.content', compact('responses'));
+    }
+    
 }
