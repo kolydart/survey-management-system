@@ -58,9 +58,9 @@
                             <tr>
                                 <th>@lang('id')</th>
                                 <th>@lang('Questionnaire')</th>
-                                <th>@lang('Question')</th>
                                 <th>@lang('Answer')</th>
-                                <th>@lang('Content')</th>
+                                <th>@lang('Answer_id')</th>
+                                <th>@lang('Name')</th>
                             </tr>
                         </thead>
 
@@ -69,10 +69,10 @@
                                 @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->get() as $response)
                                     <tr data-entry-id="{{ $response->id }}">
                                         <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
-                                        <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }} {{$response->questionnaire->name or ''}}</a></td>
-                                        <td field-key='question'><a href="{{route('admin.questions.show',$response->question_id)}}">{{ $response->question->title or '' }}</a></td>
-                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->title or '' }}</a></td>
-                                        <td field-key='content'>{{ $response->content or '' }}</td>
+                                        <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }}</a></td>
+                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->content or '' }} {{$response->answer->title or ''}}</a></td>
+                                        <td field-key='answer_id'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->id }}</a></td>
+                                        <td field-key='name'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{$response->questionnaire->name or ''}}</a></td>
                                     </tr>
                                 @endforeach
                             @else
