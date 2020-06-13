@@ -59,8 +59,9 @@
                                 <th>@lang('id')</th>
                                 <th>@lang('Questionnaire')</th>
                                 <th>@lang('Answer')</th>
-                                <th>@lang('Answer_id')</th>
+                                <th>@lang('Content')</th>
                                 <th>@lang('Name')</th>
+                                <th>@lang('Answer_id')</th>
                             </tr>
                         </thead>
 
@@ -70,9 +71,10 @@
                                     <tr data-entry-id="{{ $response->id }}">
                                         <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
                                         <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }}</a></td>
-                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->content or '' }} {{$response->answer->title or ''}}</a></td>
-                                        <td field-key='answer_id'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->id }}</a></td>
+                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{$response->answer->title or ''}}</a></td>
+                                        <td field-key='content'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->content or '' }}</a></td>
                                         <td field-key='name'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{$response->questionnaire->name or ''}}</a></td>
+                                        <td field-key='answer_id'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->id }}</a></td>
                                     </tr>
                                 @endforeach
                             @else
