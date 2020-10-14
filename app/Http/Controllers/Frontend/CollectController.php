@@ -136,13 +136,13 @@ class CollectController extends Controller
         if (\Auth::check() && \Gate::allows('survey_access')) {
             return redirect(route('admin.home'));
         }
-        $content = <<<HTML
+        $landing_text = <<<HTML
         <div class="jumbotron bg-white" style="background-color:white;">
             <h1 class="lead text-light display-fix">survey</h1>
             <p class="lead">Εφαρμογή για την συμπλήρωση ερωτηματολογίων</p>
         </div>
 HTML;
-
+        $content = env('LANDING_TEXT',$landing_text);
         (new LogUserAgent())->snapshot(null,false);
 
         return view('frontend.index',compact('content'));
