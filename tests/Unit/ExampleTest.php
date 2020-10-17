@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
+	use RefreshDatabase;
+	
     /**
      * A basic test example.
      *
@@ -14,6 +16,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $user = $this->signin_as('admin',1);
+        $this->assertTrue($user->can('survey_access'));
+
     }
 }
