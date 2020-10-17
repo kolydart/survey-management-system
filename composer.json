@@ -33,12 +33,9 @@
         "classmap": [
             "database/seeds",
             "database/factories",
-            "../_class/vendor"
+            "../_class/vendor/sinergi"
         ],
         "exclude-from-classmap":[
-            "../_class/vendor/illuminate",
-            "../_class/vendor/symfony",
-            "../_class/vendor/psr"
         ],
         "psr-4": {
             "App\\": "app/"
