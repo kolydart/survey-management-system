@@ -147,7 +147,7 @@ class AnswerlistsController extends Controller
         }
         
         $answers = \App\Answer::get()->pluck('title', 'id');
-$questions = \App\Question::where('answerlist_id', $id)->get();
+        $questions = \App\Question::where('answerlist_id', $id)->get();
 
         $answerlist = Answerlist::findOrFail($id);
 
