@@ -26,7 +26,7 @@ class Question extends Model
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     protected $softCascade = ['items','responses'];
 
-    protected $fillable = ['title', 'answerlist_id'];
+    protected $fillable = ['title', 'answerlist_id', 'label'];
     protected $hidden = [];
     
     
