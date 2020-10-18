@@ -24,8 +24,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('question_id', trans('quickadmin.items.fields.question').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    {!! Form::label('question_id', trans('quickadmin.items.fields.question'), ['class' => 'control-label']) !!}
+                    {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('question_id'))
                         <p class="help-block">

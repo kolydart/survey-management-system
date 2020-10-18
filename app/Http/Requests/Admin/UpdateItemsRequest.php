@@ -22,10 +22,16 @@ class UpdateItemsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            
+        $rules = [
             'survey_id' => 'required',
-            'question_id' => 'required',
         ];
+
+        if ($this->attributes->get('label')==1) {
+            $rules['question_id'] = 'required';
+        }
+
+        return $rules;
     }
+
+
 }
