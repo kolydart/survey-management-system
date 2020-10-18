@@ -35,6 +35,18 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('label', 'Label only', ['class' => 'control-label']) !!}
+                    {!! Form::select('label', [0=>'false',1=>'true'], old('label'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('label'))
+                        <p class="help-block">
+                            {{ $errors->first('label') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
             
         </div>
     </div>

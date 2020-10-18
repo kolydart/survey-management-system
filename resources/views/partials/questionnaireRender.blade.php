@@ -31,7 +31,7 @@
         <div class="form-group gw-item q_{{$item->question->id ?? ''}}" id="i_{{$item->id ?? ''}}">
             {{-- label (question) --}}
             <label 
-                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->id != 3392) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif ">
+                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && $item->question->label ) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif ">
 
                 {{-- debug --}}
                 {{-- @if ($survey->id == 2023 and Auth::check() )
@@ -45,8 +45,8 @@
 
             {{-- answers --}}
 
-            {{-- if question is "null" (3392), display none --}}
-            @if( $item->question->id == 3392 ) {{-- @todo, remove custom id --}}
+            {{-- if question is label only, display none --}}
+            @if( $item->question->label )
 
             {{-- if answerlist type is radio|checkbox --}}
             @elseif ($item->question->answerlist->type == 'radio' || $item->question->answerlist->type == 'checkbox')

@@ -20,6 +20,10 @@
                             <th>@lang('Responses')</th>
                             <td field-key='responses'>{{ $responses->count() }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('Label only')</th>
+                            <td field-key='label'>{{ ($question->label)?'true':'false' }}</td>
+                        </tr>0
                         {!! gateweb\common\presenter\Laraview::dates_in_show($question) !!}
                     </table>
                 </div>
