@@ -47,6 +47,7 @@
             <a href="{{ route('admin.items.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
             <p>&nbsp;</p>
 
+        @if (!$item->label)
         <div role="tabpanel">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
@@ -93,6 +94,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         </div>
     </div>
