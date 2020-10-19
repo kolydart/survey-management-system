@@ -22,11 +22,16 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.items.fields.question')</th>
-                            <td field-key='question'><a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a></td>
+                            <td field-key='question'>@if (!$item->label)
+                                <a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a>
+                            @endif</td>
                         </tr>
                         <tr>
                             <th>@lang('answerlist')</th>
-                            <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
+                            <td field-key='answerlist'>@if (!$item->label)
+                                <a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a>
+                            @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.items.fields.label')</th>
