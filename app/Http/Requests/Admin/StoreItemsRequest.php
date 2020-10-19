@@ -26,8 +26,8 @@ class StoreItemsRequest extends FormRequest
             'survey_id' => 'required',
         ];
 
-        if ($this->attributes->get('label')==1) {
-            $rules['question_id'] = 'required';
+        if (!$this->input('label') && !$this->input('question_id')) {
+            $rules['question_id']='required';
         }
 
         return $rules;
