@@ -182,7 +182,7 @@
             @else
 
                 {{-- hidden value (id) --}}
-                {{-- you may improve this (custom value 129) --}}
+                {{-- @todo you may improve this (static answer: id 129) --}}
                 <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
                 {{-- input (content) --}}
                 <input 
