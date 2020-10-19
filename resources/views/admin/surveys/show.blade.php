@@ -187,9 +187,15 @@
                 <tr data-entry-id="{{ $item->id }}">
                                 <td field-key='id'><a href="{{route('admin.items.show',$item->id)}}">{{ $item->id }}</a></td>
                                 <td field-key='order'>{{ $item->order }}</td>
-                                <td field-key='question'><a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a></td>
-                                <td field-key='answerlist'><a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a></td>
-                                <td field-key='responses'>{{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}</td>
+                                <td field-key='question'>@if (!$item->label)
+                                    <a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a>
+                                @endif</td>
+                                <td field-key='answerlist'>@if (!$item->label)
+                                    <a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a>
+                                @endif</td>
+                                <td field-key='responses'>@if (!$item->label)
+                                    {{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}
+                                @endif</td>
                                 <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
