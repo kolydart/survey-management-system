@@ -172,6 +172,12 @@
 
                 </div>
 
+
+            {{-- if answerlist->type is number @todo add more types --}}
+            {{-- @elseif ($item->question->answerlist->type == 'number') --}}
+                {{-- hello from type! --}}
+
+
             {{-- if answerlist->type is anything else --}}
             @else
 
