@@ -33,7 +33,8 @@
         "classmap": [
             "database/seeds",
             "database/factories",
-            "../_class/vendor/sinergi"
+            "../_class/vendor/sinergi",
+            "../_class/vendor/phpmailer"            
         ],
         "exclude-from-classmap":[
         ],
