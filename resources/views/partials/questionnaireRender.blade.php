@@ -31,7 +31,7 @@
         <div class="form-group gw-item q_{{$item->question->id ?? ''}} row" id="i_{{$item->id ?? ''}}">
             {{-- label (question) --}}
             <label 
-                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && !$item->label ) col-md-6 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif ">
+                class="@if (\Route::currentRouteName() == 'admin.surveys.show' && !$item->label ) col-md-6 col-lg-8 col-lg-offset-2 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif ">
 
                 {{-- debug --}}
                 {{-- @if ($survey->id == 2023 and Auth::check() )
@@ -51,7 +51,7 @@
             {{-- if answerlist type is radio|checkbox --}}
             @elseif ($item->question->answerlist->type == 'radio' || $item->question->answerlist->type == 'checkbox')
 
-                <div class="gw-answers @if (\Route::currentRouteName() == 'admin.surveys.show') col-md-6 @else col-xs-10 col-xs-offset-1 @endif ">
+                <div class="gw-answers @if (\Route::currentRouteName() == 'admin.surveys.show') col-md-6 col-lg-6 col-lg-offset-3 @else col-xs-10 col-xs-offset-1 @endif ">
 
                     {{-- report-or-answer begin--}}
                     {{-- if report, just show chart --}}
