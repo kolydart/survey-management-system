@@ -32,6 +32,7 @@
                 ],
             datasets: [{
                 label: '%',
+                backgroundColor: '#6DA8DA',
                 data: [
                     @if (Route::currentRouteName() == 'admin.surveys.show')
                         @foreach ($item->question->answerlist->answers as $answer)
