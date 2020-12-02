@@ -82,22 +82,25 @@
         options: {
             legend: { display: false },
             scales: {
-                xAxes: [], 
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                }],
                 yAxes: [{
                     ticks: {
                         beginAtZero:true,
-                        // truncate yAxes label
-                        /*
                         callback: function(value) {
+                            return splitter(value,30);
+                        },
+                        /* truncate yAxes label */
+                        /* callback: function(value) {
                             if (value.length > 10) {
                                 return value.substr(0, 10) + '...'; 
                             } else {
                                 return value;
                             }
                         }*/
-                        callback: function(value) {
-                            return splitter(value,30);
-                        },
                     },
                     /*
                     afterFit: function(scaleInstance) {
