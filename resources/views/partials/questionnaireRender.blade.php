@@ -184,20 +184,35 @@
                 {{-- hidden value (id) --}}
                 {{-- @todo you may improve this (static answer: id 129) --}}
                 <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
+
                 {{-- input (content) --}}
-                <input 
-                    {{-- type="{{$item->question->answerlist->type}}"  --}}
-                    type="text" 
-                    name="{{$item->question->id}}_content_129" 
-                    id="{{$item->question->id}}_content_129" 
-                    class="col-xs-3 col-xs-offset-1"
-                    @if (\Route::getCurrentRoute()->getActionMethod() == 'create')
+                @if (\Route::getCurrentRoute()->getActionMethod() == 'create')
+                    <input 
+                        {{-- type="{{$item->question->answerlist->type}}"  --}}
+                        type="text" 
+                        name="{{$item->question->id}}_content_129" 
+                        id="{{$item->question->id}}_content_129" 
+                        class="col-xs-3 col-xs-offset-1"
                         value="{{old($item->question->id.'_content_129')}}"
                         required="required"
-                    @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
+                    >
+                @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
+                    <input 
+                        {{-- type="{{$item->question->answerlist->type}}"  --}}
+                        type="text" 
+                        name="{{$item->question->id}}_content_129" 
+                        id="{{$item->question->id}}_content_129" 
+                        class="col-xs-3 col-xs-offset-1"
                         value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
                         disabled = "disabled"
-                    @elseif (\Route::currentRouteName() == 'admin.surveys.show')
+                    >
+                @elseif (\Route::currentRouteName() == 'admin.surveys.show')
+                    <input 
+                        {{-- type="{{$item->question->answerlist->type}}"  --}}
+                        type="text" 
+                        name="{{$item->question->id}}_content_129" 
+                        id="{{$item->question->id}}_content_129" 
+                        class="col-xs-3 col-xs-offset-1"
                         value="{{ 
                             implode(
                                 ", ",
@@ -206,8 +221,8 @@
                                 )
                             }}"
                         disabled = "disabled"
-                    @endif
                     >
+                @endif
 
             {{-- end hide if null --}}
             @endif
