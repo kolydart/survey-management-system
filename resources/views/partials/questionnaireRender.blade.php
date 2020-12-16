@@ -192,7 +192,7 @@
                         type="text" 
                         name="{{$item->question->id}}_content_129" 
                         id="{{$item->question->id}}_content_129" 
-                        class="col-xs-3 col-xs-offset-1"
+                        class="col-md-6 col-lg-6 col-lg-offset-3"
                         value="{{old($item->question->id.'_content_129')}}"
                         required="required"
                     >
@@ -202,26 +202,35 @@
                         type="text" 
                         name="{{$item->question->id}}_content_129" 
                         id="{{$item->question->id}}_content_129" 
-                        class="col-xs-3 col-xs-offset-1"
+                        class="col-md-6 col-lg-6 col-lg-offset-3"
                         value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
                         disabled = "disabled"
                     >
                 @elseif (\Route::currentRouteName() == 'admin.surveys.show')
-                    <input 
-                        {{-- type="{{$item->question->answerlist->type}}"  --}}
-                        type="text" 
-                        name="{{$item->question->id}}_content_129" 
-                        id="{{$item->question->id}}_content_129" 
-                        class="col-xs-3 col-xs-offset-1"
-                        value="{{ 
+                    @if ($item->question->answerlist->type == 'number')
+                        <div class="well col-md-6 col-lg-6 col-lg-offset-3">
+                            {{ 
                             implode(
                                 ", ",
                                 App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
                                     ->where('question_id',$item->question_id)->pluck('content')->toArray()
                                 )
-                            }}"
-                        disabled = "disabled"
-                    >
+                            }}
+                            
+                        </div>
+                    @else
+                        <div class="col-md-6 col-lg-6 col-lg-offset-3">
+                            <table class="table table-condensed table-hover ">
+                                <tbody>
+                                    @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
+                                            ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
+                                        <tr><td>{{$row}}</td> </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+
                 @endif
 
             {{-- end hide if null --}}
