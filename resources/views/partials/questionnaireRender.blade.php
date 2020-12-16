@@ -172,6 +172,23 @@
 
                 </div>
 
+                {{-- display any content value in admin.surveys.show --}}
+                @if (
+                    \Route::currentRouteName() == 'admin.surveys.show' && 
+                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('content','!=',"")
+                )
+                    <div class="col-md-6 col-lg-6 col-lg-offset-3">
+                        <table class="table table-condensed table-hover table-bordered ">
+                            {{-- <thead> <tr> <th>Προσαρμοσμένες τιμές</th></tr></thead> --}}
+                            <tbody>
+                                @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('content','!=',"")->pluck('content')->toArray() as $row)
+                                    <tr><td>•</td><td>{{$row}}</td> </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif                                
+
 
             {{-- if answerlist->type is number @todo add more types --}}
             {{-- @elseif ($item->question->answerlist->type == 'number') --}}
@@ -220,7 +237,7 @@
                         </div>
                     @else
                         <div class="col-md-6 col-lg-6 col-lg-offset-3">
-                            <table class="table table-condensed table-hover ">
+                            <table class="table table-condensed table-hover table-bordered">
                                 <tbody>
                                     @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
                                             ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
