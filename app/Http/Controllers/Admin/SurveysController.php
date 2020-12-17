@@ -288,7 +288,7 @@ class SurveysController extends Controller
             $row['count'] = $obj->count;
             $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['ipv6',$obj->ipv6], ['os',$obj->os], ['os_version',$obj->os_version], ['browser',$obj->browser], ['browser_version',$obj->browser_version]])->get();
             // remove results from questionnaires list
-            $questionnaires_arr = array_diff($questionnaires_arr,$row['loguseragent']->pluck('item_id'));
+            $questionnaires_arr = array_diff($questionnaires_arr,$row['loguseragents']->pluck('item_id'));
             $duplicates[]=$row;
          }
 
