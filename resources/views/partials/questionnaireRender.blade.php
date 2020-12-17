@@ -239,7 +239,17 @@ admin.questionnaires.show
                                     ->where('question_id',$item->question_id)->pluck('content')->toArray()
                                 )
                             }}
-                            
+                            {{-- count: {{count($array)}}
+                                mean: {{array_sum($array)/count($array)}}
+                                std: {{stats_standard_deviation($array)}}
+                                min: {{min($array)}}
+                                max: {{max($array)}}
+                                @php
+                                Arsort($array);
+                                $keys = array_keys($array);
+                                $median = $keys[round(count($keys)/2)];
+                                @endphp
+                                median: {{$median}} --}}                            
                         </div>
                     @else
                         <div class="col-md-6 col-lg-6 col-lg-offset-3">
