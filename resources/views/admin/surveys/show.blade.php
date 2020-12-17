@@ -247,7 +247,69 @@
 		</table>
 		</div>
 	<div role="tabpanel" class="tab-pane " id="duplicates">
-			
+
+		<table class="table table-bordered table-striped {{ count($duplicates) > 0 ? 'datatable' : '' }}">
+			<thead>
+				<tr>
+					<th style="width: 10px;">id</th>
+					<th style="width: 10px;">qstnr</th>
+					<th>ip</th>
+					<th>os</th>
+					<th>os_version</th>
+					<th>browser</th>
+					<th>browser_version</th>
+					<th>device</th>
+					<th>language</th>
+					<th>uri</th>
+					<th>form_submitted</th>
+					<th>user</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (count($duplicates) > 0)
+					@foreach ($duplicates as $duplicate)
+						<tr>
+							<td field-key='id'>{{$duplicate['type']}}</td>
+				            <td field-key='item_id'>{{$duplicate['count']}}</td>
+				            <td field-key='ipv6'></td>
+				            <td field-key='os'></td>
+				            <td field-key='os_version'></td>
+				            <td field-key='browser'></td>
+				            <td field-key='browser_version'></td>
+				            <td field-key='device'></td>
+				            <td field-key='language'></td>
+				            <td field-key='uri'></td>
+				            <td field-key='form_submitted'></td>
+				            <td field-key='user'></td>                								
+						</tr>
+						@foreach ($duplicate['loguseragents'] as $loguseragent)
+							<tr>
+								<td field-key='id'><a href="{{route('admin.loguseragents.show',$loguseragent->id)}}">{{ $loguseragent->id }}</a></td>
+					            <td field-key='item_id'><a href="{{route('admin.questionnaires.show',$loguseragent->item_id)}}">{{ $loguseragent->item_id }}</a></td>
+					            <td field-key='ipv6'>{{ gateweb\common\Presenter::convert_hex2ip($loguseragent->ipv6) }}</td>
+					            <td field-key='os'>{{ $loguseragent->os }}</td>
+					            <td field-key='os_version'>{{ $loguseragent->os_version }}</td>
+					            <td field-key='browser'>{{ $loguseragent->browser }}</td>
+					            <td field-key='browser_version'>{{ $loguseragent->browser_version }}</td>
+					            <td field-key='device'>{{ $loguseragent->device }}</td>
+					            <td field-key='language'>{{ $loguseragent->language }}</td>
+					            <td field-key='uri'>{{ $loguseragent->uri }}</td>
+					            <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
+					            <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>                								
+							</tr>
+						@endforeach
+					@endforeach
+				@else
+					<tr>
+						<td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
+					</tr>
+				@endif
+			</tbody>
+		</table>
+
+
+
+
 		</div>
 </div>
 
