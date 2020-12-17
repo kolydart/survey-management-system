@@ -1,7 +1,14 @@
-{{-- injected: 
-    $survey, 
-    (if Questionnaire@show): $questionnaire 
-    --}}
+{{--
+injected models: 
+$survey, 
+(if Questionnaire@show): $questionnaire 
+
+used in three routes:
+frontend.create
+admin.surveys.show
+admin.questionnaires.show
+ --}}
+
 
 {{-- form tag only on create --}}
 @if (Route::getCurrentRoute()->getActionMethod() == 'create')
