@@ -120,6 +120,30 @@ class CollectController extends Controller
             }
         }
 
+        /** use cookies to check if user has filled the same survey questionnaire */
+        try {
+            /** cookie exists */
+            if(\Cookie::get('survey_'.$request->survey_id)){
+                $rtr = clone $router;
+                $rtr->set_path('/admin/surveys/'.$request->survey_id);
+                // send message with ip & survey_id's
+                Presenter::mail(
+                    "Survey " . $request->survey_id . " questionnaire filled twice in the same browser.\n"
+                    ."Old ip: ". \Cookie::get('ip')."\n"
+                    ."New ip: ". $router->get_client_ip()."\n"
+                    .$rtr->get_url()
+                );
+            }
+            /** set new cookie */
+            \Cookie::queue(\Cookie::make('survey_'.$request->survey_id, true, 2880));
+            \Cookie::queue(\Cookie::make('ip', $router->get_client_ip(), 2880));
+        } catch (\Exception $e) {
+            $message='Could not handle cookies. Error vWhDRFPtoQMnGMes. Code: '.$e->getCode();
+            Presenter::log($message,'cookies');
+            Presenter::mail($message);
+        }
+
+
         /** Thank you message */
         $content = '
             <div class="alert alert-success col-md-8 col-md-offset-2" style="margin-top:30px;">
