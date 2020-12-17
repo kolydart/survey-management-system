@@ -139,8 +139,10 @@ class SurveysController extends Controller
         $questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();
         $items = \App\Item::where('survey_id', $id)->orderBy('order')->get();
 
-        return view('admin.surveys.show', compact('survey', 'questionnaires', 'items'));
-    }
+        $duplicates = $this->get_duplicates($id);
+
+        return view('admin.surveys.show', compact('survey', 'questionnaires', 'items', 'duplicates'));
+        }
 
 
     /**
@@ -246,6 +248,44 @@ class SurveysController extends Controller
         }
 
         return redirect()->route('admin.surveys.show',$newSurvey);
+    }
+
+
+    protected function get_duplicates($survey_id){
+        /** get duplicates */
+        $loguseragent = new \App\Loguseragent();
+        $duplicates = [];
+        
+        /** get $survey->questionnaires */
+        $questionnaires_arr = \App\Questionnaire::where('survey_id', $survey_id)->latest()->get()->pluck('id');
+
+        /** select by ip */
+        $duplicate_ip = $loguseragent::selectRaw('ipv6, COUNT(*) as `count` ')->whereIn('item_id', $questionnaires_arr)->groupBy('ipv6')->having('count', '>', 1)->get();
+
+        /** select by sw */
+        $duplicate_sw = $loguseragent::selectRaw('`os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')->whereIn('item_id', $questionnaires_arr)->groupBy('os', 'os_version', 'browser', 'browser_version')->having('count', '>', 1)->get();
+
+
+        foreach ($duplicate_ip as $obj) {
+            $row = [];
+            $row['type'] = 'ip';
+            $row['value'] = $obj->ipv6;
+            $row['count'] = $obj->count;
+            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where('ipv6',$obj->ipv6)->get();
+            $duplicates[]=$row;
+         }
+
+        foreach ($duplicate_sw as $obj) {
+            $row = [];
+            $row['type'] = 'sw';
+            $row['value'] = ['os'=>$obj->os, 'os_version'=>$obj->os_version, 'browser' => $obj->browser, 'browser_version'=>$obj->browser_version];
+            $row['count'] = $obj->count;
+            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['os',$obj->os], ['os_version',$obj->os_version], ['browser'-> $obj->browser], ['browser_version',$obj->browser_version]])->get();
+            $duplicates[]=$row;
+         }
+
+        return $duplicates;
+
     }
 
 }
