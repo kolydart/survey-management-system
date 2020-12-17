@@ -286,7 +286,7 @@
 						</tr>
 						@foreach ($duplicate['loguseragents'] as $loguseragent)
 							<tr>
-								<td field-key='id'><a href="{{route('admin.loguseragents.show',$loguseragent->id)}}">{{ $loguseragent->id }}</a></td>
+								<td field-key='id'>{{ $loguseragent->id }}</td>
 					            <td field-key='item_id'><a href="{{route('admin.questionnaires.show',$loguseragent->item_id)}}">{{ $loguseragent->item_id }}</a></td>
 					            <td field-key='created_at'>{{ $loguseragent->created_at }}</td>
 					            <td field-key='ipv6'>{{ gateweb\common\Presenter::convert_hex2ip($loguseragent->ipv6) }}</td>
