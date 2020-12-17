@@ -280,7 +280,7 @@ class SurveysController extends Controller
             $row['type'] = 'sw';
             $row['value'] = ['os'=>$obj->os, 'os_version'=>$obj->os_version, 'browser' => $obj->browser, 'browser_version'=>$obj->browser_version];
             $row['count'] = $obj->count;
-            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['os',$obj->os], ['os_version',$obj->os_version], ['browser'-> $obj->browser], ['browser_version',$obj->browser_version]])->get();
+            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['os',$obj->os], ['os_version',$obj->os_version], ['browser',$obj->browser], ['browser_version',$obj->browser_version]])->get();
             $duplicates[]=$row;
          }
 
