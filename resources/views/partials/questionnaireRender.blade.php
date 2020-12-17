@@ -11,7 +11,7 @@ admin.questionnaires.show
 
 
 {{-- form tag only on create --}}
-@if (Route::getCurrentRoute()->getActionMethod() == 'create')
+@if (\Route::currentRouteName() == 'frontend.create')
 <form action="{{route('frontend.store')}}" 
     method="POST"
     class="form form-horizontal gw-form" 
@@ -23,7 +23,7 @@ admin.questionnaires.show
 @endif
 
 {{-- fields everywhere --}}
-<fieldset @if (\Route::getCurrentRoute()->getActionMethod() == 'create') class="gw-fieldset" @endif>
+<fieldset @if (\Route::currentRouteName() == 'frontend.create') class="gw-fieldset" @endif>
 
     {{-- questionnaire title --}}
     <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
@@ -94,7 +94,7 @@ admin.questionnaires.show
                                             value="{{$answer->id}}" 
 
                                             {{-- disable input on show/index --}}
-                                            @if (\Route::getCurrentRoute()->getActionMethod() != 'create')
+                                            @if (\Route::currentRouteName() != 'frontend.create')
                                                 disabled = "disabled"
                                             @endif
                                             
@@ -102,19 +102,19 @@ admin.questionnaires.show
                                             @if ( 
                                                     /** display filled questionnaire */
                                                     (
-                                                        \Route::getCurrentRoute()->getActionMethod() != 'create' 
+                                                        \Route::currentRouteName() != 'frontend.create' 
                                                         && isset($questionnaire)
                                                         && $questionnaire->is_question_answered($item->question_id,$answer->id)
                                                     ) ||
                                                     /** radio input returning from error */
                                                     (
-                                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                                        \Route::currentRouteName() == 'frontend.create' 
                                                         && $item->question->answerlist->type == 'radio'
                                                         && old($item->question->id.'_id') == $answer->id
                                                     ) ||
                                                     /** checkbox input returning from error */
                                                     (
-                                                        \Route::getCurrentRoute()->getActionMethod() == 'create' 
+                                                        \Route::currentRouteName() == 'frontend.create' 
                                                         && $item->question->answerlist->type == 'checkbox'
                                                         && old($item->question->id.'_id_'.$answer->id) == $answer->id
                                                     ) 
@@ -143,15 +143,14 @@ admin.questionnaires.show
                                     {{-- textarea response content --}}
                                     @if ( 
                                         /** display filled */
-                                        \Route::getCurrentRoute()->getActionMethod() == 'show' 
-                                        && isset($questionnaire)
+                                        \Route::currentRouteName() == 'admin.questionnaires.show'
                                         && !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
                                         )
                                         <br>
                                         {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
                                     @elseif (
                                         /** create new */
-                                        \Route::getCurrentRoute()->getActionMethod() == 'create'
+                                        \Route::currentRouteName() == 'frontend.create'
                                         && $answer->open == 1
                                         )
                                         <textarea
@@ -173,7 +172,7 @@ admin.questionnaires.show
                     @endif
                     
                     {{-- info tooltip for checkbox --}}
-                    @if ($item->question->answerlist->type == 'checkbox' && Route::getCurrentRoute()->getActionMethod() == 'create')
+                    @if ($item->question->answerlist->type == 'checkbox' && \Route::currentRouteName() == 'frontend.create')
                         <i class="fa fa-info-circle text-muted"></i> <small class="text-muted">@lang('Επιλέξτε όσα ισχύουν')</small>
                     @endif
 
@@ -210,7 +209,7 @@ admin.questionnaires.show
                 <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
 
                 {{-- input (content) --}}
-                @if (\Route::getCurrentRoute()->getActionMethod() == 'create')
+                @if (\Route::currentRouteName() == 'frontend.create')
                     <input 
                         {{-- type="{{$item->question->answerlist->type}}"  --}}
                         type="text" 
@@ -267,7 +266,7 @@ admin.questionnaires.show
 </fieldset>
 
 {{-- close form tag (on create) --}}
-@if (Route::getCurrentRoute()->getActionMethod() == 'create')
+@if (\Route::currentRouteName() == 'frontend.create')
     <button type="submit" 
         class="btn btn-success btn-lg"
         >
