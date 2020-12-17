@@ -253,15 +253,16 @@
 				<tr>
 					<th style="width: 10px;">id</th>
 					<th style="width: 10px;">qstnr</th>
+					<th>date</th>
 					<th>ip</th>
 					<th>os</th>
-					<th>os_version</th>
+					<th style="width: 10px;">os_version</th>
 					<th>browser</th>
 					<th>browser_version</th>
 					<th>device</th>
-					<th>language</th>
+					<th style="width: 10px;">language</th>
 					<th>uri</th>
-					<th>form_submitted</th>
+					<th>subm</th>
 					<th>user</th>
 				</tr>
 			</thead>
@@ -271,6 +272,7 @@
 						<tr>
 							<td field-key='id'>{{$duplicate['type']}}</td>
 				            <td field-key='item_id'>{{$duplicate['count']}}</td>
+				            <td field-key='created_at'></td>
 				            <td field-key='ipv6'></td>
 				            <td field-key='os'></td>
 				            <td field-key='os_version'></td>
@@ -286,6 +288,7 @@
 							<tr>
 								<td field-key='id'><a href="{{route('admin.loguseragents.show',$loguseragent->id)}}">{{ $loguseragent->id }}</a></td>
 					            <td field-key='item_id'><a href="{{route('admin.questionnaires.show',$loguseragent->item_id)}}">{{ $loguseragent->item_id }}</a></td>
+					            <td field-key='created_at'>{{ $loguseragent->created_at }}</td>
 					            <td field-key='ipv6'>{{ gateweb\common\Presenter::convert_hex2ip($loguseragent->ipv6) }}</td>
 					            <td field-key='os'>{{ $loguseragent->os }}</td>
 					            <td field-key='os_version'>{{ $loguseragent->os_version }}</td>
@@ -301,7 +304,7 @@
 					@endforeach
 				@else
 					<tr>
-						<td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
+						<td colspan="13">@lang('quickadmin.qa_no_entries_in_table')</td>
 					</tr>
 				@endif
 			</tbody>
