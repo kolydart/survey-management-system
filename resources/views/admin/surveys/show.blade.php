@@ -270,8 +270,8 @@
 				@if (count($duplicates) > 0)
 					@foreach ($duplicates as $duplicate)
 						<tr>
-							<td field-key='id'>{{$duplicate['type']}}</td>
-				            <td field-key='item_id'>{{$duplicate['count']}}</td>
+							<td field-key='id' class="@if($duplicate['type']=='ipsw') font-weight-bold @endif">{{$duplicate['type']}}</td>
+				            <td field-key='item_id' class="@if ($duplicate['type']=='ipsw') font-weight-bold @endif">{{$duplicate['count']}}</td>
 				            <td field-key='created_at'></td>
 				            <td field-key='ipv6'></td>
 				            <td field-key='os'></td>
