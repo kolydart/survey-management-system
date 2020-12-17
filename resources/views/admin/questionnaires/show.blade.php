@@ -127,6 +127,16 @@
 
             <a href="{{ route('admin.questionnaires.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
+
+        @can('questionnaire_delete')
+        {!! Form::open(array(
+            'style' => 'display: inline-block; width:100%;',
+            'method' => 'DELETE',
+            'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+            'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
+        {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-danger', 'style'=>'float:right;margin-right:20px;')) !!}
+        {!! Form::close() !!}
+        @endcan         
     </div>
 @stop
 
