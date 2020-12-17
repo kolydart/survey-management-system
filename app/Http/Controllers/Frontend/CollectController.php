@@ -125,18 +125,17 @@ class CollectController extends Controller
             /** cookie exists */
             if(\Cookie::get('survey_'.$request->survey_id)){
                 $rtr = clone $router;
-                $rtr->set_path('/admin/surveys/'.$request->survey_id);
+                $rtr->set_path('/admin/questionnaires/');
                 // send message with ip & survey_id's
                 Presenter::mail(
                     "Survey " . $request->survey_id . " questionnaire filled twice in the same browser.\n"
-                    ."Old ip: ". \Cookie::get('ip')."\n"
-                    ."New ip: ". $router->get_client_ip()."\n"
-                    .$rtr->get_url()
+                    ."Old questionnaire: ". $rtr->get_url().\Cookie::get('questionnaire')."\n"
+                    ."New questionnaire: ". $rtr->get_url().$questionnaire->id."\n"
                 );
             }
             /** set new cookie */
             \Cookie::queue(\Cookie::make('survey_'.$request->survey_id, true, 2880));
-            \Cookie::queue(\Cookie::make('ip', $router->get_client_ip(), 2880));
+            \Cookie::queue(\Cookie::make('questionnaire', $questionnaire->id, 2880));
         } catch (\Exception $e) {
             $message='Could not handle cookies. Error vWhDRFPtoQMnGMes. Code: '.$e->getCode();
             Presenter::log($message,'cookies');
