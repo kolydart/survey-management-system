@@ -259,12 +259,38 @@ class SurveysController extends Controller
         /** get $survey->questionnaires */
         $questionnaires_arr = \App\Questionnaire::where('survey_id', $survey_id)->latest()->get()->pluck('id');
 
+        /** select by ip and sw */
+        $duplicate_ipsw = $loguseragent::selectRaw('`ipv6`, `os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')
+            ->whereIn('item_id', $questionnaires_arr)
+            ->groupBy('ipv6', 'os', 'os_version', 'browser', 'browser_version')
+            ->having('count', '>', 1)
+            ->get();
+
         /** select by ip */
-        $duplicate_ip = $loguseragent::selectRaw('ipv6, COUNT(*) as `count` ')->whereIn('item_id', $questionnaires_arr)->groupBy('ipv6')->having('count', '>', 1)->get();
+        $duplicate_ip = $loguseragent::selectRaw('`ipv6`, COUNT(*) as `count` ')
+            ->whereIn('item_id', $questionnaires_arr)
+            ->groupBy('ipv6')
+            ->having('count', '>', 1)
+            ->get();
 
         /** select by sw */
-        $duplicate_sw = $loguseragent::selectRaw('`os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')->whereIn('item_id', $questionnaires_arr)->groupBy('os', 'os_version', 'browser', 'browser_version')->having('count', '>', 1)->get();
+        $duplicate_sw = $loguseragent::selectRaw('`os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')
+            ->whereIn('item_id', $questionnaires_arr)
+            ->groupBy('os', 'os_version', 'browser', 'browser_version')
+            ->having('count', '>', 1)
+            ->get();
 
+
+        foreach ($duplicate_ipsw as $obj) {
+            $row = [];
+            $row['type'] = 'ipsw';
+            $row['value'] = ['ipv6'=>$obj->ipv6, 'os'=>$obj->os, 'os_version'=>$obj->os_version, 'browser' => $obj->browser, 'browser_version'=>$obj->browser_version];
+            $row['count'] = $obj->count;
+            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['ipv6',$obj->ipv6], ['os',$obj->os], ['os_version',$obj->os_version], ['browser',$obj->browser], ['browser_version',$obj->browser_version]])->get();
+            // remove results from questionnaires list
+            $questionnaires_arr = array_diff($questionnaires_arr,$row['loguseragent']->pluck('item_id'));
+            $duplicates[]=$row;
+         }
 
         foreach ($duplicate_ip as $obj) {
             $row = [];
