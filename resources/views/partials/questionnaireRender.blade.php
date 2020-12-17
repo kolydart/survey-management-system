@@ -178,7 +178,7 @@
                     App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('content','!=',"")
                 )
                     <div class="col-md-6 col-lg-6 col-lg-offset-3">
-                        <table class="table table-condensed table-hover table-bordered text-muted">
+                        <table class="table table-condensed table-hover table-bordered text-muted small">
                             {{-- <thead> <tr> <th>Προσαρμοσμένες τιμές</th></tr></thead> --}}
                             <tbody>
                                 @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('content','!=',"")->pluck('content')->toArray() as $row)

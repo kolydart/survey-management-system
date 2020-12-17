@@ -128,7 +128,7 @@ class CollectController extends Controller
                 <p class="text-center">'.__('Το ερωτηματολόγιο υποβλήθηκε με επιτυχία!').'</p>
             </div>'
             ;       
-        return view('frontend.index',compact('content'));        
+        return view('frontend.index',compact('content'));
     }
 
     public function index(){
