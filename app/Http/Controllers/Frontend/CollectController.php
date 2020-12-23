@@ -59,7 +59,7 @@ class CollectController extends Controller
     {
         /** abort if survey is completed */
         if(Survey::find($request->survey_id)->completed == 1)
-            abort(404,__('Survey is completed'));
+            abort(404,__('The survey has been completed.'));
 
         $router = new Router();
 
