@@ -1,32 +1,12 @@
 <?php
 
-namespace App\Providers;
+$path_relative = __DIR__."/../../../_class/gateweb/laravel/serviceProviders/GatewebServiceProvider.php";
+$path_absolute = "/var/www/_class/gateweb/laravel/serviceProviders/GatewebServiceProvider.php";
 
-use Illuminate\Support\ServiceProvider;
-
-class GatewebServiceProvider extends ServiceProvider
-{
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $path=__DIR__."/../../../_class";
-        require_once("$path/gateweb/common/framework/Psr4Autoloader.php");
-        $loader = new \gateweb\common\framework\Psr4Autoloader;
-        $loader->register();
-        $loader->addNamespace('gateweb', "$path/gateweb");                  
-    }
-
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+if(file_exists($path_relative)){
+    require $path_relative;
+}elseif(file_exists($path_absolute)){
+    require $path_absolute;
+}else{
+    throw new \Exception("Could not load library. Error PmzLtGX1IhEzvyvr",500);
 }
