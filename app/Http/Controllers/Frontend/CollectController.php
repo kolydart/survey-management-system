@@ -83,13 +83,13 @@ class CollectController extends Controller
 
         /** create responses */
         foreach ($request_array as $key => $value) {
-            $arr = explode('_',$key);
+            $array = explode('_',$key);
 
-            if($arr[1] == 'id'){
-                $question_id = $router->sanitize($arr[0],'int');
+            if($array[1] == 'id'){
+                $question_id = $router->sanitize($array[0],'int');
                 $answer_id = $router->sanitize($value,'int');
                 $content = $router->sanitize(
-                    isset($request_array[$question_id.'_content_'.$answer_id])?$request_array[$question_id.'_content_'.$answer_id]:'',
+                    $request_array[$question_id.'_content_'.$answer_id] ?? '',
                     'text',
                     ''
                 );
@@ -100,7 +100,7 @@ class CollectController extends Controller
                     'content' => $content
                 ]);
 
-            } elseif($arr[1] != 'content'){
+            } elseif($array[1] != 'content'){
                 Presenter::mail("Error rkBECq.\nResponse was not created.\n$key => $value\n");
                 Presenter::message(__('A question was not submitted, due to invalid data.')." Question $question_id");
             }
