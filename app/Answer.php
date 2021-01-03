@@ -26,7 +26,7 @@ class Answer extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['title', 'open'];
+    protected $fillable = ['title', 'open', 'hidden'];
     protected $hidden = [];
 
 
