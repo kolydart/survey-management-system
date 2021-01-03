@@ -93,7 +93,7 @@ class RolesController extends Controller
 
 
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.show',$id);
     }
 
 

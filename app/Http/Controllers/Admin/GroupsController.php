@@ -100,7 +100,7 @@ class GroupsController extends Controller
 
 
 
-        return redirect()->route('admin.groups.index');
+        return redirect()->route('admin.groups.show',$id);
     }
 
 

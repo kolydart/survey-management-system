@@ -100,7 +100,7 @@ class CategoriesController extends Controller
 
 
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.show',$id);
     }
 
 

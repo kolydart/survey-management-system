@@ -156,7 +156,7 @@ class ResponsesController extends Controller
 
 
 
-        return redirect()->route('admin.responses.index');
+        return redirect()->route('admin.responses.show',$id);
     }
 
 

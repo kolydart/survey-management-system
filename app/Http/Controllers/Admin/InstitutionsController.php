@@ -120,7 +120,7 @@ class InstitutionsController extends Controller
         }
 
 
-        return redirect()->route('admin.institutions.index');
+        return redirect()->route('admin.institutions.show',$id);
     }
 
 

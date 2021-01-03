@@ -152,7 +152,7 @@ class ItemsController extends Controller
 
 
 
-        return redirect()->route('admin.items.index');
+        return redirect()->route('admin.items.show',$id);
     }
 
 

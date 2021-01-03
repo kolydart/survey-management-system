@@ -119,7 +119,7 @@ class SurveysController extends Controller
 
 
 
-        return redirect()->route('admin.surveys.index');
+        return redirect()->route('admin.surveys.show',$id);
     }
 
 

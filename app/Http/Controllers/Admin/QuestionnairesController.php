@@ -141,7 +141,7 @@ class QuestionnairesController extends Controller
 
 
 
-        return redirect()->route('admin.questionnaires.index');
+        return redirect()->route('admin.questionnaires.show',$id);
     }
 
 

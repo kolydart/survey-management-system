@@ -99,7 +99,7 @@ class UsersController extends Controller
 
 
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.show',$id);
     }
 
 

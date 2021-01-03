@@ -100,7 +100,7 @@ class AnswersController extends Controller
 
 
 
-        return redirect()->route('admin.answers.index');
+        return redirect()->route('admin.answers.show',$id);
     }
 
 

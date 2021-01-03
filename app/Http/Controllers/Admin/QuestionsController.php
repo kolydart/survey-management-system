@@ -106,7 +106,7 @@ class QuestionsController extends Controller
 
 
 
-        return redirect()->route('admin.questions.index');
+        return redirect()->route('admin.questions.show',$id);
     }
 
 
