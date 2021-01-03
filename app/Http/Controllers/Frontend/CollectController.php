@@ -47,9 +47,9 @@ class CollectController extends Controller
      * @example data received: 
      *  [
      *    "2136_id" => "68"
-     *    "2141_id_71" => "71"
-     *    "2141_id_74" => "74"
-     *    "2141_content_74" => "asdf"
+     *    "2141_id" => "71"
+     *    "2141_id" => "74"
+     *    "2141_content_74" => "open ended answer"
      *  ]
      * 
      * @param  \Illuminate\Http\Request  $request
