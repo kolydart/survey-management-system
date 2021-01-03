@@ -47,6 +47,7 @@ class CollectController extends Controller
      * @example data received: 
      *  [
      *    "2136_id" => "68"
+     *    
      *    "2141_id" => "71"
      *    "2141_id" => "74"
      *    "2141_content_74" => "open ended answer"
@@ -75,6 +76,10 @@ class CollectController extends Controller
         }else{
             $name = null;
         }
+        
+        /** debug */
+        // die(\gateweb\common\Presenter::dd($request->all()));
+        
 
         /** create questionnaire */
         $questionnaire = Questionnaire::create(['survey_id'=>$request->survey_id, 'name' => $name]);
@@ -86,13 +91,11 @@ class CollectController extends Controller
             $array = explode('_',$key);
 
             if($array[1] == 'id'){
+                
                 $question_id = $router->sanitize($array[0],'int');
                 $answer_id = $router->sanitize($value,'int');
-                $content = $router->sanitize(
-                    $request_array[$question_id.'_content_'.$answer_id] ?? '',
-                    'text',
-                    ''
-                );
+                $content = $router->sanitize($request_array[$question_id.'_content_'.$answer_id] ?? '', 'text', '');
+
                 Response::create([
                     'questionnaire_id' => $questionnaire->id,
                     'question_id' => $question_id,
