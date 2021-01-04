@@ -52,19 +52,7 @@
                     <div>
                         <label>
                             {!! Form::radio('type', 'number', false, ['required' => '']) !!}
-                            number
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('type', 'range', false, ['required' => '']) !!}
-                            range
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('type', 'color', false, ['required' => '']) !!}
-                            color
+                            number (integer)
                         </label>
                     </div>
                     <div>
@@ -82,19 +70,7 @@
                     <div>
                         <label>
                             {!! Form::radio('type', 'datetime-local', false, ['required' => '']) !!}
-                            datetime-local
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('type', 'email', false, ['required' => '']) !!}
-                            email
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            {!! Form::radio('type', 'url', false, ['required' => '']) !!}
-                            url
+                            datetime
                         </label>
                     </div>
                     <div>
@@ -111,14 +87,38 @@
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'password', false, ['required' => '']) !!}
-                            password
+                            {!! Form::radio('type', 'email', false, ['required' => '']) !!}
+                            email
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'url', false, ['required' => '']) !!}
+                            url
                         </label>
                     </div>
                     <div>
                         <label>
                             {!! Form::radio('type', 'tel', false, ['required' => '']) !!}
                             telephone
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'password', false, ['required' => '']) !!}
+                            password (no special chars)
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'range', false, ['required' => '']) !!}
+                            range
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'color', false, ['required' => '']) !!}
+                            color
                         </label>
                     </div>
                     

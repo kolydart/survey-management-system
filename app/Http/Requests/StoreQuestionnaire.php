@@ -27,7 +27,7 @@ class StoreQuestionnaire extends FormRequest
         return [
             'survey_id' => 'numeric|required',
             '*_id*' => 'numeric|filled',
-            '*_content*' => 'filled|regex:'.Router::PREG_VALIDATE_TEXT,          
+            '*_content*' => 'filled|regex:'.Router::PREG_VALIDATE_TEXT,
         ];
     }
 
