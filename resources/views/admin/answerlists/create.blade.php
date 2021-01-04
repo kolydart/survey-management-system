@@ -100,7 +100,7 @@
                     
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="gw_answers">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('answers', trans('quickadmin.answerlists.fields.answers').'*', ['class' => 'control-label']) !!}
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-answers">
@@ -187,4 +187,8 @@
             $("#selectall-answers").trigger("change");
         });
     </script>
+    <script>
+        var hidden_answer_id = {{$hidden_answer->id}};
+    </script>
+    <script src="/js/answerlist_answer.js"></script>
 @stop
