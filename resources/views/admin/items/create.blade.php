@@ -37,7 +37,7 @@
             <div class="row" id="gw_fld_label">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('label', trans('quickadmin.items.fields.label').'', ['class' => 'control-label']) !!}
-                    {{-- {!! Form::hidden('label', 0) !!} --}}
+                    {!! Form::hidden('label', 0) !!}
                     {!! Form::checkbox('label', 1, old('label', false), []) !!}
                     <p class="help-block">Category label. Do not show content.</p>
                     @if($errors->has('label'))

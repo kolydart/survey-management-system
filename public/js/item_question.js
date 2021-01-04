@@ -1,6 +1,6 @@
 /**
  * show or hide question when label is selected in
- * admin.items.edit, admin.items.update
+ * admin.items.create, admin.items.edit
  */
 
 jQuery(document).ready(function($) { 
