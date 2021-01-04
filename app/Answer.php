@@ -49,6 +49,16 @@ class Answer extends Model
             return $this->hasMany(Response::class, 'answer_id');
     }
     
-    
+    /** 
+     * first hidden answer
+     * @param  query $query 
+     * @return obj   single hidden answer
+     *
+     * @example
+     * $answer->hidden->id
+     */
+    public function scopeHidden($query) {
+        return $query->where('hidden',1)->first();
+    }
     
 }
