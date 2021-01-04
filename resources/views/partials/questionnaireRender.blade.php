@@ -229,7 +229,29 @@ admin.questionnaires.show
 
                     {{-- admin.surveys.show, admin.questionnaires.show --}}
                     @else
-                    
+                        <div class="col-md-6 col-lg-6 col-lg-offset-3">
+                            <table class="table table-condensed table-hover table-bordered">
+                                <tbody>
+                                    @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
+                                            ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
+                                        <tr><td>{{$row}}</td> </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                
+                        {{-- count: {{count($array)}}
+                            mean: {{array_sum($array)/count($array)}}
+                            std: {{stats_standard_deviation($array)}}
+                            min: {{min($array)}}
+                            max: {{max($array)}}
+                            @php
+                            Arsort($array);
+                            $keys = array_keys($array);
+                            $median = $keys[round(count($keys)/2)];
+                            @endphp
+                            median: {{$median}} --}}                            
                     @endif
 
                 {{-- single value by route end --}}
