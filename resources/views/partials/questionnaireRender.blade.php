@@ -59,7 +59,7 @@ admin.questionnaires.show
 
                     <div class="gw-answers @if (\Route::currentRouteName() == 'admin.surveys.show') col-md-6 col-lg-6 col-lg-offset-3 @else col-xs-10 col-xs-offset-1 @endif ">
 
-                        {{-- report-or-answer begin--}}
+                    {{-- report-or-answer begin--}}
                         {{-- if report, just show chart --}}
                         @if (\Route::currentRouteName() == 'admin.surveys.show')
                             @if ($item->label != 1)
@@ -167,10 +167,10 @@ admin.questionnaires.show
                                 </div>
                             @endforeach
 
-                        {{-- report-or-answer end--}}
                         @endif
+                    {{-- report-or-answer end--}}
                         
-                        {{-- info tooltip for checkbox --}}
+                    {{-- info tooltip for checkbox --}}
                         @if ($item->question->answerlist->type == 'checkbox' && \Route::currentRouteName() == 'frontend.create')
                             <i class="fa fa-info-circle text-muted"></i> <small class="text-muted">@lang('Επιλέξτε όσα ισχύουν')</small>
                         @endif
@@ -195,41 +195,85 @@ admin.questionnaires.show
                     @endif                                
 
                 {{-- @todo add more types --}}
-                
+
+                {{-- answerlist->type == 'text' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'text') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'number' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'number') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'range' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'range') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'color' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'color') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'date' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'date') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'time' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'time') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'datetime' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'datetime') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'email' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'email') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
+                {{-- answerlist->type == 'url' --}}
                 {{-- @elseif ($item->question->answerlist->type == 'url') --}}
+                    {{-- @if (\Route::currentRouteName()=='frontend.create')
+                    @else
+                    @endif --}}
+
                 
                 {{-- OLD answerlist->type is anything else --}}
                 @else
 
                     {{-- hidden value (id) --}}
-                    {{-- @todo you may improve this (static answer: id 129) --}}
-                    <input type="hidden" class="hidden" id="{{$item->question->id}}_129_select" name="{{$item->question->id}}_id_129" value="129" >
+                    <input type="hidden" class="hidden" id="{{$item->question->id}}_{{$hidden_answer->id}}_value" name="{{$item->question->id}}_id" value="{{$hidden_answer->id}}" >
 
                     {{-- input (content) --}}
                     @if (\Route::currentRouteName() == 'frontend.create')
                         <input 
                             {{-- type="{{$item->question->answerlist->type}}"  --}}
                             type="text" 
-                            name="{{$item->question->id}}_content_129" 
-                            id="{{$item->question->id}}_content_129" 
+                            name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                            id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
                             class="col-md-6 col-lg-6 col-lg-offset-3"
-                            value="{{old($item->question->id.'_content_129')}}"
+                            value="{{old($item->question->id.'_content_'.$hidden_answer->id)}}"
                             required="required"
                         >
                     @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
                         <input 
                             {{-- type="{{$item->question->answerlist->type}}"  --}}
                             type="text" 
-                            name="{{$item->question->id}}_content_129" 
-                            id="{{$item->question->id}}_content_129" 
+                            name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                            id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
                             class="col-md-6 col-lg-6 col-lg-offset-3"
                             value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
                             disabled = "disabled"
@@ -272,10 +316,10 @@ admin.questionnaires.show
                     @endif
 
                 @endif
-
             {{-- answers end --}}
 
-        </section> {{-- item end --}}
+        </section>
+        {{-- item end --}}
 
     @endforeach
 </fieldset>

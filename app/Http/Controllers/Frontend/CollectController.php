@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Answer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionnaire;
 use App\Questionnaire;
@@ -38,7 +39,8 @@ class CollectController extends Controller
         }
         else{
             $questionnaire = new Questionnaire();
-            return view('frontend.create',compact('survey','questionnaire'));
+            $hidden_answer = Answer::hidden();
+            return view('frontend.create',compact('survey','questionnaire','hidden_answer'));
         }
     }
 
