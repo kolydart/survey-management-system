@@ -243,17 +243,27 @@ admin.questionnaires.show
                             <div class="col-md-6 col-lg-6 col-lg-offset-3">
                                 @php $array=App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
                                                     ->where('question_id',$item->question_id)->pluck('content')->toArray(); @endphp
-                                    count: {{count($array)}}.
-                                    mean: {{array_sum($array)/count($array)}}.
-                                    {{-- std: {{stats_standard_deviation($array)}}. --}}
-                                    min: {{min($array)}}.
-                                    max: {{max($array)}}.
-                                    @php
-                                    Arsort($array);
-                                    $keys = array_keys($array);
-                                    $median = $keys[round(count($keys)/2)];
-                                    @endphp
-                                    median: {{$median}}.
+                                    min: {{min($array)}},
+                                    max: {{max($array)}},
+                                    mean: {{array_sum($array)/count($array)}},
+                                    count: {{count($array)}},
+                                    {{-- std: {{stats_standard_deviation($array)}}, --}}
+                                    @if (in_array($item->question->answerlist->type,["number", "range"]))
+                                        @php
+                                            // calculate median
+                                            sort($array);
+                                            $count = count($array);
+                                            $middle_value = floor(($count-1)/2);
+                                            if ($count % 2) {
+                                                $median = $array[$middle_value];
+                                            } else {
+                                                $low = $array[$middle_value];
+                                                $high = $array[$middle_value+1];
+                                                $median = (($low+$high)/2);
+                                            }
+                                        @endphp
+                                        median: {{$median}}
+                                    @endif
                                 </div>
                             @endif
                     @endif
