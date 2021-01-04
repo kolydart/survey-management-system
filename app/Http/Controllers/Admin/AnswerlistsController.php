@@ -47,9 +47,10 @@ class AnswerlistsController extends Controller
         }
         
         $answers = \App\Answer::get()->pluck('title', 'id');
+        $hidden_answer = \App\Answer::hidden();
 
 
-        return view('admin.answerlists.create', compact('answers'));
+        return view('admin.answerlists.create', compact('answers','hidden_answer'));
     }
 
     /**
@@ -88,11 +89,10 @@ class AnswerlistsController extends Controller
         }
         
         $answers = \App\Answer::get()->pluck('title', 'id');
-
-
         $answerlist = Answerlist::findOrFail($id);
+        $hidden_answer = \App\Answer::hidden();
 
-        return view('admin.answerlists.edit', compact('answerlist', 'answers'));
+        return view('admin.answerlists.edit', compact('answerlist', 'answers', 'hidden_answer'));
     }
 
     /**
