@@ -229,16 +229,28 @@ admin.questionnaires.show
 
                     {{-- admin.surveys.show, admin.questionnaires.show --}}
                     @else
-                        <div class="col-md-6 col-lg-6 col-lg-offset-3">
-                            <table class="table table-condensed table-hover table-bordered">
-                                <tbody>
-                                    @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                            ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
-                                        <tr><td>{{$row}}</td> </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        {{-- display results (table, or csv) --}}
+                        <div class="card col-md-6 col-lg-6 col-lg-offset-3">
+                            @if (in_array($item->question->answerlist->type,["text"]) )
+                                <table class="table table-condensed table-hover table-bordered">
+                                    <tbody>
+                                        @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
+                                                ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
+                                            <tr><td>{{$row}}</td> </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <div class="border" style="border-style: solid; border-color: #EDEDED; border-radius: 5px; border-width: thin; padding: 5px;">
+                                    {{implode(
+                                        ", ",
+                                        App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->pluck('content')->toArray()
+                                    )}}
+                                    
+                                </div>
+                            @endif
                         </div>
+                        {{-- statistics --}}
                         @if (in_array($item->question->answerlist->type,["number", "range", "date", "time", "datetime-local", "week", "month"]) )
                             <div class="col-md-6 col-lg-6 col-lg-offset-3">
                                 @php $array=App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
