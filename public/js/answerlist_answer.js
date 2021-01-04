@@ -13,12 +13,12 @@ jQuery(document).ready(function($) {
         	|| $("input:radio[name=type]:checked").val() == "checkbox" 
         ) {
             $('#gw_answers').show(500);
-            $("select#selectall-answers option[value='"+hidden_answer_id+"']").removeAttr("selected");
+            $("select#selectall-answers option[value='"+hidden_answer_id+"']").prop("selected",false);
         }else{
-            $('#gw_answers').hide(500); 
+            $('#gw_answers').hide(500);
             $('select#selectall-answers option').removeAttr("selected");
             $('li.select2-selection__choice').hide(500).remove();
-            $("select#selectall-answers option[value='"+hidden_answer_id+"']").attr("selected","selected");
+            $("select#selectall-answers option[value='"+hidden_answer_id+"']").prop("selected",true);
         } }; 
 
 /** run on first load */
