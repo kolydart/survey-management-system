@@ -20,6 +20,10 @@
                             <th>@lang('quickadmin.answers.fields.open')</th>
                             <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
+                        <tr>
+                            <th>Hidden</th>
+                            <td field-key='hidden'>{{ Form::checkbox("hidden", 1, $answer->hidden == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($answer) !!}
                     </table>
                 </div>
