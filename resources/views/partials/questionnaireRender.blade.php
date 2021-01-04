@@ -192,130 +192,50 @@ admin.questionnaires.show
                                 </tbody>
                             </table>
                         </div>
-                    @endif                                
+                    @endif 
 
-                {{-- @todo add more types --}}
-
-                {{-- answerlist->type == 'text' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'text') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'number' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'number') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'range' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'range') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'color' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'color') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'date' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'date') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'time' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'time') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'datetime' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'datetime') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'email' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'email') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                {{-- answerlist->type == 'url' --}}
-                {{-- @elseif ($item->question->answerlist->type == 'url') --}}
-                    {{-- @if (\Route::currentRouteName()=='frontend.create')
-                    @else
-                    @endif --}}
-
-                
-                {{-- OLD answerlist->type is anything else --}}
+                {{-- answerlist type == any single value (hidden_answer) --}}
                 @else
 
-                    {{-- hidden value (id) --}}
-                    <input type="hidden" class="hidden" id="{{$item->question->id}}_{{$hidden_answer->id}}_value" name="{{$item->question->id}}_id" value="{{$hidden_answer->id}}" >
+                {{-- single value by route begin --}}
 
-                    {{-- input (content) --}}
-                    @if (\Route::currentRouteName() == 'frontend.create')
-                        <input 
-                            {{-- type="{{$item->question->answerlist->type}}"  --}}
-                            type="text" 
-                            name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
-                            id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
-                            class="col-md-6 col-lg-6 col-lg-offset-3"
-                            value="{{old($item->question->id.'_content_'.$hidden_answer->id)}}"
-                            required="required"
-                        >
-                    @elseif(\Route::currentRouteName() == 'admin.questionnaires.show')
-                        <input 
-                            {{-- type="{{$item->question->answerlist->type}}"  --}}
-                            type="text" 
-                            name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
-                            id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
-                            class="col-md-6 col-lg-6 col-lg-offset-3"
-                            value="{{ $questionnaire->responses->where('question_id',$item->question->id)->first()->content }}"
-                            disabled = "disabled"
-                        >
-                    @elseif (\Route::currentRouteName() == 'admin.surveys.show')
-                        @if ($item->question->answerlist->type == 'number')
-                            <div class="well col-md-6 col-lg-6 col-lg-offset-3">
-                                {{ 
-                                implode(
-                                    ", ",
-                                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                        ->where('question_id',$item->question_id)->pluck('content')->toArray()
-                                    )
-                                }}
-                                {{-- count: {{count($array)}}
-                                    mean: {{array_sum($array)/count($array)}}
-                                    std: {{stats_standard_deviation($array)}}
-                                    min: {{min($array)}}
-                                    max: {{max($array)}}
-                                    @php
-                                    Arsort($array);
-                                    $keys = array_keys($array);
-                                    $median = $keys[round(count($keys)/2)];
-                                    @endphp
-                                    median: {{$median}} --}}                            
-                            </div>
+                    {{-- frontend.create route --}}
+                    @if (\Route::currentRouteName()=='frontend.create')
+                        {{-- hidden value id --}}
+                        <input type="hidden" class="hidden" id="{{$item->question->id}}_{{$hidden_answer->id}}_value" name="{{$item->question->id}}_id" value="{{$hidden_answer->id}}" >
+
+                        @if ($item->question->answerlist->type == 'text')
+                            {{-- text only: textarea --}}
+                            <textarea
+                                name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                                id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                                class="col-md-6 col-lg-6 col-lg-offset-3"
+                                rows="4"
+                                required="required"
+                            >{{old($item->question->id.'_content_'.$hidden_answer->id)}}</textarea>
+
                         @else
-                            <div class="col-md-6 col-lg-6 col-lg-offset-3">
-                                <table class="table table-condensed table-hover table-bordered">
-                                    <tbody>
-                                        @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                                ->where('question_id',$item->question_id)->pluck('content')->toArray() as $row)
-                                            <tr><td>{{$row}}</td> </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            {{-- the rest: input --}}
+                            <input 
+                                type="{{$item->question->answerlist->type}}"
+                                name="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                                id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
+                                class="col-md-6 col-lg-6 col-lg-offset-3"
+                                value="{{old($item->question->id.'_content_'.$hidden_answer->id)}}"
+                                required="required"
+                            >                        
                         @endif
+                
 
+                    {{-- admin.surveys.show, admin.questionnaires.show --}}
+                    @else
+                    
                     @endif
 
+                {{-- single value by route end --}}
+
                 @endif
+
             {{-- answers end --}}
 
         </section>
