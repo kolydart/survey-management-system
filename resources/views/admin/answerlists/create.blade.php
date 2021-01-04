@@ -109,7 +109,7 @@
                     <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-answers">
                         {{ trans('quickadmin.qa_deselect_all') }}
                     </button>
-                    {!! Form::select('answers[]', $answers, old('answers'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-answers' , 'required' => '']) !!}
+                    {!! Form::select('answers[]', $answers, old('answers'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-answers' ]) !!}
                     <p class="help-block"></p>
                     @if($errors->has('answers'))
                         <p class="help-block">
