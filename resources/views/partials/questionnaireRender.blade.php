@@ -257,7 +257,7 @@ admin.questionnaires.show
                                                     ->where('question_id',$item->question_id)->pluck('content')->toArray(); @endphp
                                     min: {{min($array)}},
                                     max: {{max($array)}},
-                                    mean: {{array_sum($array)/count($array)}},
+                                    mean: {{round(array_sum($array)/count($array),2)}},
                                     count: {{count($array)}},
                                     {{-- std: {{stats_standard_deviation($array)}}, --}}
                                     @if (in_array($item->question->answerlist->type,["number", "range"]))
