@@ -81,8 +81,8 @@
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'datetime', false, ['required' => '']) !!}
-                            datetime
+                            {!! Form::radio('type', 'datetime-local', false, ['required' => '']) !!}
+                            datetime-local
                         </label>
                     </div>
                     <div>
@@ -95,6 +95,30 @@
                         <label>
                             {!! Form::radio('type', 'url', false, ['required' => '']) !!}
                             url
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'week', false, ['required' => '']) !!}
+                            week
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'month', false, ['required' => '']) !!}
+                            month
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'password', false, ['required' => '']) !!}
+                            password
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            {!! Form::radio('type', 'tel', false, ['required' => '']) !!}
+                            telephone
                         </label>
                     </div>
                     
