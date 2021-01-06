@@ -251,10 +251,9 @@ admin.questionnaires.show
                             @endif
                         </div>
                         {{-- statistics --}}
-                        @if (in_array($item->question->answerlist->type,["number", "range", "date", "time", "datetime-local", "week", "month"]) )
+                        @php $array=App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->pluck('content')->toArray(); @endphp
+                        @if ($array && in_array($item->question->answerlist->type,["number", "range", "date", "time", "datetime-local", "week", "month"]) )
                             <div class="col-md-6 col-lg-6 col-lg-offset-3">
-                                @php $array=App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                                    ->where('question_id',$item->question_id)->pluck('content')->toArray(); @endphp
                                     min: {{min($array)}},
                                     max: {{max($array)}},
                                     mean: {{round(array_sum($array)/count($array),2)}},
