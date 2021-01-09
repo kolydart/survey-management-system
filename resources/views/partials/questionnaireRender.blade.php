@@ -227,7 +227,19 @@ admin.questionnaires.show
                         @endif
                 
 
-                    {{-- admin.surveys.show, admin.questionnaires.show --}}
+                    {{-- admin.questionnaires.show --}}
+                    @elseif(\Route::currentRouteName()=='admin.questionnaires.show')
+                            {{-- the rest: input --}}
+                            <input 
+                                type="text"
+                                name="{{$item->question->id}}_content" 
+                                class="col-sm-6 col-md-5 col-md-offset-1"
+                                value="{{$item->question->responses->first()->content}}"
+                                disabled
+                            >
+
+
+                    {{-- admin.surveys.show --}}
                     @else
                         {{-- display results (table, or csv) --}}
                         <div class="card col-md-6 col-lg-6 col-lg-offset-3">
