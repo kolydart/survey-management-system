@@ -61,7 +61,7 @@
 
                                 <td field-key='title'><a href="{{route('admin.surveys.show',$survey->id)}}">{{ $survey->title }}</a></td>
                                 <td field-key='alias'>{{ $survey->alias }}</td>
-                                <td field-key='institution'>{{ $survey->institution->title or '' }}</td>
+                                <td field-key='institution'>{{ $survey->institution->title ?? '' }}</td>
                                 <td field-key='category'>
                                     @foreach ($survey->category as $singleCategory)
                                         <span class="label label-info label-many">{{ $singleCategory->title }}</span>

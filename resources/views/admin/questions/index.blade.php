@@ -56,8 +56,8 @@
 
                                 <td field-key='id'>{{ $question->id }}</td>
                                 <td field-key='title'>{{ $question->title }}</td>
-                                <td field-key='answerlist'>{{ $question->answerlist->title or '' }}</td>
-                                <td field-key='type'>{{$question->answerlist->type or ''}}</td>
+                                <td field-key='answerlist'>{{ $question->answerlist->title ?? '' }}</td>
+                                <td field-key='type'>{{$question->answerlist->type ?? ''}}</td>
                                 <td field-key='responses'>{{$question->responses->count()}}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>

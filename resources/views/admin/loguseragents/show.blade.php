@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.loguseragent.fields.user')</th>
-                            <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
+                            <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>
                         </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($loguseragent) !!}
                     </table>

@@ -27,11 +27,11 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.question')</th>
-                            <td field-key='question'><a href="{{route('admin.questions.show',$response->question->id)}}">{{ $response->question->title or '' }}</a></td>
+                            <td field-key='question'><a href="{{route('admin.questions.show',$response->question->id)}}">{{ $response->question->title ?? '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.answer')</th>
-                            <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer->id)}}">{{ $response->answer->title or '' }}</a></td>
+                            <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer->id)}}">{{ $response->answer->title ?? '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.content')</th>

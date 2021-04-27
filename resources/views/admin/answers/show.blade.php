@@ -57,9 +57,9 @@
         @if (count($responses) > 0)
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
-                    <td field-key='questionnaire'>{{ $response->questionnaire->name or '' }}</td>
-                                <td field-key='question'>{{ $response->question->title or '' }}</td>
-                                <td field-key='answer'>{{ $response->answer->title or '' }}</td>
+                    <td field-key='questionnaire'>{{ $response->questionnaire->name ?? '' }}</td>
+                                <td field-key='question'>{{ $response->question->title ?? '' }}</td>
+                                <td field-key='answer'>{{ $response->answer->title ?? '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>

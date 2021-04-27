@@ -26,10 +26,10 @@ admin.questionnaires.show
 <fieldset @if (\Route::currentRouteName() == 'frontend.create') class="gw-fieldset" @endif>
 
     {{-- questionnaire title --}}
-    <legend id="qst_{{ $questionnaire->id or 'create' }}">{{$survey->title}}</legend>
+    <legend id="qst_{{ $questionnaire->id ?? 'create' }}">{{$survey->title}}</legend>
 
     {{-- introduction --}}
-    <div class="mb-4 gw-introduction">{!! $survey->introduction or '' !!}</div>
+    <div class="mb-4 gw-introduction">{!! $survey->introduction ?? '' !!}</div>
     
     {{-- items --}}
     @foreach ( $survey->items()->orderBy('order')->get() as $item)
@@ -146,7 +146,7 @@ admin.questionnaires.show
                                             && !empty($questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question->id)->first()->content) 
                                             )
                                             <br>
-                                            {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content or ''}}
+                                            {{$questionnaire->responses->where('answer_id',$answer->id)->where('question_id',$item->question_id)->first()->content ?? ''}}
                                         @elseif (
                                             /** create new */
                                             \Route::currentRouteName() == 'frontend.create'

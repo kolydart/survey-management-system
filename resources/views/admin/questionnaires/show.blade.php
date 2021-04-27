@@ -14,7 +14,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('quickadmin.questionnaires.fields.survey')</th>
-                            <td field-key='survey'><a href="{{route('admin.surveys.show',$questionnaire->survey->id)}}">{{ $questionnaire->survey->title or '' }}</a></td>
+                            <td field-key='survey'><a href="{{route('admin.surveys.show',$questionnaire->survey->id)}}">{{ $questionnaire->survey->title ?? '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.questionnaires.fields.name')</th>
@@ -67,9 +67,9 @@
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
                                 <td field-key='question_id'>{{ $response->question->id }}</td>
-                                <td field-key='question'>{{ $response->question->title or '' }}</td>
+                                <td field-key='question'>{{ $response->question->title ?? '' }}</td>
                                 <td field-key='answer_id'>{{ $response->answer->id }}</td>
-                                <td field-key='answer'>{{ $response->answer->title or '' }}</td>
+                                <td field-key='answer'>{{ $response->answer->title ?? '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>

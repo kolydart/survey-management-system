@@ -40,10 +40,10 @@
                             <tr data-entry-id="{{ $response->id }}">
 
                                 <td field-key='content'>{!! $response->content !!}</td>
-                                <td field-key='question'>{{ $response->questionnaire->survey->title or '' }}</td>
-                                <td field-key='question'>{{ $response->question->title or '' }}</td>
-                                <td field-key='answer'>{{ $response->answer->title or '' }}</td>
-                                <td field-key='created_at'>{{ $response->created_at or '' }}</td>
+                                <td field-key='question'>{{ $response->questionnaire->survey->title ?? '' }}</td>
+                                <td field-key='question'>{{ $response->question->title ?? '' }}</td>
+                                <td field-key='answer'>{{ $response->answer->title ?? '' }}</td>
+                                <td field-key='created_at'>{{ $response->created_at ?? '' }}</td>
                                 <td>
                                     @can('response_view')
                                     <a href="{{ route('admin.responses.show',[$response->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>

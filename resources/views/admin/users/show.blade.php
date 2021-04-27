@@ -22,7 +22,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.users.fields.role')</th>
-                            <td field-key='role'>{{ $user->role->title or '' }}</td>
+                            <td field-key='role'>{{ $user->role->title ?? '' }}</td>
                         </tr>
                     </table>
                 </div>
@@ -61,7 +61,7 @@
                                 <td field-key='item_id'>{{ $loguseragent->item_id }}</td>
                                 <td field-key='ipv6'>{{ $loguseragent->ipv6 }}</td>
                                 <td field-key='uri'>{{ $loguseragent->uri }}</td>
-                                <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>
+                                <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>
                                                                 <td>
                                     @can('loguseragent_view')
                                     <a href="{{ route('admin.loguseragents.show',[$loguseragent->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>

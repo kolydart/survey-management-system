@@ -1,4 +1,4 @@
-<canvas id="chart_{{$item->id or ''}}"></canvas>
+<canvas id="chart_{{$item->id ?? ''}}"></canvas>
 
 <script>
     function splitter(str, l){
@@ -15,7 +15,7 @@
         strs.push(str);
         return strs;
     }
-    var ctx = document.getElementById("chart_{{$item->id or ''}}");
+    var ctx = document.getElementById("chart_{{$item->id ?? ''}}");
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {

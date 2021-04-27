@@ -187,10 +187,10 @@
 										<td field-key='id'><a href="{{route('admin.items.show',$item->id)}}">{{ $item->id }}</a></td>
 										<td field-key='order'>{{ $item->order }}</td>
 										<td field-key='question'>@if (!$item->label)
-											<a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a>
+											<a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title ?? '' }}</a>
 										@endif</td>
 										<td field-key='answerlist'>@if (!$item->label)
-											<a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a>
+											<a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title ?? '' }}</a>
 										@endif</td>
 										<td field-key='responses'>@if (!$item->label)
 											{{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}
@@ -298,7 +298,7 @@
 					            <td field-key='language'>{{ $loguseragent->language }}</td>
 					            <td field-key='uri'>{{ $loguseragent->uri }}</td>
 					            <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
-					            <td field-key='user'>{{ $loguseragent->user->name or '' }}</td>                								
+					            <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>                								
 							</tr>
 						@endforeach
 					@endforeach

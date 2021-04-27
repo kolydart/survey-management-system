@@ -58,9 +58,9 @@
         @if (count($responses) > 0)
             @foreach ($responses as $response)
                 <tr data-entry-id="{{ $response->id }}">
-                    <td field-key='questionnaire'>{{ $response->questionnaire->id or '' }}</td>
-                                <td field-key='answer'>{{ $response->answer->title or '' }}</td>
-                                <td field-key='answer_id'>{{ $response->answer_id or '' }}</td>
+                    <td field-key='questionnaire'>{{ $response->questionnaire->id ?? '' }}</td>
+                                <td field-key='answer'>{{ $response->answer->title ?? '' }}</td>
+                                <td field-key='answer_id'>{{ $response->answer_id ?? '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
@@ -132,8 +132,8 @@
         @if (count($items) > 0)
             @foreach ($items as $item)
                 <tr data-entry-id="{{ $item->id }}">
-                    <td field-key='survey'>{{ $item->survey->title or '' }}</td>
-                                <td field-key='question'>{{ $item->question->title or '' }}</td>
+                    <td field-key='survey'>{{ $item->survey->title ?? '' }}</td>
+                                <td field-key='question'>{{ $item->question->title ?? '' }}</td>
                                 <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                                 <td field-key='order'>{{ $item->order }}</td>
                                 @if( request('show_deleted') == 1 )

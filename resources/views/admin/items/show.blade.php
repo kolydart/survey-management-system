@@ -18,18 +18,18 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.items.fields.survey')</th>
-                            <td field-key='survey'><a href="{{route('admin.surveys.show',$item->survey->id)}}">{{ $item->survey->title or '' }}</a></td>
+                            <td field-key='survey'><a href="{{route('admin.surveys.show',$item->survey->id)}}">{{ $item->survey->title ?? '' }}</a></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.items.fields.question')</th>
                             <td field-key='question'>@if (!$item->label)
-                                <a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title or '' }}</a>
+                                <a href="{{route('admin.questions.show',$item->question->id)}}">{{ $item->question->title ?? '' }}</a>
                             @endif</td>
                         </tr>
                         <tr>
                             <th>@lang('answerlist')</th>
                             <td field-key='answerlist'>@if (!$item->label)
-                                <a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title or '' }}</a>
+                                <a href="{{route('admin.answerlists.show',$item->question->answerlist->id)}}">{{ $item->question->answerlist->title ?? '' }}</a>
                             @endif
                             </td>
                         </tr>
@@ -77,9 +77,9 @@
                                     <tr data-entry-id="{{ $response->id }}">
                                         <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
                                         <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }}</a></td>
-                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{$response->answer->title or ''}}</a></td>
-                                        <td field-key='content'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->content or '' }}</a></td>
-                                        <td field-key='name'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{$response->questionnaire->name or ''}}</a></td>
+                                        <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{$response->answer->title ?? ''}}</a></td>
+                                        <td field-key='content'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->content ?? '' }}</a></td>
+                                        <td field-key='name'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{$response->questionnaire->name ?? ''}}</a></td>
                                         <td field-key='answer_id'><a href="{{route('admin.answers.show',$response->answer_id)}}">{{ $response->answer->id }}</a></td>
                                     </tr>
                                 @endforeach
