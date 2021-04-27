@@ -14,27 +14,27 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'Illuminate\Auth\Events\Registered' => [
-            'App\Listeners\LogRegisteredUser',
+            \App\Listeners\LogRegisteredUser::class,
         ],
 
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogSuccessfulLogin',
+            \App\Listeners\LogSuccessfulLogin::class,
         ],
 
         'Illuminate\Auth\Events\Failed' => [
-            'App\Listeners\LogFailedLogin',
+            \App\Listeners\LogFailedLogin::class,
         ],
 
         'Illuminate\Auth\Events\Logout' => [
-            'App\Listeners\LogSuccessfulLogout',
+            \App\Listeners\LogSuccessfulLogout::class,
         ],
 
         'Illuminate\Auth\Events\Lockout' => [
-            'App\Listeners\LogLockout',
+            \App\Listeners\LogLockout::class,
         ],
 
         'Illuminate\Auth\Events\PasswordReset' => [
-            'App\Listeners\LogPasswordReset',
+            \App\Listeners\LogPasswordReset::class,
         ],
     ];
 

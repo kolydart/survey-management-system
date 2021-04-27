@@ -12,6 +12,6 @@ $factory->define(App\Loguseragent::class, function (Faker\Generator $faker) {
         'ipv6' => $faker->name,
         'uri' => $faker->name,
         'form_submitted' => 0,
-        'user_id' => factory('App\User')->create(),
+        'user_id' => factory(\App\User::class)->create(),
     ];
 });
