@@ -321,9 +321,9 @@
 
 {{-- button to show rawdata --}}
 	@if (\Request::query('rawdata'))
-		<a href="{{route(\Route::current()->getName(), ['id'=>$survey->id])}}" class="btn btn-info ml-5 pl-5"><i class="fa fa-bar-chart" aria-hidden="true"></i> View charts</a>
+		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey])}}" class="btn btn-info ml-5 pl-5"><i class="fa fa-bar-chart" aria-hidden="true"></i> View charts</a>
 	@else
-		<a href="{{route(\Route::current()->getName(), ['id'=>$survey->id, 'rawdata'=>true])}}" class="btn btn-info mt-5 pl-5"><i class="fa fa-list" aria-hidden="true"></i> View raw data</a>
+		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey, 'rawdata'=>true])}}" class="btn btn-info mt-5 pl-5"><i class="fa fa-list" aria-hidden="true"></i> View raw data</a>
 	@endif
 		</div>
 </div>
