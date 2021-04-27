@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -27,17 +30,16 @@
         "nunomaduro/collision": "~2.0",
         "symfony/thanks": "^1.0",
         "laravel/dusk": "^3.0.1",
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "classmap": [
             "database/seeds",
             "database/factories",
             "../_class/vendor/sinergi",
-            "../_class/vendor/phpmailer"            
+            "../_class/vendor/phpmailer"
         ],
-        "exclude-from-classmap":[
-        ],
+        "exclude-from-classmap": [],
         "psr-4": {
             "App\\": "app/"
         }
@@ -49,8 +51,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
