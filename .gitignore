@@ -19,3 +19,4 @@ composer.lock
 
 /lock/tmp_sql/export.sql
 /docs
+/_class
