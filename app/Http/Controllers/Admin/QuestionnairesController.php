@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Questionnaire;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreQuestionnairesRequest;
 use App\Http\Requests\Admin\UpdateQuestionnairesRequest;
+use App\Questionnaire;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class QuestionnairesController extends Controller
@@ -23,17 +23,14 @@ class QuestionnairesController extends Controller
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Questionnaire::query();
-            $query->with("survey");
+            $query->with('survey');
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('questionnaire_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('questionnaire_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -50,7 +47,7 @@ class QuestionnairesController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'questionnaire_';
+                $gateKey = 'questionnaire_';
                 $routeKey = 'admin.questionnaires';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -62,7 +59,7 @@ class QuestionnairesController extends Controller
                 return $row->name ? $row->name : '';
             });
 
-            $table->rawColumns(['actions','massDelete']);
+            $table->rawColumns(['actions', 'massDelete']);
 
             return $table->make(true);
         }
@@ -80,7 +77,7 @@ class QuestionnairesController extends Controller
         if (! Gate::allows('questionnaire_create')) {
             return abort(401);
         }
-        
+
         $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.questionnaires.create', compact('surveys'));
@@ -99,11 +96,8 @@ class QuestionnairesController extends Controller
         }
         $questionnaire = Questionnaire::create($request->all());
 
-
-
         return redirect()->route('admin.questionnaires.index');
     }
-
 
     /**
      * Show the form for editing Questionnaire.
@@ -116,7 +110,7 @@ class QuestionnairesController extends Controller
         if (! Gate::allows('questionnaire_edit')) {
             return abort(401);
         }
-        
+
         $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $questionnaire = Questionnaire::findOrFail($id);
@@ -139,11 +133,8 @@ class QuestionnairesController extends Controller
         $questionnaire = Questionnaire::findOrFail($id);
         $questionnaire->update($request->all());
 
-
-
-        return redirect()->route('admin.questionnaires.show',$id);
+        return redirect()->route('admin.questionnaires.show', $id);
     }
-
 
     /**
      * Display Questionnaire.
@@ -156,7 +147,7 @@ class QuestionnairesController extends Controller
         if (! Gate::allows('questionnaire_view')) {
             return abort(401);
         }
-        
+
         // $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $responses = \App\Response::where('questionnaire_id', $id)->get();
         $questionnaire = Questionnaire::findOrFail($id);
@@ -164,7 +155,6 @@ class QuestionnairesController extends Controller
 
         return view('admin.questionnaires.show', compact('survey', 'questionnaire', 'responses'));
     }
-
 
     /**
      * Remove Questionnaire from storage.
@@ -201,7 +191,6 @@ class QuestionnairesController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Questionnaire from storage.

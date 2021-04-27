@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Item;
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Survey
  *
- * @package App
  * @property string $title
  * @property string $alias
  * @property string $institution
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property tinyInteger $inform
  * @property string $access
  * @property tinyInteger $completed
-*/
+ */
 class Survey extends Model
 {
     /** activity log */
@@ -28,15 +28,12 @@ class Survey extends Model
     protected static $logOnlyDirty = true;
 
     use SoftDeletes;
-
     /** softCascade */
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
-    protected $softCascade = ['questionnaires','items'];
+    protected $softCascade = ['questionnaires', 'items'];
 
     protected $fillable = ['title', 'alias', 'introduction', 'javascript', 'notes', 'inform', 'access', 'completed', 'institution_id'];
     protected $hidden = [];
-    
-    
 
     /**
      * Set to null if empty
@@ -46,46 +43,50 @@ class Survey extends Model
     {
         $this->attributes['institution_id'] = $input ? $input : null;
     }
-    
+
     public function institution()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Institution::class, 'institution_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Institution::class, 'institution_id');
+        }
     }
-    
+
     public function category()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsToMany(Category::class, 'category_survey')->withTrashed();
-        else
+        } else {
             return $this->belongsToMany(Category::class, 'category_survey');
+        }
     }
-    
+
     public function group()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsToMany(Group::class, 'group_survey')->withTrashed();
-        else
+        } else {
             return $this->belongsToMany(Group::class, 'group_survey');
+        }
     }
-    
+
     /**  --- ✄ ----------------------- */
-    public function questionnaires(){
-        if(request('show_deleted') == 1)
+    public function questionnaires()
+    {
+        if (request('show_deleted') == 1) {
             return $this->hasMany(Questionnaire::class, 'survey_id')->withTrashed();
-        else
+        } else {
             return $this->hasMany(Questionnaire::class, 'survey_id');
+        }
     }
 
     public function items()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)')->withTrashed();
-        else
+        } else {
             return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)');
+        }
     }
-
-    
 }

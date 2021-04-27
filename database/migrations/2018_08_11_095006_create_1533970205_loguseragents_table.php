@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Create1533970205LoguseragentsTable extends Migration
 {
@@ -12,7 +12,7 @@ class Create1533970205LoguseragentsTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('loguseragents')) {
+        if (! Schema::hasTable('loguseragents')) {
             Schema::create('loguseragents', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('os')->nullable();
@@ -25,9 +25,8 @@ class Create1533970205LoguseragentsTable extends Migration
                 $table->string('ipv6')->nullable();
                 $table->string('uri')->nullable();
                 $table->tinyInteger('form_submitted')->nullable()->default('0');
-                
+
                 $table->timestamps();
-                
             });
         }
     }

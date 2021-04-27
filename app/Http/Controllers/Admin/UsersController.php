@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -22,8 +22,7 @@ class UsersController extends Controller
             return abort(401);
         }
 
-
-                $users = User::all();
+        $users = User::all();
 
         return view('admin.users.index', compact('users'));
     }
@@ -38,7 +37,7 @@ class UsersController extends Controller
         if (! Gate::allows('user_create')) {
             return abort(401);
         }
-        
+
         $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.users.create', compact('roles'));
@@ -57,11 +56,8 @@ class UsersController extends Controller
         }
         $user = User::create($request->all());
 
-
-
         return redirect()->route('admin.users.index');
     }
-
 
     /**
      * Show the form for editing User.
@@ -74,7 +70,7 @@ class UsersController extends Controller
         if (! Gate::allows('user_edit')) {
             return abort(401);
         }
-        
+
         $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $user = User::findOrFail($id);
@@ -97,11 +93,8 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-
-
-        return redirect()->route('admin.users.show',$id);
+        return redirect()->route('admin.users.show', $id);
     }
-
 
     /**
      * Display User.
@@ -114,14 +107,14 @@ class UsersController extends Controller
         if (! Gate::allows('user_view')) {
             return abort(401);
         }
-        
-        $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$loguseragents = \App\Loguseragent::where('user_id', $id)->get();
+
+        $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $loguseragents = \App\Loguseragent::where('user_id', $id)->get();
 
         $user = User::findOrFail($id);
 
         return view('admin.users.show', compact('user', 'loguseragents'));
     }
-
 
     /**
      * Remove User from storage.
@@ -158,5 +151,4 @@ class UsersController extends Controller
             }
         }
     }
-
 }

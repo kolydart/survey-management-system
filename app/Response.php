@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,12 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Response
  *
- * @package App
  * @property string $questionnaire
  * @property string $question
  * @property string $answer
  * @property text $content
-*/
+ */
 class Response extends Model
 {
     /** activity log */
@@ -24,8 +24,6 @@ class Response extends Model
 
     protected $fillable = ['content', 'questionnaire_id', 'question_id', 'answer_id'];
     protected $hidden = [];
-    
-    
 
     /**
      * Set to null if empty
@@ -53,29 +51,31 @@ class Response extends Model
     {
         $this->attributes['answer_id'] = $input ? $input : null;
     }
-    
+
     public function questionnaire()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Questionnaire::class, 'questionnaire_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Questionnaire::class, 'questionnaire_id');
+        }
     }
-    
+
     public function question()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Question::class, 'question_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Question::class, 'question_id');
+        }
     }
-    
+
     public function answer()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Answer::class, 'answer_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Answer::class, 'answer_id');
+        }
     }
-    
 }

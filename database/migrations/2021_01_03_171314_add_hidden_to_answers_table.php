@@ -16,12 +16,11 @@ class AddHiddenToAnswersTable extends Migration
     {
         /** add field to schema */
         Schema::table('answers', function (Blueprint $table) {
-          $table->boolean('hidden')->default(false);
+            $table->boolean('hidden')->default(false);
         });
 
         /** create a single record */
-        Answer::create(['title'=>'value','hidden'=>true]);
-        
+        Answer::create(['title'=>'value', 'hidden'=>true]);
     }
 
     /**
@@ -32,7 +31,7 @@ class AddHiddenToAnswersTable extends Migration
     public function down()
     {
         Schema::table('answers', function (Blueprint $table) {
-          $table->dropColumn('hidden');            
+            $table->dropColumn('hidden');
         });
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Answerlist;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAnswerlistsRequest;
 use App\Http\Requests\Admin\UpdateAnswerlistsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AnswerlistsController extends Controller
 {
@@ -21,7 +21,6 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('answerlist_delete')) {
@@ -45,12 +44,11 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_create')) {
             return abort(401);
         }
-        
+
         $answers = \App\Answer::get()->pluck('title', 'id');
         $hidden_answer = \App\Answer::hidden();
 
-
-        return view('admin.answerlists.create', compact('answers','hidden_answer'));
+        return view('admin.answerlists.create', compact('answers', 'hidden_answer'));
     }
 
     /**
@@ -65,16 +63,14 @@ class AnswerlistsController extends Controller
             return abort(401);
         }
         $answerlist = Answerlist::create($request->all());
-        $answerlist->answers()->sync(array_filter((array)$request->input('answers')));
+        $answerlist->answers()->sync(array_filter((array) $request->input('answers')));
 
         foreach ($request->input('questions', []) as $data) {
             $answerlist->questions()->create($data);
         }
 
-
         return redirect()->route('admin.answerlists.index');
     }
-
 
     /**
      * Show the form for editing Answerlist.
@@ -87,7 +83,7 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_edit')) {
             return abort(401);
         }
-        
+
         $answers = \App\Answer::get()->pluck('title', 'id');
         $answerlist = Answerlist::findOrFail($id);
         $hidden_answer = \App\Answer::hidden();
@@ -109,15 +105,15 @@ class AnswerlistsController extends Controller
         }
         $answerlist = Answerlist::findOrFail($id);
         $answerlist->update($request->all());
-        $answerlist->answers()->sync(array_filter((array)$request->input('answers')));
+        $answerlist->answers()->sync(array_filter((array) $request->input('answers')));
 
-        $questions           = $answerlist->questions;
+        $questions = $answerlist->questions;
         $currentQuestionData = [];
         foreach ($request->input('questions', []) as $index => $data) {
-            if (is_integer($index)) {
+            if (is_int($index)) {
                 $answerlist->questions()->create($data);
             } else {
-                $id                          = explode('-', $index)[1];
+                $id = explode('-', $index)[1];
                 $currentQuestionData[$id] = $data;
             }
         }
@@ -129,10 +125,8 @@ class AnswerlistsController extends Controller
             }
         }
 
-
         return redirect()->route('admin.answerlists.index');
     }
-
 
     /**
      * Display Answerlist.
@@ -145,7 +139,7 @@ class AnswerlistsController extends Controller
         if (! Gate::allows('answerlist_view')) {
             return abort(401);
         }
-        
+
         $answers = \App\Answer::get()->pluck('title', 'id');
         $questions = \App\Question::where('answerlist_id', $id)->get();
 
@@ -153,7 +147,6 @@ class AnswerlistsController extends Controller
 
         return view('admin.answerlists.show', compact('answerlist', 'questions'));
     }
-
 
     /**
      * Remove Answerlist from storage.
@@ -190,7 +183,6 @@ class AnswerlistsController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Answerlist from storage.

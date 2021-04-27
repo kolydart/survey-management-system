@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Create1533638898ContentTagsTable extends Migration
 {
@@ -12,14 +12,13 @@ class Create1533638898ContentTagsTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('content_tags')) {
+        if (! Schema::hasTable('content_tags')) {
             Schema::create('content_tags', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('title')->nullable();
                 $table->string('slug')->nullable();
-                
+
                 $table->timestamps();
-                
             });
         }
     }

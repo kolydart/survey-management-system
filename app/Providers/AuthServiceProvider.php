@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Role;
 use App\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,6 @@ class AuthServiceProvider extends ServiceProvider
 
         $user = \Auth::user();
 
-        
         // Auth gates for: Surveys
         Gate::define('survey_access', function ($user) {
             return in_array($user->role_id, [1]);
@@ -327,6 +326,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('user_delete', function ($user) {
             return in_array($user->role_id, [1]);
         });
-
     }
 }

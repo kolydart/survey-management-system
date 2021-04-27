@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\ContentPage;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreContentPagesRequest;
 use App\Http\Requests\Admin\UpdateContentPagesRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ContentPagesController extends Controller
 {
@@ -25,8 +25,7 @@ class ContentPagesController extends Controller
             return abort(401);
         }
 
-
-                $content_pages = ContentPage::all();
+        $content_pages = ContentPage::all();
 
         return view('admin.content_pages.index', compact('content_pages'));
     }
@@ -41,11 +40,10 @@ class ContentPagesController extends Controller
         if (! Gate::allows('content_page_create')) {
             return abort(401);
         }
-        
+
         $category_ids = \App\ContentCategory::get()->pluck('title', 'id');
 
         $tag_ids = \App\ContentTag::get()->pluck('title', 'id');
-
 
         return view('admin.content_pages.create', compact('category_ids', 'tag_ids'));
     }
@@ -63,14 +61,11 @@ class ContentPagesController extends Controller
         }
         $request = $this->saveFiles($request);
         $content_page = ContentPage::create($request->all());
-        $content_page->category_id()->sync(array_filter((array)$request->input('category_id')));
-        $content_page->tag_id()->sync(array_filter((array)$request->input('tag_id')));
-
-
+        $content_page->category_id()->sync(array_filter((array) $request->input('category_id')));
+        $content_page->tag_id()->sync(array_filter((array) $request->input('tag_id')));
 
         return redirect()->route('admin.content_pages.index');
     }
-
 
     /**
      * Show the form for editing ContentPage.
@@ -83,11 +78,10 @@ class ContentPagesController extends Controller
         if (! Gate::allows('content_page_edit')) {
             return abort(401);
         }
-        
+
         $category_ids = \App\ContentCategory::get()->pluck('title', 'id');
 
         $tag_ids = \App\ContentTag::get()->pluck('title', 'id');
-
 
         $content_page = ContentPage::findOrFail($id);
 
@@ -109,14 +103,11 @@ class ContentPagesController extends Controller
         $request = $this->saveFiles($request);
         $content_page = ContentPage::findOrFail($id);
         $content_page->update($request->all());
-        $content_page->category_id()->sync(array_filter((array)$request->input('category_id')));
-        $content_page->tag_id()->sync(array_filter((array)$request->input('tag_id')));
-
-
+        $content_page->category_id()->sync(array_filter((array) $request->input('category_id')));
+        $content_page->tag_id()->sync(array_filter((array) $request->input('tag_id')));
 
         return redirect()->route('admin.content_pages.index');
     }
-
 
     /**
      * Display ContentPage.
@@ -133,7 +124,6 @@ class ContentPagesController extends Controller
 
         return view('admin.content_pages.show', compact('content_page'));
     }
-
 
     /**
      * Remove ContentPage from storage.
@@ -170,5 +160,4 @@ class ContentPagesController extends Controller
             }
         }
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +24,7 @@ class UpdateGroupsRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
             'title' => 'required',
             'surveys.*.title' => 'required',
         ];

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCategoriesRequest;
 use App\Http\Requests\Admin\UpdateCategoriesRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoriesController extends Controller
 {
@@ -21,7 +21,6 @@ class CategoriesController extends Controller
         if (! Gate::allows('category_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('category_delete')) {
@@ -45,6 +44,7 @@ class CategoriesController extends Controller
         if (! Gate::allows('category_create')) {
             return abort(401);
         }
+
         return view('admin.categories.create');
     }
 
@@ -61,11 +61,8 @@ class CategoriesController extends Controller
         }
         $category = Category::create($request->all());
 
-
-
         return redirect()->route('admin.categories.index');
     }
-
 
     /**
      * Show the form for editing Category.
@@ -98,11 +95,8 @@ class CategoriesController extends Controller
         $category = Category::findOrFail($id);
         $category->update($request->all());
 
-
-
-        return redirect()->route('admin.categories.show',$id);
+        return redirect()->route('admin.categories.show', $id);
     }
-
 
     /**
      * Display Category.
@@ -124,7 +118,6 @@ class CategoriesController extends Controller
 
         return view('admin.categories.show', compact('category', 'surveys'));
     }
-
 
     /**
      * Remove Category from storage.
@@ -161,7 +154,6 @@ class CategoriesController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Category from storage.

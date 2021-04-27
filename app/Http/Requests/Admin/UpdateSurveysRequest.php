@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +24,7 @@ class UpdateSurveysRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
             'title' => 'required',
             'alias' => 'required|unique:surveys,alias,'.$this->route('survey'),
             'category.*' => 'exists:categories,id',

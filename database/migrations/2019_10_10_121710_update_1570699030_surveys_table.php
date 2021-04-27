@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Update1570699030SurveysTable extends Migration
 {
@@ -13,12 +13,10 @@ class Update1570699030SurveysTable extends Migration
     public function up()
     {
         Schema::table('surveys', function (Blueprint $table) {
-            
-if (!Schema::hasColumn('surveys', 'javascript')) {
+            if (! Schema::hasColumn('surveys', 'javascript')) {
                 $table->text('javascript')->nullable();
-                }
+            }
         });
-
     }
 
     /**
@@ -30,8 +28,6 @@ if (!Schema::hasColumn('surveys', 'javascript')) {
     {
         Schema::table('surveys', function (Blueprint $table) {
             $table->dropColumn('javascript');
-            
         });
-
     }
 }

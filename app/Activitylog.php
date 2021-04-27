@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -6,23 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Activitylog
  *
- * @package App
  * @property string $log_name
  * @property string $causer_type
- * @property integer $causer_id
+ * @property int $causer_id
  * @property string $description
  * @property string $subject_type
- * @property integer $subject_id
+ * @property int $subject_id
  * @property text $properties
-*/
+ */
 class Activitylog extends Model
 {
     protected $table = 'activity_log';
-    
+
     protected $fillable = ['log_name', 'causer_type', 'causer_id', 'description', 'subject_type', 'subject_id', 'properties'];
     protected $hidden = [];
-    
-    
 
     /**
      * Set attribute to money format
@@ -41,5 +39,4 @@ class Activitylog extends Model
     {
         $this->attributes['subject_id'] = $input ? $input : null;
     }
-    
 }

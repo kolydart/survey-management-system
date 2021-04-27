@@ -24,20 +24,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         $responses = \App\Response::whereNotNull('content')
-            ->where('content','<>','')
-            ->whereHas('question',function($query){$query
-                ->whereHas('answerlist',function($query){$query
-                    ->where('type','radio')
-                    ->orWhere('type','checkbox');
+            ->where('content', '<>', '')
+            ->whereHas('question', function ($query) {
+                $query
+                ->whereHas('answerlist', function ($query) {
+                    $query
+                    ->where('type', 'radio')
+                    ->orWhere('type', 'checkbox');
                 });
             })
             ->latest()
             ->limit(10)
             ->get();
-        
-        $questionnaires = \App\Questionnaire::latest()->limit(10)->get(); 
-        return view('home', compact( 'responses', 'questionnaires' ));
+
+        $questionnaires = \App\Questionnaire::latest()->limit(10)->get();
+
+        return view('home', compact('responses', 'questionnaires'));
     }
 }

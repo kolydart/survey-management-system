@@ -2,7 +2,7 @@
 
 $factory->define(App\Answer::class, function (Faker\Generator $faker) {
     return [
-        "title" => $faker->sentence,
-        "open" => 0,
+        'title' => $faker->sentence,
+        'open' => 0,
     ];
 });

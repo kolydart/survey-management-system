@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Activitylog;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreActivitylogsRequest;
 use App\Http\Requests\Admin\UpdateActivitylogsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class ActivitylogsController extends Controller
@@ -23,12 +23,10 @@ class ActivitylogsController extends Controller
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Activitylog::query();
             $template = 'actionsTemplate';
-            
+
             $query->select([
                 'activity_log.id',
                 'activity_log.log_name',
@@ -47,7 +45,7 @@ class ActivitylogsController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'activitylog_';
+                $gateKey = 'activitylog_';
                 $routeKey = 'admin.activitylogs';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -74,7 +72,7 @@ class ActivitylogsController extends Controller
                 return $row->properties ? $row->properties : '';
             });
 
-            $table->rawColumns(['actions','massDelete']);
+            $table->rawColumns(['actions', 'massDelete']);
 
             return $table->make(true);
         }
@@ -113,11 +111,8 @@ class ActivitylogsController extends Controller
         $activitylog = Activitylog::findOrFail($id);
         $activitylog->update($request->all());
 
-
-
         return redirect()->route('admin.activitylogs.index');
     }
-
 
     /**
      * Display Activitylog.
@@ -134,7 +129,6 @@ class ActivitylogsController extends Controller
 
         return view('admin.activitylogs.show', compact('activitylog'));
     }
-
 
     /**
      * Remove Activitylog from storage.
@@ -171,5 +165,4 @@ class ActivitylogsController extends Controller
             }
         }
     }
-
 }

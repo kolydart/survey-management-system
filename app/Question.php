@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Item;
@@ -9,27 +10,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Question
  *
- * @package App
  * @property string $title
  * @property string $answerlist
-*/
+ */
 class Question extends Model
 {
-	/** activity log */
-	use \Spatie\Activitylog\Traits\LogsActivity;
-	protected static $logFillable = true;
-	protected static $logOnlyDirty = true;
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     use SoftDeletes;
-
     /** softCascade */
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
-    protected $softCascade = ['items','responses'];
+    protected $softCascade = ['items', 'responses'];
 
     protected $fillable = ['title', 'answerlist_id'];
     protected $hidden = [];
-    
-    
 
     /**
      * Set to null if empty
@@ -39,34 +36,32 @@ class Question extends Model
     {
         $this->attributes['answerlist_id'] = $input ? $input : null;
     }
-    
+
     public function answerlist()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Answerlist::class, 'answerlist_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Answerlist::class, 'answerlist_id');
+        }
     }
 
     /**  --- ✄ ----------------------- */
-
     public function items()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->hasMany(Item::class, 'question_id')->withTrashed();
-        else
+        } else {
             return $this->hasMany(Item::class, 'question_id');
+        }
     }
 
     public function responses()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->hasMany(Response::class, 'question_id')->withTrashed();
-        else
+        } else {
             return $this->hasMany(Response::class, 'question_id');
+        }
     }
-    
-
-
-    
 }

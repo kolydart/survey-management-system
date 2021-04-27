@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use App\Survey;
@@ -8,30 +9,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Category
  *
- * @package App
  * @property string $title
-*/
+ */
 class Category extends Model
 {
-	/** activity log */
-	use \Spatie\Activitylog\Traits\LogsActivity;
-	protected static $logFillable = true;
-	protected static $logOnlyDirty = true;
+    /** activity log */
+    use \Spatie\Activitylog\Traits\LogsActivity;
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
 
     use SoftDeletes;
 
     protected $fillable = ['title'];
     protected $hidden = [];
-    
+
     /**  --- ✄ ----------------------- */
-    
     public function surveys()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsToMany(Survey::class, 'category_survey')->withTrashed();
-        else
+        } else {
             return $this->belongsToMany(Survey::class, 'category_survey');
+        }
     }
-    
-    
 }

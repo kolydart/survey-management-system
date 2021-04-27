@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,12 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Item
  *
- * @package App
  * @property string $survey
  * @property string $question
  * @property tinyInteger $label
  * @property string $order
-*/
+ */
 class Item extends Model
 {
     /** activity log */
@@ -24,8 +24,6 @@ class Item extends Model
 
     protected $fillable = ['label', 'order', 'survey_id', 'question_id'];
     protected $hidden = [];
-    
-    
 
     /**
      * Set to null if empty
@@ -44,21 +42,22 @@ class Item extends Model
     {
         $this->attributes['question_id'] = $input ? $input : null;
     }
-    
+
     public function survey()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Survey::class, 'survey_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Survey::class, 'survey_id');
+        }
     }
-    
+
     public function question()
     {
-        if(request('show_deleted') == 1)
+        if (request('show_deleted') == 1) {
             return $this->belongsTo(Question::class, 'question_id')->withTrashed();
-        else
+        } else {
             return $this->belongsTo(Question::class, 'question_id');
+        }
     }
-    
 }

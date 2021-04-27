@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Update1533809166AnswersTable extends Migration
 {
@@ -13,12 +13,10 @@ class Update1533809166AnswersTable extends Migration
     public function up()
     {
         Schema::table('answers', function (Blueprint $table) {
-            
-if (!Schema::hasColumn('answers', 'open')) {
+            if (! Schema::hasColumn('answers', 'open')) {
                 $table->tinyInteger('open')->nullable()->default('0');
-                }
+            }
         });
-
     }
 
     /**
@@ -30,8 +28,6 @@ if (!Schema::hasColumn('answers', 'open')) {
     {
         Schema::table('answers', function (Blueprint $table) {
             $table->dropColumn('open');
-            
         });
-
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,12 +27,10 @@ class UpdateItemsRequest extends FormRequest
             'survey_id' => 'required',
         ];
 
-        if (!$this->input('label') && !$this->input('question_id')) {
-            $rules['question_id']='required';
+        if (! $this->input('label') && ! $this->input('question_id')) {
+            $rules['question_id'] = 'required';
         }
 
         return $rules;
     }
-
-
 }

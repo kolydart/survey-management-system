@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Group;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreGroupsRequest;
 use App\Http\Requests\Admin\UpdateGroupsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class GroupsController extends Controller
 {
@@ -21,7 +21,6 @@ class GroupsController extends Controller
         if (! Gate::allows('group_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('group_delete')) {
@@ -45,6 +44,7 @@ class GroupsController extends Controller
         if (! Gate::allows('group_create')) {
             return abort(401);
         }
+
         return view('admin.groups.create');
     }
 
@@ -61,11 +61,8 @@ class GroupsController extends Controller
         }
         $group = Group::create($request->all());
 
-
-
         return redirect()->route('admin.groups.index');
     }
-
 
     /**
      * Show the form for editing Group.
@@ -98,11 +95,8 @@ class GroupsController extends Controller
         $group = Group::findOrFail($id);
         $group->update($request->all());
 
-
-
-        return redirect()->route('admin.groups.show',$id);
+        return redirect()->route('admin.groups.show', $id);
     }
-
 
     /**
      * Display Group.
@@ -124,7 +118,6 @@ class GroupsController extends Controller
 
         return view('admin.groups.show', compact('group', 'surveys'));
     }
-
 
     /**
      * Remove Group from storage.
@@ -161,7 +154,6 @@ class GroupsController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Group from storage.

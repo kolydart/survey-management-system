@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-	use RefreshDatabase;
-	
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -16,8 +16,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $user = $this->signin_as('admin',1);
+        $user = $this->signin_as('admin', 1);
         $this->assertTrue($user->can('survey_access'));
-
     }
 }

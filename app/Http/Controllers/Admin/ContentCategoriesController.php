@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\ContentCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreContentCategoriesRequest;
 use App\Http\Requests\Admin\UpdateContentCategoriesRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ContentCategoriesController extends Controller
 {
@@ -22,8 +22,7 @@ class ContentCategoriesController extends Controller
             return abort(401);
         }
 
-
-                $content_categories = ContentCategory::all();
+        $content_categories = ContentCategory::all();
 
         return view('admin.content_categories.index', compact('content_categories'));
     }
@@ -38,6 +37,7 @@ class ContentCategoriesController extends Controller
         if (! Gate::allows('content_category_create')) {
             return abort(401);
         }
+
         return view('admin.content_categories.create');
     }
 
@@ -54,11 +54,8 @@ class ContentCategoriesController extends Controller
         }
         $content_category = ContentCategory::create($request->all());
 
-
-
         return redirect()->route('admin.content_categories.index');
     }
-
 
     /**
      * Show the form for editing ContentCategory.
@@ -91,11 +88,8 @@ class ContentCategoriesController extends Controller
         $content_category = ContentCategory::findOrFail($id);
         $content_category->update($request->all());
 
-
-
         return redirect()->route('admin.content_categories.index');
     }
-
 
     /**
      * Display ContentCategory.
@@ -117,7 +111,6 @@ class ContentCategoriesController extends Controller
 
         return view('admin.content_categories.show', compact('content_category', 'content_pages'));
     }
-
 
     /**
      * Remove ContentCategory from storage.
@@ -154,5 +147,4 @@ class ContentCategoriesController extends Controller
             }
         }
     }
-
 }

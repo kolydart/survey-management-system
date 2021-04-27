@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLoguseragentsRequest;
 use App\Http\Requests\Admin\UpdateLoguseragentsRequest;
 use App\Loguseragent;
+use gateweb\common\Presenter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
-use gateweb\common\Presenter;
 
 class LoguseragentsController extends Controller
 {
@@ -24,13 +24,11 @@ class LoguseragentsController extends Controller
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Loguseragent::query();
-            $query->with("user");
+            $query->with('user');
             $template = 'actionsTemplate';
-            
+
             $query->select([
                 'loguseragents.id',
                 'loguseragents.os',
@@ -54,7 +52,7 @@ class LoguseragentsController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'loguseragent_';
+                $gateKey = 'loguseragent_';
                 $routeKey = 'admin.loguseragents';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -87,7 +85,7 @@ class LoguseragentsController extends Controller
                 return $row->uri ? $row->uri : '';
             });
             $table->editColumn('form_submitted', function ($row) {
-                return \Form::checkbox("form_submitted", 1, $row->form_submitted == 1, ["disabled"]);
+                return \Form::checkbox('form_submitted', 1, $row->form_submitted == 1, ['disabled']);
             });
             $table->editColumn('user.name', function ($row) {
                 return $row->user ? $row->user->name : '';
@@ -96,7 +94,7 @@ class LoguseragentsController extends Controller
                 return $row->created_at ? $row->created_at : '';
             });
 
-            $table->rawColumns(['actions','massDelete','form_submitted']);
+            $table->rawColumns(['actions', 'massDelete', 'form_submitted']);
 
             return $table->make(true);
         }
@@ -115,7 +113,7 @@ class LoguseragentsController extends Controller
         if (! Gate::allows('loguseragent_edit')) {
             return abort(401);
         }
-        
+
         $users = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $loguseragent = Loguseragent::findOrFail($id);
@@ -138,11 +136,8 @@ class LoguseragentsController extends Controller
         $loguseragent = Loguseragent::findOrFail($id);
         $loguseragent->update($request->all());
 
-
-
         return redirect()->route('admin.loguseragents.index');
     }
-
 
     /**
      * Display Loguseragent.
@@ -159,7 +154,6 @@ class LoguseragentsController extends Controller
 
         return view('admin.loguseragents.show', compact('loguseragent'));
     }
-
 
     /**
      * Remove Loguseragent from storage.
@@ -196,5 +190,4 @@ class LoguseragentsController extends Controller
             }
         }
     }
-
 }

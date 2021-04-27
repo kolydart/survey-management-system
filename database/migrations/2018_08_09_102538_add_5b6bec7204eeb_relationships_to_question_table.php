@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Add5b6bec7204eebRelationshipsToQuestionTable extends Migration
 {
@@ -12,12 +12,11 @@ class Add5b6bec7204eebRelationshipsToQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function(Blueprint $table) {
-            if (!Schema::hasColumn('questions', 'answerlist_id')) {
+        Schema::table('questions', function (Blueprint $table) {
+            if (! Schema::hasColumn('questions', 'answerlist_id')) {
                 $table->integer('answerlist_id')->unsigned()->nullable();
                 $table->foreign('answerlist_id', '193283_5b6bec719f881')->references('id')->on('answerlists')->onDelete('cascade');
-                }
-                
+            }
         });
     }
 
@@ -28,8 +27,7 @@ class Add5b6bec7204eebRelationshipsToQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function(Blueprint $table) {
-            
+        Schema::table('questions', function (Blueprint $table) {
         });
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // Route::get('/', function () { return redirect('/admin/home'); });
 
 // Authentication Routes...
@@ -20,7 +21,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/reports/questionnaires', 'Admin\ReportsController@questionnaires');
 
-    
     Route::resource('surveys', 'Admin\SurveysController');
     Route::post('surveys_mass_destroy', ['uses' => 'Admin\SurveysController@massDestroy', 'as' => 'surveys.mass_destroy']);
     Route::post('surveys_restore/{id}', ['uses' => 'Admin\SurveysController@restore', 'as' => 'surveys.restore']);
@@ -76,10 +76,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('loguseragents_mass_destroy', ['uses' => 'Admin\LoguseragentsController@massDestroy', 'as' => 'loguseragents.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-
-
-
- 
 });
 
-include __DIR__ .'/gw.php';
+include __DIR__.'/gw.php';

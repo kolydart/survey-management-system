@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class Add5baf7bf92eac0RelationshipsToSurveyTable extends Migration
 {
@@ -12,12 +12,11 @@ class Add5baf7bf92eac0RelationshipsToSurveyTable extends Migration
      */
     public function up()
     {
-        Schema::table('surveys', function(Blueprint $table) {
-            if (!Schema::hasColumn('surveys', 'institution_id')) {
+        Schema::table('surveys', function (Blueprint $table) {
+            if (! Schema::hasColumn('surveys', 'institution_id')) {
                 $table->integer('institution_id')->unsigned()->nullable();
                 $table->foreign('institution_id', '193284_5b696b83b699e')->references('id')->on('institutions')->onDelete('cascade');
-                }
-                
+            }
         });
     }
 
@@ -28,8 +27,7 @@ class Add5baf7bf92eac0RelationshipsToSurveyTable extends Migration
      */
     public function down()
     {
-        Schema::table('surveys', function(Blueprint $table) {
-            
+        Schema::table('surveys', function (Blueprint $table) {
         });
     }
 }

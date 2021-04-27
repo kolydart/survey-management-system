@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Item;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreItemsRequest;
 use App\Http\Requests\Admin\UpdateItemsRequest;
+use App\Item;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class ItemsController extends Controller
@@ -23,18 +23,15 @@ class ItemsController extends Controller
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Item::query();
-            $query->with("survey");
-            $query->with("question");
+            $query->with('survey');
+            $query->with('question');
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('item_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('item_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -53,7 +50,7 @@ class ItemsController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'item_';
+                $gateKey = 'item_';
                 $routeKey = 'admin.items';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -65,13 +62,13 @@ class ItemsController extends Controller
                 return $row->question ? $row->question->title : '';
             });
             $table->editColumn('label', function ($row) {
-                return \Form::checkbox("label", 1, $row->label == 1, ["disabled"]);
+                return \Form::checkbox('label', 1, $row->label == 1, ['disabled']);
             });
             $table->editColumn('order', function ($row) {
                 return $row->order ? $row->order : '';
             });
 
-            $table->rawColumns(['actions','massDelete','label']);
+            $table->rawColumns(['actions', 'massDelete', 'label']);
 
             return $table->make(true);
         }
@@ -89,7 +86,7 @@ class ItemsController extends Controller
         if (! Gate::allows('item_create')) {
             return abort(401);
         }
-        
+
         $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
@@ -109,11 +106,8 @@ class ItemsController extends Controller
         }
         $item = Item::create($request->all());
 
-
-
         return redirect()->route('admin.items.index');
     }
-
 
     /**
      * Show the form for editing Item.
@@ -126,7 +120,7 @@ class ItemsController extends Controller
         if (! Gate::allows('item_edit')) {
             return abort(401);
         }
-        
+
         $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
@@ -150,11 +144,8 @@ class ItemsController extends Controller
         $item = Item::findOrFail($id);
         $item->update($request->all());
 
-
-
-        return redirect()->route('admin.items.show',$id);
+        return redirect()->route('admin.items.show', $id);
     }
-
 
     /**
      * Display Item.
@@ -171,7 +162,6 @@ class ItemsController extends Controller
 
         return view('admin.items.show', compact('item'));
     }
-
 
     /**
      * Remove Item from storage.
@@ -208,7 +198,6 @@ class ItemsController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Item from storage.

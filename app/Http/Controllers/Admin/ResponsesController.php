@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreResponsesRequest;
 use App\Http\Requests\Admin\UpdateResponsesRequest;
+use App\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class ResponsesController extends Controller
@@ -23,19 +23,16 @@ class ResponsesController extends Controller
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Response::query();
-            $query->with("questionnaire");
-            $query->with("question");
-            $query->with("answer");
+            $query->with('questionnaire');
+            $query->with('question');
+            $query->with('answer');
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('response_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('response_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -55,7 +52,7 @@ class ResponsesController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'response_';
+                $gateKey = 'response_';
                 $routeKey = 'admin.responses';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -73,7 +70,7 @@ class ResponsesController extends Controller
                 return $row->content ? $row->content : '';
             });
 
-            $table->rawColumns(['actions','massDelete']);
+            $table->rawColumns(['actions', 'massDelete']);
 
             return $table->make(true);
         }
@@ -91,7 +88,7 @@ class ResponsesController extends Controller
         if (! Gate::allows('response_create')) {
             return abort(401);
         }
-        
+
         $questionnaires = \App\Questionnaire::get()->pluck('id', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $answers = \App\Answer::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
@@ -112,11 +109,8 @@ class ResponsesController extends Controller
         }
         $response = Response::create($request->all());
 
-
-
         return redirect()->route('admin.responses.index');
     }
-
 
     /**
      * Show the form for editing Response.
@@ -129,7 +123,7 @@ class ResponsesController extends Controller
         if (! Gate::allows('response_edit')) {
             return abort(401);
         }
-        
+
         $questionnaires = \App\Questionnaire::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $answers = \App\Answer::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
@@ -154,11 +148,8 @@ class ResponsesController extends Controller
         $response = Response::findOrFail($id);
         $response->update($request->all());
 
-
-
-        return redirect()->route('admin.responses.show',$id);
+        return redirect()->route('admin.responses.show', $id);
     }
-
 
     /**
      * Display Response.
@@ -175,7 +166,6 @@ class ResponsesController extends Controller
 
         return view('admin.responses.show', compact('response'));
     }
-
 
     /**
      * Remove Response from storage.
@@ -213,7 +203,6 @@ class ResponsesController extends Controller
         }
     }
 
-
     /**
      * Restore Response from storage.
      *
@@ -248,22 +237,21 @@ class ResponsesController extends Controller
         return redirect()->route('admin.responses.index');
     }
 
-    public function index_content(){
+    public function index_content()
+    {
         if (! Gate::allows('response_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('response_delete')) {
                 return abort(401);
             }
-            $responses = Response::onlyTrashed()->whereRaw('content <> ""')->orderBy('created_at','DESC')->get();
+            $responses = Response::onlyTrashed()->whereRaw('content <> ""')->orderBy('created_at', 'DESC')->get();
         } else {
-            $responses = Response::whereRaw('content <> ""')->orderBy('created_at','DESC')->get();
+            $responses = Response::whereRaw('content <> ""')->orderBy('created_at', 'DESC')->get();
         }
 
         return view('admin.responses.index.content', compact('responses'));
     }
-    
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreRolesRequest;
 use App\Http\Requests\Admin\UpdateRolesRequest;
+use App\Role;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
 {
@@ -22,8 +22,7 @@ class RolesController extends Controller
             return abort(401);
         }
 
-
-                $roles = Role::all();
+        $roles = Role::all();
 
         return view('admin.roles.index', compact('roles'));
     }
@@ -38,6 +37,7 @@ class RolesController extends Controller
         if (! Gate::allows('role_create')) {
             return abort(401);
         }
+
         return view('admin.roles.create');
     }
 
@@ -54,11 +54,8 @@ class RolesController extends Controller
         }
         $role = Role::create($request->all());
 
-
-
         return redirect()->route('admin.roles.index');
     }
-
 
     /**
      * Show the form for editing Role.
@@ -91,11 +88,8 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $role->update($request->all());
 
-
-
-        return redirect()->route('admin.roles.show',$id);
+        return redirect()->route('admin.roles.show', $id);
     }
-
 
     /**
      * Display Role.
@@ -114,7 +108,6 @@ class RolesController extends Controller
 
         return view('admin.roles.show', compact('role', 'users'));
     }
-
 
     /**
      * Remove Role from storage.
@@ -151,5 +144,4 @@ class RolesController extends Controller
             }
         }
     }
-
 }

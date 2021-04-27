@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use gateweb\common\Router;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreQuestionnaire extends FormRequest
 {
@@ -34,12 +34,11 @@ class StoreQuestionnaire extends FormRequest
     public function messages()
     {
         return [
-            'survey_id.required' => __('Could not determine Survey.')." ".__('Please contact administrator.'),
-            '*_id*.numeric' => __('Error validating data.')." ".__('Please contact administrator.'),
-            '*_id*.filled' => __('Empty field during data validation.')." ".__('Please contact administrator.'),
+            'survey_id.required' => __('Could not determine Survey.').' '.__('Please contact administrator.'),
+            '*_id*.numeric' => __('Error validating data.').' '.__('Please contact administrator.'),
+            '*_id*.filled' => __('Empty field during data validation.').' '.__('Please contact administrator.'),
             '*_content*.filled' => __('Text fields are not allowed to be empty.'),
             '*_content*.regex' => __('Special characters ($, ^, $ etc.) are not allowed in text fields. Please remove special characters and try again.'),
         ];
     }
-
 }

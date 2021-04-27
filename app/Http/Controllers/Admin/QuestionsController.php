@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Question;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreQuestionsRequest;
 use App\Http\Requests\Admin\UpdateQuestionsRequest;
+use App\Question;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionsController extends Controller
 {
@@ -21,7 +21,6 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('question_delete')) {
@@ -45,7 +44,7 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_create')) {
             return abort(401);
         }
-        
+
         $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.questions.create', compact('answerlists'));
@@ -64,11 +63,8 @@ class QuestionsController extends Controller
         }
         $question = Question::create($request->all());
 
-
-
         return redirect()->route('admin.questions.index');
     }
-
 
     /**
      * Show the form for editing Question.
@@ -81,7 +77,7 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_edit')) {
             return abort(401);
         }
-        
+
         $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $question = Question::findOrFail($id);
@@ -104,11 +100,8 @@ class QuestionsController extends Controller
         $question = Question::findOrFail($id);
         $question->update($request->all());
 
-
-
-        return redirect()->route('admin.questions.show',$id);
+        return redirect()->route('admin.questions.show', $id);
     }
-
 
     /**
      * Display Question.
@@ -121,14 +114,15 @@ class QuestionsController extends Controller
         if (! Gate::allows('question_view')) {
             return abort(401);
         }
-        
-        $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$responses = \App\Response::where('question_id', $id)->get();$items = \App\Item::where('question_id', $id)->get();
+
+        $answerlists = \App\Answerlist::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $responses = \App\Response::where('question_id', $id)->get();
+        $items = \App\Item::where('question_id', $id)->get();
 
         $question = Question::findOrFail($id);
 
         return view('admin.questions.show', compact('question', 'responses', 'items'));
     }
-
 
     /**
      * Remove Question from storage.
@@ -165,7 +159,6 @@ class QuestionsController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Question from storage.

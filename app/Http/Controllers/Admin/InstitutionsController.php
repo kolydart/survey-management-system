@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Institution;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreInstitutionsRequest;
 use App\Http\Requests\Admin\UpdateInstitutionsRequest;
+use App\Institution;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class InstitutionsController extends Controller
 {
@@ -21,7 +21,6 @@ class InstitutionsController extends Controller
         if (! Gate::allows('institution_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('institution_delete')) {
@@ -45,6 +44,7 @@ class InstitutionsController extends Controller
         if (! Gate::allows('institution_create')) {
             return abort(401);
         }
+
         return view('admin.institutions.create');
     }
 
@@ -65,10 +65,8 @@ class InstitutionsController extends Controller
             $institution->surveys()->create($data);
         }
 
-
         return redirect()->route('admin.institutions.index');
     }
-
 
     /**
      * Show the form for editing Institution.
@@ -101,13 +99,13 @@ class InstitutionsController extends Controller
         $institution = Institution::findOrFail($id);
         $institution->update($request->all());
 
-        $surveys           = $institution->surveys;
+        $surveys = $institution->surveys;
         $currentSurveyData = [];
         foreach ($request->input('surveys', []) as $index => $data) {
-            if (is_integer($index)) {
+            if (is_int($index)) {
                 $institution->surveys()->create($data);
             } else {
-                $id                          = explode('-', $index)[1];
+                $id = explode('-', $index)[1];
                 $currentSurveyData[$id] = $data;
             }
         }
@@ -119,10 +117,8 @@ class InstitutionsController extends Controller
             }
         }
 
-
-        return redirect()->route('admin.institutions.show',$id);
+        return redirect()->route('admin.institutions.show', $id);
     }
-
 
     /**
      * Display Institution.
@@ -141,7 +137,6 @@ class InstitutionsController extends Controller
 
         return view('admin.institutions.show', compact('institution', 'surveys'));
     }
-
 
     /**
      * Remove Institution from storage.
@@ -178,7 +173,6 @@ class InstitutionsController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Institution from storage.

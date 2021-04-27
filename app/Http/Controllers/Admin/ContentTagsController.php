@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\ContentTag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreContentTagsRequest;
 use App\Http\Requests\Admin\UpdateContentTagsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ContentTagsController extends Controller
 {
@@ -22,8 +22,7 @@ class ContentTagsController extends Controller
             return abort(401);
         }
 
-
-                $content_tags = ContentTag::all();
+        $content_tags = ContentTag::all();
 
         return view('admin.content_tags.index', compact('content_tags'));
     }
@@ -38,6 +37,7 @@ class ContentTagsController extends Controller
         if (! Gate::allows('content_tag_create')) {
             return abort(401);
         }
+
         return view('admin.content_tags.create');
     }
 
@@ -54,11 +54,8 @@ class ContentTagsController extends Controller
         }
         $content_tag = ContentTag::create($request->all());
 
-
-
         return redirect()->route('admin.content_tags.index');
     }
-
 
     /**
      * Show the form for editing ContentTag.
@@ -91,11 +88,8 @@ class ContentTagsController extends Controller
         $content_tag = ContentTag::findOrFail($id);
         $content_tag->update($request->all());
 
-
-
         return redirect()->route('admin.content_tags.index');
     }
-
 
     /**
      * Display ContentTag.
@@ -117,7 +111,6 @@ class ContentTagsController extends Controller
 
         return view('admin.content_tags.show', compact('content_tag', 'content_pages'));
     }
-
 
     /**
      * Remove ContentTag from storage.
@@ -154,5 +147,4 @@ class ContentTagsController extends Controller
             }
         }
     }
-
 }

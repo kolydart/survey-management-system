@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Answer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAnswersRequest;
 use App\Http\Requests\Admin\UpdateAnswersRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AnswersController extends Controller
 {
@@ -21,7 +21,6 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_access')) {
             return abort(401);
         }
-
 
         if (request('show_deleted') == 1) {
             if (! Gate::allows('answer_delete')) {
@@ -45,6 +44,7 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_create')) {
             return abort(401);
         }
+
         return view('admin.answers.create');
     }
 
@@ -61,11 +61,8 @@ class AnswersController extends Controller
         }
         $answer = Answer::create($request->all());
 
-
-
         return redirect()->route('admin.answers.index');
     }
-
 
     /**
      * Show the form for editing Answer.
@@ -98,11 +95,8 @@ class AnswersController extends Controller
         $answer = Answer::findOrFail($id);
         $answer->update($request->all());
 
-
-
-        return redirect()->route('admin.answers.show',$id);
+        return redirect()->route('admin.answers.show', $id);
     }
-
 
     /**
      * Display Answer.
@@ -115,7 +109,8 @@ class AnswersController extends Controller
         if (! Gate::allows('answer_view')) {
             return abort(401);
         }
-        $responses = \App\Response::where('answer_id', $id)->get();$answerlists = \App\Answerlist::whereHas('answers',
+        $responses = \App\Response::where('answer_id', $id)->get();
+        $answerlists = \App\Answerlist::whereHas('answers',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get();
@@ -124,7 +119,6 @@ class AnswersController extends Controller
 
         return view('admin.answers.show', compact('answer', 'responses', 'answerlists'));
     }
-
 
     /**
      * Remove Answer from storage.
@@ -161,7 +155,6 @@ class AnswersController extends Controller
             }
         }
     }
-
 
     /**
      * Restore Answer from storage.
