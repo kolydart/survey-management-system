@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use JMac\Testing\Traits\AdditionalAssertions;
 use App\Role;
 use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use JMac\Testing\Traits\AdditionalAssertions;
 
 abstract class TestCase extends BaseTestCase
 {
