@@ -4,6 +4,7 @@ namespace App;
 
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -18,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
+    use HasFactory;
     /** activity log */
     use \Spatie\Activitylog\Traits\LogsActivity;
     protected static $logFillable = true;

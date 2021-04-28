@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Loguseragent extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['os', 'os_version', 'browser', 'browser_version', 'device', 'language', 'item_id', 'ipv6', 'uri', 'form_submitted', 'user_id'];
     protected $hidden = [];
 

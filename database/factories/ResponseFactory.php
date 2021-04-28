@@ -1,10 +1,30 @@
 <?php
 
-$factory->define(App\Response::class, function (Faker\Generator $faker) {
-    return [
-        'questionnaire_id' => factory(\App\Questionnaire::class)->create(),
-        'question_id' => factory(\App\Question::class)->create(),
-        'answer_id' => factory(\App\Answer::class)->create(),
-        'content' => $faker->name,
-    ];
-});
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ResponseFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = \App\Response::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'questionnaire_id' => \App\Questionnaire::factory()->create(),
+            'question_id' => \App\Question::factory()->create(),
+            'answer_id' => \App\Answer::factory()->create(),
+            'content' => $this->faker->name,
+        ];
+    }
+}

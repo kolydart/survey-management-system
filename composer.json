@@ -8,16 +8,16 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2.5|^8.0",
+        "php": "^7.3|^8.0",
         "askedio/laravel-soft-cascade": "^8.1",
         "doctrine/dbal": "^3.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
-        "laravel/framework": "^7.29",
+        "laravel/framework": "^8.39",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.5",
+        "laravel/ui": "^3.2",
         "laravelcollective/html": "^6.2",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-activitylog": "^3.17",
@@ -26,24 +26,24 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
-        "facade/ignition": "^2.0",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "jasonmccreary/laravel-test-assertions": "^1.1",
-        "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.3",
-        "phpunit/phpunit": "^8.5.8|^9.3.3",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3",
         "symfony/thanks": "^1.2"
     },
     "autoload": {
         "classmap": [
-            "database/seeds",
-            "database/factories",
             "../_class/vendor/sinergi",
             "../_class/vendor/phpmailer"
         ],
         "exclude-from-classmap": [],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

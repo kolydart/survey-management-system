@@ -1,7 +1,27 @@
 <?php
 
-$factory->define(App\Role::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->name,
-    ];
-});
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class RoleFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = \App\Role::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->name,
+        ];
+    }
+}

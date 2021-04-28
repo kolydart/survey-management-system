@@ -17,9 +17,9 @@ abstract class TestCase extends BaseTestCase
      */
     public function signin_as($role_title, $role_id)
     {
-        $role = factory(Role::class)->create(['title'=>$role_title, 'id'=>$role_id]);
+        $role = Role::factory()->create(['title'=>$role_title, 'id'=>$role_id]);
 
-        $this->user = factory(User::class)->create(['role_id'=>$role_id]);
+        $this->user = User::factory()->create(['role_id'=>$role_id]);
         $this->actingAs($this->user);
 
         return $this->user;

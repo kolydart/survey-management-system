@@ -1,8 +1,28 @@
 <?php
 
-$factory->define(App\Answer::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->sentence,
-        'open' => 0,
-    ];
-});
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class AnswerFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = \App\Answer::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->sentence,
+            'open' => 0,
+        ];
+    }
+}

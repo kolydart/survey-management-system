@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContentPage extends Model
 {
+    use HasFactory;
     /** activity log */
     use \Spatie\Activitylog\Traits\LogsActivity;
     protected static $logFillable = true;

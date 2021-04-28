@@ -1,10 +1,30 @@
 <?php
 
-$factory->define(App\Item::class, function (Faker\Generator $faker) {
-    return [
-        'survey_id' => factory(\App\Survey::class)->create(),
-        'question_id' => factory(\App\Question::class)->create(),
-        'label' => 0,
-        'order' => $faker->name,
-    ];
-});
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ItemFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = \App\Item::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'survey_id' => \App\Survey::factory()->create(),
+            'question_id' => \App\Question::factory()->create(),
+            'label' => 0,
+            'order' => $this->faker->name,
+        ];
+    }
+}
