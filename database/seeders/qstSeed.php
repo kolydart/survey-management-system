@@ -30,30 +30,30 @@ class qstSeed extends Seeder
             'database/dumps/category_survey.sql',
         ];
 
-        Eloquent::unguard();
+        \Eloquent::unguard();
         foreach ($paths as $path) {
             $result = DB::unprepared(file_get_contents($path));
             abort_if($result !== true, 500);
         }
 
         /** re-delete models in order to softcascade */
-        foreach (App\Questionnaire::onlyTrashed()->get() as $model) {
+        foreach (\App\Questionnaire::onlyTrashed()->get() as $model) {
             $model->restore();
             $model->delete();
         }
-        foreach (App\Item::onlyTrashed()->get() as $model) {
+        foreach (\App\Item::onlyTrashed()->get() as $model) {
             $model->restore();
             $model->delete();
         }
-        foreach (App\Question::onlyTrashed()->get() as $model) {
+        foreach (\App\Question::onlyTrashed()->get() as $model) {
             $model->restore();
             $model->delete();
         }
-        foreach (App\Answerlist::onlyTrashed()->get() as $model) {
+        foreach (\App\Answerlist::onlyTrashed()->get() as $model) {
             $model->restore();
             $model->delete();
         }
-        foreach (App\Answer::onlyTrashed()->get() as $model) {
+        foreach (\App\Answer::onlyTrashed()->get() as $model) {
             $model->restore();
             $model->delete();
         }
