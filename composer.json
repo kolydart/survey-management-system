@@ -26,6 +26,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "brianium/paratest": "^6.3",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
@@ -69,6 +70,8 @@
             "@php artisan package:discover"
         ],
         "post-update-cmd": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models --nowrite"
             "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ]
     },
