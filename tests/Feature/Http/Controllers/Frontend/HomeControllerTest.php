@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+namespace Tests\Feature\Http\Controllers\Frontend;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,6 +12,8 @@ use Tests\TestCase;
 class HomeControllerTest extends TestCase
 {
 
+
+    use DatabaseTransactions;
 
     /** 
      * @test
@@ -26,7 +28,7 @@ class HomeControllerTest extends TestCase
      * @test
      */
     public function frontend_home_is_working(){
-        $response = $this->get(route('frontend.home'));
+        $response = $this->get(route('frontend.index'));
         $response->assertSuccessful();
         $response->assertSessionHasNoErrors();
     }
@@ -36,7 +38,7 @@ class HomeControllerTest extends TestCase
      */
     public function frontend_home_redirects_admin(){
         $user = $this->login_user('admin');
-        $response = $this->get(route('frontend.home'));
+        $response = $this->get(route('frontend.index'));
 
         $response->assertRedirect(route('admin.home'));
         $response->assertSessionHasNoErrors();
