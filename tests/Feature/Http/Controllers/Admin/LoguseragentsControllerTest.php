@@ -74,7 +74,6 @@ class LoguseragentsControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.loguseragents.mass_destroy'), [
