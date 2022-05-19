@@ -21,8 +21,8 @@ class ContentTagFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
-            'slug' => $this->faker->name,
+            'title' => $this->faker->words(3,true),
+            'slug' => $this->faker->words(1,true),
         ];
     }
 }

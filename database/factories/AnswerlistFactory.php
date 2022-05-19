@@ -21,7 +21,7 @@ class AnswerlistFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->sentence(),
             'type' => collect(['radio', 'checkbox', 'text', 'number', 'range', 'color', 'date', 'time', 'datetime-local', 'email', 'url', 'week', 'month', 'password', 'tel'])->random(),
         ];
     }

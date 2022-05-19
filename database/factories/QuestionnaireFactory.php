@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Survey;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionnaireFactory extends Factory
@@ -21,8 +22,8 @@ class QuestionnaireFactory extends Factory
     public function definition()
     {
         return [
-            'survey_id' => \App\Survey::factory()->create(),
-            'name' => $this->faker->name,
+            'survey_id' => Survey::factory()->create(),
+            'name' => $this->faker->words(5,true),
         ];
     }
 }

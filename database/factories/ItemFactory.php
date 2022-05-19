@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Question;
+use App\Survey;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ItemFactory extends Factory
@@ -13,6 +15,7 @@ class ItemFactory extends Factory
      */
     protected $model = \App\Item::class;
 
+
     /**
      * Define the model's default state.
      *
@@ -20,11 +23,13 @@ class ItemFactory extends Factory
      */
     public function definition()
     {
+        static $order = 1;
+
         return [
-            'survey_id' => \App\Survey::factory()->create(),
-            'question_id' => \App\Question::factory()->create(),
-            'label' => 0,
-            'order' => $this->faker->name,
+            'survey_id' => Survey::factory()->create(),
+            'question_id' => Question::factory()->create(),
+            'label' => $this->faker->boolean(90),
+            'order' => $order++,
         ];
     }
 }

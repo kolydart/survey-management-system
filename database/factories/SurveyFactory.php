@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Institution;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SurveyFactory extends Factory
@@ -21,15 +22,15 @@ class SurveyFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
-            'alias' => $this->faker->word,
-            'institution_id' => \App\Institution::factory()->create(),
-            'introduction' => $this->faker->name,
+            'title' => $this->faker->words(5,true),
+            'alias' => $this->faker->words(1,true),
+            'institution_id' => Institution::factory()->create(),
+            'introduction' => $this->faker->sentence(),
             'javascript' => '',
-            'notes' => $this->faker->sentence,
-            'inform' => 0,
-            'access' => collect(['public', 'invited', 'registered'])->random(),
-            'completed' => 0,
+            'notes' => $this->faker->optional()->sentence(),
+            'inform' => $this->faker->boolean(),
+            'access' => collect(['public', 'invited', 'registered'])->first(),
+            'completed' => $this->faker->boolean(10),
         ];
     }
 }

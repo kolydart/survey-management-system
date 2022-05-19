@@ -21,9 +21,9 @@ class ContentPageFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
-            'page_text' => $this->faker->name,
-            'excerpt' => $this->faker->name,
+            'title' => $this->faker->words(5,true),
+            'page_text' => $this->faker->paragraph(),
+            'excerpt' => $this->faker->sentence(),
         ];
     }
 }

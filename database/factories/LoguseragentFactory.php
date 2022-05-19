@@ -21,17 +21,17 @@ class LoguseragentFactory extends Factory
     public function definition()
     {
         return [
-            'os' => $this->faker->name,
-            'os_version' => $this->faker->name,
-            'browser' => $this->faker->name,
-            'browser_version' => $this->faker->name,
-            'device' => $this->faker->name,
-            'language' => $this->faker->name,
-            'item_id' => $this->faker->randomNumber(2),
-            'ipv6' => $this->faker->name,
-            'uri' => $this->faker->name,
-            'form_submitted' => 0,
-            'user_id' => \App\User::factory()->create(),
+            // 'os' => $this->faker->name,
+            // 'os_version' => $this->faker->name,
+            // 'browser' => $this->faker->name,
+            // 'browser_version' => $this->faker->name,
+            // 'device' => $this->faker->name,
+            // 'language' => $this->faker->name,
+            // 'item_id' => $this->faker->randomNumber(2),
+            // 'ipv6' => $this->faker->name,
+            // 'uri' => $this->faker->name,
+            // 'form_submitted' => 0,
+            // 'user_id' => \App\User::factory()->create(),
         ];
     }
 }

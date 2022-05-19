@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Answerlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionFactory extends Factory
@@ -21,8 +22,8 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->name,
-            'answerlist_id' => \App\Answerlist::factory()->create(),
+            'title' => $this->faker->words(4,true),
+            'answerlist_id' => Answerlist::factory()->create(),
         ];
     }
 }

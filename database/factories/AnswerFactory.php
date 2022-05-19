@@ -21,8 +21,8 @@ class AnswerFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
-            'open' => 0,
+            'title' => $this->faker->sentence(),
+            'open' => $this->faker->boolean(20),
         ];
     }
 }
