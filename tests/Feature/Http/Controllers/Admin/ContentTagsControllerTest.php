@@ -43,7 +43,7 @@ class ContentTagsControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.content_tags.destroy', [$content_tag]));
 
         $response->assertRedirect(route('admin.content_tags.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

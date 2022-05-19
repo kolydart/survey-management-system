@@ -44,7 +44,7 @@ class QuestionnairesControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.questionnaires.destroy', [$questionnaire]));
 
         $response->assertRedirect(route('admin.questionnaires.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

@@ -43,7 +43,7 @@ class InstitutionsControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.institutions.destroy', [$institution]));
 
         $response->assertRedirect(route('admin.institutions.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

@@ -43,7 +43,7 @@ class RolesControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.roles.destroy', [$role]));
 
         $response->assertRedirect(route('admin.roles.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

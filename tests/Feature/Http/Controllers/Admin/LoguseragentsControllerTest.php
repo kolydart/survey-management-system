@@ -26,7 +26,7 @@ class LoguseragentsControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.loguseragents.destroy', [$loguseragent]));
 
         $response->assertRedirect(route('admin.loguseragents.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

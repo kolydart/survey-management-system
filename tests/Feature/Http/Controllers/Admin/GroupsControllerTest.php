@@ -43,7 +43,7 @@ class GroupsControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.groups.destroy', [$group]));
 
         $response->assertRedirect(route('admin.groups.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

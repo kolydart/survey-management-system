@@ -26,7 +26,7 @@ class ActivitylogsControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.activitylogs.destroy', [$activitylog]));
 
         $response->assertRedirect(route('admin.activitylogs.index'));
-        $this->assertDeleted($activitylog);
+        $this->assertSoftDeleted($activitylog);
 
     }
 

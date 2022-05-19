@@ -43,7 +43,7 @@ class CategoriesControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.categories.destroy', [$category]));
 
         $response->assertRedirect(route('admin.categories.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }

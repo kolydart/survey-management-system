@@ -63,7 +63,7 @@ class SurveysControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.surveys.destroy', [$survey]));
 
         $response->assertRedirect(route('admin.surveys.index'));
-        $this->assertDeleted($admin);
+        $this->assertSoftDeleted($admin);
 
         // TODO: perform additional assertions
     }
