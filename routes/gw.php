@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['as' => 'frontend.'], function () {
-    Route::get('/', 'Frontend\CollectController@index')->name('home');
+    Route::get('/', 'Frontend\CollectController@index')->name('index');
     Route::get('/{alias}', 'Frontend\CollectController@create')->name('create');
     Route::post('/', 'Frontend\CollectController@store')->name('store');
 });

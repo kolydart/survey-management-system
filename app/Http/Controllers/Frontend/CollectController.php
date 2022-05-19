@@ -35,7 +35,7 @@ class CollectController extends Controller
         if ($survey->completed) {
             Presenter::message('Survey is completed.', 'warning');
 
-            return view('frontend.home', ['content'=>'']);
+            return view('frontend.index', ['content'=>'']);
         } else {
             $questionnaire = new Questionnaire();
             $hidden_answer = Answer::hidden();
@@ -150,7 +150,7 @@ class CollectController extends Controller
                 <h3 class="text-center">'.__('Το ερωτηματολόγιο υποβλήθηκε με επιτυχία!').'</h3>
             </div>';
 
-        return view('frontend.home', compact('content'));
+        return view('frontend.index', compact('content'));
     }
 
     public function index()
@@ -168,6 +168,6 @@ HTML;
         $content = env('LANDING_TEXT', $landing_text);
         (new LogUserAgent())->snapshot(null, false);
 
-        return view('frontend.home', compact('content'));
+        return view('frontend.index', compact('content'));
     }
 }
