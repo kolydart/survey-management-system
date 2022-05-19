@@ -16,7 +16,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $user = $this->create_user('admin');
+        $user = $this->login_user('Admin');
+        die(\gateweb\common\Presenter::dd($user->getAttributes()));
         $this->assertTrue($user->can('survey_access'));
     }
 }
