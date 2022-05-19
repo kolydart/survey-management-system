@@ -4,6 +4,8 @@ namespace Tests;
 
 use App\Role;
 use App\User;
+use Artisan;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use JMac\Testing\Traits\AdditionalAssertions;
 
@@ -62,20 +64,20 @@ abstract class TestCase extends BaseTestCase
             $user = \App\User::factory()->create();
         }
         
-        // $user->roles()->sync(\App\Role::where('title', $role_title)->first());
+        $user->role()->associate(\App\Role::where('title', $role_title)->first());
         
         return $user;
     }
 
     public function seed_default_data():void{
-        Artisan::call('db:seed --class=SubscriptionDefaultTableSeeder');
-        Artisan::call('db:seed --class=CountriesDefaultTableSeeder');
-        Artisan::call('db:seed --class=GroupsDefaultTableSeeder');
-        Artisan::call('db:seed --class=MemberTypesDefaultTableSeeder');
-        Artisan::call('db:seed --class=EmploymentDefaultTableSeeder');
-        Artisan::call('db:seed --class=EducationDefaultTableSeeder');
-        Artisan::call('db:seed --class=EventDefaultTableSeeder');
-        Artisan::call('db:seed --class=PaperTypeDefaultDataSeeder');
+        // Artisan::call('db:seed --class=SubscriptionDefaultTableSeeder');
+        // Artisan::call('db:seed --class=CountriesDefaultTableSeeder');
+        // Artisan::call('db:seed --class=GroupsDefaultTableSeeder');
+        // Artisan::call('db:seed --class=MemberTypesDefaultTableSeeder');
+        // Artisan::call('db:seed --class=EmploymentDefaultTableSeeder');
+        // Artisan::call('db:seed --class=EducationDefaultTableSeeder');
+        // Artisan::call('db:seed --class=EventDefaultTableSeeder');
+        // Artisan::call('db:seed --class=PaperTypeDefaultDataSeeder');
         // Artisan::call('db:seed --class=TopicRealDataSeeder');
         // Artisan::call('db:seed --class=SessionTypeDefaultDataSeeder');
         

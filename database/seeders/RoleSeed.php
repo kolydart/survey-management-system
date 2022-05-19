@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeed extends Seeder
@@ -13,14 +14,13 @@ class RoleSeed extends Seeder
      */
     public function run()
     {
-        $items = [
+        $arr = [
 
-            ['id' => 1, 'title' => 'admin'],
-            ['id' => 2, 'title' => 'moderator'],
-            ['id' => 3, 'title' => 'user'],
+            ['id' => 1, 'title' => 'Admin'],
+            ['id' => 2, 'title' => 'Moderator'],
+            ['id' => 3, 'title' => 'User'],
 
         ];
-
-        \App\Role::upsert($items,'id');
+        Role::upsert($arr,'id',['title']);
     }
 }
