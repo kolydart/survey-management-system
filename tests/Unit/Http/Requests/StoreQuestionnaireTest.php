@@ -39,6 +39,7 @@ class StoreQuestionnaireTest extends TestCase
     public function rules()
     {
 
+        $this->markTestIncomplete();
 
         $actual = $this->subject->rules();
 
@@ -54,6 +55,7 @@ class StoreQuestionnaireTest extends TestCase
     public function messages()
     {
 
+        $this->markTestIncomplete();
 
         $actual = $this->subject->messages();
 

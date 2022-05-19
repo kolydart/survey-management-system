@@ -39,6 +39,7 @@ class StoreCategoriesRequestTest extends TestCase
     public function rules()
     {
 
+        $this->markTestIncomplete();
 
         $actual = $this->subject->rules();
 
