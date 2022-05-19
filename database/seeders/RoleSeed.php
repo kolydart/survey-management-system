@@ -21,8 +21,6 @@ class RoleSeed extends Seeder
 
         ];
 
-        foreach ($items as $item) {
-            \App\Role::create($item);
-        }
+        \App\Role::upsert($items,'id');
     }
 }

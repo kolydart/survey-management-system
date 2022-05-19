@@ -16,7 +16,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $user = $this->signin_as('admin', 1);
+        $user = $this->create_user('admin');
         $this->assertTrue($user->can('survey_access'));
     }
 }
