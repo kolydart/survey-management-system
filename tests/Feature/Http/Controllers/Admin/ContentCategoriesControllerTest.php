@@ -27,7 +27,7 @@ class ContentCategoriesControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.content_categories.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class ContentCategoriesControllerTest extends TestCase
         $response->assertRedirect(route('admin.content_categories.index'));
         $this->assertDeleted($contentCategory);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class ContentCategoriesControllerTest extends TestCase
         $response->assertViewIs('admin.content_categories.edit');
         $response->assertViewHas('content_category');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class ContentCategoriesControllerTest extends TestCase
         $response->assertViewIs('admin.content_categories.index');
         $response->assertViewHas('content_categories');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -120,7 +120,7 @@ class ContentCategoriesControllerTest extends TestCase
         $response->assertViewHas('content_category');
         $response->assertViewHas('content_pages');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -139,7 +139,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.content_categories.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -159,7 +159,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.content_categories.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

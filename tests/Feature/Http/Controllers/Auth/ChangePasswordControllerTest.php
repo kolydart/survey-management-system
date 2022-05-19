@@ -29,7 +29,7 @@ class ChangePasswordControllerTest extends TestCase
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
 
-        // TODO: perform additional assertions
+
     }
 
     /**

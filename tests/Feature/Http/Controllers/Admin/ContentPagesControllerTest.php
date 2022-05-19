@@ -29,7 +29,7 @@ class ContentPagesControllerTest extends TestCase
         $response->assertViewHas('category_ids');
         $response->assertViewHas('tag_ids');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -47,7 +47,7 @@ class ContentPagesControllerTest extends TestCase
         $response->assertRedirect(route('admin.content_pages.index'));
         $this->assertDeleted($contentPage);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -68,7 +68,7 @@ class ContentPagesControllerTest extends TestCase
         $response->assertViewHas('category_ids');
         $response->assertViewHas('tag_ids');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -86,7 +86,7 @@ class ContentPagesControllerTest extends TestCase
         $response->assertViewIs('admin.content_pages.index');
         $response->assertViewHas('content_pages');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -104,7 +104,7 @@ class ContentPagesControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -123,7 +123,7 @@ class ContentPagesControllerTest extends TestCase
         $response->assertViewIs('admin.content_pages.show');
         $response->assertViewHas('content_page');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -142,7 +142,7 @@ class ContentPagesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.content_pages.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -162,7 +162,7 @@ class ContentPagesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.content_pages.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

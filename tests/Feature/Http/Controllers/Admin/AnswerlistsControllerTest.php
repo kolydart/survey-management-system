@@ -30,7 +30,7 @@ class AnswerlistsControllerTest extends TestCase
         $response->assertViewHas('answers');
         $response->assertViewHas('hidden_answer');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -49,7 +49,7 @@ class AnswerlistsControllerTest extends TestCase
 
         $this->assertDeleted($answerlist);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -70,7 +70,7 @@ class AnswerlistsControllerTest extends TestCase
         $response->assertViewHas('answers');
         $response->assertViewHas('hidden_answer');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -88,7 +88,7 @@ class AnswerlistsControllerTest extends TestCase
         $response->assertViewIs('admin.answerlists.index');
         $response->assertViewHas('answerlists');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -106,7 +106,7 @@ class AnswerlistsControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
 
@@ -127,7 +127,7 @@ class AnswerlistsControllerTest extends TestCase
         $response->assertViewHas('answerlist');
         $response->assertViewHas('questions');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -146,7 +146,7 @@ class AnswerlistsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answerlists.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -167,7 +167,7 @@ class AnswerlistsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answerlists.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

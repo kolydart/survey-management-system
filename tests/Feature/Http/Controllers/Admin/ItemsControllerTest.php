@@ -29,7 +29,7 @@ class ItemsControllerTest extends TestCase
         $response->assertViewHas('surveys');
         $response->assertViewHas('questions');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -47,7 +47,7 @@ class ItemsControllerTest extends TestCase
         $response->assertRedirect(route('admin.items.index'));
         $this->assertSoftDeleted($item);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -68,7 +68,7 @@ class ItemsControllerTest extends TestCase
         $response->assertViewHas('surveys');
         $response->assertViewHas('questions');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -88,7 +88,7 @@ class ItemsControllerTest extends TestCase
         // $response->assertViewHas('gateKey');
         // $response->assertViewHas('routeKey');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -106,7 +106,7 @@ class ItemsControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -124,7 +124,7 @@ class ItemsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.items.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -144,7 +144,7 @@ class ItemsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.items.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -163,7 +163,7 @@ class ItemsControllerTest extends TestCase
         $response->assertViewIs('admin.items.show');
         $response->assertViewHas('item');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -182,7 +182,7 @@ class ItemsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.items.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -202,7 +202,7 @@ class ItemsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.items.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

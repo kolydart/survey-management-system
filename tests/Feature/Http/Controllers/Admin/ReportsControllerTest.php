@@ -29,7 +29,7 @@ class ReportsControllerTest extends TestCase
         $response->assertViewHas('chartType');
         $response->assertViewHas('reportLabel');
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

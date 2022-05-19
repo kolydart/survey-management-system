@@ -28,7 +28,7 @@ class QuestionnairesControllerTest extends TestCase
         $response->assertViewIs('admin.questionnaires.create');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -46,7 +46,7 @@ class QuestionnairesControllerTest extends TestCase
         $response->assertRedirect(route('admin.questionnaires.index'));
         $this->assertSoftDeleted($questionnaire);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -66,7 +66,7 @@ class QuestionnairesControllerTest extends TestCase
         $response->assertViewHas('questionnaire');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -86,7 +86,7 @@ class QuestionnairesControllerTest extends TestCase
         // $response->assertViewHas('gateKey');
         // $response->assertViewHas('routeKey');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -104,7 +104,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -122,7 +122,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.questionnaires.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -142,7 +142,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.questionnaires.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -163,7 +163,7 @@ class QuestionnairesControllerTest extends TestCase
         $response->assertViewHas('questionnaire');
         $response->assertViewHas('responses');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -182,7 +182,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.questionnaires.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -202,7 +202,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.questionnaires.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

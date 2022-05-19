@@ -27,7 +27,7 @@ class GroupsControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.groups.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class GroupsControllerTest extends TestCase
         $response->assertRedirect(route('admin.groups.index'));
         $this->assertSoftDeleted($group);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class GroupsControllerTest extends TestCase
         $response->assertViewIs('admin.groups.edit');
         $response->assertViewHas('group');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class GroupsControllerTest extends TestCase
         $response->assertViewIs('admin.groups.index');
         $response->assertViewHas('groups');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class GroupsControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -118,7 +118,7 @@ class GroupsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.groups.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -138,7 +138,7 @@ class GroupsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.groups.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -158,7 +158,7 @@ class GroupsControllerTest extends TestCase
         $response->assertViewHas('group');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -177,7 +177,7 @@ class GroupsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.groups.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -197,7 +197,7 @@ class GroupsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.groups.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

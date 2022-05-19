@@ -27,7 +27,7 @@ class RolesControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.roles.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class RolesControllerTest extends TestCase
         $response->assertRedirect(route('admin.roles.index'));
         $this->assertDeleted($role);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class RolesControllerTest extends TestCase
         $response->assertViewIs('admin.roles.edit');
         $response->assertViewHas('role');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class RolesControllerTest extends TestCase
         $response->assertViewIs('admin.roles.index');
         $response->assertViewHas('roles');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class RolesControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -120,7 +120,7 @@ class RolesControllerTest extends TestCase
         $response->assertViewHas('role');
         $response->assertViewHas('users');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -139,7 +139,7 @@ class RolesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.roles.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -160,7 +160,7 @@ class RolesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.roles.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

@@ -27,7 +27,7 @@ class InstitutionsControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.institutions.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class InstitutionsControllerTest extends TestCase
         $response->assertRedirect(route('admin.institutions.index'));
         $this->assertSoftDeleted($institution);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class InstitutionsControllerTest extends TestCase
         $response->assertViewIs('admin.institutions.edit');
         $response->assertViewHas('institution');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class InstitutionsControllerTest extends TestCase
         $response->assertViewIs('admin.institutions.index');
         $response->assertViewHas('institutions');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -118,7 +118,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.institutions.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -138,7 +138,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.institutions.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -158,7 +158,7 @@ class InstitutionsControllerTest extends TestCase
         $response->assertViewHas('institution');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -177,7 +177,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.institutions.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -197,7 +197,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.institutions.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

@@ -27,7 +27,7 @@ class CategoriesControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.categories.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoriesControllerTest extends TestCase
         $response->assertRedirect(route('admin.categories.index'));
         $this->assertSoftDeleted($category);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoriesControllerTest extends TestCase
         $response->assertViewIs('admin.categories.edit');
         $response->assertViewHas('category');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoriesControllerTest extends TestCase
         $response->assertViewIs('admin.categories.index');
         $response->assertViewHas('categories');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoriesControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -118,7 +118,7 @@ class CategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.categories.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -138,7 +138,7 @@ class CategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.categories.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -158,7 +158,7 @@ class CategoriesControllerTest extends TestCase
         $response->assertViewHas('category');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -177,7 +177,7 @@ class CategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.categories.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -197,7 +197,7 @@ class CategoriesControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.categories.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

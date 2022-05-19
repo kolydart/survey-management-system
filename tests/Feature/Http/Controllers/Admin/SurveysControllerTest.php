@@ -29,7 +29,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.surveys.show', $newSurvey));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -49,7 +49,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('categories');
         $response->assertViewHas('groups');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -67,7 +67,7 @@ class SurveysControllerTest extends TestCase
         $response->assertRedirect(route('admin.surveys.index'));
         $this->assertSoftDeleted($survey);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -89,7 +89,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('categories');
         $response->assertViewHas('groups');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -107,7 +107,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewIs('admin.surveys.index');
         $response->assertViewHas('surveys');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -125,7 +125,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -143,7 +143,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.surveys.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -163,7 +163,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.surveys.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -185,7 +185,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('items');
         $response->assertViewHas('duplicates');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -204,7 +204,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.surveys.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -224,7 +224,7 @@ class SurveysControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.surveys.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...

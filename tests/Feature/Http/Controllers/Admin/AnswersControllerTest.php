@@ -27,7 +27,7 @@ class AnswersControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.answers.create');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -45,7 +45,7 @@ class AnswersControllerTest extends TestCase
         $response->assertRedirect(route('admin.answers.index'));
         $this->assertSoftDeleted($answer);
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -64,7 +64,7 @@ class AnswersControllerTest extends TestCase
         $response->assertViewIs('admin.answers.edit');
         $response->assertViewHas('answer');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -82,7 +82,7 @@ class AnswersControllerTest extends TestCase
         $response->assertViewIs('admin.answers.index');
         $response->assertViewHas('answers');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -100,7 +100,7 @@ class AnswersControllerTest extends TestCase
 
         $response->assertOk();
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -118,7 +118,7 @@ class AnswersControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answers.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -138,7 +138,7 @@ class AnswersControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answers.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -159,7 +159,7 @@ class AnswersControllerTest extends TestCase
         $response->assertViewHas('responses');
         $response->assertViewHas('answerlists');
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -178,7 +178,7 @@ class AnswersControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answers.index'));
 
-        // TODO: perform additional assertions
+
     }
 
     /**
@@ -198,7 +198,7 @@ class AnswersControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.answers.show', $id));
 
-        // TODO: perform additional assertions
+
     }
 
     // test cases...
