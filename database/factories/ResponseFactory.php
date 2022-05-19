@@ -23,11 +23,11 @@ class ResponseFactory extends Factory
      */
     public function definition()
     {
-        $answer = Answer::factory()->make();
+        $answer = Answer::factory()->create();
         return [
             'questionnaire_id' => Questionnaire::factory()->create(),
             'question_id' => Question::factory()->create(),
-            'answer_id' => $answer,
+            'answer_id' => $answer->id,
             'content' => $answer->open ? $this->faker->words(5,true) : null,
         ];
     }
