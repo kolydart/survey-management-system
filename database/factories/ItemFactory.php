@@ -28,7 +28,7 @@ class ItemFactory extends Factory
         return [
             'survey_id' => Survey::factory()->create(),
             'question_id' => Question::factory()->create(),
-            'label' => $this->faker->boolean(90),
+            'label' => $this->faker->boolean(10),
             'order' => $order++,
         ];
     }
