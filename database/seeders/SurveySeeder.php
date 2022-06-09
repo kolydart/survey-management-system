@@ -25,7 +25,9 @@ class SurveySeeder extends Seeder
 
         $surveys = Survey::factory(10)->create();
         
-        $answerlists = Answerlist::factory(15)->create();
+        $answerlists_count = 50;
+
+        $answerlists = Answerlist::factory($answerlists_count)->create();
         
         foreach ($answerlists as $answerlist) {
 
@@ -36,21 +38,26 @@ class SurveySeeder extends Seeder
                 $answerlist->answers()->attach($answers);
             }
 
-            $questions_count = $this->faker->numberBetween(1,10);
+            $questions_count = $this->faker->numberBetween(20,40);
 
             Question::factory($questions_count)->create(['answerlist_id'=>$answerlist->id]);
 
         }
+
+        foreach ($surveys as $survey) {
+
+            $items_count = $this->faker->numberBetween(10,20);
+
+            for ($i=1; $i < $items_count+1; $i++) { 
+                Item::factory()->create([
+                    'survey_id' => $survey->id,
+                    'question_id' => $this->faker->unique()->randomElement(Question::pluck('id')),
+                    'order' => $i
+                ]);
+            }
+        }
         
         $questionnaires = Questionnaire::factory(150)->create(['survey_id' =>$this->faker->randomElement($surveys)->id]);
-        
-        // foreach ($surveys as $survey) {
-
-            // $items = Item::factory(15)->create([
-            //     'survey_id' => $this->faker->randomElement($surveys)->id,
-            //     'question_id' => $this->faker->randomElement($questions)->id,
-            // ]);
-
 
             // $response = Response::factory()->create([
             //     'questionnaire_id'=>$questionnaire, 
@@ -59,8 +66,5 @@ class SurveySeeder extends Seeder
             //     'content'=>$this->faker->words(5,true),
             // ]);
 
-        // }
-
- 
     }
 }
