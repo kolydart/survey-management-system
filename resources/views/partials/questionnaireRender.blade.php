@@ -33,7 +33,6 @@ admin.questionnaires.show
     
     {{-- items --}}
     @foreach ( $survey->items()->orderBy('order')->get() as $item)
-
         {{-- item --}}
         <section class="form-group gw-item q_{{$item->question->id ?? ''}} row" id="i_{{$item->id ?? ''}}" style="page-break-inside:avoid;">
             {{-- label (question) --}}
@@ -226,7 +225,6 @@ admin.questionnaires.show
                             >                        
                         @endif
                 
-
                     {{-- admin.questionnaires.show --}}
                     @elseif(\Route::currentRouteName()=='admin.questionnaires.show')
                             {{-- the rest: input --}}
@@ -234,10 +232,9 @@ admin.questionnaires.show
                                 type="text"
                                 name="{{$item->question->id}}_content" 
                                 class="col-sm-6 col-md-5 col-md-offset-1"
-                                value="{{$item->question->responses->first()->content}}"
+                                value="{{$item->question->responses()->where('questionnaire_id',$questionnaire->id)->first()->content}}"
                                 disabled
                             >
-
 
                     {{-- admin.surveys.show --}}
                     @else

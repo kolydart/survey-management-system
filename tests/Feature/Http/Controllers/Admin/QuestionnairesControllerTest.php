@@ -2,6 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Answer;
+use App\Answerlist;
+use App\Item;
+use App\Question;
+use App\Questionnaire;
+use App\Survey;
+use App\Response;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -207,5 +214,52 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    // test cases...
+    /** 
+     * @test
+     * this one took a long time to debug
+     */
+    public function querionnaireRenderContainsCorrectResponseContent(){
+
+        $this->faker = \Faker\Factory::create();
+
+        $survey = Survey::factory()->create();
+        $answerlist = Answerlist::factory()->create(['type'=>'text']);
+        $answer = Answer::factory()->create(['open'=>true]);
+        $question = Question::factory()->create(['answerlist_id'=>$answerlist->id]);
+        $item = Item::factory()->create([
+            'survey_id' => $survey->id,
+            'question_id' => $question->id,
+            'label' => false,
+        ]);
+        $questionnaire1 = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+        $questionnaire2 = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+        $response1 = Response::factory()->create([
+            'questionnaire_id'=>$questionnaire1, 
+            'question_id'=>$item->question->id, 
+            'answer_id'=>$answer->id, 
+            'content'=>$this->faker->words(5,true),
+        ]);
+        $response2 = Response::factory()->create([
+            'questionnaire_id'=>$questionnaire2, 
+            'question_id'=>$item->question->id, 
+            'answer_id'=>$answer->id, 
+            'content'=>$this->faker->words(5,true),
+        ]);
+
+        $user = $this->login_user('admin');
+
+        $response = $this->get(route('admin.questionnaires.show',$questionnaire2));
+        $response->assertStatus(200);
+        $response->assertSessionHasNoErrors();
+
+        $response->assertDontSee("$response1->content");
+                
+        // in render tab
+        $response->assertSee("value=\"$response2->content\"",false);
+
+        // in responses tab
+        $response->assertSee("<td field-key='content'>$response2->content</td>",false);
+        
+    }
+
 }
