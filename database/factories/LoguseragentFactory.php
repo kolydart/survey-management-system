@@ -31,7 +31,7 @@ class LoguseragentFactory extends Factory
             // 'ipv6' => $this->faker->name,
             // 'uri' => $this->faker->name,
             // 'form_submitted' => 0,
-            // 'user_id' => \App\User::factory()->create(),
+            // 'user_id' => \App\User::factory(),
         ];
     }
 }

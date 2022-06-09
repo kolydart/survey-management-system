@@ -23,7 +23,7 @@ class QuestionFactory extends Factory
     {
         return [
             'title' => $this->faker->words(4,true),
-            'answerlist_id' => Answerlist::factory()->create(),
+            'answerlist_id' => Answerlist::factory(),
         ];
     }
 }

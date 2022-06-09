@@ -26,8 +26,8 @@ class ItemFactory extends Factory
         static $order = 1;
 
         return [
-            'survey_id' => Survey::factory()->create(),
-            'question_id' => Question::factory()->create(),
+            'survey_id' => Survey::factory(),
+            'question_id' => Question::factory(),
             'label' => $this->faker->boolean(10),
             'order' => $order++,
         ];

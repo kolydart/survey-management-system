@@ -22,7 +22,7 @@ class QuestionnaireFactory extends Factory
     public function definition()
     {
         return [
-            'survey_id' => Survey::factory()->create(),
+            'survey_id' => Survey::factory(),
             'name' => $this->faker->words(5,true),
         ];
     }

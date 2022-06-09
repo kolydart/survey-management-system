@@ -24,7 +24,7 @@ class SurveyFactory extends Factory
         return [
             'title' => $this->faker->words(5,true),
             'alias' => $this->faker->words(1,true),
-            'institution_id' => Institution::factory()->create(),
+            'institution_id' => Institution::factory(),
             'introduction' => $this->faker->sentence(),
             'javascript' => '',
             'notes' => $this->faker->optional()->sentence(),
