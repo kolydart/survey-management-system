@@ -23,7 +23,11 @@ class SurveySeeder extends Seeder
 
         $this->faker = \Faker\Factory::create();
 
+        // surveys
+        
         $surveys = Survey::factory(10)->create();
+        
+        // answerlists, answers, questions
         
         $answerlists_count = 50;
 
@@ -44,6 +48,8 @@ class SurveySeeder extends Seeder
 
         }
 
+        // items
+
         foreach ($surveys as $survey) {
 
             $items_count = $this->faker->numberBetween(10,20);
@@ -59,6 +65,8 @@ class SurveySeeder extends Seeder
             }
         }
         
+        // questionnaires, responses
+
         $questionnaires_count = 100;
 
         for ($i=0; $i < $questionnaires_count; $i++) { 
@@ -71,7 +79,6 @@ class SurveySeeder extends Seeder
 
                 if($this->faker->boolean($this->faker->numberBetween(95,100)) && $item->label == false){
 
-                    // @todo fix error
                     $answer = $item->question->answerlist->answers()->inRandomOrder()->first();
 
                     if ($answer) {
