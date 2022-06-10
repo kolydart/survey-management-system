@@ -20,24 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeed::class);
 
         $this->call(SurveySeeder::class);
-        
-        ### old seed (deprecated) BEGIN ###
-        /**
-        // hard delete hidden value
-        if (Answer::hidden()->count()) {
-            Answer::hidden()->forceDelete();
-        }
 
-        $this->call(qstSeed::class);
-
-        // re-create hidden value
-        Answer::create(['title'=>'value', 'hidden'=>true]);
-
-        $this->call(answerlistTypesSeed::class);
-        */
-        ### old seed (deprecated) END ###
-        
-
-        
     }
 }
