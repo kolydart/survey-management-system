@@ -37,6 +37,7 @@
                         <th>@lang('quickadmin.answers.fields.title')</th>
                         <th>@lang('quickadmin.answers.fields.open')</th>
                         <th>@lang('Responses')</th>
+                        <th>Hidden</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -57,6 +58,7 @@
                                 <td field-key='title'>{{ $answer->title }}</td>
                                 <td field-key='open'>{{ Form::checkbox("open", 1, $answer->open == 1 ? true : false, ["disabled"]) }}</td>
                                 <td field-key='title'>{{ $answer->responses->count() }}</td>
+                                <td field-key='title'>{{ $answer->hidden }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answer_delete')
@@ -87,7 +89,7 @@
                                     <a href="{{ route('admin.answers.edit',[$answer->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('answer_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
