@@ -87,7 +87,7 @@ class ItemsController extends Controller
             return abort(401);
         }
 
-        $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $surveys = \App\Survey::get()->pluck('title_with_alias', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.items.create', compact('surveys', 'questions'));

@@ -91,4 +91,9 @@ class Survey extends Model
             return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)');
         }
     }
+
+    public function getTitleWithAliasAttribute(){
+        return $this->title . " [". $this->alias ."]";
+    }
+
 }
