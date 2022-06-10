@@ -10,7 +10,7 @@ $(document).ready(function () {
         retrieve: true,
         dom: 'lBfrtip<"actions">',
         columnDefs: [],
-        "iDisplayLength": 10,
+        "iDisplayLength": 50,
         "aaSorting": [],
         buttons: [
             {
