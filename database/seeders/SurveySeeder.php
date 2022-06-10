@@ -57,14 +57,37 @@ class SurveySeeder extends Seeder
             }
         }
         
-        $questionnaires = Questionnaire::factory(150)->create(['survey_id' =>$this->faker->randomElement($surveys)->id]);
+        $questionnaires_count = 50;
 
-            // $response = Response::factory()->create([
-            //     'questionnaire_id'=>$questionnaire, 
-            //     'question_id'=>$item->question->id, 
-            //     'answer_id'=>$answer->id, 
-            //     'content'=>$this->faker->words(5,true),
-            // ]);
+        for ($i=0; $i < $questionnaires_count; $i++) { 
+
+            $survey = Survey::inRandomOrder()->first();
+
+            $questionnaire = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+
+            foreach ($survey->items()->get() as $item) {
+
+                if($this->faker->boolean(90) && $item->label == false){
+
+                    // @todo fix error
+                    $answer = $item->question->answerlist->answers()->inRandomOrder()->first();
+
+                    if ($answer) {
+
+                        $response = Response::factory()->create([
+                            'questionnaire_id'=>$questionnaire->id, 
+                            'question_id'=>$item->question->id, 
+                            'answer_id'=>$answer->id, 
+                            'content'=> ($answer->open || $item->question->type == 'text') ? $this->faker->words(5,true) : '' ,
+                        ]);
+                        
+                    }
+
+                }
+
+            }
+            
+        }
 
     }
 }
