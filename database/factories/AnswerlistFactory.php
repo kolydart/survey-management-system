@@ -22,10 +22,11 @@ class AnswerlistFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'type' => $this->faker->randomElement([
+            'type' => $this->faker->boolean(90) ?  
+                $this->faker->randomElement([
                 'radio', 
                 'checkbox', 
-                'text', 
+                // 'text', 
                 // 'number', 
                 // 'range', 
                 // 'color', 
@@ -38,7 +39,7 @@ class AnswerlistFactory extends Factory
                 // 'month', 
                 // 'password', 
                 // 'tel',
-            ])
+                ]) : 'text',
         ];
     }
 }

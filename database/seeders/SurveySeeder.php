@@ -57,7 +57,7 @@ class SurveySeeder extends Seeder
             }
         }
         
-        $questionnaires_count = 50;
+        $questionnaires_count = 100;
 
         for ($i=0; $i < $questionnaires_count; $i++) { 
 
@@ -67,7 +67,7 @@ class SurveySeeder extends Seeder
 
             foreach ($survey->items()->get() as $item) {
 
-                if($this->faker->boolean(90) && $item->label == false){
+                if($this->faker->boolean($this->faker->numberBetween(95,100)) && $item->label == false){
 
                     // @todo fix error
                     $answer = $item->question->answerlist->answers()->inRandomOrder()->first();
@@ -80,7 +80,7 @@ class SurveySeeder extends Seeder
                             'answer_id'=>$answer->id, 
                             'content'=> ($answer->open || $item->question->type == 'text') ? $this->faker->words(5,true) : '' ,
                         ]);
-                        
+
                     }
 
                 }
