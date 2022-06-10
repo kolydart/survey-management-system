@@ -38,7 +38,7 @@ class SurveySeeder extends Seeder
                 $answerlist->answers()->attach($answers);
             }
 
-            $questions_count = $this->faker->numberBetween(20,40);
+            $questions_count = $this->faker->numberBetween(1,5);
 
             Question::factory($questions_count)->create(['answerlist_id'=>$answerlist->id]);
 
@@ -51,7 +51,9 @@ class SurveySeeder extends Seeder
             for ($i=1; $i < $items_count+1; $i++) { 
                 Item::factory()->create([
                     'survey_id' => $survey->id,
-                    'question_id' => $this->faker->unique()->randomElement(Question::pluck('id')),
+                    'question_id' => $i == 1 ? 
+                        $this->faker->unique(true)->randomElement(Question::pluck('id')) : 
+                        $this->faker->unique()->randomElement(Question::pluck('id')),
                     'order' => $i
                 ]);
             }
