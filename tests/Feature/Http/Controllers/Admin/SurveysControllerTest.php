@@ -220,7 +220,7 @@ class SurveysControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.surveys.store'), Survey::factory()->make()->toArray());
+        $response = $this->actingAs($user)->post(route('admin.surveys.store'), Survey::factory()->make()->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.index'));

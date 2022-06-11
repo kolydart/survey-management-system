@@ -145,7 +145,7 @@ class AnswerlistsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.answerlists.store'), 
-            $answerlist->toArray()+['answers' => $answers->pluck('id')->toArray()]
+            $answerlist->getAttributes()+['answers' => $answers->pluck('id')->toArray()]
         );
 
         $response->assertSessionHasNoErrors();
@@ -168,7 +168,7 @@ class AnswerlistsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->put(route('admin.answerlists.update', $answerlist), 
-            $answerlist->toArray() + ['answers' => $answerlist->answers->pluck('id')->toArray()]
+            $answerlist->getAttributes() + ['answers' => $answerlist->answers->pluck('id')->toArray()]
         );
 
         $response->assertSessionHasNoErrors();

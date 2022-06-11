@@ -177,7 +177,7 @@ class QuestionsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.questions.store'), Question::factory()->make()->toArray());
+        $response = $this->actingAs($user)->post(route('admin.questions.store'), Question::factory()->make()->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questions.index'));

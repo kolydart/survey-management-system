@@ -133,7 +133,7 @@ class RolesControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.roles.store'), Role::factory()->make()->toArray());
+        $response = $this->actingAs($user)->post(route('admin.roles.store'), Role::factory()->make()->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.roles.index'));

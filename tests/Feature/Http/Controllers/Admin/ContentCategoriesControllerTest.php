@@ -133,7 +133,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.content_categories.store'), ContentCategory::factory()->make()->toArray());
+        $response = $this->actingAs($user)->post(route('admin.content_categories.store'), ContentCategory::factory()->make()->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_categories.index'));
