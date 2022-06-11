@@ -42,6 +42,7 @@ class CategoriesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.categories.destroy', [$category]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.categories.index'));
         $this->assertSoftDeleted($category);
 

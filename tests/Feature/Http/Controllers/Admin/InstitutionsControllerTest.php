@@ -42,6 +42,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.institutions.destroy', [$institution]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.index'));
         $this->assertSoftDeleted($institution);
 
@@ -117,6 +118,7 @@ class InstitutionsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.institutions.perma_del', ['id' => $institution->id]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.index'));
 
 
@@ -138,6 +140,7 @@ class InstitutionsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.index'));
 
 
@@ -177,6 +180,7 @@ class InstitutionsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.index'));
 
 
@@ -197,6 +201,7 @@ class InstitutionsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.show', $id));
 
 

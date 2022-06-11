@@ -42,6 +42,7 @@ class GroupsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.groups.destroy', [$group]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.groups.index'));
         $this->assertSoftDeleted($group);
 
@@ -117,6 +118,7 @@ class GroupsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.groups.perma_del', ['id' => $group->id]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.groups.index'));
 
 
@@ -138,6 +140,7 @@ class GroupsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.groups.index'));
 
 
@@ -177,6 +180,7 @@ class GroupsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.groups.index'));
 
 
@@ -197,6 +201,7 @@ class GroupsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.groups.show', $id));
 
 

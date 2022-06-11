@@ -50,6 +50,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.questionnaires.destroy', [$questionnaire]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.index'));
         $this->assertSoftDeleted($questionnaire);
 
@@ -128,6 +129,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.questionnaires.perma_del', ['id' => $questionnaire->id]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.index'));
 
 
@@ -149,6 +151,7 @@ class QuestionnairesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.index'));
 
 
@@ -189,6 +192,7 @@ class QuestionnairesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.index'));
 
 
@@ -205,10 +209,9 @@ class QuestionnairesControllerTest extends TestCase
         $questionnaire = \App\Questionnaire::factory()->create();
         $user = $this->login_user('admin');
 
-        $response = $this->put(route('admin.questionnaires.update',$questionnaire), [
-            $questionnaire->getAttributes()
-        ]);
+        $response = $this->put(route('admin.questionnaires.update',$questionnaire), $questionnaire->getAttributes());
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.show', $questionnaire->id));
 
 

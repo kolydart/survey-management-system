@@ -44,6 +44,7 @@ class ContentPagesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.content_pages.destroy', [$contentPage]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_pages.index'));
         $this->assertDeleted($contentPage);
 

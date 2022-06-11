@@ -42,6 +42,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.content_categories.destroy', [$contentCategory]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_categories.index'));
         $this->assertDeleted($contentCategory);
 
@@ -137,6 +138,7 @@ class ContentCategoriesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_categories.index'));
 
 
@@ -157,6 +159,7 @@ class ContentCategoriesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_categories.index'));
 
 

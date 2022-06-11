@@ -45,6 +45,8 @@ class AnswerlistsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.answerlists.destroy', [$answerlist]));
 
+        $response->assertSessionHasNoErrors();
+        
         $response->assertRedirect(route('admin.answerlists.index'));
 
         $this->assertSoftDeleted($answerlist);
@@ -144,6 +146,8 @@ class AnswerlistsControllerTest extends TestCase
 
         $response->dumpSession();
 
+        $response->assertSessionHasNoErrors();
+        
         $response->assertRedirect(route('admin.answerlists.index'));
 
 
@@ -165,6 +169,8 @@ class AnswerlistsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
+        
         $response->assertRedirect(route('admin.answerlists.index'));
 
 

@@ -44,6 +44,7 @@ class ItemsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.items.destroy', [$item]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.index'));
         $this->assertSoftDeleted($item);
 
@@ -123,6 +124,7 @@ class ItemsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.items.perma_del', ['id' => $item->id]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.index'));
 
 
@@ -144,6 +146,7 @@ class ItemsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.index'));
 
 
@@ -182,6 +185,7 @@ class ItemsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.index'));
 
 
@@ -202,6 +206,7 @@ class ItemsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.show', $id));
 
 

@@ -25,6 +25,7 @@ class ActivitylogsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.activitylogs.destroy', [$activitylog]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.activitylogs.index'));
         $this->assertDeleted($activitylog);
 
@@ -115,6 +116,7 @@ class ActivitylogsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.activitylogs.index'));
 
 

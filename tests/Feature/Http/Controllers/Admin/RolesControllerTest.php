@@ -42,6 +42,7 @@ class RolesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.roles.destroy', [$role]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.roles.index'));
         $this->assertDeleted($role);
 
@@ -137,6 +138,7 @@ class RolesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.roles.index'));
 
 
@@ -158,6 +160,7 @@ class RolesControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.roles.show', $id));
 
 

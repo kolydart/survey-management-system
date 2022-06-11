@@ -45,6 +45,7 @@ class ResponsesControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.responses.destroy', [$instance]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.responses.index'));
         $this->assertSoftDeleted($instance);
 

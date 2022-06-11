@@ -43,6 +43,7 @@ class ContentTagsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.content_tags.destroy', [$contentTag]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));
         $this->assertDeleted($contentTag);
 
@@ -138,6 +139,7 @@ class ContentTagsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));
 
 
@@ -158,6 +160,7 @@ class ContentTagsControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));
 
 

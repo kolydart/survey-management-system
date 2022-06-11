@@ -36,6 +36,7 @@ class SurveysControllerTest extends TestCase
 
         $this->assertDatabaseCount('surveys',2);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.show', $new_survey));
 
         $this->assertEquals($survey->title,$new_survey->title);
@@ -82,6 +83,7 @@ class SurveysControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.surveys.destroy', [$survey]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.index'));
         $this->assertSoftDeleted($survey);
 
@@ -160,6 +162,7 @@ class SurveysControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.surveys.perma_del', ['id' => $survey->id]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.index'));
 
 
@@ -181,6 +184,7 @@ class SurveysControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.index'));
 
 
@@ -222,6 +226,7 @@ class SurveysControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.index'));
 
 
@@ -242,6 +247,7 @@ class SurveysControllerTest extends TestCase
             // TODO: send request data
         ]);
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.surveys.show', $id));
 
 

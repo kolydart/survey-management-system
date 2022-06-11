@@ -25,6 +25,7 @@ class LoguseragentsControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('admin.loguseragents.destroy', [$loguseragent]));
 
+        $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.loguseragents.index'));
         $this->assertDeleted($loguseragent);
 
@@ -116,6 +117,7 @@ class LoguseragentsControllerTest extends TestCase
         $response = $this->actingAs($user)->put(route('admin.loguseragents.update', [$loguseragent]), [
             // TODO: send request data
         ]);
+
 
         $response->assertRedirect(route('admin.loguseragents.index'));
 
