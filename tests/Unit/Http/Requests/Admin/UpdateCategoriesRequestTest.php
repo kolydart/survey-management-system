@@ -33,18 +33,16 @@ class UpdateCategoriesRequestTest extends TestCase
         $this->assertTrue($actual);
     }
 
-    /**
-     * @test
-     */
-    public function rules()
-    {
+    // /**
+    //  * @test
+    //  */
+    // public function rules()
+    // {
 
-        $this->markTestIncomplete();
-        
-        $actual = $this->subject->rules();
+    //     $actual = $this->subject->rules();
 
-        $this->assertEquals([], $actual);
-    }
+    //     $this->assertEquals([], $actual);
+    // }
 
     // test cases...
 }

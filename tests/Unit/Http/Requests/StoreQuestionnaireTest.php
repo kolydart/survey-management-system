@@ -39,8 +39,6 @@ class StoreQuestionnaireTest extends TestCase
     public function rules()
     {
 
-        $this->markTestIncomplete();
-
         $actual = $this->subject->rules();
 
         $this->assertValidationRules([
@@ -49,18 +47,18 @@ class StoreQuestionnaireTest extends TestCase
         ], $actual);
     }
 
-    /**
-     * @test
-     */
-    public function messages()
-    {
+    // /**
+    //  * @test
+    //  */
+    // public function messages()
+    // {
 
-        $this->markTestIncomplete();
+    //     $this->markTestIncomplete();
 
-        $actual = $this->subject->messages();
+    //     $actual = $this->subject->messages();
 
-        $this->assertEquals([], $actual);
-    }
+    //     $this->assertEquals([], $actual);
+    // }
 
     // test cases...
 }
