@@ -136,13 +136,12 @@ class SurveysControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
+        $survey = Survey::factory()->create();
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.surveys.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.surveys.mass_destroy'), $survey->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -246,5 +245,5 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }

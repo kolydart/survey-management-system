@@ -93,13 +93,12 @@ class CategoriesControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
+        $category = Category::factory()->create();
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.categories.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.categories.mass_destroy'), $category->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -197,5 +196,5 @@ class CategoriesControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }

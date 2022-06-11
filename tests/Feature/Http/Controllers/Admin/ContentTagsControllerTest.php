@@ -94,13 +94,12 @@ class ContentTagsControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
+        $contentTag = ContentTag::factory()->create();
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.content_tags.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.content_tags.mass_destroy'), $contentTag->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -152,9 +151,7 @@ class ContentTagsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->put(route('admin.content_tags.update', [$content_tag]), [
-
-        ]);
+        $response = $this->actingAs($user)->put(route('admin.content_tags.update', [$contentTag]), $contentTag->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));
@@ -162,5 +159,5 @@ class ContentTagsControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }

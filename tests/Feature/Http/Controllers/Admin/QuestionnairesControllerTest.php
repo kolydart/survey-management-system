@@ -103,13 +103,12 @@ class QuestionnairesControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
+        $questionnaire = Questionnaire::factory()->create();
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.questionnaires.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.questionnaires.mass_destroy'), $questionnaire->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 

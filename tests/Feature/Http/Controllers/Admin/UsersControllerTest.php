@@ -92,13 +92,11 @@ class UsersControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.users.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.users.mass_destroy'), $user->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -153,5 +151,5 @@ class UsersControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }

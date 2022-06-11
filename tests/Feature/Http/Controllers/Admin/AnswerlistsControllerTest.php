@@ -101,13 +101,12 @@ class AnswerlistsControllerTest extends TestCase
     public function mass_destroy_returns_an_ok_response()
     {
 
-
+        $answerlist = Answerlist::factory()->create();
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.answerlists.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.answerlists.mass_destroy'), $answerlist->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 

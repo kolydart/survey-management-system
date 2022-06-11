@@ -92,14 +92,13 @@ class RolesControllerTest extends TestCase
      */
     public function mass_destroy_returns_an_ok_response()
     {
-
+        $role = Role::factory()->create();
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.roles.mass_destroy'), [
+        $response = $this->actingAs($user)->post(route('admin.roles.mass_destroy'), $role->getAttributes());
 
-        ]);
-
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -159,5 +158,5 @@ class RolesControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }

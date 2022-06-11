@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Loguseragent;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -76,11 +77,9 @@ class LoguseragentsControllerTest extends TestCase
     {
 
         $user = $this->create_user('admin');
-
-        $response = $this->actingAs($user)->post(route('admin.loguseragents.mass_destroy'), [
-
-        ]);
-
+        $loguseragent = Loguseragent::factory()->create();
+        $response = $this->actingAs($user)->post(route('admin.loguseragents.mass_destroy'), $loguseragent->getAttributes());
+        $response->assertSessionHasNoErrors();
         $response->assertOk();
 
 
@@ -123,5 +122,5 @@ class LoguseragentsControllerTest extends TestCase
 
     }
 
-    // test cases...
+
 }
