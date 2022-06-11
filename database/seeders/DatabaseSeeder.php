@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeed::class);
         $this->call(UserSeed::class);
 
+        // IMPORTANT (COMPLETE SEED)
         $this->call(SurveySeeder::class);
 
     }
