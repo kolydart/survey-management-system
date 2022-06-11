@@ -232,7 +232,7 @@ admin.questionnaires.show
                                 type="text"
                                 name="{{$item->question->id}}_content" 
                                 class="col-sm-6 col-md-5 col-md-offset-1"
-                                value="{{$item->question->responses()->where('questionnaire_id',$questionnaire->id)->first()->content}}"
+                                value="{{$item->question->responses()->where('questionnaire_id',$questionnaire->id)->first()->content ?? '' }}"
                                 disabled
                             >
 
