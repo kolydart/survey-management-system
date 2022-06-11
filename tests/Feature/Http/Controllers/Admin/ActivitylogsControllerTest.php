@@ -112,11 +112,10 @@ class ActivitylogsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->put(route('admin.activitylogs.update', [$activitylog]), [
-            // TODO: send request data
-        ]);
+        $response = $this->actingAs($user)->put(route('admin.activitylogs.update', $activitylog), $activitylog->toArray());
 
         $response->assertSessionHasNoErrors();
+        
         $response->assertRedirect(route('admin.activitylogs.index'));
 
 

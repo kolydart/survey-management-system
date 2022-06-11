@@ -198,7 +198,7 @@ class ResponsesControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.responses.store'), Response::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.responses.store'), Response::factory()->make()->toArray());
 
         $response->assertRedirect(route('admin.responses.index'));
 

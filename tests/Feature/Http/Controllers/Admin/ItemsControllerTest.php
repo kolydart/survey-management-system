@@ -180,7 +180,7 @@ class ItemsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.items.store'), Item::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.items.store'), Item::factory()->make()->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.items.index'));

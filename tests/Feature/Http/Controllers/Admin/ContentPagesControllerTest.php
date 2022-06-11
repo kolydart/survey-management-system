@@ -136,7 +136,7 @@ class ContentPagesControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.content_pages.store'), ContentPage::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.content_pages.store'), ContentPage::factory()->make()->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_pages.index'));

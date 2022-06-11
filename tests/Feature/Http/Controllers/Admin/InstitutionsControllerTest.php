@@ -175,7 +175,7 @@ class InstitutionsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.institutions.store'), Institution::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.institutions.store'), Institution::factory()->make()->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.institutions.index'));

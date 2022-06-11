@@ -134,7 +134,7 @@ class ContentTagsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.content_tags.store'), ContentTag::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.content_tags.store'), ContentTag::factory()->make()->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));

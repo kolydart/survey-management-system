@@ -186,7 +186,7 @@ class QuestionnairesControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.questionnaires.store'), Questionnaire::factory()->make()->getAttributes());
+        $response = $this->actingAs($user)->post(route('admin.questionnaires.store'), Questionnaire::factory()->make()->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.index'));
@@ -202,7 +202,7 @@ class QuestionnairesControllerTest extends TestCase
         $questionnaire = \App\Questionnaire::factory()->create();
         $user = $this->login_user('admin');
 
-        $response = $this->put(route('admin.questionnaires.update',$questionnaire), $questionnaire->getAttributes());
+        $response = $this->put(route('admin.questionnaires.update',$questionnaire), $questionnaire->toArray());
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.questionnaires.show', $questionnaire->id));
