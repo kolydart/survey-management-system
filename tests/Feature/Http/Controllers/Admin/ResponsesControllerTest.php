@@ -118,11 +118,11 @@ class ResponsesControllerTest extends TestCase
      */
     public function mass_destroy_returns_an_ok_response()
     {
-        $response = Response::factory()->create();
+        $resp = Response::factory()->create();
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->post(route('admin.responses.mass_destroy'), $response);
+        $response = $this->actingAs($user)->post(route('admin.responses.mass_destroy'), $resp->getAttributes());
 
         $response->assertSessionHasNoErrors();
         $response->assertOk();
@@ -209,13 +209,13 @@ class ResponsesControllerTest extends TestCase
      */
     public function update_returns_an_ok_response()
     {
-        $response = \App\Response::factory()->create();
+        $resp = \App\Response::factory()->create();
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->put(route('admin.responses.update', [$response]), $response->getAttributes());
+        $response = $this->actingAs($user)->put(route('admin.responses.update', [$resp]), $resp->getAttributes());
 
-        $response->assertRedirect(route('admin.responses.show', $response));
+        $response->assertRedirect(route('admin.responses.show', $resp));
 
 
     }
