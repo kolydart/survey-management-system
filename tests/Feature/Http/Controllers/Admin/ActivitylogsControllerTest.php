@@ -76,7 +76,7 @@ class ActivitylogsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.activitylogs.mass_destroy'), [
-            // TODO: send request data
+
         ]);
 
         $response->assertOk();
@@ -112,11 +112,10 @@ class ActivitylogsControllerTest extends TestCase
 
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->put(route('admin.activitylogs.update', [$activitylog]), [
-            // TODO: send request data
-        ]);
+        $response = $this->actingAs($user)->put(route('admin.activitylogs.update', $activitylog), $activitylog->getAttributes());
 
         $response->assertSessionHasNoErrors();
+        
         $response->assertRedirect(route('admin.activitylogs.index'));
 
 

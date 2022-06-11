@@ -105,7 +105,7 @@ class AnswerlistsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.answerlists.mass_destroy'), [
-            // TODO: send request data
+
         ]);
 
         $response->assertOk();

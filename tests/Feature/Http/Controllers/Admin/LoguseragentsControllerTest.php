@@ -78,7 +78,7 @@ class LoguseragentsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.loguseragents.mass_destroy'), [
-            // TODO: send request data
+
         ]);
 
         $response->assertOk();
@@ -112,11 +112,10 @@ class LoguseragentsControllerTest extends TestCase
     {
 
         $loguseragent = \App\Loguseragent::factory()->create();
+        
         $user = $this->create_user('admin');
 
-        $response = $this->actingAs($user)->put(route('admin.loguseragents.update', [$loguseragent]), [
-            // TODO: send request data
-        ]);
+        $response = $this->actingAs($user)->put(route('admin.loguseragents.update', [$loguseragent]), $loguseragent->getAttributes());
 
 
         $response->assertRedirect(route('admin.loguseragents.index'));

@@ -107,7 +107,7 @@ class QuestionnairesControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.questionnaires.mass_destroy'), [
-            // TODO: send request data
+
         ]);
 
         $response->assertOk();
@@ -148,7 +148,7 @@ class QuestionnairesControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.questionnaires.restore', ['id' => $questionnaire->id]), [
-            // TODO: send request data
+
         ]);
 
         $response->assertSessionHasNoErrors();
@@ -200,6 +200,7 @@ class QuestionnairesControllerTest extends TestCase
     {
 
         $questionnaire = \App\Questionnaire::factory()->create();
+        
         $user = $this->login_user('admin');
 
         $response = $this->put(route('admin.questionnaires.update',$questionnaire), $questionnaire->getAttributes());

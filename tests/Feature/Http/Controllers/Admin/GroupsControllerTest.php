@@ -97,7 +97,7 @@ class GroupsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.groups.mass_destroy'), [
-            // TODO: send request data
+
         ]);
 
         $response->assertOk();
@@ -138,7 +138,7 @@ class GroupsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->post(route('admin.groups.restore', ['id' => $group->id]), [
-            // TODO: send request data
+
         ]);
 
         $response->assertSessionHasNoErrors();
@@ -195,7 +195,7 @@ class GroupsControllerTest extends TestCase
         $user = $this->create_user('admin');
 
         $response = $this->actingAs($user)->put(route('admin.groups.update', [$group]), [
-            // TODO: send request data
+
         ]);
 
         $response->assertSessionHasNoErrors();
