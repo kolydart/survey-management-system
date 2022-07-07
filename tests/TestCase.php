@@ -14,7 +14,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication, AdditionalAssertions;
 
     /** enable once after migration */
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
         
     /** 
