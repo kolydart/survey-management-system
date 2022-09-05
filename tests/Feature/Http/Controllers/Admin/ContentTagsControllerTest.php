@@ -46,7 +46,7 @@ class ContentTagsControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_tags.index'));
-        $this->assertDeleted($contentTag);
+        $this->assertDatabaseMissing((new ContentTag())->getTable(),['id'=>$contentTag->id]);        
 
 
     }

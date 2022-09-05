@@ -29,12 +29,12 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.10",
         "brianium/paratest": "^6.3",
-        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
-        "jasonmccreary/laravel-test-assertions": "^1.1",
+        "jasonmccreary/laravel-test-assertions": "^2.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.3.3",
+        "spatie/laravel-ignition": "^1.0",
         "symfony/thanks": "^1.2"
     },
     "autoload": {

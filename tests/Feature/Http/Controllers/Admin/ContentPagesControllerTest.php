@@ -47,7 +47,7 @@ class ContentPagesControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_pages.index'));
-        $this->assertDeleted($contentPage);
+        $this->assertDatabaseMissing((new ContentPage)->getTable(),['id'=>$contentPage->id]);        
 
 
     }

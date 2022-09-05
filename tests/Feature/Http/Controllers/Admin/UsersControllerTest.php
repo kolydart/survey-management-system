@@ -44,7 +44,7 @@ class UsersControllerTest extends TestCase
         $response = $this->actingAs($user)->delete(route('admin.users.destroy', [$user]));
 
         $response->assertRedirect(route('admin.users.index'));
-        $this->assertDeleted($user);
+        $this->assertDatabaseMissing((new User())->getTable(),['id'=>$user->id]);        
 
 
     }

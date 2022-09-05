@@ -28,8 +28,7 @@ class LoguseragentsControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.loguseragents.index'));
-        $this->assertDeleted($loguseragent);
-
+        $this->assertDatabaseMissing((new Loguseragent())->getTable(),['id'=>$loguseragent->id]);        
 
     }
 

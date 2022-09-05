@@ -45,7 +45,7 @@ class ContentCategoriesControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.content_categories.index'));
-        $this->assertDeleted($contentCategory);
+        $this->assertDatabaseMissing((new ContentCategory)->getTable(),['id'=>$contentCategory->id]);        
 
 
     }

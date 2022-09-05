@@ -45,8 +45,7 @@ class RolesControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.roles.index'));
-        $this->assertDeleted($role);
-
+        $this->assertDatabaseMissing((new Role())->getTable(),['id'=>$role->id]);        
 
     }
 

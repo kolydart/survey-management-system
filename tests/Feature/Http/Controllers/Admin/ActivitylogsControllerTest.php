@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Activitylog;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -27,7 +28,7 @@ class ActivitylogsControllerTest extends TestCase
 
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('admin.activitylogs.index'));
-        $this->assertDeleted($activitylog);
+        $this->assertDatabaseMissing('activity_log',['id'=>$activitylog->id]);
 
     }
 
