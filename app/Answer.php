@@ -7,6 +7,8 @@ use App\Response;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use \Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 /**
  * Class Answer
@@ -17,10 +19,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Answer extends Model
 {
     use HasFactory;
+
     /** activity log */
-    use \Spatie\Activitylog\Traits\LogsActivity;
-    protected static $logFillable = true;
-    protected static $logOnlyDirty = true;
+    use LogsActivity;
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ;
+    }    
 
     /** softCascade */
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;

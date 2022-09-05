@@ -7,6 +7,9 @@ use App\Questionnaire;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use \Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 
 /**
  * Class Survey
@@ -25,9 +28,14 @@ class Survey extends Model
 {
     use HasFactory;
     /** activity log */
-    use \Spatie\Activitylog\Traits\LogsActivity;
-    protected static $logFillable = true;
-    protected static $logOnlyDirty = true;
+    use LogsActivity;
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ;
+    }    
 
     use SoftDeletes;
     /** softCascade */

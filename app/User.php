@@ -7,6 +7,9 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use \Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 
 /**
  * Class User
@@ -21,9 +24,14 @@ class User extends Authenticatable
 {
     use HasFactory;
     /** activity log */
-    use \Spatie\Activitylog\Traits\LogsActivity;
-    protected static $logFillable = true;
-    protected static $logOnlyDirty = true;
+    use LogsActivity;
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ;
+    }    
 
     use Notifiable;
     protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
