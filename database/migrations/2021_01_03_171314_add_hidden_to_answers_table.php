@@ -20,7 +20,7 @@ class AddHiddenToAnswersTable extends Migration
         });
 
         /** create a single record */
-        Answer::create(['title'=>'value', 'hidden'=>true]);
+        activity()->withoutLogs(fn()=> Answer::create(['title'=>'value', 'hidden'=>true]));
     }
 
     /**
