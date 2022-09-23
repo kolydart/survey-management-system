@@ -7,10 +7,11 @@ use App\User;
 use Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use JMac\Testing\Traits\AdditionalAssertions;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, AdditionalAssertions;
 
     /** enable once after migration */
     use RefreshDatabase;
