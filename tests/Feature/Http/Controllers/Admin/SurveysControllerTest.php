@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Category;
+use App\Group;
 use App\Item;
 use App\Questionnaire;
 use App\Survey;
@@ -15,39 +17,126 @@ use Tests\TestCase;
 class SurveysControllerTest extends TestCase
 {
     use DatabaseTransactions;
+    use WithFaker;
 
     /**
      * @test
      */
-    public function clone_returns_creates_an_exact_copy()
+    public function clone_creates_a_new_survey()
     {
-
-        $survey = Survey::factory()->create(['completed' => true]);
+        $survey = Survey::factory()->create();
 
         $this->assertDatabaseCount('surveys',1);
 
-        $user = $this->create_user('admin');
+        $this->login_user('admin');
 
-        $response = $this->actingAs($user)->get(route('admin.surveys.clone', [$survey]));
+        $response = $this->get(route('admin.surveys.clone', $survey));
+
+        $response->assertRedirect(route('admin.surveys.show',$survey->id+1));
+        $response->assertSessionHasNoErrors();
+        $this->assertDatabaseCount('surveys',2);
+        Survey::find($survey->id+1)->exists();
+
+    }
+
+
+    /**
+     * @test
+     */
+    public function clone_has_completed_set_to_false()
+    {
+        $survey = Survey::factory()->create(['completed' => true]);
+
+        $this->login_user('admin');
+
+        $this->get(route('admin.surveys.clone', $survey));
+
+        $new_survey = Survey::find($survey->id+1);
+    
+        $this->assertEquals(false,$new_survey->completed);
+
+    }
+
+    /**
+     * @test
+     */
+    public function clone_creates_an_exact_copy()
+    {
+
+        $survey = Survey::factory()->create([
+            'inform' => $this->faker->numberBetween(0,1),
+            'completed' => true,
+        ]);
+
+        $this->login_user('admin');
+
+        $this->get(route('admin.surveys.clone', $survey));
 
         $new_survey = Survey::find($survey->id+1);
         
+        $ignoring = ['created_at','updated_at','completed','id'];
+
+        $diff = collect($survey->getAttributes())
+            ->forget($ignoring)
+            ->diffAssoc(
+                collect($new_survey->getAttributes())
+                    ->forget($ignoring)
+                )
+            ;
+
+        $this->assertTrue($diff->isEmpty(),$diff);
+
+    }
+
+    /**
+     * @test
+     */
+    public function clone_has_the_same_relationships()
+    {
+
+        $survey = Survey::factory()
+            ->has(Category::factory($this->faker()->numberBetween(1,3)))
+            ->has(Group::factory($this->faker()->numberBetween(1,3)))
+            ->has(Questionnaire::factory($this->faker()->numberBetween(1,3)))
+            ->has(Item::factory($this->faker()->numberBetween(2,4)))
+            ->create();
+
+        $this->login_user('admin');
+
+        $response = $this->get(route('admin.surveys.clone', $survey));
+
+        $response->assertRedirect(route('admin.surveys.show',$survey->id+1));
         $response->assertSessionHasNoErrors();
 
-        $this->assertDatabaseCount('surveys',2);
+        $new_survey = Survey::find($survey->id+1);
 
-        $response->assertSessionHasNoErrors();
-        $response->assertRedirect(route('admin.surveys.show', $new_survey));
+        $diff = $survey->category->pluck('title')
+            ->diff($new_survey->category->pluck('title')
+            );
+        $this->assertTrue($diff->isEmpty(),$diff);
 
-        $this->assertEquals($survey->title,$new_survey->title);
-        $this->assertEquals($survey->alias,$new_survey->alias);
-        $this->assertEquals($survey->institution_id,$new_survey->institution_id);
-        $this->assertEquals($survey->introduction,$new_survey->introduction);
-        $this->assertEquals($survey->javascript,$new_survey->javascript);
-        $this->assertEquals($survey->notes,$new_survey->notes);
-        $this->assertEquals($survey->inform,$new_survey->inform);
-        $this->assertEquals($survey->access,$new_survey->access);
-        $this->assertEquals(false,$new_survey->completed);
+        $diff = $survey->group->pluck('title')
+            ->diff($new_survey->group->pluck('title')
+            );
+        $this->assertTrue($diff->isEmpty(),$diff);
+
+        $ignore=['id','created_at','updated_at','survey_id'];
+        $survey->items
+            ->each(function($item) use($new_survey,$ignore){
+
+                $diff = 
+                    collect($item->getAttributes())
+                        ->forget($ignore)
+                        ->diffAssoc(
+                            collect(Item::where('survey_id', $new_survey->id)->where('question_id', $item->question_id)
+                                ->first()
+                                ->getAttributes())
+                                    ->forget($ignore)
+                            );
+
+                $this->assertTrue($diff->isEmpty(),$diff);
+
+            });
 
     }
 
