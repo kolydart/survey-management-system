@@ -3,7 +3,7 @@
 Route::group(['as' => 'frontend.'], function () {
     Route::get('/', 'Frontend\CollectController@index')->name('index');
     Route::get('/{alias}', 'Frontend\CollectController@create')->name('create');
-    Route::post('/', 'Frontend\CollectController@store')->name('store');
+    Route::post('/store', 'Frontend\CollectController@store')->name('store');
 });
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
