@@ -26,6 +26,6 @@ class LogLockout
      */
     public function handle(Lockout $event)
     {
-        activity()->causedBy($event->user)->log('lockout');
+        activity()->causedBy($event->user ?? null)->log('lockout');
     }
 }
