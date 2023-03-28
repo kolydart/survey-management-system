@@ -157,7 +157,9 @@ admin.questionnaires.show
                                                 class="form-control" 
                                                 rows="5" 
                                                 placeholder=""
+                                                {{-- 
                                                 required="required"
+                                                 --}}
                                                 >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
 
                                             @include('partials.js.toggleTextarea')
@@ -210,7 +212,9 @@ admin.questionnaires.show
                                 id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
                                 class="col-md-6 col-lg-6 col-lg-offset-3"
                                 rows="4"
+                                {{-- 
                                 required="required"
+                                 --}}
                             >{{old($item->question->id.'_content_'.$hidden_answer->id)}}</textarea>
 
                         @else
@@ -221,7 +225,9 @@ admin.questionnaires.show
                                 id="{{$item->question->id}}_content_{{$hidden_answer->id}}" 
                                 class="col-md-6 col-lg-6 col-lg-offset-3"
                                 value="{{old($item->question->id.'_content_'.$hidden_answer->id)}}"
+                                {{-- 
                                 required="required"
+                                 --}}
                             >                        
                         @endif
                 
