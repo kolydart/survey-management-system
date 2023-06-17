@@ -93,11 +93,22 @@ class Survey extends Model
 
     public function items()
     {
+        $builder = $this
+            ->hasMany(Item::class, 'survey_id')
+            ->orderByRaw('
+                SUBSTRING_INDEX(`order`, ".", 1),
+                LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(`order`, " ", 1), ".", -1)),
+                SUBSTRING_INDEX(SUBSTRING_INDEX(`order`, " ", 1), ".", -1)
+                ');
+
         if (request('show_deleted') == 1) {
-            return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)')->withTrashed();
-        } else {
-            return $this->hasMany(Item::class, 'survey_id')->orderByRaw('cast(`order` as decimal)');
+
+            $builder->withTrashed();
+
         }
+
+        return $builder;
+
     }
 
     public function getTitleWithAliasAttribute(){
