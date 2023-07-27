@@ -35,7 +35,7 @@ Password: `password`
 ### Demo deployment
 
 You may view a demo deployment with fake data here:
-https://survey-management-system.kolydart.gr/
+http://demo-survey.kolydart.gr/
 
 Use the same credentials as above.
 
