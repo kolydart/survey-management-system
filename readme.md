@@ -1,4 +1,4 @@
-# survey
+# survey-management-system
 
 **Α Survey Management System for conducting quantitative research using questionnaires.**
 
