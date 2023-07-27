@@ -1,8 +1,40 @@
 # survey
 
-Α Survey Management System for conducting quantitative research using questionnaires.
+**Α Survey Management System for conducting quantitative research using questionnaires.**
 
 The application can be used also as a learning platform used to fill online quizzes and tests for online teaching 
+
+## Description of the software
+
+- Efficient data collection
+
+	The app streamlines data collection process by automating various tasks, such as distributing questionnaires, collecting responses, and organizing the data. It eliminates the need for manual data entry, reducing the chances of errors and saving time.
+
+- Reach a larger audience
+
+	It allows researchers to reach a wider audience with automated processes. This increased reach can lead to a more diverse and representative sample, enhancing the validity and generalizability of the research findings.
+
+- Real-time data analysis
+
+	Researchers can access real-time data analysis and visualization tools. This enables them to monitor response patterns and trends as they happen, helping them to make quick decisions and adjust the survey if necessary.
+
+- Data security and privacy
+
+	It ensures data security and privacy for both researchers and respondents. Encryption and secure storage protect sensitive information, building trust with survey participants.
+
+- Advanced question types and branching logic
+
+	The app offers a variety of question types (e.g., multiple-choice, Likert scale, open-ended) and branching logic capabilities. This allows researchers to design complex and customized surveys that gather specific information relevant to their research objectives.
+
+- Data export and integration
+
+	Researchers can easily export survey data into various formats (e.g., CSV, Excel) for further analysis or integrate it with other research tools and software, facilitating seamless data management.
+
+- Collaboration and teamwork
+
+	The app supports collaboration, enabling multiple researchers to work together on survey design, data analysis, and reporting. This fosters teamwork and enhances overall research productivity.
+
+## Real-world deployment
 
 You may view a real-world deployment of the software here:
 https://survey.music.uoa.gr/
