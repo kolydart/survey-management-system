@@ -64,6 +64,7 @@ admin.questionnaires.show
                             @if ($item->label != 1)
                                 {{-- report --}}
                                 @if (\Request::query('rawdata')) @include('partials.answerData') @else @include('partials.answerChart') @endif
+                                {{-- report end--}}
                             @endif
 
                         @else
@@ -165,6 +166,7 @@ admin.questionnaires.show
                                         @endif
                                 </div>
                             @endforeach
+                            {{-- answer end--}}
 
                         @endif
                     {{-- report-or-answer end--}}
