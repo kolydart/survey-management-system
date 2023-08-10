@@ -66,12 +66,11 @@ Password: `password`
 
 ### Demo deployment
 
-You may view a demo deployment with fake data here:
-http://demo-survey.kolydart.gr/
+You may view a demo deployment with fake data here: <a href="http://demo-survey.kolydart.gr/" target="_blank">http://demo-survey.kolydart.gr/</a>
 
-Use the same credentials as above.
+Use the same credentials and <a href="http://demo-survey.kolydart.gr/login" target="_blank">login url</a> as above.
 
-Database data are reset each day.
+Demo data are recreated every day.
 
 ## License
 
