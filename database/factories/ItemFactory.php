@@ -29,7 +29,7 @@ class ItemFactory extends Factory
             'survey_id' => Survey::factory(),
             'question_id' => Question::factory(),
             'label' => $this->faker->boolean(10),
-            'order' => $order++,
+            'order' => str_pad((string)$order++,2,"0",STR_PAD_LEFT),
         ];
     }
 }

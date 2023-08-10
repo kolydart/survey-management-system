@@ -60,7 +60,7 @@ class SurveySeeder extends Seeder
                     'question_id' => $i == 1 ? 
                         $this->faker->unique(true)->randomElement(Question::pluck('id')) : 
                         $this->faker->unique()->randomElement(Question::pluck('id')),
-                    'order' => $i
+                    'order' => str_pad((string)$i,2,"0",STR_PAD_LEFT)
                 ]);
             }
         }
