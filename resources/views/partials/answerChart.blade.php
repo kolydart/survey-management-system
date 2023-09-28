@@ -85,6 +85,32 @@
             }]
         },
         options: {
+
+            // display percentage / count inside bar
+            animation: {
+
+                onComplete: function() {
+                
+                    var ctx = this.chart.ctx;   
+                
+                    var dataset = this.data.datasets[0]; // get first dataset
+
+                    var meta = this.getDatasetMeta(0); // get the meta data of the first dataset
+
+                    for (var i = 0; i < dataset.data.length; i++) {
+
+                        var model = meta.data[i]._model; // get the bar model
+                        var percentage = dataset.data[i];
+                        var count = dataset.count[i];
+
+                        if (count > 0) {
+
+                            ctx.fillText(count + '  (' + percentage + '%)', model.x - 25, model.y + 5); // draw text
+
+                        }
+                    }
+                }
+            },
             legend: { display: false },
             scales: {
                 xAxes: [{
