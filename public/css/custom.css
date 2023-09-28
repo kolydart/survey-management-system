@@ -32,8 +32,8 @@
 }
 
 @media print {
-    .gw_chart canvas {
-        width: 100% !important;
+    .gw_chart {
+        width: 90% !important;
         height: auto !important;
     }
 }

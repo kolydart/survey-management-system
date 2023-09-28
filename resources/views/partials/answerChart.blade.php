@@ -93,7 +93,7 @@
             // change aspect ration depending on number of answers
             responsive: true,
             maintainAspectRatio: true,
-            aspectRatio: 10 / labels_count,       
+            aspectRatio: 15 / (labels_count + 5),
 
             // display percentage / count inside bar
             animation: {
