@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use \Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
@@ -69,4 +70,49 @@ class Item extends Model
             return $this->belongsTo(Question::class, 'question_id');
         }
     }
+
+
+    /**
+     * if Answerlist::remove_unused == true remove answers with 0 responses
+     */
+    public function get_answers(){
+
+        if($this->question->answerlist->remove_unused){
+
+
+            $answers_id = Response::query()
+                ->where('question_id',$this->question_id)
+                ->whereIn('questionnaire_id',$this->survey->questionnaires->pluck('id'))
+                ->pluck('answer_id')
+                ->toArray();
+
+            return $this->question->answerlist->answers->whereIn('id',$answers_id);
+
+
+        }else{
+
+            return $this->question->answerlist->answers;
+
+        }
+    }
+
+
+    /**
+     * get responses for the current item
+     * if parameter $answer is provided, then return responses with that answer
+     */
+    public function get_responses(Answer|null $answer = null): Builder{
+
+        $builder = Response::query()
+            ->where('question_id',$this->question_id)
+            ->whereIn('questionnaire_id',$this->survey->questionnaires->pluck('id'));
+
+        if($answer){
+            $builder->where('answer_id',$answer->id);
+        }
+        
+        return $builder;
+    }
+    
+
 }
