@@ -81,7 +81,8 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "symfony/thanks": true
+            "symfony/thanks": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "dev",
