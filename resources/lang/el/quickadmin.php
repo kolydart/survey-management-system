@@ -89,6 +89,8 @@ return [
             'title' => 'Title',
             'type' => 'Type',
             'answers' => 'Answers',
+            'remove_unused' => 'Remove unused answers',
+
         ],
     ],
 

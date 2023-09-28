@@ -38,6 +38,7 @@
                         <th>@lang('quickadmin.answerlists.fields.type')</th>
                         <th>@lang('quickadmin.answerlists.fields.answers')</th>
                         <th>@lang('Questions')</th>
+                        <th>Remove unused</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -63,6 +64,7 @@
                                     @endforeach
                                 </td>
                                 <td field-key='questions'>{{ $answerlist->questions->count() }}</td>
+                                <td field-key='remove_unused'><input type="checkbox" name="remove_unused" {{ $answerlist->remove_unused ? 'checked' : '' }} value="1" disabled></td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('answerlist_delete')
@@ -93,7 +95,7 @@
                                     <a href="{{ route('admin.answerlists.edit',[$answerlist->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('answerlist_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",

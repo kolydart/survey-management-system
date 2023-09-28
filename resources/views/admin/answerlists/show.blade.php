@@ -19,13 +19,18 @@
                         <tr>
                             <th>@lang('quickadmin.answerlists.fields.type')</th>
                             <td field-key='type'>{{ $answerlist->type }}</td>
-                        </tr>
                         <tr>
                             <th>@lang('quickadmin.answerlists.fields.answers')</th>
                             <td field-key='answers'>
                                 @foreach ($answerlist->answers as $singleAnswers)
                                     <a class="btn btn-info btn-sm" href="{{route('admin.answers.show',$singleAnswers->id)}}">{{ $singleAnswers->title }}</a>
                                 @endforeach
+                            </td>
+                        </tr>
+                        </tr>                        <tr>
+                            <th>@lang('quickadmin.answerlists.fields.remove_unused')</th>
+                            <td field-key='remove_unused'>
+                                <input type="checkbox" name="remove_unused" {{ $answerlist->remove_unused ? 'checked' : '' }} value="1">
                             </td>
                         </tr>
                         {!! gateweb\common\presenter\Laraview::dates_in_show($answerlist) !!}

@@ -32,8 +32,11 @@ class Answerlist extends Model
     use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     protected $softCascade = ['questions'];
 
-    protected $fillable = ['title', 'type'];
+    protected $fillable = ['title', 'type', 'remove_unused'];
     protected $hidden = [];
+    protected $casts = [
+        'remove_unused' => 'boolean',
+    ];
 
     public function answers()
     {

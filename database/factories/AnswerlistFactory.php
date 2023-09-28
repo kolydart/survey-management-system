@@ -40,6 +40,7 @@ class AnswerlistFactory extends Factory
                 // 'password', 
                 // 'tel',
                 ]) : 'text',
+            'remove_unused' => fake()->boolean(80),
         ];
     }
 }

@@ -142,7 +142,20 @@
                     @endif
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="remove_unused">
+                        {{ trans('quickadmin.answerlists.fields.remove_unused') }}
+                        <input type="checkbox" name="remove_unused" value="1">
+                    </label>
+                    <p class="help-block"></p>
+                    @if($errors->has('remove_unused'))
+                        <p class="help-block">
+                            {{ $errors->first('remove_unused') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
     <div class="panel panel-default">
