@@ -22,7 +22,7 @@
             labels: 
                 @if (Route::currentRouteName() == 'admin.surveys.show')
 
-                    @json($item->question->answerlist->answers->pluck('title')->toArray()) 
+                    @json($item->get_answers()->pluck('title')->toArray())
 
                 @elseif(Route::currentRouteName() == 'admin.questions.show')
 
@@ -35,23 +35,15 @@
                 backgroundColor: '#99BCDA',
                 data: [
                     @if (Route::currentRouteName() == 'admin.surveys.show')
-                        @foreach ($item->question->answerlist->answers as $answer)
-                            @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
-                                "{{round(
-                                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                        ->where('question_id',$item->question_id)
-                                        ->where('answer_id',$answer->id)
-                                        ->count()
-                                    /
-                                    App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
-                                        ->where('question_id',$item->question_id)
-                                        ->count()
-                                    *100
-                                    ,2
-                                    )}}",                       
+
+                        @foreach ($item->get_answers() as $answer)
+
+                            @if ( $item->get_responses()->count() > 0)
+                                "{{ round( $item->get_responses($answer)->count() / $item->get_responses()->count() * 100, 2 )}}",
                             @else
                                 "0",
                             @endif
+
                         @endforeach
 
                     @elseif(Route::currentRouteName() == 'admin.questions.show')
@@ -73,8 +65,10 @@
                 borderWidth: 1,
                 count: [
                     @if (Route::currentRouteName() == 'admin.surveys.show')
-                        @foreach ($item->question->answerlist->answers as $answer) 
-                            "{{App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->where('answer_id',$answer->id)->count()}}", 
+                        @foreach ($item->get_answers() as $answer) 
+                            @if($answer)
+                                "{{$item->get_responses($answer)->count()}}",
+                            @endif
                         @endforeach
                     @elseif(Route::currentRouteName() == 'admin.questions.show')
                         @foreach ($question->answerlist->answers as $answer) 
@@ -127,20 +121,7 @@
                         callback: function(value) {
                             return splitter(value,30);
                         },
-                        /* truncate yAxes label */
-                        /* callback: function(value) {
-                            if (value.length > 10) {
-                                return value.substr(0, 10) + '...'; 
-                            } else {
-                                return value;
-                            }
-                        }*/
                     },
-                    /*
-                    afterFit: function(scaleInstance) {
-                        scaleInstance.width = 100; // set the yAxes label width
-                    },
-                    */
             }],
         },
         tooltips: {
