@@ -27,6 +27,9 @@
     page-break-inside: avoid;
 }
 
+.noBreakAfter::after {
+    page-break-after: avoid;
+}
 
 @media print {
     .gw_chart canvas {
