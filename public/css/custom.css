@@ -26,3 +26,12 @@
 .avoid-break {
     page-break-inside: avoid;
 }
+
+
+@media print {
+    .gw_chart canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+

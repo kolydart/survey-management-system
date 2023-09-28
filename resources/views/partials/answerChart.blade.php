@@ -1,4 +1,4 @@
-<canvas id="chart_{{$item->id ?? ''}}"></canvas>
+<canvas id="chart_{{$item->id ?? ''}}" class="gw_chart"></canvas>
 
 <script>
     function splitter(str, l){
