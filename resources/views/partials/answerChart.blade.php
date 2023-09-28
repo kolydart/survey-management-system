@@ -19,17 +19,17 @@
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: [
+            labels: 
                 @if (Route::currentRouteName() == 'admin.surveys.show')
-                    @foreach ($item->question->answerlist->answers as $answer) 
-                        "{{$answer->title}}", 
-                    @endforeach 
+
+                    @json($item->question->answerlist->answers->pluck('title')->toArray()) 
+
                 @elseif(Route::currentRouteName() == 'admin.questions.show')
-                    @foreach ($question->answerlist->answers as $answer) 
-                        "{{$answer->title}}", 
-                    @endforeach 
+
+                    @json($question->answerlist->answers->pluck('title')->toArray())
+
                 @endif
-                ],
+                ,
             datasets: [{
                 label: '%',
                 backgroundColor: '#99BCDA',
