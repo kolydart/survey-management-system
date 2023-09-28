@@ -89,6 +89,9 @@
             scales: {
                 xAxes: [{
                     ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        },                     
                         beginAtZero: true
                     },
                 }],
