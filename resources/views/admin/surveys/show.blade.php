@@ -10,16 +10,16 @@
 	<div class="panel-body table-responsive">
 		<div class="row">
 			<div class="col-md-6">
-				<table class="table table-bordered table-striped">
+				<table class="table table-bordered table-striped hidden-print">
 					<tr>
 						<th>@lang('quickadmin.surveys.fields.title')</th>
 						<td field-key='title'>{{ $survey->title }}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.alias')</th>
 						<td field-key='alias'>{{ $survey->alias }}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.category')</th>
 						<td field-key='category'>
 							@foreach ($survey->category as $singleCategory)
@@ -27,7 +27,7 @@
 							@endforeach
 						</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.group')</th>
 						<td field-key='group'>
 							@foreach ($survey->group as $singleGroup)
@@ -35,31 +35,31 @@
 							@endforeach
 						</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.introduction')</th>
 						<td field-key='introduction'>{!! $survey->introduction !!}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.javascript')</th>
 						<td field-key='javascript'>{!! $survey->javascript !!}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.notes')</th>
 						<td field-key='notes'>{!! $survey->notes !!}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.inform')</th>
 						<td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.access')</th>
 						<td field-key='access'>{{ $survey->access }}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('quickadmin.surveys.fields.completed')</th>
 						<td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
 					</tr>
-					<tr class="hidden-print">
+					<tr>
 						<th>@lang('Filled Questionnaires')</th>
 						<td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
 					</tr>
