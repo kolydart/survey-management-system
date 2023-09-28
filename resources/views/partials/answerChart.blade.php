@@ -15,6 +15,16 @@
         strs.push(str);
         return strs;
     }
+
+    // for aspect ratio; does not have to be precise
+    var labels_count = 
+        @if (Route::currentRouteName() == 'admin.surveys.show')
+            {{ $item->get_answers()->count() }}
+        @elseif(Route::currentRouteName() == 'admin.questions.show')
+            {{ $question->answerlist->answers->count() }}
+        @endif
+    ;
+
     var ctx = document.getElementById("chart_{{$item->id ?? ''}}");
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
@@ -79,6 +89,11 @@
             }]
         },
         options: {
+
+            // change aspect ration depending on number of answers
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 10 / labels_count,       
 
             // display percentage / count inside bar
             animation: {
