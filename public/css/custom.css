@@ -22,3 +22,7 @@
 .gw-introduction{
 	margin-bottom:40px;
 }
+
+.avoid-break {
+    page-break-inside: avoid;
+}

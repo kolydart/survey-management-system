@@ -34,7 +34,7 @@ admin.questionnaires.show
     {{-- items --}}
     @foreach ( $survey->items()->orderBy('order')->get() as $item)
         {{-- item --}}
-        <section class="form-group gw-item q_{{$item->question->id ?? ''}} row" id="i_{{$item->id ?? ''}}" style="page-break-inside:avoid;">
+        <section class="form-group gw-item q_{{$item->question->id ?? ''}} row avoid-break" id="i_{{$item->id ?? ''}}" style="page-break-inside:avoid;">
             {{-- label (question) --}}
             <label 
                 class="@if (\Route::currentRouteName() == 'admin.surveys.show' && !$item->label ) col-md-6 col-lg-8 col-lg-offset-2 @else col-xs-12 @endif {{-- control-label --}} gw-label @if ($item->label) bg-primary gw-item-label @endif ">
