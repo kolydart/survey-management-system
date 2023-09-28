@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="page-title">@lang('quickadmin.surveys.title')</h3>
-
+<h3 class="page-title hidden-print">@lang('quickadmin.surveys.title')</h3>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		@lang('quickadmin.qa_view')
+		{{ config('app.name') }} <span class="hidden-print">@lang('quickadmin.qa_view')</span>
 	</div>
 
 	<div class="panel-body table-responsive">
@@ -16,11 +15,11 @@
 						<th>@lang('quickadmin.surveys.fields.title')</th>
 						<td field-key='title'>{{ $survey->title }}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.alias')</th>
 						<td field-key='alias'>{{ $survey->alias }}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.category')</th>
 						<td field-key='category'>
 							@foreach ($survey->category as $singleCategory)
@@ -28,7 +27,7 @@
 							@endforeach
 						</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.group')</th>
 						<td field-key='group'>
 							@foreach ($survey->group as $singleGroup)
@@ -36,31 +35,31 @@
 							@endforeach
 						</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.introduction')</th>
 						<td field-key='introduction'>{!! $survey->introduction !!}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.javascript')</th>
 						<td field-key='javascript'>{!! $survey->javascript !!}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.notes')</th>
 						<td field-key='notes'>{!! $survey->notes !!}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.inform')</th>
 						<td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.access')</th>
 						<td field-key='access'>{{ $survey->access }}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('quickadmin.surveys.fields.completed')</th>
 						<td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
 					</tr>
-					<tr>
+					<tr class="hidden-print">
 						<th>@lang('Filled Questionnaires')</th>
 						<td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
 					</tr>
@@ -68,15 +67,15 @@
 				</table>
 			</div>
 			<div class="col-sm-2">
-				<a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success"><i class="fa fa-clipboard"></i> @lang('Form')</a>
+				<a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success hidden-print"><i class="fa fa-clipboard"></i> @lang('Form')</a>
 			</div>
 			<div class="col-sm-2">
-				<a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning"><i class="fa fa-copy"></i> @lang('Clone')</a>
+				<a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning hidden-print"><i class="fa fa-copy"></i> @lang('Clone')</a>
 			</div>
 		</div>
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs hidden-print" role="tablist">
 	<li role="presentation" class="active"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Report</a></li>
 	<li role="presentation" class=""><a href="#questionnaires" aria-controls="questionnaires" role="tab" data-toggle="tab">Questionnaires</a></li>
 	<li role="presentation" class=""><a href="#items" aria-controls="items" role="tab" data-toggle="tab">Items</a></li>
@@ -317,13 +316,13 @@
 </div>
 
 {{-- back to list btn --}}
-	<a href="{{ route('admin.surveys.index') }}" class="btn btn-default mt-5">@lang('quickadmin.qa_back_to_list')</a>
+	<a href="{{ route('admin.surveys.index') }}" class="btn btn-default mt-5 hidden-print">@lang('quickadmin.qa_back_to_list')</a>
 
 {{-- button to show rawdata --}}
 	@if (\Request::query('rawdata'))
-		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey])}}" class="btn btn-info ml-5 pl-5"><i class="fa fa-bar-chart" aria-hidden="true"></i> View charts</a>
+		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey])}}" class="btn btn-info ml-5 pl-5 hidden-print"><i class="fa fa-bar-chart" aria-hidden="true"></i> View charts</a>
 	@else
-		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey, 'rawdata'=>true])}}" class="btn btn-info mt-5 pl-5"><i class="fa fa-list" aria-hidden="true"></i> View raw data</a>
+		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey, 'rawdata'=>true])}}" class="btn btn-info mt-5 pl-5 hidden-print"><i class="fa fa-list" aria-hidden="true"></i> View raw data</a>
 	@endif
 		</div>
 </div>
