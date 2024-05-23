@@ -27,8 +27,8 @@
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.5",
-        "barryvdh/laravel-ide-helper": "^2.10",
+        "barryvdh/laravel-debugbar": "*",
+        "barryvdh/laravel-ide-helper": "*",
         "brianium/paratest": "^6.3",
         "jasonmccreary/laravel-test-assertions": "^2.1",
         "mockery/mockery": "^1.4.2",
