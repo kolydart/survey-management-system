@@ -141,12 +141,12 @@
 											<a href="{{ route('admin.questionnaires.edit',[$questionnaire->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
 											@endcan
 											@can('questionnaire_delete')
-		{!! Form::open(array(
+											{!! Form::open(array(
 												'style' => 'display: inline-block;',
 												'method' => 'DELETE',
 												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
 												'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+												{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
 											{!! Form::close() !!}
 											@endcan
 										</td>
@@ -225,12 +225,12 @@
 											<a href="{{ route('admin.items.edit',[$item->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
 											@endcan
 											@can('item_delete')
-		{!! Form::open(array(
+											{!! Form::open(array(
 												'style' => 'display: inline-block;',
 												'method' => 'DELETE',
 												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
 												'route' => ['admin.items.destroy', $item->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+												{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
 											{!! Form::close() !!}
 											@endcan
 										</td>
