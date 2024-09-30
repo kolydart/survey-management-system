@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Surveys
         Gate::define('survey_access', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('survey_create', function ($user) {
             return in_array($user->role_id, [1]);
@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
         Gate::define('survey_view', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('survey_delete', function ($user) {
             return in_array($user->role_id, [1]);
@@ -48,7 +48,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Questionnaires
         Gate::define('questionnaire_access', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('questionnaire_create', function ($user) {
             return in_array($user->role_id, [1]);
@@ -57,7 +57,7 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
         Gate::define('questionnaire_view', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('questionnaire_delete', function ($user) {
             return in_array($user->role_id, [1]);
@@ -65,19 +65,19 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Responses
         Gate::define('response_access', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('response_create', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('response_edit', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1]);
         });
         Gate::define('response_view', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('response_delete', function ($user) {
-            return in_array($user->role_id, [1, 2, 3]);
+            return in_array($user->role_id, [1]);
         });
 
         // Auth gates for: Design
