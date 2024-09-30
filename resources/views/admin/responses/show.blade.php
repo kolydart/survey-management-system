@@ -16,22 +16,38 @@
                             <th>@lang('quickadmin.responses.fields.questionnaire')</th>
                             <td field-key='questionnaire'>
                                 @if ($response->questionnaire)
-                                    <a href="{{route('admin.questionnaires.show',$response->questionnaire->id)}}">
+                                    @can('questionnaire_view')
+                                        <a href="{{route('admin.questionnaires.show',$response->questionnaire->id)}}">
+                                            {{ $response->questionnaire->id }}: {{ $response->questionnaire->survey->title}}
+                                            @if ($response->questionnaire->name && Gate::allows('survey_edit'))
+                                                ({{$response->questionnaire->name}})
+                                            @endif
+                                        </a>
+                                    @else
                                         {{ $response->questionnaire->id }}: {{ $response->questionnaire->survey->title}}
-                                        @if ($response->questionnaire->name && Gate::allows('survey_edit')) 
-                                            ({{$response->questionnaire->name}}) 
-                                        @endif
-                                    </a>
+                                    @endcan
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.question')</th>
-                            <td field-key='question'><a href="{{route('admin.questions.show',$response->question->id)}}">{{ $response->question->title ?? '' }}</a></td>
+                            <td field-key='question'>
+                                @can('question_view')
+                                    <a href="{{route('admin.questions.show',$response->question->id)}}">{{ $response->question->title ?? '' }}</a>
+                                @else
+                                    {{ $response->question->title ?? '' }}
+                                @endcan
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.answer')</th>
-                            <td field-key='answer'><a href="{{route('admin.answers.show',$response->answer->id)}}">{{ $response->answer->title ?? '' }}</a></td>
+                            <td field-key='answer'>
+                                @can('answer_view')
+                                    <a href="{{route('admin.answers.show',$response->answer->id)}}">{{ $response->answer->title ?? '' }}</a>
+                                @else
+                                    {{ $response->answer->title ?? '' }}
+                                @endcan
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.responses.fields.content')</th>
