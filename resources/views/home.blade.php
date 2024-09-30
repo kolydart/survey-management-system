@@ -60,6 +60,7 @@
 
 
 {{-- Recently added responses --}}
+@can('survey_edit')
  <div class="col-md-6">
     <div class="panel panel-default">
         <div class="panel-heading">Recently added text responses</div>
@@ -91,6 +92,7 @@
         </div>
     </div>
  </div>
+@endcan
 
     </div>
 @endsection

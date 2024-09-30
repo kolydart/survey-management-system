@@ -8,78 +8,87 @@
 	</div>
 
 	<div class="panel-body table-responsive">
-		<div class="row">
-			<div class="col-md-6">
-				<table class="table table-bordered table-striped hidden-print">
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.title')</th>
-						<td field-key='title'>{{ $survey->title }}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.alias')</th>
-						<td field-key='alias'>{{ $survey->alias }}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.category')</th>
-						<td field-key='category'>
-							@foreach ($survey->category as $singleCategory)
-								<span class="label label-info label-many">{{ $singleCategory->title }}</span>
-							@endforeach
-						</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.group')</th>
-						<td field-key='group'>
-							@foreach ($survey->group as $singleGroup)
-								<span class="label label-info label-many">{{ $singleGroup->title }}</span>
-							@endforeach
-						</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.introduction')</th>
-						<td field-key='introduction'>{!! $survey->introduction !!}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.javascript')</th>
-						<td field-key='javascript'>{!! $survey->javascript !!}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.notes')</th>
-						<td field-key='notes'>{!! $survey->notes !!}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.inform')</th>
-						<td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.access')</th>
-						<td field-key='access'>{{ $survey->access }}</td>
-					</tr>
-					<tr>
-						<th>@lang('quickadmin.surveys.fields.completed')</th>
-						<td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
-					</tr>
-					<tr>
-						<th>@lang('Filled Questionnaires')</th>
-						<td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
-					</tr>
-					{!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
-				</table>
-			</div>
+		<div class="row" style="margin-bottom:10px;">
+
+			@can('survey_create')
+				<div class="col-md-6">
+					<table class="table table-bordered table-striped hidden-print">
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.title')</th>
+							<td field-key='title'>{{ $survey->title }}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.alias')</th>
+							<td field-key='alias'>{{ $survey->alias }}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.category')</th>
+							<td field-key='category'>
+								@foreach ($survey->category as $singleCategory)
+									<span class="label label-info label-many">{{ $singleCategory->title }}</span>
+								@endforeach
+							</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.group')</th>
+							<td field-key='group'>
+								@foreach ($survey->group as $singleGroup)
+									<span class="label label-info label-many">{{ $singleGroup->title }}</span>
+								@endforeach
+							</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.introduction')</th>
+							<td field-key='introduction'>{!! $survey->introduction !!}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.javascript')</th>
+							<td field-key='javascript'>{!! $survey->javascript !!}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.notes')</th>
+							<td field-key='notes'>{!! $survey->notes !!}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.inform')</th>
+							<td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.access')</th>
+							<td field-key='access'>{{ $survey->access }}</td>
+						</tr>
+						<tr>
+							<th>@lang('quickadmin.surveys.fields.completed')</th>
+							<td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
+						</tr>
+						<tr>
+							<th>@lang('Filled Questionnaires')</th>
+							<td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
+						</tr>
+						{!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
+					</table>
+				</div>
+			@endcan
 			<div class="col-sm-2">
-				<a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success hidden-print"><i class="fa fa-clipboard"></i> @lang('Form')</a>
+				<a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success hidden-print"><i class="fa fa-street-view"></i> @lang('User view')</a>
 			</div>
-			<div class="col-sm-2">
-				<a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning hidden-print"><i class="fa fa-copy"></i> @lang('Clone')</a>
-			</div>
+			@can('survey_create')
+				<div class="col-sm-2">
+					<a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning hidden-print"><i class="fa fa-copy"></i> @lang('Clone')</a>
+				</div>
+			@endcan
 		</div>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs hidden-print" role="tablist">
 	<li role="presentation" class="active"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Report</a></li>
 	<li role="presentation" class=""><a href="#questionnaires" aria-controls="questionnaires" role="tab" data-toggle="tab">Questionnaires</a></li>
+	@can('item_edit')
 	<li role="presentation" class=""><a href="#items" aria-controls="items" role="tab" data-toggle="tab">Items</a></li>
+	@endcan
+	@can('activitylog_view')
 	<li role="presentation" class=""><a href="#duplicates" aria-controls="duplicates" role="tab" data-toggle="tab">Duplicates</a></li>
+	@endcan
 </ul>
 
 <!-- Tab panes -->
@@ -161,6 +170,7 @@
 			</tbody>
 		</table>
 		</div>
+	@can('item_edit')
 	<div role="tabpanel" class="tab-pane " id="items">
 		<table class="table table-bordered table-striped {{ count($items) > 0 ? 'datatable' : '' }}">
 			<thead>
@@ -245,6 +255,8 @@
 			</tbody>
 		</table>
 		</div>
+	@endcan
+	@can('activitylog_view')
 	<div role="tabpanel" class="tab-pane " id="duplicates">
 
 		<table class="table table-bordered table-striped {{ count($duplicates) > 0 ? 'datatable' : '' }}">
@@ -313,6 +325,7 @@
 
 
 		</div>
+	@endcan
 </div>
 
 {{-- back to list btn --}}
