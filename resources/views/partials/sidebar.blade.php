@@ -31,29 +31,20 @@
             </li>@endcan
             
             @can('response_access')
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="{{ route('admin.responses.index') }}">
                     <i class="fa fa-comments"></i>
-                    <span>@lang('quickadmin.responses.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                    <span>@lang('All responses')</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('admin.responses.index') }}">
-                            <i class="fa fa-comments-o"></i>
-                            <span>@lang('All responses')</span>
-                        </a>
-                    </li>
-            
-                    <li>
-                        <a href="{{ route('admin.responses.index.content') }}">
-                            <i class="fa fa-comment"></i>
-                            <span>@lang('Responses with content only')</span>
-                        </a>
-                    </li>
-                </ul>
+            </li>
+            @endcan
+
+            @can('response_edit')
+            <li>
+                <a href="{{ route('admin.responses.index.content') }}">
+                    <i class="fa fa-comment"></i>
+                    <span>@lang('Responses with content only')</span>
+                </a>
             </li>
             @endcan
             

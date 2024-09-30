@@ -65,7 +65,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Auth gates for: Responses
         Gate::define('response_access', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('response_create', function ($user) {
             return in_array($user->role_id, [1]);
