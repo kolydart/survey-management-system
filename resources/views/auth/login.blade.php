@@ -79,3 +79,16 @@
         </div>
     </div>
 @endsection
+
+@section('javascript')
+    {{-- trim password --}}
+    <script>
+        jQuery(document).ready(function($) {
+            $('form').on('submit', function(e) {
+                var $passwordInput = $('input[name="password"]');
+                $passwordInput.val($.trim($passwordInput.val()));
+            });
+        });
+    </script>
+
+@endsection
