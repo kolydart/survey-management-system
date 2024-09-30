@@ -67,8 +67,8 @@
     <script type="text/javascript">
         $(function () {
             let dateInterval = getQueryParameter('date_filter');
-            let start = moment().startOf('isoWeek');
-            let end = moment().endOf('isoWeek');
+            let start = moment("{{ $date_from }}");
+            let end = moment("{{ $date_to }}");
             if (dateInterval) {
                 dateInterval = dateInterval.split(' - ');
                 start = dateInterval[0];

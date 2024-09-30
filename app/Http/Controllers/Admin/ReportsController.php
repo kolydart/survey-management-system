@@ -16,8 +16,8 @@ class ReportsController extends Controller
             $date_from = Carbon::createFromFormat(config('app.date_format'), $parts[0])->format('Y-m-d');
             $date_to = Carbon::createFromFormat(config('app.date_format'), $parts[1])->format('Y-m-d');
         } else {
-            $date_from = new Carbon('last Monday');
-            $date_to = new Carbon('this Sunday');
+            $date_from = now()->subYears(5)->toDateString();
+            $date_to = now()->toDateString();
         }
         $reportTitle = 'Questionnaires';
         $reportLabel = 'COUNT';
@@ -33,6 +33,6 @@ class ReportsController extends Controller
             return $entries->count('id');
         });
 
-        return view('admin.reports', compact('reportTitle', 'results', 'chartType', 'reportLabel'));
+        return view('admin.reports', compact('reportTitle', 'results', 'chartType', 'reportLabel', 'date_from', 'date_to'));
     }
 }
