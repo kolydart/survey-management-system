@@ -127,8 +127,16 @@ class SurveysController extends Controller
         }
 
         $survey = Survey::findOrFail($id);
-        $questionnaires = \App\Questionnaire::where('survey_id', $id)->latest()->get();
-        $items = \App\Item::where('survey_id', $id)->orderBy('order')->get();
+
+        $questionnaires = \App\Questionnaire::with(['responses'])
+            ->where('survey_id', $id)
+            ->latest()
+            ->get();
+
+        $items = \App\Item::with(['question.answerlist.answers', 'question.responses'])
+            ->where('survey_id', $id)
+            ->orderBy('order')
+            ->get();
 
         $duplicates = $this->get_duplicates($id);
 
