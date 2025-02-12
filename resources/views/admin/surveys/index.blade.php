@@ -61,7 +61,7 @@
 
                                 <td field-key='title'><a href="{{route('admin.surveys.show',$survey->id)}}">{{ $survey->title }}</a></td>
                                 <td field-key='alias'>
-                                    <a href="{{ route('frontend.create', $survey->alias) }}">{{ route('frontend.create', $survey->alias, 0) }}</a>
+                                    <a href="{{ route('frontend.create', $survey->alias) }}" target="_blank">{{ route('frontend.create', $survey->alias, 0) }}</a>
                                 </td>
                                 <td field-key='institution'>{{ $survey->institution->title ?? '' }}</td>
                                 <td field-key='category'>
