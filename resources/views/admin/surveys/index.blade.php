@@ -60,7 +60,9 @@
                                 @endcan
 
                                 <td field-key='title'><a href="{{route('admin.surveys.show',$survey->id)}}">{{ $survey->title }}</a></td>
-                                <td field-key='alias'>{{ $survey->alias }}</td>
+                                <td field-key='alias'>
+                                    <a href="{{ route('frontend.create', $survey->alias) }}">{{ route('frontend.create', $survey->alias, 0) }}</a>
+                                </td>
                                 <td field-key='institution'>{{ $survey->institution->title ?? '' }}</td>
                                 <td field-key='category'>
                                     @foreach ($survey->category as $singleCategory)
@@ -102,6 +104,9 @@
                                 <td>
                                     @can('survey_view')
                                     <a href="{{ route('admin.surveys.show',[$survey->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @endcan
+                                    @can('survey_create')
+                                    <a href="{{ route('admin.surveys.clone',[$survey->id]) }}" class="btn btn-xs btn-warning"><i class="fa fa-copy"></i> @lang('Clone')</a>
                                     @endcan
                                     @can('survey_edit')
                                     <a href="{{ route('admin.surveys.edit',[$survey->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
