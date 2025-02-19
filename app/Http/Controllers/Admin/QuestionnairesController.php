@@ -24,7 +24,8 @@ class QuestionnairesController extends Controller
         }
 
         if (request()->ajax()) {
-            $query = Questionnaire::query();
+            $query = Questionnaire::query()
+                ->orderBy('created_at', 'desc');
             $query->with('survey');
             $template = 'actionsTemplate';
             if (request('show_deleted') == 1) {
