@@ -117,7 +117,7 @@ class CollectController extends Controller
             $body = route('admin.questionnaires.show', $questionnaire->id)
                 ."\n"
                 .$questionnaire->survey->alias ?? '';
-            $mailer->set_body();
+            $mailer->set_body($body);
             $mailer->set_to(User::first()->email, User::first()->name);
             if (! $mailer->Send()) {
                 Presenter::mail('Error in mailer. kBSaSOfrFchbehAa.'.$mailer->get_error());
