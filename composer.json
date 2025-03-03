@@ -16,6 +16,8 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
+        "kolydart/common": "dev-master",
+        "kolydart/laravel": "dev-master",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.5",
@@ -39,14 +41,14 @@
     },
     "autoload": {
         "classmap": [
-            "../_class/vendor/sinergi",
-            "../_class/vendor/phpmailer"
+            "../_class/vendor"
         ],
         "exclude-from-classmap": [],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "gateweb\\": "../_class/gateweb/"
         }
     },
     "autoload-dev": {
@@ -86,5 +88,25 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "kolydart/laravel": {
+            "type": "path",
+            "url": "../kolydart-laravel",
+            "canonical": false,
+            "options": {
+                "symlink": true
+            },
+            "only": ["dev"]
+        },
+        "kolydart/common": {
+            "type": "path",
+            "url": "../kolydart-common",
+            "canonical": false,
+            "options": {
+                "symlink": true
+            },
+            "only": ["dev"]
+        }
+    }
 }
