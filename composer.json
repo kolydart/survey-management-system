@@ -41,7 +41,7 @@
     },
     "autoload": {
         "classmap": [
-            "../_class/vendor/autoload.php"
+            "../_class/vendor"
         ],
         "exclude-from-classmap": [],
         "psr-4": {
