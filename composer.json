@@ -74,8 +74,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:models --nowrite"
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || @php artisan ide-helper:generate",
+            "[ $COMPOSER_DEV_MODE -eq 0 ] || @php artisan ide-helper:models --nowrite"
         ]
     },
     "config": {
