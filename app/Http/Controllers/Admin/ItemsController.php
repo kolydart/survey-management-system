@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreItemsRequest;
 use App\Http\Requests\Admin\UpdateItemsRequest;
 use App\Item;
+use App\Question;
+use App\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
@@ -87,8 +89,12 @@ class ItemsController extends Controller
             return abort(401);
         }
 
-        $surveys = \App\Survey::get()->pluck('title_with_alias', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $surveys = Survey::query() ->orderBy('id','desc')
+            ->get()
+            ->pluck('title_with_alias', 'id')
+            ->prepend(trans('quickadmin.qa_please_select'), '');
+
+        $questions = Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.items.create', compact('surveys', 'questions'));
     }
@@ -121,8 +127,8 @@ class ItemsController extends Controller
             return abort(401);
         }
 
-        $surveys = \App\Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $questions = \App\Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $surveys = Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $questions = Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $item = Item::findOrFail($id);
 
