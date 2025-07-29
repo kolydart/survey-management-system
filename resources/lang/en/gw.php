@@ -1,5 +1,3 @@
 <?php
 
-return array_merge(gateweb\common\presenter\Language::get_map('en'), [
-
-    ]);
+return \Kolydart\Laravel\Resources\Lang\En\Gw::$translation;

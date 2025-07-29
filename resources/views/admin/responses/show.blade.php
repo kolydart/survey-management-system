@@ -53,7 +53,7 @@
                             <th>@lang('quickadmin.responses.fields.content')</th>
                             <td field-key='content'>{!! $response->content !!}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($response) !!}
+                        <x-dates-in-show :model="$response" />
                     </table>
                 </div>
             </div>

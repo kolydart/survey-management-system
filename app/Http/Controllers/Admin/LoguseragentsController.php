@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLoguseragentsRequest;
 use App\Http\Requests\Admin\UpdateLoguseragentsRequest;
 use App\Loguseragent;
-use gateweb\common\Presenter;
+use Kolydart\Common\Presenter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;

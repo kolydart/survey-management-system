@@ -24,7 +24,7 @@
                             <th>Hidden</th>
                             <td field-key='hidden'>{{ Form::checkbox("hidden", 1, $answer->hidden == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($answer) !!}
+                        <x-dates-in-show :model="$answer" />
                     </table>
                 </div>
             </div><!-- Nav tabs -->

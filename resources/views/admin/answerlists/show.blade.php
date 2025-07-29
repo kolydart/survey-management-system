@@ -33,7 +33,7 @@
                                 <input type="checkbox" name="remove_unused" {{ $answerlist->remove_unused ? 'checked' : '' }} value="1">
                             </td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($answerlist) !!}
+                        <x-dates-in-show :model="$answerlist" />
                     </table>
                 </div>
             </div><!-- Nav tabs -->

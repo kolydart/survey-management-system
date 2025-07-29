@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Kolydart\Laravel\App\Traits\Auditable;
 
 
 /**
@@ -28,7 +29,10 @@ class Response extends Model
             ->logFillable()
             ->logOnlyDirty()
             ;
-    }    
+    }
+    
+    /** kolydart auditable */
+    use Auditable;    
 
     use SoftDeletes;
 

@@ -9,7 +9,7 @@
 		{!! $content !!}
     <div class="footer mr-2 mb-2 text-right" id="gw-footer">
         <div>
-            {!! \gateweb\common\presenter\Laraview::signature() !!}
+            <x-kolydart::signature />
         </div>
         <div>
             view it on <a href="https://github.com/kolydart/survey-management-system">github</a>

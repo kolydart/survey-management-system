@@ -65,7 +65,7 @@
 							<th>@lang('Filled Questionnaires')</th>
 							<td field-key='filled'><strong>{{$survey->questionnaires->count()}}</strong></td>
 						</tr>
-						{!! gateweb\common\presenter\Laraview::dates_in_show($survey) !!}
+						<x-dates-in-show :model="$survey" />
 					</table>
 				</div>
 			@endcan
@@ -300,7 +300,7 @@
 								<td field-key='id'>{{ $loguseragent->id }}</td>
 					            <td field-key='item_id'><a href="{{route('admin.questionnaires.show',$loguseragent->item_id)}}">{{ $loguseragent->item_id }}</a></td>
 					            <td field-key='created_at'>{{ $loguseragent->created_at }}</td>
-					            <td field-key='ipv6'>{{ gateweb\common\Presenter::convert_hex2ip($loguseragent->ipv6) }}</td>
+					            <td field-key='ipv6'><x-ip-converter :hex="$loguseragent->ipv6" /></td>
 					            <td field-key='os'>{{ $loguseragent->os }}</td>
 					            <td field-key='os_version'>{{ $loguseragent->os_version }}</td>
 					            <td field-key='browser'>{{ $loguseragent->browser }}</td>

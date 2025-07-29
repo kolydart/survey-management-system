@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.loguseragent.fields.ipv6')</th>
-                            <td field-key='ipv6'>{{ gateweb\common\Presenter::convert_hex2ip($loguseragent->ipv6) }}</td>
+                            <td field-key='ipv6'><x-ip-converter :hex="$loguseragent->ipv6" /></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.loguseragent.fields.uri')</th>
@@ -56,7 +56,7 @@
                             <th>@lang('quickadmin.loguseragent.fields.user')</th>
                             <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($loguseragent) !!}
+                        <x-dates-in-show :model="$loguseragent" />
                     </table>
                 </div>
             </div>

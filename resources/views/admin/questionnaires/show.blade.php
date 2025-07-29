@@ -24,7 +24,7 @@
                             <th>@lang('Filled percent')</th>
                             <td field-key='name'>{{ $questionnaire->filled_percent * 100 }}%</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($questionnaire) !!}
+                        <x-dates-in-show :model="$questionnaire" />
                     </table>
                 </div>
             </div>

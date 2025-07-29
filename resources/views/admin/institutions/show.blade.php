@@ -16,7 +16,7 @@
                             <th>@lang('quickadmin.institutions.fields.title')</th>
                             <td field-key='title'>{{ $institution->title }}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($institution) !!}                        
+                        <x-dates-in-show :model="$institution" />                        
                     </table>
                 </div>
             </div><!-- Nav tabs -->

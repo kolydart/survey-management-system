@@ -20,7 +20,7 @@
                             <th>@lang('Responses')</th>
                             <td field-key='responses'>{{ $responses->count() }}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($question) !!}
+                        <x-dates-in-show :model="$question" />
                     </table>
                 </div>
                 {{-- report --}}

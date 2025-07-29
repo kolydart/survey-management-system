@@ -37,7 +37,7 @@
                             <th>@lang('quickadmin.items.fields.label')</th>
                             <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
-                        {!! gateweb\common\presenter\Laraview::dates_in_show($item) !!}                        
+                        <x-dates-in-show :model="$item" />                        
                     </table>
                 </div>
             </div>

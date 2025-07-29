@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Kolydart\Laravel\App\Traits\Auditable;
 
 
 /**
@@ -27,7 +28,10 @@ class Questionnaire extends Model
             ->logFillable()
             ->logOnlyDirty()
             ;
-    }    
+    }
+    
+    /** kolydart auditable */
+    use Auditable;    
 
     use SoftDeletes;
     /** softCascade */
@@ -72,6 +76,11 @@ class Questionnaire extends Model
      */
     public function getFilledPercentAttribute()
     {
+        // Guard against null survey (can happen during auditing)
+        if (!$this->survey || !$this->survey->items) {
+            return '0.00';
+        }
+        
         $answered = collect($this->responses->pluck('question_id'))->unique();
         $template = collect($this->survey->items->where('label', '<>', '1')->pluck('question_id'));
         /** protect divide-by-zero */

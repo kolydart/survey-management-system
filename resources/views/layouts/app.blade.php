@@ -46,7 +46,7 @@
                     @yield('content')
 
                     <div class="row text-right" style="margin-right:20px;">
-                        {!! gateweb\common\Presenter::signature() !!}
+                        <x-kolydart::signature />
                     </div>
 
                 </div>

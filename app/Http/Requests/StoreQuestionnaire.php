@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use gateweb\common\Router;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreQuestionnaire extends FormRequest
@@ -27,7 +26,7 @@ class StoreQuestionnaire extends FormRequest
         return [
             'survey_id' => 'numeric|required',
             '*_id*' => 'numeric|filled',
-            '*_content*' => 'filled|regex:'.Router::PREG_VALIDATE_TEXT,
+            '*_content*' => 'filled|string|max:65535|regex:/^[^$^]*$/',
         ];
     }
 
