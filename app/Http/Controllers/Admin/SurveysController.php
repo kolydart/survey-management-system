@@ -7,11 +7,21 @@ use App\Http\Requests\Admin\StoreSurveysRequest;
 use App\Http\Requests\Admin\UpdateSurveysRequest;
 use App\Item;
 use App\Survey;
+use App\Services\SurveyStatisticsService;
+use App\Services\ChartDataService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class SurveysController extends Controller
 {
+    protected $statisticsService;
+    protected $chartService;
+
+    public function __construct(SurveyStatisticsService $statisticsService, ChartDataService $chartService)
+    {
+        $this->statisticsService = $statisticsService;
+        $this->chartService = $chartService;
+    }
     /**
      * Display a listing of Survey.
      *
@@ -159,7 +169,15 @@ class SurveysController extends Controller
             $duplicates = $this->get_duplicates($id);
         }
 
-        return view('admin.surveys.show', compact('survey', 'questionnaires', 'items', 'duplicates'));
+        return view('admin.surveys.show', compact(
+            'survey', 
+            'questionnaires', 
+            'items', 
+            'duplicates'
+        ))->with([
+            'statisticsService' => $this->statisticsService,
+            'chartService' => $this->chartService
+        ]);
     }
 
     /**
