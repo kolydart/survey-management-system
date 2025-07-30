@@ -94,7 +94,6 @@ class LoginTest extends TestCase
     public function RememberMeFunctionality()
     {
         $user = $this->create_user('User',[
-            'id' => random_int(1, 100),
             'password' => Hash::make($password = 'i-love-laravel'),
         ]);
 
