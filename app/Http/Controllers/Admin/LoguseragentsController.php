@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreLoguseragentsRequest;
 use App\Http\Requests\Admin\UpdateLoguseragentsRequest;
 use App\Loguseragent;
-use Kolydart\Common\Presenter;
+use App\View\Components\IpConverter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
@@ -79,7 +79,7 @@ class LoguseragentsController extends Controller
                 return $row->item_id ? $row->item_id : '';
             });
             $table->editColumn('ipv6', function ($row) {
-                return $row->ipv6 ? Presenter::convert_hex2ip($row->ipv6) : '';
+                return $row->ipv6 ? (new IpConverter($row->ipv6))->ip : '';
             });
             $table->editColumn('uri', function ($row) {
                 return $row->uri ? $row->uri : '';

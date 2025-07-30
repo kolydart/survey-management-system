@@ -66,4 +66,16 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPassword($token));
     }
+
+    /**
+     * Get the email address of the first admin user
+     *
+     * @return string
+     */
+    public static function getAdminEmail()
+    {
+        return self::whereHas('role', function ($query) {
+            $query->where('title', 'Admin');
+        })->first()->email;
+    }
 }

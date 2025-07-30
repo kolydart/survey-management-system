@@ -11,7 +11,8 @@ use App\Survey;
 use App\User;
 use App\Mail\QuestionnaireSubmitted;
 use Kolydart\Common\Cipher;
-use Kolydart\Common\Presenter;
+use App\Mail\ErrorNotification;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -42,7 +43,7 @@ class CollectController extends Controller
 
 
         if ($survey->completed) {
-            Presenter::message('Survey is completed.', 'warning');
+            session()->flash('warning', 'Survey is completed.');
 
             return view('frontend.index', ['content'=>'']);
         } else {
@@ -111,8 +112,12 @@ class CollectController extends Controller
                     'content' => $content,
                 ]);
             } elseif ($array[1] != 'content') {
-                Presenter::mail("Error rkBECq.\nResponse was not created.\n$key => $value\n");
-                Presenter::message(__('A question was not submitted, due to invalid data.')." Question $question_id");
+                Mail::to(User::getAdminEmail())
+                    ->send(new ErrorNotification(
+                        "Error rkBECq.\nResponse was not created.\n$key => $value\n",
+                        'Response Creation Error'
+                    ));
+                session()->flash('error', __('A question was not submitted, due to invalid data.')." Question $question_id");
             }
         }
 
@@ -147,13 +152,14 @@ class CollectController extends Controller
         /** send email if field "informed" is checked */
         if ($questionnaire->survey->inform) {
             try {
-                $user = User::first();
-                if ($user) {
-                    Mail::to($user->email, $user->name)
-                        ->send(new QuestionnaireSubmitted($questionnaire));
-                }
+                Mail::to(User::getAdminEmail())
+                    ->send(new QuestionnaireSubmitted($questionnaire));
             } catch (\Exception $e) {
-                Presenter::mail('Error in mailer. kBSaSOfrFchbehAa.' . $e->getMessage());
+                Mail::to(User::getAdminEmail())
+                    ->send(new ErrorNotification(
+                        'Error in mailer. kBSaSOfrFchbehAa.' . $e->getMessage(),
+                        'Mailer Error'
+                    ));
             }
         }
 
@@ -163,19 +169,22 @@ class CollectController extends Controller
             if (\Cookie::get('survey_'.$request->survey_id)) {
                 $adminUrl = url('/admin/questionnaires/');
                 // send message with ip & survey_id's
-                Presenter::mail(
-                    'Survey '.$request->survey_id." questionnaire filled twice in the same browser.\n"
-                    .'Old questionnaire: '.$adminUrl.\Cookie::get('questionnaire')."\n"
-                    .'New questionnaire: '.$adminUrl.$questionnaire->id."\n"
-                );
+                Mail::to(User::getAdminEmail())
+                    ->send(new ErrorNotification(
+                        'Survey '.$request->survey_id." questionnaire filled twice in the same browser.\n"
+                        .'Old questionnaire: '.$adminUrl.\Cookie::get('questionnaire')."\n"
+                        .'New questionnaire: '.$adminUrl.$questionnaire->id."\n",
+                        'Duplicate Survey Submission'
+                    ));
             }
             /** set new cookie */
             \Cookie::queue(\Cookie::make('survey_'.$request->survey_id, true, 2880));
             \Cookie::queue(\Cookie::make('questionnaire', $questionnaire->id, 2880));
         } catch (\Exception $e) {
             $message = 'Could not handle cookies. Error vWhDRFPtoQMnGMes. Code: '.$e->getCode();
-            Presenter::log($message, 'cookies');
-            Presenter::mail($message);
+            Log::channel('cookies')->error($message);
+            Mail::to(User::getAdminEmail())
+                ->send(new ErrorNotification($message, 'Cookie Handling Error'));
         }
 
         /** Thank you message */
