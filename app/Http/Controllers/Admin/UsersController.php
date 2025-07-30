@@ -22,7 +22,7 @@ class UsersController extends Controller
             return abort(401);
         }
 
-        $users = User::all();
+        $users = User::with('role')->get(); // Eager load role to prevent N+1 issues
 
         return view('admin.users.index', compact('users'));
     }

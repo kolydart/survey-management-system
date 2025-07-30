@@ -70,7 +70,11 @@ abstract class TestCase extends BaseTestCase
             $user = \App\User::factory()->create();
         }
         
-        $user->role()->associate(\App\Role::where('title', $role_title)->first());
+        $role = \App\Role::where('title', $role_title)->first();
+        if ($role) {
+            $user->role_id = $role->id;
+            $user->save();
+        }
         
         return $user;
     }

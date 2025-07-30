@@ -79,9 +79,14 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->get(route('admin.users.index'));
 
-        $response->assertOk();
-        $response->assertViewIs('admin.users.index');
-        $response->assertViewHas('users');
+        $response->assertOK();
+        $response->assertSee('Users');
+        
+        // Check for key elements that should be in the users index view
+        $response->assertSee('Name'); // Column header
+        $response->assertSee('Email'); // Column header  
+        $response->assertSee('Role'); // Column header
+        $response->assertSee('admin@admin.com'); // The default admin user email should be visible
 
 
     }

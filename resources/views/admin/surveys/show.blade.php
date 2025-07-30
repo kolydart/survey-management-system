@@ -87,7 +87,7 @@
 	<li role="presentation" class=""><a href="#items" aria-controls="items" role="tab" data-toggle="tab">Items</a></li>
 	@endcan
 	@can('activitylog_view')
-	<li role="presentation" class=""><a href="#duplicates" aria-controls="duplicates" role="tab" data-toggle="tab">Duplicates</a></li>
+	<li role="presentation" class=""><a href="#duplicates" aria-controls="duplicates" role="tab" data-toggle="tab">Duplicates @if(!request()->has('check_duplicates'))<small>(click to load)</small>@endif</a></li>
 	@endcan
 </ul>
 
@@ -258,7 +258,12 @@
 	@endcan
 	@can('activitylog_view')
 	<div role="tabpanel" class="tab-pane " id="duplicates">
-
+		@if(!request()->has('check_duplicates'))
+			<div class="alert alert-info">
+				<p>Duplicate detection is resource-intensive. Click the button below to check for duplicates.</p>
+				<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1]) }}" class="btn btn-primary">Check for Duplicates</a>
+			</div>
+		@else
 		<table class="table table-bordered table-striped {{ count($duplicates) > 0 ? 'datatable' : '' }}">
 			<thead>
 				<tr>
@@ -320,7 +325,7 @@
 				@endif
 			</tbody>
 		</table>
-
+		@endif
 
 
 

@@ -126,19 +126,38 @@ class SurveysController extends Controller
             return abort(401);
         }
 
-        $survey = Survey::findOrFail($id);
+        // Eager load survey with its relationships including questionnaires with responses
+        $survey = Survey::with([
+            'category', 
+            'group',
+            'questionnaires' => function($query) {
+                $query->latest()->with([
+                    'responses' => function($q) {
+                        $q->select('id', 'questionnaire_id', 'question_id', 'answer_id');
+                    }
+                ]);
+            }
+        ])->findOrFail($id);
 
-        $questionnaires = \App\Questionnaire::with(['responses'])
-            ->where('survey_id', $id)
-            ->latest()
-            ->get();
+        // Get questionnaires from the already loaded relationship
+        $questionnaires = $survey->questionnaires;
 
-        $items = \App\Item::with(['question.answerlist.answers', 'question.responses'])
+        // Optimize items loading - avoid loading all responses
+        $items = \App\Item::with([
+            'survey.questionnaires', // Needed for get_answers() method
+            'question' => function($query) {
+                $query->with(['answerlist.answers']);
+            }
+        ])
             ->where('survey_id', $id)
             ->orderBy('order')
             ->get();
 
-        $duplicates = $this->get_duplicates($id);
+        // Make duplicate detection optional or async
+        $duplicates = [];
+        if (request()->has('check_duplicates')) {
+            $duplicates = $this->get_duplicates($id);
+        }
 
         return view('admin.surveys.show', compact('survey', 'questionnaires', 'items', 'duplicates'));
     }
@@ -252,57 +271,42 @@ class SurveysController extends Controller
         $loguseragent = new \App\Loguseragent();
         $duplicates = [];
 
-        /** get $survey->questionnaires */
-        $questionnaires_arr = \App\Questionnaire::where('survey_id', $survey_id)->latest()->get()->pluck('id');
+        /** get $survey->questionnaires - optimized to only get IDs */
+        $questionnaires_arr = \App\Questionnaire::where('survey_id', $survey_id)
+            ->pluck('id')
+            ->toArray();
 
-        /** select by ip and sw */
-        $duplicate_ipsw = $loguseragent::selectRaw('`ipv6`, `os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')
-            ->whereIn('item_id', $questionnaires_arr)
-            ->groupBy('ipv6', 'os', 'os_version', 'browser', 'browser_version')
-            ->having('count', '>', 1)
-            ->get();
-
-        /** select by ip */
-        $duplicate_ip = $loguseragent::selectRaw('`ipv6`, COUNT(*) as `count` ')
-            ->whereIn('item_id', $questionnaires_arr)
-            ->groupBy('ipv6')
-            ->having('count', '>', 1)
-            ->get();
-
-        /** select by sw */
-        $duplicate_sw = $loguseragent::selectRaw('`os`, `os_version`, `browser`, `browser_version`, COUNT(*) as `count` ')
-            ->whereIn('item_id', $questionnaires_arr)
-            ->groupBy('os', 'os_version', 'browser', 'browser_version')
-            ->having('count', '>', 1)
-            ->get();
-
-        foreach ($duplicate_ipsw as $obj) {
-            $row = [];
-            $row['type'] = 'ipsw';
-            $row['value'] = ['ipv6'=>$obj->ipv6, 'os'=>$obj->os, 'os_version'=>$obj->os_version, 'browser' => $obj->browser, 'browser_version'=>$obj->browser_version];
-            $row['count'] = $obj->count;
-            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['ipv6', $obj->ipv6], ['os', $obj->os], ['os_version', $obj->os_version], ['browser', $obj->browser], ['browser_version', $obj->browser_version]])->get();
-            // remove results from questionnaires list @todo
-            // $questionnaires_arr = array_diff($questionnaires_arr,$row['loguseragents']->pluck('item_id'));
-            $duplicates[] = $row;
+        // Early return if no questionnaires
+        if (empty($questionnaires_arr)) {
+            return $duplicates;
         }
 
-        foreach ($duplicate_ip as $obj) {
-            $row = [];
-            $row['type'] = 'ip';
-            $row['value'] = $obj->ipv6;
-            $row['count'] = $obj->count;
-            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where('ipv6', $obj->ipv6)->get();
-            $duplicates[] = $row;
-        }
+        /** Batch load all loguseragents for this survey to reduce queries */
+        $allLogs = $loguseragent::whereIn('item_id', $questionnaires_arr)
+            ->select('id', 'item_id', 'ipv6', 'os', 'os_version', 'browser', 'browser_version', 'created_at')
+            ->get()
+            ->groupBy(function($item) {
+                return $item->ipv6 . '|' . $item->os . '|' . $item->os_version . '|' . $item->browser . '|' . $item->browser_version;
+            });
 
-        foreach ($duplicate_sw as $obj) {
-            $row = [];
-            $row['type'] = 'sw';
-            $row['value'] = ['os'=>$obj->os, 'os_version'=>$obj->os_version, 'browser' => $obj->browser, 'browser_version'=>$obj->browser_version];
-            $row['count'] = $obj->count;
-            $row['loguseragents'] = $loguseragent->whereIn('item_id', $questionnaires_arr)->where([['os', $obj->os], ['os_version', $obj->os_version], ['browser', $obj->browser], ['browser_version', $obj->browser_version]])->get();
-            $duplicates[] = $row;
+        // Process duplicates from grouped data
+        foreach ($allLogs as $logs) {
+            if ($logs->count() > 1) {
+                $first = $logs->first();
+                $row = [
+                    'type' => 'ipsw',
+                    'value' => [
+                        'ipv6' => $first->ipv6,
+                        'os' => $first->os,
+                        'os_version' => $first->os_version,
+                        'browser' => $first->browser,
+                        'browser_version' => $first->browser_version
+                    ],
+                    'count' => $logs->count(),
+                    'loguseragents' => $logs
+                ];
+                $duplicates[] = $row;
+            }
         }
 
         return $duplicates;

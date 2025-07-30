@@ -72,24 +72,40 @@ class Questionnaire extends Model
 
     /**
      * calculate filled_percent
-     * @return decimal  (0.xx)
+     * @return string  (0.xx)
      */
     public function getFilledPercentAttribute()
     {
-        // Guard against null survey (can happen during auditing)
-        if (!$this->survey || !$this->survey->items) {
+        // Always use the query-based approach for consistency
+        if (!$this->survey_id) {
             return '0.00';
         }
-        
-        $answered = collect($this->responses->pluck('question_id'))->unique();
-        $template = collect($this->survey->items->where('label', '<>', '1')->pluck('question_id'));
-        /** protect divide-by-zero */
-        if ($template->count() == 0) {
-            return false;
-        }
-        $percent = $answered->intersect($template)->count() / $template->count();
 
-        return number_format((float) $percent, 2, '.', '');
+        // Use a transaction to ensure consistent reads
+        return \DB::transaction(function() {
+            // Get total question count (excluding label '1')
+            $template_count = \App\Item::where('survey_id', $this->survey_id)
+                ->where('label', '<>', '1')
+                ->count();
+            
+            if ($template_count == 0) {
+                return '0.00';
+            }
+            
+            // Get distinct answered question count
+            $answered_count = $this->responses()
+                ->whereIn('question_id', function($query) {
+                    $query->select('question_id')
+                        ->from('items')
+                        ->where('survey_id', $this->survey_id)
+                        ->where('label', '<>', '1');
+                })
+                ->distinct('question_id')
+                ->count('question_id');
+            
+            $percent = $answered_count / $template_count;
+            return number_format((float) $percent, 2, '.', '');
+        });
     }
 
     /**
@@ -99,6 +115,27 @@ class Questionnaire extends Model
      */
     public function outliers()
     {
+        // Handle case when relationships aren't loaded
+        if (!$this->survey || !$this->relationLoaded('survey') || !$this->relationLoaded('responses')) {
+            if (!$this->survey_id) {
+                return collect();
+            }
+            
+            // Get answered question IDs
+            $answered = $this->responses()
+                ->distinct('question_id')
+                ->pluck('question_id');
+            
+            // Get template question IDs
+            $template = \App\Item::where('survey_id', $this->survey_id)
+                ->where('label', '<>', '1')
+                ->pluck('question_id');
+            
+            $outlier_ids = $answered->diff($template);
+            return $outlier_ids->isEmpty() ? collect() : Question::find($outlier_ids);
+        }
+        
+        // Use loaded relationships
         $answered = collect($this->responses->pluck('question_id'))->unique();
         $template = collect($this->survey->items->where('label', '<>', '1')->pluck('question_id'));
 
