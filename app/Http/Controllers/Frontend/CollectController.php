@@ -14,8 +14,6 @@ use Kolydart\Common\Cipher;
 use Kolydart\Common\Presenter;
 use Illuminate\Support\Facades\Mail;
 use Kolydart\Common\Router;
-use Kolydart\Laravel\App\Traits\Auditable;
-use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
 
 /**
@@ -32,12 +30,8 @@ class CollectController extends Controller
     {
         $survey = Survey::where('alias', $alias)->firstOrFail();
 
-        // Audit survey view - use appropriate system based on auth status
-        if (auth()->check()) {
-            // Authorized user - use Kolydart Auditable trait
-            Auditable::audit('view', $survey);
-        } else {
-            // Non-authorized user - use Spatie ActivityLog
+        // Log activity for non-authorized users only
+        if (!auth()->check()) {
             activity()
                 ->performedOn($survey)
                 ->withProperties([
@@ -47,6 +41,7 @@ class CollectController extends Controller
                 ])
                 ->log('survey_view');
         }
+
 
         if ($survey->completed) {
             Presenter::message('Survey is completed.', 'warning');
@@ -126,8 +121,19 @@ class CollectController extends Controller
 
         // Audit questionnaire submission - use appropriate system based on auth status
         if (auth()->check()) {
-            // Authorized user - use Kolydart Auditable trait
-            Auditable::audit('submit', $questionnaire);
+            // Authorized user - use Kolydart Auditable (create direct audit entry)
+            \App\AuditLog::create([
+                'description' => 'questionnaire_submit',
+                'subject_id' => $questionnaire->id,
+                'subject_type' => get_class($questionnaire),
+                'user_id' => auth()->id(),
+                'properties' => [
+                    'survey_id' => $questionnaire->survey_id,
+                    'responses_count' => count($request_array),
+                    'user_agent' => request()->userAgent(),
+                ],
+                'host' => request()->ip(),
+            ]);
         } else {
             // Non-authorized user - use Spatie ActivityLog
             activity()
@@ -199,22 +205,9 @@ class CollectController extends Controller
         </div>
 HTML;
         $content = env('LANDING_TEXT', $landing_text);
-        // Audit landing page view - use appropriate system based on auth status
-        if (auth()->check()) {
-            // Authorized user - use Kolydart Auditable (create direct audit entry)
-            \App\AuditLog::create([
-                'description' => 'landing_page_view',
-                'subject_id' => null,
-                'subject_type' => null,
-                'user_id' => auth()->id(),
-                'properties' => [
-                    'url' => request()->url(),
-                    'user_agent' => request()->userAgent(),
-                ],
-                'host' => request()->ip(),
-            ]);
-        } else {
-            // Non-authorized user - use Spatie ActivityLog
+
+        // Log activity for non-authorized users only
+        if (!auth()->check()) {
             activity()
                 ->withProperties([
                     'ip' => request()->ip(),
