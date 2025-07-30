@@ -13,8 +13,6 @@ use App\Mail\QuestionnaireSubmitted;
 use Kolydart\Common\Cipher;
 use Kolydart\Common\Presenter;
 use Illuminate\Support\Facades\Mail;
-use Kolydart\Common\Router;
-use Illuminate\Http\Request;
 
 /**
  * public controller for colecting data
@@ -76,7 +74,6 @@ class CollectController extends Controller
             abort(404, __('The survey has been completed.'));
         }
 
-        $router = new Router();
 
         /**
          * get name if exists
@@ -84,8 +81,8 @@ class CollectController extends Controller
          */
         if (\Auth::id()) {
             $name = \Auth::user()->name;
-        } elseif ($router->get_var('check') && env('CIPHER_KEY')) {
-            $name = (new Cipher)->decrypt($router->get_var('check'), env('CIPHER_KEY'));
+        } elseif (request()->get('check') && env('CIPHER_KEY')) {
+            $name = (new Cipher)->decrypt(request()->get('check'), env('CIPHER_KEY'));
         } else {
             $name = null;
         }
@@ -103,9 +100,9 @@ class CollectController extends Controller
             $array = explode('_', $key);
 
             if ($array[1] == 'id') {
-                $question_id = $router->sanitize($array[0], 'int');
-                $answer_id = $router->sanitize($value, 'int');
-                $content = $router->sanitize($request_array[$question_id.'_content_'.$answer_id] ?? '', 'text', '');
+                $question_id = (int) $array[0];
+                $answer_id = (int) $value;
+                $content = trim(strip_tags($request_array[$question_id.'_content_'.$answer_id] ?? ''));
 
                 Response::create([
                     'questionnaire_id' => $questionnaire->id,
@@ -164,13 +161,12 @@ class CollectController extends Controller
         try {
             /** cookie exists */
             if (\Cookie::get('survey_'.$request->survey_id)) {
-                $rtr = clone $router;
-                $rtr->set_path('/admin/questionnaires/');
+                $adminUrl = url('/admin/questionnaires/');
                 // send message with ip & survey_id's
                 Presenter::mail(
                     'Survey '.$request->survey_id." questionnaire filled twice in the same browser.\n"
-                    .'Old questionnaire: '.$rtr->get_url().\Cookie::get('questionnaire')."\n"
-                    .'New questionnaire: '.$rtr->get_url().$questionnaire->id."\n"
+                    .'Old questionnaire: '.$adminUrl.\Cookie::get('questionnaire')."\n"
+                    .'New questionnaire: '.$adminUrl.$questionnaire->id."\n"
                 );
             }
             /** set new cookie */
