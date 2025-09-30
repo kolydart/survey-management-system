@@ -31,9 +31,23 @@ class IpConverter extends Component
         if (empty($hex)) {
             return '';
         }
-        
-        // Simple implementation - convert hex to IP
-        return long2ip(hexdec($hex));
+
+        // Check if it's already a valid IP address (IPv4 or IPv6)
+        if (filter_var($hex, FILTER_VALIDATE_IP)) {
+            return $hex;
+        }
+
+        // Try to convert hex to IPv4
+        // hexdec can return float for large values, so cast to int
+        $decimal = hexdec($hex);
+
+        // Check if it's a valid IPv4 range (0 to 4294967295)
+        if ($decimal <= 4294967295) {
+            return long2ip((int) $decimal);
+        }
+
+        // If conversion fails or is out of range, return original value
+        return $hex;
     }
 
     /**
