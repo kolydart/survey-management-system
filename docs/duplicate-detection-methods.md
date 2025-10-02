@@ -1538,7 +1538,7 @@ class DuplicateDetectionService
 **Trigger:** On-demand when admin visits `/admin/surveys/{id}?check_duplicates=1&method=similarity`
 **Location:** SurveysController calls `$this->duplicateService->findByContentSimilarity()`
 **Algorithm:** Levenshtein distance + similar_text() for text responses
-**Threshold:** 85% similarity (configurable)
+**Threshold:** % similarity (configurable)
 **Scope:** Cross-browser, cross-device, cross-IP
 **Performance:** ~30s for 1000 questionnaires (cached for 1 hour)
 

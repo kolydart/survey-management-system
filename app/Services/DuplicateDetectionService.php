@@ -124,10 +124,10 @@ class DuplicateDetectionService
      * Most robust method - detects near-duplicates across different browsers/IPs
      *
      * @param int $survey_id
-     * @param float $threshold Similarity threshold (0-100), default 85%
+     * @param float $threshold Similarity threshold (0-100) in percent (%)
      * @return array Array of duplicate pairs with similarity scores
      */
-    public function findByContentSimilarity(int $survey_id, float $threshold = 85): array
+    public function findByContentSimilarity(int $survey_id, float $threshold = 95): array
     {
         // Cache results for 1 hour
         $cacheKey = "duplicates_similarity_{$survey_id}_{$threshold}";
