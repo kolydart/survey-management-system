@@ -260,10 +260,58 @@
 	<div role="tabpanel" class="tab-pane " id="duplicates">
 		@if(!request()->has('check_duplicates'))
 			<div class="alert alert-info">
-				<p>Duplicate detection is resource-intensive. Click the button below to check for duplicates.</p>
-				<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1]) }}" class="btn btn-primary">Check for Duplicates</a>
+				<h4><i class="fa fa-info-circle"></i> Select Duplicate Detection Method</h4>
+				<p>Duplicate detection is resource-intensive. Choose a detection method below:</p>
+
+				<div class="btn-group" role="group" style="margin-bottom: 15px;">
+					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'activity_log']) }}"
+					   class="btn btn-primary">
+						<i class="fa fa-fingerprint"></i> IP + Browser Fingerprint
+					</a>
+					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'similarity']) }}"
+					   class="btn btn-warning">
+						<i class="fa fa-clone"></i> Content Similarity (85%+)
+					</a>
+				</div>
+
+				<div class="well well-sm" style="margin-top: 10px;">
+					<p><strong><i class="fa fa-fingerprint"></i> IP + Browser Fingerprint:</strong></p>
+					<ul>
+						<li>Fast detection based on IP address and browser fingerprint</li>
+						<li>Detects submissions from the same device/browser</li>
+						<li>Best for: Quick checks and same-device duplicates</li>
+					</ul>
+
+					<p><strong><i class="fa fa-clone"></i> Content Similarity (85%+):</strong></p>
+					<ul>
+						<li>Slower but more accurate - compares actual response content</li>
+						<li>Detects duplicates even if IP/browser changes</li>
+						<li>Best for: Thorough analysis and sophisticated duplicate detection</li>
+						<li>Results are cached for 1 hour for better performance</li>
+					</ul>
+				</div>
 			</div>
 		@else
+			<div class="alert alert-success" style="margin-bottom: 15px;">
+				<strong><i class="fa fa-check-circle"></i> Detection Method:</strong>
+				@if(request('method') === 'similarity')
+					<span class="label label-warning">Content Similarity (85%+ threshold)</span>
+					<p style="margin-top: 10px; margin-bottom: 0;">
+						<small>Comparing response content using Levenshtein similarity algorithm. Results are cached for 1 hour.</small>
+					</p>
+				@else
+					<span class="label label-primary">IP + Browser Fingerprint</span>
+					<p style="margin-top: 10px; margin-bottom: 0;">
+						<small>Grouping submissions by IP address and user agent fingerprint from activity logs.</small>
+					</p>
+				@endif
+
+				<div style="margin-top: 10px;">
+					<a href="{{ url()->current() }}" class="btn btn-sm btn-default">
+						<i class="fa fa-arrow-left"></i> Change Method
+					</a>
+				</div>
+			</div>
 		<table class="table table-bordered table-striped {{ count($duplicates) > 0 ? 'datatable' : '' }}">
 			<thead>
 				<tr>
