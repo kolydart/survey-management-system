@@ -7,20 +7,19 @@ use App\Http\Requests\Admin\StoreSurveysRequest;
 use App\Http\Requests\Admin\UpdateSurveysRequest;
 use App\Item;
 use App\Survey;
-use App\Services\SurveyStatisticsService;
 use App\Services\ChartDataService;
+use App\Services\DuplicateDetectionService;
+use App\Services\SurveyStatisticsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class SurveysController extends Controller
 {
-    protected $statisticsService;
-    protected $chartService;
-
-    public function __construct(SurveyStatisticsService $statisticsService, ChartDataService $chartService)
-    {
-        $this->statisticsService = $statisticsService;
-        $this->chartService = $chartService;
+    public function __construct(
+        protected SurveyStatisticsService $statisticsService,
+        protected ChartDataService $chartService,
+        protected DuplicateDetectionService $duplicateService
+    ) {
     }
     /**
      * Display a listing of Survey.
@@ -166,7 +165,13 @@ class SurveysController extends Controller
         // Make duplicate detection optional or async
         $duplicates = [];
         if (request()->has('check_duplicates')) {
-            $duplicates = $this->get_duplicates($id);
+            $method = request()->get('method', 'activity_log');
+
+            $duplicates = match($method) {
+                'activity_log' => $this->duplicateService->findByActivityLog($id),
+                'similarity' => $this->duplicateService->findByContentSimilarity($id),
+                default => []
+            };
         }
 
         return view('admin.surveys.show', compact(
@@ -281,52 +286,5 @@ class SurveysController extends Controller
         }
 
         return redirect()->route('admin.surveys.show', $newSurvey);
-    }
-
-    protected function get_duplicates($survey_id)
-    {
-        /** get duplicates */
-        $loguseragent = new \App\Loguseragent();
-        $duplicates = [];
-
-        /** get $survey->questionnaires - optimized to only get IDs */
-        $questionnaires_arr = \App\Questionnaire::where('survey_id', $survey_id)
-            ->pluck('id')
-            ->toArray();
-
-        // Early return if no questionnaires
-        if (empty($questionnaires_arr)) {
-            return $duplicates;
-        }
-
-        /** Batch load all loguseragents for this survey to reduce queries */
-        $allLogs = $loguseragent::whereIn('item_id', $questionnaires_arr)
-            ->select('id', 'item_id', 'ipv6', 'os', 'os_version', 'browser', 'browser_version', 'created_at')
-            ->get()
-            ->groupBy(function($item) {
-                return $item->ipv6 . '|' . $item->os . '|' . $item->os_version . '|' . $item->browser . '|' . $item->browser_version;
-            });
-
-        // Process duplicates from grouped data
-        foreach ($allLogs as $logs) {
-            if ($logs->count() > 1) {
-                $first = $logs->first();
-                $row = [
-                    'type' => 'ipsw',
-                    'value' => [
-                        'ipv6' => $first->ipv6,
-                        'os' => $first->os,
-                        'os_version' => $first->os_version,
-                        'browser' => $first->browser,
-                        'browser_version' => $first->browser_version
-                    ],
-                    'count' => $logs->count(),
-                    'loguseragents' => $logs
-                ];
-                $duplicates[] = $row;
-            }
-        }
-
-        return $duplicates;
     }
 }

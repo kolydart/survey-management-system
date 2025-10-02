@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionnaire;
 use App\Questionnaire;
 use App\Response;
+use App\Services\DuplicateDetectionService;
 use App\Survey;
 use App\User;
 use App\Mail\QuestionnaireSubmitted;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Mail;
  */
 class CollectController extends Controller
 {
+    public function __construct(
+        protected DuplicateDetectionService $duplicateService
+    ) {
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -163,29 +168,8 @@ class CollectController extends Controller
             }
         }
 
-        /** use cookies to check if user has filled the same survey questionnaire */
-        try {
-            /** cookie exists */
-            if (\Cookie::get('survey_'.$request->survey_id)) {
-                $adminUrl = url('/admin/questionnaires/');
-                // send message with ip & survey_id's
-                Mail::to(User::getAdminEmail())
-                    ->send(new ErrorNotification(
-                        'Survey '.$request->survey_id." questionnaire filled twice in the same browser.\n"
-                        .'Old questionnaire: '.$adminUrl.\Cookie::get('questionnaire')."\n"
-                        .'New questionnaire: '.$adminUrl.$questionnaire->id."\n",
-                        'Duplicate Survey Submission'
-                    ));
-            }
-            /** set new cookie */
-            \Cookie::queue(\Cookie::make('survey_'.$request->survey_id, true, 2880));
-            \Cookie::queue(\Cookie::make('questionnaire', $questionnaire->id, 2880));
-        } catch (\Exception $e) {
-            $message = 'Could not handle cookies. Error vWhDRFPtoQMnGMes. Code: '.$e->getCode();
-            Log::channel('cookies')->error($message);
-            Mail::to(User::getAdminEmail())
-                ->send(new ErrorNotification($message, 'Cookie Handling Error'));
-        }
+        /** Check for duplicate submission using centralized service */
+        $this->duplicateService->checkCookieDuplicate($request, $questionnaire);
 
         /** Thank you message */
         $content = '
