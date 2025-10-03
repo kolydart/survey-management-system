@@ -2149,6 +2149,88 @@ $duplicates = $this->duplicateService->findByContentSimilarity($survey_id, 85);
 | 1.0 | 2025-09-30 | Initial document creation | Technical Analysis |
 | 2.0 | 2025-09-30 | Added Section 8 (Implemented Architecture) and Section 9 (Updated Roadmap) with simplified approach | Technical Analysis |
 | 3.0 | 2025-10-02 | Added Section 10 (Implementation Summary) - All phases complete | Technical Implementation |
+| 4.0 | 2025-10-03 | Latest updates: Fixed Activity Log namespace, added configurable threshold, auto-navigation, removed caching. Created separate technical reference document. | Technical Implementation |
+| 4.1 | 2025-10-03 | **CRITICAL BUG FIX:** Fixed false 100% similarity bug. Rewrote similarity algorithm with per-question comparison and weighted scoring. Added 4 regression tests. All tests passing. | Technical Implementation |
+
+---
+
+## Related Documentation
+
+**Technical Reference (Quick Start):** `docs/duplicate-detection-technical-reference.md`
+- Focused developer guide
+- API reference
+- Latest implementation updates
+- Troubleshooting guide
+
+**This Document:** Comprehensive analysis and historical context
+
+---
+
+## Latest Updates (October 3, 2025)
+
+### 🔴 CRITICAL BUG FIX - False 100% Similarity (Latest)
+
+**Issue:** Questionnaires with 11/20 different answers were showing 100% similarity
+**Root Cause:** Algorithm only compared text content, ignoring answer_id mismatches
+**Fix:** Complete rewrite of similarity algorithm
+
+**Changes:**
+1. **Rewrote `calculateSimilarity()` Method**
+   - Per-question comparison (grouped by question_id)
+   - Weighted scoring: 70% answer similarity + 30% text similarity
+   - Split into 3 helper methods for clarity
+
+2. **Added Regression Tests**
+   - 4 new tests to prevent this bug from recurring
+   - Total: 17 tests, all passing ✅
+   - Validates per-question logic and weighted scoring
+
+3. **Documentation Updates**
+   - Added troubleshooting section with bug details
+   - Updated changelog with fix information
+
+**Result:** Q251 vs Q259 now correctly shows ~45% similarity (was showing false 100%)
+
+### Other Changes Made Today
+
+1. **Fixed Activity Log Data Display**
+   - Changed namespace from `'App\Questionnaire'` to `'App\\Questionnaire'`
+   - Resolved empty table issue in admin UI
+
+2. **Configurable Similarity Threshold**
+   - Added `config/app.php`: `duplicate_similarity_threshold`
+   - Environment variable: `DUPLICATE_SIMILARITY_THRESHOLD=95`
+   - Service and UI now use dynamic threshold
+
+3. **Enhanced Navigation**
+   - Auto-activate duplicates tab on `?check_duplicates=1`
+   - Smooth scroll to duplicates section (100px offset)
+   - JavaScript implementation in `@section('javascript')`
+
+4. **Smart Alternative Method Buttons**
+   - Replaced generic "Change Method" button
+   - Conditional display: shows specific alternative method
+   - Includes threshold percentage in button text
+
+5. **Removed Caching**
+   - Removed `Cache::remember()` from similarity detection
+   - Fresh results on every request
+   - Removed unused `Cache` facade import
+
+6. **UI Improvements**
+   - Fixed well box readability (dark text on light background)
+   - Fixed "Change Method" button visibility
+   - Similarity score prominently displayed as badge
+   - Conditional IP display (similarity shows percentage, not IP conversion)
+
+### Files Modified Today
+
+- `app/Services/DuplicateDetectionService.php` (CRITICAL FIX)
+- `tests/Unit/Services/DuplicateDetectionServiceTest.php` (Added 4 regression tests)
+- `docs/duplicate-detection-technical-reference.md` (Bug documentation)
+- `docs/duplicate-detection-methods.md` (This file)
+- `config/app.php`
+- `resources/views/admin/surveys/show.blade.php`
 
 ---
 

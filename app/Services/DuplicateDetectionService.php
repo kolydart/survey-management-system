@@ -177,41 +177,117 @@ class DuplicateDetectionService
     /**
      * Calculate similarity percentage between two questionnaires
      *
+     * Uses per-question comparison with weighted scoring:
+     * - Answer similarity: 70% weight (primary indicator)
+     * - Text similarity: 30% weight (secondary indicator)
+     *
      * @param Questionnaire $q1
      * @param Questionnaire $q2
      * @return float Similarity percentage (0-100)
      */
     private function calculateSimilarity(Questionnaire $q1, Questionnaire $q2): float
     {
-        $texts1 = $q1->responses->whereNotNull('content')->where('content', '!=', '')->pluck('content');
-        $texts2 = $q2->responses->whereNotNull('content')->where('content', '!=', '')->pluck('content');
+        // Group responses by question_id
+        $responses1 = $q1->responses->groupBy('question_id');
+        $responses2 = $q2->responses->groupBy('question_id');
 
-        if ($texts1->isEmpty() || $texts2->isEmpty()) {
-            // If no text responses, compare answer_ids
-            $answers1 = $q1->responses->pluck('answer_id')->filter()->toArray();
-            $answers2 = $q2->responses->pluck('answer_id')->filter()->toArray();
+        // Get all unique question IDs from both questionnaires
+        $allQuestionIds = $responses1->keys()->merge($responses2->keys())->unique();
 
-            if (empty($answers1) || empty($answers2)) {
-                return 0;
-            }
-
-            // Calculate Jaccard similarity for answer selections
-            $intersection = count(array_intersect($answers1, $answers2));
-            $union = count(array_unique(array_merge($answers1, $answers2)));
-
-            return $union > 0 ? ($intersection / $union) * 100 : 0;
+        if ($allQuestionIds->isEmpty()) {
+            return 0;
         }
 
-        // Calculate text similarity using similar_text
-        $similarities = [];
-        foreach ($texts1 as $index => $text1) {
-            if (isset($texts2[$index])) {
-                similar_text($text1, $texts2[$index], $percent);
-                $similarities[] = $percent;
+        $totalSimilarity = 0;
+        $questionCount = 0;
+
+        foreach ($allQuestionIds as $questionId) {
+            $r1 = $responses1->get($questionId);
+            $r2 = $responses2->get($questionId);
+
+            // If one questionnaire doesn't have this question, it's a complete mismatch
+            if (!$r1 || !$r2) {
+                $questionCount++;
+                continue; // 0% similarity for this question
             }
+
+            // Calculate answer similarity (70% weight)
+            $answerSimilarity = $this->calculateAnswerSimilarity($r1, $r2);
+
+            // Calculate text similarity (30% weight)
+            $textSimilarity = $this->calculateTextSimilarity($r1, $r2);
+
+            // Weighted combination
+            $questionSimilarity = ($answerSimilarity * 0.7) + ($textSimilarity * 0.3);
+
+            $totalSimilarity += $questionSimilarity;
+            $questionCount++;
         }
 
-        return count($similarities) > 0 ? array_sum($similarities) / count($similarities) : 0;
+        return $questionCount > 0 ? ($totalSimilarity / $questionCount) * 100 : 0;
+    }
+
+    /**
+     * Calculate similarity between answer sets for a single question
+     * Handles multiple responses per question (e.g., checkboxes)
+     *
+     * @param \Illuminate\Support\Collection $responses1
+     * @param \Illuminate\Support\Collection $responses2
+     * @return float Similarity score (0-1)
+     */
+    private function calculateAnswerSimilarity($responses1, $responses2): float
+    {
+        $answers1 = $responses1->pluck('answer_id')->filter()->sort()->values()->toArray();
+        $answers2 = $responses2->pluck('answer_id')->filter()->sort()->values()->toArray();
+
+        // If both have no answers, consider it a match
+        if (empty($answers1) && empty($answers2)) {
+            return 1;
+        }
+
+        // If only one has answers, it's a mismatch
+        if (empty($answers1) || empty($answers2)) {
+            return 0;
+        }
+
+        // For single-answer questions, simple equality check
+        if (count($answers1) === 1 && count($answers2) === 1) {
+            return $answers1[0] === $answers2[0] ? 1 : 0;
+        }
+
+        // For multiple-answer questions (checkboxes), use Jaccard similarity
+        $intersection = count(array_intersect($answers1, $answers2));
+        $union = count(array_unique(array_merge($answers1, $answers2)));
+
+        return $union > 0 ? $intersection / $union : 0;
+    }
+
+    /**
+     * Calculate similarity between text content for a single question
+     *
+     * @param \Illuminate\Support\Collection $responses1
+     * @param \Illuminate\Support\Collection $responses2
+     * @return float Similarity score (0-1)
+     */
+    private function calculateTextSimilarity($responses1, $responses2): float
+    {
+        $text1 = $responses1->pluck('content')->filter(fn($c) => !empty($c))->implode(' ');
+        $text2 = $responses2->pluck('content')->filter(fn($c) => !empty($c))->implode(' ');
+
+        // If both have no text, consider it a match
+        if (empty($text1) && empty($text2)) {
+            return 1;
+        }
+
+        // If only one has text, it's a mismatch
+        if (empty($text1) || empty($text2)) {
+            return 0;
+        }
+
+        // Use similar_text for percentage similarity
+        similar_text($text1, $text2, $percent);
+
+        return $percent / 100; // Convert to 0-1 scale
     }
 
     /**
