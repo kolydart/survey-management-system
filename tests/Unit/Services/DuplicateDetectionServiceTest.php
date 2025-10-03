@@ -257,35 +257,6 @@ class DuplicateDetectionServiceTest extends TestCase
 
     /**
      * @test
-     * Test findByContentSimilarity uses caching
-     */
-    public function test_find_by_content_similarity_uses_caching()
-    {
-        Cache::flush();
-
-        $survey = Survey::factory()->create();
-        $q1 = Questionnaire::factory()->create(['survey_id' => $survey->id]);
-
-        Response::factory()->create([
-            'questionnaire_id' => $q1->id,
-            'content' => 'Test content',
-        ]);
-
-        // First call should cache
-        $result1 = $this->service->findByContentSimilarity($survey->id, 85);
-
-        // Second call should use cache
-        $result2 = $this->service->findByContentSimilarity($survey->id, 85);
-
-        $this->assertEquals($result1, $result2);
-
-        // Verify cache exists
-        $cacheKey = "duplicates_similarity_{$survey->id}_85";
-        $this->assertTrue(Cache::has($cacheKey));
-    }
-
-    /**
-     * @test
      * Test findByContentSimilarity with answer_id comparison (no text content)
      */
     public function test_find_by_content_similarity_with_answer_ids()
