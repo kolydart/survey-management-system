@@ -6,7 +6,6 @@ use App\Mail\ErrorNotification;
 use App\Questionnaire;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -87,7 +86,7 @@ class DuplicateDetectionService
         }
 
         $activityLogs = Activity::query()
-            ->where('subject_type', 'App\Questionnaire')
+            ->where('subject_type', 'App\\Questionnaire')
             ->whereIn('subject_id', $questionnaires_arr)
             ->where('description', 'questionnaire_submit')
             ->get()
@@ -124,56 +123,55 @@ class DuplicateDetectionService
      * Most robust method - detects near-duplicates across different browsers/IPs
      *
      * @param int $survey_id
-     * @param float $threshold Similarity threshold (0-100) in percent (%)
+     * @param float|null $threshold Similarity threshold (0-100) in percent (%). Defaults to config value.
      * @return array Array of duplicate pairs with similarity scores
      */
-    public function findByContentSimilarity(int $survey_id, float $threshold = 95): array
+    public function findByContentSimilarity(int $survey_id, ?int $threshold = null): array
     {
-        // Cache results for 1 hour
-        $cacheKey = "duplicates_similarity_{$survey_id}_{$threshold}";
+        // Use config value if threshold not provided
+        if ($threshold === null) {
+            $threshold = config('app.duplicate_similarity_threshold', 95);
+        }
+        $questionnaires = Questionnaire::where('survey_id', $survey_id)
+            ->with('responses:id,questionnaire_id,question_id,answer_id,content')
+            ->get();
 
-        return Cache::remember($cacheKey, 3600, function () use ($survey_id, $threshold) {
-            $questionnaires = Questionnaire::where('survey_id', $survey_id)
-                ->with('responses:id,questionnaire_id,question_id,answer_id,content')
-                ->get();
+        $duplicates = [];
+        $checked = [];
 
-            $duplicates = [];
-            $checked = [];
-
-            // Compare each questionnaire pair
-            foreach ($questionnaires as $i => $q1) {
-                foreach ($questionnaires as $j => $q2) {
-                    if ($i >= $j) {
-                        continue; // Skip self and already checked pairs
-                    }
-
-                    $pairKey = min($q1->id, $q2->id) . '_' . max($q1->id, $q2->id);
-                    if (isset($checked[$pairKey])) {
-                        continue;
-                    }
-
-                    $similarity = $this->calculateSimilarity($q1, $q2);
-
-                    if ($similarity >= $threshold) {
-                        $duplicates[] = [
-                            'type' => 'similarity',
-                            'questionnaire_1_id' => $q1->id,
-                            'questionnaire_2_id' => $q2->id,
-                            'similarity_score' => round($similarity, 2),
-                            'loguseragents' => collect([
-                                $this->questionnaireToLoguseragentFormat($q1, $similarity),
-                                $this->questionnaireToLoguseragentFormat($q2, $similarity),
-                            ]),
-                            'count' => 2,
-                        ];
-                    }
-
-                    $checked[$pairKey] = true;
+        // Compare each questionnaire pair
+        foreach ($questionnaires as $i => $q1) {
+            foreach ($questionnaires as $j => $q2) {
+                if ($i >= $j) {
+                    continue; // Skip self and already checked pairs
                 }
-            }
 
-            return $duplicates;
-        });
+                $pairKey = min($q1->id, $q2->id) . '_' . max($q1->id, $q2->id);
+                if (isset($checked[$pairKey])) {
+                    continue;
+                }
+
+                $similarity = $this->calculateSimilarity($q1, $q2);
+
+                if ($similarity >= $threshold) {
+                    $duplicates[] = [
+                        'type' => 'similarity',
+                        'questionnaire_1_id' => $q1->id,
+                        'questionnaire_2_id' => $q2->id,
+                        'similarity_score' => round($similarity, 2),
+                        'loguseragents' => collect([
+                            $this->questionnaireToLoguseragentFormat($q1, $similarity),
+                            $this->questionnaireToLoguseragentFormat($q2, $similarity),
+                        ]),
+                        'count' => 2,
+                    ];
+                }
+
+                $checked[$pairKey] = true;
+            }
+        }
+
+        return $duplicates;
     }
 
     /**

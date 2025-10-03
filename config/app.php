@@ -258,4 +258,15 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Duplicate Detection Settings
+    |--------------------------------------------------------------------------
+    |
+    | These settings control the duplicate questionnaire detection behavior.
+    |
+    */
+
+    'duplicate_similarity_threshold' => env('DUPLICATE_SIMILARITY_THRESHOLD', 95),
+
 ];

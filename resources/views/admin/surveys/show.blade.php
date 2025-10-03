@@ -87,7 +87,7 @@
 	<li role="presentation" class=""><a href="#items" aria-controls="items" role="tab" data-toggle="tab">Items</a></li>
 	@endcan
 	@can('activitylog_view')
-	<li role="presentation" class=""><a href="#duplicates" aria-controls="duplicates" role="tab" data-toggle="tab">Duplicates @if(!request()->has('check_duplicates'))<small>(click to load)</small>@endif</a></li>
+	<li role="presentation" class=""><a href="#duplicates" aria-controls="duplicates" role="tab" data-toggle="tab">Duplicates @if(!request()->has('check_duplicates'))@endif</a></li>
 	@endcan
 </ul>
 
@@ -263,31 +263,30 @@
 				<h4><i class="fa fa-info-circle"></i> Select Duplicate Detection Method</h4>
 				<p>Duplicate detection is resource-intensive. Choose a detection method below:</p>
 
-				<div class="btn-group" role="group" style="margin-bottom: 15px;">
-					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'activity_log']) }}"
+				<div class="" role="group" style="margin-bottom: 15px;">
+					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'activity_log']) }}#duplicates"
 					   class="btn btn-primary">
-						<i class="fa fa-fingerprint"></i> IP + Browser Fingerprint
+						<i class="fa fa-hand-o-up"></i> IP + Browser Fingerprint
 					</a>
-					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'similarity']) }}"
+					<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'similarity']) }}#duplicates"
 					   class="btn btn-warning">
-						<i class="fa fa-clone"></i> Content Similarity (85%+)
+						<i class="fa fa-clone"></i> Content Similarity ({{ config('app.duplicate_similarity_threshold') }}%+)
 					</a>
 				</div>
 
-				<div class="well well-sm" style="margin-top: 10px;">
-					<p><strong><i class="fa fa-fingerprint"></i> IP + Browser Fingerprint:</strong></p>
+				<div class="" style="margin-top: 10px;">
+					<p><strong><i class="fa fa-hand-o-up"></i> IP + Browser Fingerprint:</strong></p>
 					<ul>
 						<li>Fast detection based on IP address and browser fingerprint</li>
 						<li>Detects submissions from the same device/browser</li>
 						<li>Best for: Quick checks and same-device duplicates</li>
 					</ul>
 
-					<p><strong><i class="fa fa-clone"></i> Content Similarity (85%+):</strong></p>
+					<p><strong><i class="fa fa-clone"></i> Content Similarity ({{ config('app.duplicate_similarity_threshold') }}%+):</strong></p>
 					<ul>
 						<li>Slower but more accurate - compares actual response content</li>
 						<li>Detects duplicates even if IP/browser changes</li>
 						<li>Best for: Thorough analysis and sophisticated duplicate detection</li>
-						<li>Results are cached for 1 hour for better performance</li>
 					</ul>
 				</div>
 			</div>
@@ -295,9 +294,9 @@
 			<div class="alert alert-success" style="margin-bottom: 15px;">
 				<strong><i class="fa fa-check-circle"></i> Detection Method:</strong>
 				@if(request('method') === 'similarity')
-					<span class="label label-warning">Content Similarity (85%+ threshold)</span>
+					<span class="label label-warning">Content Similarity ({{ config('app.duplicate_similarity_threshold') }}%+ threshold)</span>
 					<p style="margin-top: 10px; margin-bottom: 0;">
-						<small>Comparing response content using Levenshtein similarity algorithm. Results are cached for 1 hour.</small>
+						<small>Comparing response content using Levenshtein similarity algorithm.</small>
 					</p>
 				@else
 					<span class="label label-primary">IP + Browser Fingerprint</span>
@@ -307,9 +306,15 @@
 				@endif
 
 				<div style="margin-top: 10px;">
-					<a href="{{ url()->current() }}" class="btn btn-sm btn-default">
-						<i class="fa fa-arrow-left"></i> Change Method
-					</a>
+					@if(request('method') === 'similarity')
+						<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'activity_log']) }}#duplicates" class="btn btn-sm btn-primary">
+							<i class="fa fa-hand-o-up"></i> Switch to IP + Browser Fingerprint
+						</a>
+					@else
+						<a href="{{ request()->fullUrlWithQuery(['check_duplicates' => 1, 'method' => 'similarity']) }}#duplicates" class="btn btn-sm btn-warning">
+							<i class="fa fa-clone"></i> Switch to Content Similarity
+						</a>
+					@endif
 				</div>
 			</div>
 		<table class="table table-bordered table-striped {{ count($duplicates) > 0 ? 'datatable' : '' }}">
@@ -336,7 +341,13 @@
 						<tr>
 							<td field-key='id' class="@if($duplicate['type']=='ipsw') font-weight-bold @endif">{{$duplicate['type']}}</td>
 				            <td field-key='item_id' class="@if ($duplicate['type']=='ipsw') font-weight-bold @endif">{{$duplicate['count']}}</td>
-				            <td field-key='created_at'></td>
+				            <td field-key='created_at'>
+				            	@if($duplicate['type'] === 'similarity' && isset($duplicate['similarity_score']))
+				            		<span class="label label-warning" style="font-size: 14px; padding: 6px 10px;">
+				            			<i class="fa fa-clone"></i> Similarity: {{ $duplicate['similarity_score'] }}%
+				            		</span>
+				            	@endif
+				            </td>
 				            <td field-key='ipv6'></td>
 				            <td field-key='os'></td>
 				            <td field-key='os_version'></td>
@@ -346,14 +357,18 @@
 				            <td field-key='language'></td>
 				            <td field-key='uri'></td>
 				            <td field-key='form_submitted'></td>
-				            <td field-key='user'></td>                								
+				            <td field-key='user'></td>
 						</tr>
 						@foreach ($duplicate['loguseragents'] as $loguseragent)
 							<tr>
 								<td field-key='id'>{{ $loguseragent->id }}</td>
 					            <td field-key='item_id'><a href="{{route('admin.questionnaires.show',$loguseragent->item_id)}}">{{ $loguseragent->item_id }}</a></td>
 					            <td field-key='created_at'>{{ $loguseragent->created_at }}</td>
-					            <td field-key='ipv6'><x-ip-converter :hex="$loguseragent->ipv6" /></td>
+					            <td field-key='ipv6'>
+					            	@unless(request('method') === 'similarity')
+					            		<x-ip-converter :hex="$loguseragent->ipv6" />
+					            	@endunless
+					            </td>
 					            <td field-key='os'>{{ $loguseragent->os }}</td>
 					            <td field-key='os_version'>{{ $loguseragent->os_version }}</td>
 					            <td field-key='browser'>{{ $loguseragent->browser }}</td>
@@ -362,7 +377,7 @@
 					            <td field-key='language'>{{ $loguseragent->language }}</td>
 					            <td field-key='uri'>{{ $loguseragent->uri }}</td>
 					            <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
-					            <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>                								
+					            <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>
 							</tr>
 						@endforeach
 					@endforeach
@@ -394,3 +409,22 @@
 </div>
 
 @stop
+
+@section('javascript')
+<script>
+// Auto-activate duplicates tab and scroll when hash is present
+$(document).ready(function() {
+    if (window.location.hash === '#duplicates') {
+        // Activate the duplicates tab
+        $('.nav-tabs a[href="#duplicates"]').tab('show');
+
+        // Scroll to the duplicates section after a short delay to ensure tab is loaded
+        setTimeout(function() {
+            $('html, body').animate({
+                scrollTop: $('#duplicates').offset().top - 100
+            }, 500);
+        }, 100);
+    }
+});
+</script>
+@endsection
