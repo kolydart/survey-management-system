@@ -66,7 +66,7 @@ admin.questionnaires.show
                         @if (\Route::currentRouteName() == 'admin.surveys.show')
                             @if ($item->label != 1)
                                 {{-- report --}}
-                                @if (\Request::query('rawdata')) @include('partials.answerData') @else @include('partials.answerChart') @endif
+                                @if (isset($viewMode) && $viewMode == 'text') @include('partials.answerData') @else @include('partials.answerChart') @endif
                                 {{-- report end--}}
                             @endif
 

@@ -401,12 +401,37 @@
 {{-- back to list btn --}}
 	<a href="{{ route('admin.surveys.index') }}" class="btn btn-default mt-5 hidden-print">@lang('quickadmin.qa_back_to_list')</a>
 
-{{-- button to show rawdata --}}
-	@if (\Request::query('rawdata'))
-		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey])}}" class="btn btn-info ml-5 pl-5 hidden-print"><i class="fa fa-bar-chart" aria-hidden="true"></i> View charts</a>
-	@else
-		<a href="{{route(\Route::current()->getName(), ['survey'=>$survey, 'rawdata'=>true])}}" class="btn btn-info mt-5 pl-5 hidden-print"><i class="fa fa-list" aria-hidden="true"></i> View raw data</a>
-	@endif
+{{-- View mode switcher buttons --}}
+	<div class="btn-group hidden-print" role="group" style="margin-left: 10px;">
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey])}}"
+		   class="btn btn-{{ (!request('view') || request('view') == 'graph') ? 'primary' : 'default' }}">
+			<i class="fa fa-bar-chart"></i> Charts
+		</a>
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey, 'view'=>'text'])}}"
+		   class="btn btn-{{ request('view') == 'text' ? 'primary' : 'default' }}">
+			<i class="fa fa-list"></i> Text Results
+		</a>
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey, 'view'=>'json'])}}"
+		   class="btn btn-default"
+		   title="Export all data including individual responses">
+			<i class="fa fa-download"></i> JSON
+		</a>
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey, 'view'=>'json-results'])}}"
+		   class="btn btn-default"
+		   title="Export aggregated results only (no individual responses)">
+			<i class="fa fa-download"></i> JSON Results
+		</a>
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey, 'view'=>'csv'])}}"
+		   class="btn btn-default"
+		   title="Export all individual responses in CSV format">
+			<i class="fa fa-download"></i> CSV
+		</a>
+		<a href="{{route('admin.surveys.show', ['survey'=>$survey, 'view'=>'csv-results'])}}"
+		   class="btn btn-default"
+		   title="Export aggregated results in CSV format (perfect for pivot tables)">
+			<i class="fa fa-download"></i> CSV Results
+		</a>
+	</div>
 		</div>
 </div>
 
