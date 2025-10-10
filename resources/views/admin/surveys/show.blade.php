@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.surveys.title') . ' | ' . trans('quickadmin.qa_view') . ' | ' . $survey->id)
+
 @section('content')
 <h3 class="page-title hidden-print">@lang('quickadmin.surveys.title')</h3>
 <div class="panel panel-default">

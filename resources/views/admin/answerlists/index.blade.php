@@ -1,6 +1,8 @@
 @inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.answerlists.title') . ' | ' . trans('quickadmin.qa_list'))
+
 @section('content')
     <h3 class="page-title">@lang('quickadmin.answerlists.title')</h3>
     @can('answerlist_create')

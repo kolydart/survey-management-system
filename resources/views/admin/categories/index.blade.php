@@ -1,6 +1,8 @@
 @inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.categories.title') . ' | ' . trans('quickadmin.qa_list'))
+
 @section('content')
     <h3 class="page-title">@lang('quickadmin.categories.title')</h3>
     @can('category_create')

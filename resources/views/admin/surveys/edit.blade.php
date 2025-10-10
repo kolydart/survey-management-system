@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.surveys.title') . ' | ' . trans('quickadmin.qa_edit') . ' | ' . $survey->id)
+
 @section('content')
     <script src="https://archive.gateweb.gr/ckeditor/ckeditor.js"></script>
 

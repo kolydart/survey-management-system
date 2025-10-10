@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.content-pages.title') . ' | ' . trans('quickadmin.qa_create'))
+
 @section('content')
     <h3 class="page-title">@lang('quickadmin.content-pages.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.content_pages.store'], 'files' => true,]) !!}

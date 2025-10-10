@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.groups.title') . ' | ' . trans('quickadmin.qa_edit') . ' | ' . $group->id)
+
 @section('content')
     <h3 class="page-title">@lang('quickadmin.groups.title')</h3>
     

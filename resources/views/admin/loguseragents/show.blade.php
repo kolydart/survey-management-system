@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('quickadmin.loguseragent.title') . ' | ' . trans('quickadmin.qa_view') . ' | ' . $loguseragent->id)
+
 @section('content')
     <h3 class="page-title">@lang('quickadmin.loguseragent.title')</h3>
 
