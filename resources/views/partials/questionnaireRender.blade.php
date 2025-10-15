@@ -26,7 +26,7 @@ admin.questionnaires.show
 <fieldset @if (\Route::currentRouteName() == 'frontend.create') class="gw-fieldset" @endif>
 
     {{-- questionnaire title --}}
-    <legend id="qst_{{ $questionnaire->id ?? 'create' }}">{{$survey->title}}</legend>
+    <legend id="qst_{{ $questionnaire->id ?? 'create' }}" class="text-center">{{$survey->title}}</legend>
 
     {{-- introduction --}}
     <div class="mb-4 gw-introduction">{!! $survey->introduction ?? '' !!}</div>
