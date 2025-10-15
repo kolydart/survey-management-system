@@ -23,7 +23,6 @@
         "laravelcollective/html": "^6.2",
         "sentry/sentry-laravel": "^3.0",
         "spatie/laravel-activitylog": "^4.0.0",
-        "unisharp/laravel-filemanager": "^2.5",
         "yajra/laravel-datatables-oracle": "^10.0"
     },
     "require-dev": {
