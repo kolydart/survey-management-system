@@ -94,7 +94,10 @@ class ItemsController extends Controller
             ->pluck('title_with_alias', 'id')
             ->prepend(trans('quickadmin.qa_please_select'), '');
 
-        $questions = Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $questions = Question::query()->orderBy('id', 'desc')
+            ->get()
+            ->pluck('title', 'id')
+            ->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.items.create', compact('surveys', 'questions'));
     }
@@ -127,8 +130,15 @@ class ItemsController extends Controller
             return abort(401);
         }
 
-        $surveys = Survey::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $questions = Question::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $surveys = Survey::query()->orderBy('id', 'desc')
+            ->get()
+            ->pluck('title_with_alias', 'id')
+            ->prepend(trans('quickadmin.qa_please_select'), '');
+
+        $questions = Question::query()->orderBy('id', 'desc')
+            ->get()
+            ->pluck('title', 'id')
+            ->prepend(trans('quickadmin.qa_please_select'), '');
 
         $item = Item::findOrFail($id);
 
