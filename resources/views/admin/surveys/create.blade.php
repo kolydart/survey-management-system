@@ -3,7 +3,6 @@
 @section('title', trans('quickadmin.surveys.title') . ' | ' . trans('quickadmin.qa_create'))
 
 @section('content')
-    <script src="https://archive.gateweb.gr/ckeditor/ckeditor.js"></script>
     <h3 class="page-title">@lang('quickadmin.surveys.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.surveys.store']]) !!}
 
@@ -89,8 +88,7 @@
             <div class="col-md-10 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('introduction', trans('quickadmin.surveys.fields.introduction').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <script>CKEDITOR.replace( 'introduction' );</script>                    
+                    {!! Form::textarea('introduction', old('introduction'), ['class' => 'form-control ckeditor', 'placeholder' => '', 'id' => 'introduction']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('introduction'))
                         <p class="help-block">
@@ -102,8 +100,7 @@
             <div class="col-md-6 {{--row--}}">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('notes', trans('quickadmin.surveys.fields.notes').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('notes', old('notes'), ['class' => 'form-control ', 'placeholder' => '']) !!}
-                    <script>CKEDITOR.replace( 'notes' );</script>                    
+                    {!! Form::textarea('notes', old('notes'), ['class' => 'form-control ckeditor', 'placeholder' => '', 'id' => 'notes']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('notes'))
                         <p class="help-block">

@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('page_text', trans('quickadmin.content-pages.fields.page-text').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('page_text', old('page_text'), ['class' => 'form-control editor', 'placeholder' => '']) !!}
+                    {!! Form::textarea('page_text', old('page_text'), ['class' => 'form-control ckeditor', 'placeholder' => '', 'id' => 'page_text']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('page_text'))
                         <p class="help-block">
@@ -113,17 +113,6 @@
 
 @section('javascript')
     @parent
-    <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
-    <script>
-        $('.editor').each(function () {
-                  CKEDITOR.replace($(this).attr('id'),{
-                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-            });
-        });
-    </script>
 
     <script>
         $("#selectbtn-category_id").click(function(){

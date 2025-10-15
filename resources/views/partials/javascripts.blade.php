@@ -20,7 +20,7 @@
 <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.13.4/filtering/type-based/accent-neutralise.js"></script>
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-<script src="https://archive.gateweb.gr/ckeditor/ckeditor.js"></script>
+<script src="{{ url('adminlte/plugins/ckeditor') }}/ckeditor.js"></script>
 
 <script src="{{ url('adminlte/js') }}/bootstrap.min.js"></script>
 <script src="{{ url('adminlte/js') }}/select2.full.min.js"></script>
@@ -220,6 +220,16 @@ $(document).ready(function () {
     });
 
     $('.select2').select2();
+
+    // Initialize CKEditor for all textareas with 'ckeditor' class
+    $('.ckeditor').each(function () {
+        CKEDITOR.replace($(this).attr('id'), {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}'
+        });
+    });
 
 });
 
