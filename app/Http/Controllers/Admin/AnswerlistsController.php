@@ -45,7 +45,9 @@ class AnswerlistsController extends Controller
             return abort(401);
         }
 
-        $answers = \App\Answer::get()->pluck('title', 'id');
+        $answers = \App\Answer::query()->orderBy('id', 'desc')
+            ->get()
+            ->pluck('title', 'id');
         $hidden_answer = \App\Answer::hidden();
 
         return view('admin.answerlists.create', compact('answers', 'hidden_answer'));
@@ -84,7 +86,9 @@ class AnswerlistsController extends Controller
             return abort(401);
         }
 
-        $answers = \App\Answer::get()->pluck('title', 'id');
+        $answers = \App\Answer::query()->orderBy('id', 'desc')
+            ->get()
+            ->pluck('title', 'id');
         $answerlist = Answerlist::findOrFail($id);
         $hidden_answer = \App\Answer::hidden();
 
