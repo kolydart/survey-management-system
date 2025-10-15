@@ -61,7 +61,12 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="responses">
-                    <table class="table table-bordered table-striped {{ count($item->question->responses) > 0 ? 'datatable' : '' }}">
+                    @php
+                        $responses = App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))
+                            ->where('question_id',$item->question_id)
+                            ->get();
+                    @endphp
+                    <table class="table table-bordered table-striped {{ $responses->count() > 0 ? 'datatable' : '' }}">
                         <thead>
                             <tr>
                                 <th>@lang('id')</th>
@@ -74,8 +79,8 @@
                         </thead>
 
                         <tbody>
-                            @if (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->count() > 0)
-                                @foreach (App\Response::whereIn('questionnaire_id',$item->survey->questionnaires->pluck('id'))->where('question_id',$item->question_id)->get() as $response)
+                            @if ($responses->count() > 0)
+                                @foreach ($responses as $response)
                                     <tr data-entry-id="{{ $response->id }}">
                                         <td field-key='id'><a href="{{route('admin.responses.show',$response->id)}}">{{ $response->id }}</a></td>
                                         <td field-key='questionnaire'><a href="{{route('admin.questionnaires.show',$response->questionnaire_id)}}">{{ $response->questionnaire_id }}</a></td>
@@ -87,7 +92,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="8">@lang('quickadmin.qa_no_entries_in_table')</td>
+                                    <td colspan="6">@lang('quickadmin.qa_no_entries_in_table')</td>
                                 </tr>
                             @endif
                         </tbody>
