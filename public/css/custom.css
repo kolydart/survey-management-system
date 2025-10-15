@@ -23,6 +23,14 @@
 	margin-bottom:40px;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	line-height: 1.5;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 15px;
+}
+
+fieldset > legend {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	padding-bottom: 15px;
+	font-size: 28px;
 }
 
 .avoid-break {
