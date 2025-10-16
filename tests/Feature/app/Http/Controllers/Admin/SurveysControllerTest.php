@@ -701,6 +701,7 @@ class SurveysControllerTest extends TestCase
             'survey_id' => $survey->id,
             'question_id' => $question->id,
             'order' => '1',
+            'label' => false,
         ]);
 
         // Create responses: 2 for answer1, 1 for answer2
