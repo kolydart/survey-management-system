@@ -820,6 +820,7 @@ class SurveysControllerTest extends TestCase
             'survey_id' => $survey->id,
             'question_id' => $question1->id,
             'order' => '1',
+            'label' => false,
         ]);
 
         \App\Response::factory()->create([
