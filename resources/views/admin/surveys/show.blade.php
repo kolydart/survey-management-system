@@ -14,7 +14,11 @@
 
 			@can('survey_create')
 				<div class="col-md-6">
-					<table class="table table-bordered table-striped hidden-print">
+					<button class="btn btn-info btn-sm hidden-print" data-toggle="collapse" data-target="#surveyDetails" aria-expanded="false" style="margin-bottom: 10px;">
+						<i class="fa fa-info-circle"></i> Toggle Survey Details
+					</button>
+					<div id="surveyDetails" class="collapse">
+					<table class="table table-bordered table-striped table-condensed hidden-print">
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.title')</th>
 							<td field-key='title'>{{ $survey->title }}</td>
@@ -41,15 +45,15 @@
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.introduction')</th>
-							<td field-key='introduction'>{!! $survey->introduction !!}</td>
+							<td field-key='introduction'>{{ Str::words(strip_tags($survey->introduction ?? ''), 10, '...') }}</td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.javascript')</th>
-							<td field-key='javascript'>{!! $survey->javascript !!}</td>
+							<td field-key='javascript'>{{ Str::words(strip_tags($survey->javascript ?? ''), 10, '...') }}</td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.notes')</th>
-							<td field-key='notes'>{!! $survey->notes !!}</td>
+							<td field-key='notes'>{{ Str::words(strip_tags($survey->notes ?? ''), 10, '...') }}</td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.inform')</th>
@@ -69,6 +73,7 @@
 						</tr>
 						<x-dates-in-show :model="$survey" />
 					</table>
+					</div>
 				</div>
 			@endcan
 			<div class="col-sm-2">
