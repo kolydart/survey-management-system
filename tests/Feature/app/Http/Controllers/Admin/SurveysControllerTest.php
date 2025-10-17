@@ -540,6 +540,7 @@ class SurveysControllerTest extends TestCase
         $item = Item::factory()->create([
             'survey_id' => $survey->id,
             'question_id' => $question->id,
+            'label' => false,
         ]);
 
         // Create responses: 2 for answer1, 1 for answer2
@@ -760,6 +761,7 @@ class SurveysControllerTest extends TestCase
         $item = Item::factory()->create([
             'survey_id' => $survey->id,
             'question_id' => $question->id,
+            'label' => false,
         ]);
 
         // Create numeric responses: 10, 20, 30
