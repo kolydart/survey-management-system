@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.introduction')</th>
-							<td field-key='introduction'>{{ Str::words(strip_tags($survey->introduction ?? ''), 10, '...') }}</td>
+							<td field-key='introduction'>{{ Str::words(html_entity_decode(strip_tags($survey->introduction ?? '')), 10, '...') }}</td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.javascript')</th>
@@ -53,7 +53,7 @@
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.notes')</th>
-							<td field-key='notes'>{{ Str::words(strip_tags($survey->notes ?? ''), 10, '...') }}</td>
+							<td field-key='notes'>{{ Str::words(html_entity_decode(strip_tags($survey->notes ?? '')), 10, '...') }}</td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.inform')</th>
