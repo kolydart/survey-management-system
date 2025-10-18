@@ -12,9 +12,10 @@
                 $('#{{$item->question->id}}_content_{{$answer->id}}')
                     .val('')
                     .attr('required', false)
+                    .removeAttr('required')
                     .attr('disabled', true)
                     .hide(300);
-            }                
+            }
         };
         /** run on first load */
         $('#i_{{$item->id}} input[name^="{{$item->question->id}}_id"]').ready(function(){
