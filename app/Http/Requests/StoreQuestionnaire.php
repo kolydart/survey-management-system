@@ -26,7 +26,7 @@ class StoreQuestionnaire extends FormRequest
         return [
             'survey_id' => 'numeric|required',
             '*_id*' => 'numeric|filled',
-            '*_content*' => 'filled|string|max:65535|regex:/^[^$^]*$/',
+            '*_content*' => 'nullable|string|max:65535|regex:/^[^$^]*$/',
         ];
     }
 

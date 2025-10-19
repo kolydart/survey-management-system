@@ -156,12 +156,11 @@ admin.questionnaires.show
                                             && $answer->open == 1
                                             )
                                             <textarea
-                                                name="{{$item->question->id}}_content_{{$answer->id}}" 
-                                                id="{{$item->question->id}}_content_{{$answer->id}}" 
-                                                class="form-control" 
-                                                rows="5" 
+                                                name="{{$item->question->id}}_content_{{$answer->id}}"
+                                                id="{{$item->question->id}}_content_{{$answer->id}}"
+                                                class="form-control"
+                                                rows="5"
                                                 placeholder=""
-                                                required="required"
                                                 >{{old($item->question->id.'_content_'.$answer->id, '')}}</textarea>
 
                                             @include('partials.js.toggleTextarea')
