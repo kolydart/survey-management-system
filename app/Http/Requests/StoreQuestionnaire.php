@@ -59,7 +59,7 @@ class StoreQuestionnaire extends FormRequest
     {
         return [
             'survey_id' => 'numeric|required',
-            '*_id*' => 'numeric|filled',
+            '*_id*' => 'nullable|numeric',
             '*_content*' => 'nullable|string|max:65535|regex:/^[^$^]*$/',
         ];
     }

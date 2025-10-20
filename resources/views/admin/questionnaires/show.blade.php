@@ -70,8 +70,8 @@
                 <tr data-entry-id="{{ $response->id }}">
                                 <td field-key='question_id'>{{ $response->question->id }}</td>
                                 <td field-key='question'>{{ $response->question->title ?? '' }}</td>
-                                <td field-key='answer_id'>{{ $response->answer->id }}</td>
-                                <td field-key='answer'>{{ $response->answer->title ?? '' }}</td>
+                                <td field-key='answer_id'>{{ $response->answer?->id ?? '' }}</td>
+                                <td field-key='answer'>{{ $response->answer?->title ?? '' }}</td>
                                 <td field-key='content'>{!! $response->content !!}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
