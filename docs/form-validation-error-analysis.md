@@ -211,3 +211,109 @@ To:
 ```
 
 This allows `*_content*` fields (from number, text, date inputs and textareas) to be submitted with empty values when they're optional or conditionally hidden by JavaScript, preventing the "Text fields are not allowed to be empty" validation error for fields that should be optional.
+
+## Critical Bug Fix: Data Loss in Number-Type Questions
+
+### The Bug
+
+After implementing the above validation fixes, a critical data loss bug was discovered where **user input in number-type questions (2.5, 2.6, etc.) was not being saved** to the database.
+
+### The Problem
+
+For number-type questions (percentage, years, etc.), the form structure includes:
+- A **hidden input** with name `{question_id}_id` and value `{hidden_answer_id}` (e.g., `3575_id = "129"`)
+- A **number input** with name `{question_id}_content_{hidden_answer_id}` for the actual user input (e.g., `3575_content_129 = "1000"`)
+
+When the dependency JavaScript **hides a question**, it clears ALL field values including:
+```javascript
+$field.val('');  // Clears BOTH the hidden _id field AND the content field!
+```
+
+This caused:
+1. Hidden input `3575_id` cleared to empty string
+2. Number input `3575_content_129` cleared to empty string (losing user's value "1000")
+3. Form submission sends empty values
+4. Database stores `answer_id = null` and `content = ""` instead of `answer_id = 129` and `content = "1000"`
+
+### The Root Cause
+
+In the survey's JavaScript (stored in `surveys.javascript` field), the `toggleDependentQuestion` function indiscriminately clears ALL form field values when hiding questions:
+
+```javascript
+if (shouldHide) {
+    $dependentQuestion.find('input, select, textarea').each(function() {
+        var $field = $(this);
+        // ... code ...
+        // Clear field values (by design - hidden fields should be empty)
+        if ($field.is(':checkbox') || $field.is(':radio')) {
+            $field.prop('checked', false);
+        } else {
+            $field.val('');  // <-- PROBLEM: Clears hidden _id inputs too!
+        }
+    });
+}
+```
+
+### The Solution
+
+Modified the JavaScript to **preserve hidden inputs ending with `_id`** (which store the answer ID for number/text-type questions):
+
+**Before:**
+```javascript
+if ($field.is(':checkbox') || $field.is(':radio')) {
+    $field.prop('checked', false);
+} else {
+    $field.val('');
+}
+```
+
+**After:**
+```javascript
+// Clear field values (by design - hidden fields should be empty)
+// EXCEPT: Preserve hidden inputs ending with '_id' (answer IDs for number/text questions)
+if ($field.is(':checkbox') || $field.is(':radio')) {
+    $field.prop('checked', false);
+} else if (!($field.attr('type') === 'hidden' && $field.attr('name') && $field.attr('name').endsWith('_id'))) {
+    $field.val('');
+}
+```
+
+### How the Fix Works
+
+The updated JavaScript now:
+1. Checks if a field is a hidden input with name ending in `_id`
+2. **Skips clearing** these hidden answer ID fields
+3. Still clears checkboxes, radios, and other input types as before
+4. Preserves the answer ID (e.g., `129`) even when the question is temporarily hidden
+5. User's number input content is also preserved because the field won't be cleared
+
+### Result
+
+**Before:**
+- User enters "1000" in question 2.5 (percentage in Finale)
+- Dependency script hides question when "Finale" is unchecked
+- Both `3575_id` and `3575_content_129` are cleared
+- Form submits with empty values
+- Database stores `answer_id = null`, `content = ""`
+- **User data is lost**
+
+**After:**
+- User enters "1000" in question 2.5
+- Dependency script hides question when "Finale" is unchecked
+- Hidden input `3575_id = "129"` is **preserved**
+- Number input `3575_content_129 = "1000"` is **preserved**
+- Form submits with correct values
+- Database stores `answer_id = 129`, `content = "1000"`
+- **User data is saved correctly**
+
+### Implementation
+
+The fix was applied directly to the survey's JavaScript field in the database:
+
+```php
+$survey = \App\Survey::find(2088);
+$survey->javascript = /* updated JavaScript with preservation logic */;
+$survey->save();
+```
+
+This ensures that number-type questions (and text-type questions with hidden answer IDs) correctly save user input even when controlled by complex dependency chains with `invertLogic` rules.
