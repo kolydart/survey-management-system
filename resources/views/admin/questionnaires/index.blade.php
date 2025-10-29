@@ -8,7 +8,7 @@
     @can('questionnaire_create')
     <p>
         <a href="{{ route('admin.questionnaires.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+
     </p>
     @endcan
 
@@ -37,11 +37,8 @@
 
                         <th>@lang('quickadmin.questionnaires.fields.survey')</th>
                         <th>@lang('quickadmin.questionnaires.fields.name')</th>
-                        @if( request('show_deleted') == 1 )
+                        <th>created_at</th>
                         <th>&nbsp;</th>
-                        @else
-                        <th>&nbsp;</th>
-                        @endif
                     </tr>
                 </thead>
             </table>
@@ -49,7 +46,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('questionnaire_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.questionnaires.mass_destroy') }}'; @endif
@@ -62,7 +59,7 @@
                 @endif
                 @endcan{data: 'survey.title', name: 'survey.title'},
                 {data: 'name', name: 'name'},
-                
+                {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             processAjaxTables();

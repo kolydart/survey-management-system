@@ -39,6 +39,7 @@ class QuestionnairesController extends Controller
                 'questionnaires.id',
                 'questionnaires.survey_id',
                 'questionnaires.name',
+                'questionnaires.created_at',
             ]);
             $table = Datatables::of($query);
 
@@ -58,6 +59,9 @@ class QuestionnairesController extends Controller
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
+            });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at->format('Y-m-d H:i:s') : '';
             });
 
             $table->rawColumns(['actions', 'massDelete']);
