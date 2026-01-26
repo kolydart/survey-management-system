@@ -69,10 +69,6 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "if [ $COMPOSER_DEV_MODE -eq 1 ] && [ ! -L vendor/kolydart/laravel ] ; then rm -rf vendor/kolydart/laravel && ln -s ../../../kolydart-laravel vendor/kolydart/laravel; fi",
-            "if [ $COMPOSER_DEV_MODE -eq 0 ] && [ -L vendor/kolydart/laravel ] ; then unlink vendor/kolydart/laravel && composer update kolydart/laravel --no-dev; fi",
-            "if [ $COMPOSER_DEV_MODE -eq 1 ] && [ ! -L vendor/kolydart/common ] ; then rm -rf vendor/kolydart/common && ln -s ../../../kolydart-common vendor/kolydart/common; fi",
-            "if [ $COMPOSER_DEV_MODE -eq 0 ] && [ -L vendor/kolydart/common ] ; then unlink vendor/kolydart/common && composer update kolydart/common --no-dev; fi",
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:generate",
             "[ $COMPOSER_DEV_MODE -eq 0 ] || php artisan ide-helper:models --nowrite"
