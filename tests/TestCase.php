@@ -22,15 +22,15 @@ abstract class TestCase extends BaseTestCase
     /** enable once after migration */
     use RefreshDatabase;
 
-        
-    /** 
+
+    /**
      * @var string plural lowercase kebab-case
      * @example (agents|item-formats); admin.(agents|item-formats).index for Agent|ItemFormat model
      */
     static $route_particle;
 
     /**
-     * 
+     *
      * @var string plural lowercase snake_case
      * usually equal to self::$route_particle
      * differs on multi-word models
@@ -42,6 +42,19 @@ abstract class TestCase extends BaseTestCase
         $seeder->call(\Database\Seeders\RoleSeed::class);
         $seeder->call(\Database\Seeders\UserSeed::class);
     }
+
+    /**
+     * Resolve the User model class, compatible with both App\User and App\Models\User namespaces.
+     *
+     * @psalm-suppress UndefinedClass
+     */
+    public function getUserClass(): string
+    {
+        return class_exists('App\Models\User')
+            ? 'App\Models\User'
+            : \App\User::class;
+    }
+
 
     /**
      * sign-in user
@@ -59,23 +72,23 @@ abstract class TestCase extends BaseTestCase
      * @example $user = $this->create_user('Manager');
      */
     public function create_user( string $role_title = 'User', array $definition = []): \App\User{
-        
+
         $this->seed_permissions();
-        
+
         if($definition){
             $user = \App\User::factory()->create($definition);
         }
-        
+
         else{
             $user = \App\User::factory()->create();
         }
-        
+
         $role = \App\Role::where('title', $role_title)->first();
         if ($role) {
             $user->role_id = $role->id;
             $user->save();
         }
-        
+
         return $user;
     }
 
@@ -90,23 +103,23 @@ abstract class TestCase extends BaseTestCase
         // Artisan::call('db:seed --class=PaperTypeDefaultDataSeeder');
         // Artisan::call('db:seed --class=TopicRealDataSeeder');
         // Artisan::call('db:seed --class=SessionTypeDefaultDataSeeder');
-        
+
     }
 
-    /** 
+    /**
      * custom message on response status
      * @usage in loops
      */
     public function assertResponseStatus($response, $expectedHttpCode, $message = "Response status mismatch"){
         $this->assertEquals($expectedHttpCode, $response->getStatusCode(), $message);
     }
-    
-    /** 
+
+    /**
      * custom message on response status
      * @usage in loops
      */
     public function assertRouteHas($route, $message = "Response status mismatch"){
         $this->assertEquals($route, $response->getStatusCode(), $message);
     }
-                
+
 }
