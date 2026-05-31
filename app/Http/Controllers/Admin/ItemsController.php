@@ -64,7 +64,9 @@ class ItemsController extends Controller
                 return $row->question ? $row->question->title : '';
             });
             $table->editColumn('label', function ($row) {
-                return \Form::checkbox('label', 1, $row->label == 1, ['disabled']);
+                $checked = $row->label == 1 ? ' checked' : '';
+
+                return '<input type="checkbox" name="label" value="1"'.$checked.' disabled>';
             });
             $table->editColumn('order', function ($row) {
                 return $row->order ? $row->order : '';
