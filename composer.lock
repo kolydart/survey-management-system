@@ -1510,12 +1510,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kolydart/laravel.git",
-                "reference": "6852d4f84f782e996ffb92bc7ebb03a6a09c8547"
+                "reference": "899bd8b9ef71873f6e5870f8279413c1a11f8b5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kolydart/laravel/zipball/6852d4f84f782e996ffb92bc7ebb03a6a09c8547",
-                "reference": "6852d4f84f782e996ffb92bc7ebb03a6a09c8547",
+                "url": "https://api.github.com/repos/kolydart/laravel/zipball/899bd8b9ef71873f6e5870f8279413c1a11f8b5e",
+                "reference": "899bd8b9ef71873f6e5870f8279413c1a11f8b5e",
                 "shasum": ""
             },
             "require": {
@@ -1566,7 +1566,7 @@
                 "issues": "https://github.com/kolydart/laravel/issues",
                 "source": "https://github.com/kolydart/laravel/tree/master"
             },
-            "time": "2026-05-05T17:34:59+00:00"
+            "time": "2026-05-31T15:26:09+00:00"
         },
         {
             "name": "laravel/framework",
