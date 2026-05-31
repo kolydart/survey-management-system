@@ -59,7 +59,7 @@
                                 </td>
                                 <td field-key='page_text'>{!! $content_page->page_text !!}</td>
                                 <td field-key='excerpt'>{!! $content_page->excerpt !!}</td>
-                                <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
+                                <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(config('quickadmin.upload_path').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(config('quickadmin.upload_path').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
                                                                 <td>
                                     @can('content_page_view')
                                     <a href="{{ route('admin.content_pages.show',[$content_page->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -68,13 +68,9 @@
                                     <a href="{{ route('admin.content_pages.edit',[$content_page->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('content_page_delete')
-{!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.content_pages.destroy', $content_page->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
+<form action="{{ route('admin.content_pages.destroy', $content_page->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">@csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_delete') }}</button>
+                                    </form>
                                     @endcan
                                 </td>
 

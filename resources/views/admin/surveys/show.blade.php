@@ -57,7 +57,7 @@
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.inform')</th>
-							<td field-key='inform'>{{ Form::checkbox("inform", 1, $survey->inform == 1 ? true : false, ["disabled"]) }}</td>
+							<td field-key='inform'><input type="checkbox" name="inform" value="1" {{ $survey->inform == 1 ? 'checked' : '' }} disabled></td>
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.access')</th>
@@ -65,7 +65,7 @@
 						</tr>
 						<tr>
 							<th>@lang('quickadmin.surveys.fields.completed')</th>
-							<td field-key='completed'>{{ Form::checkbox("completed", 1, $survey->completed == 1 ? true : false, ["disabled"]) }}</td>
+							<td field-key='completed'><input type="checkbox" name="completed" value="1" {{ $survey->completed == 1 ? 'checked' : '' }} disabled></td>
 						</tr>
 						<tr>
 							<th>@lang('Filled Questionnaires')</th>
@@ -130,22 +130,17 @@
 										@if( request('show_deleted') == 1 )
 										<td>
 											@can('questionnaire_delete')
-																				{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'POST',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.questionnaires.restore', $questionnaire->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-											{!! Form::close() !!}
+												<form action="{{ route('admin.questionnaires.restore', $questionnaire->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+											<button type="submit" class="btn btn-xs btn-success">{{ trans('quickadmin.qa_restore') }}</button>
+											</form>
 										@endcan
 											@can('questionnaire_delete')
-																				{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'DELETE',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.questionnaires.perma_del', $questionnaire->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-											{!! Form::close() !!}
+												<form action="{{ route('admin.questionnaires.perma_del', $questionnaire->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+												@method('DELETE')
+											<button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_permadel') }}</button>
+											</form>
 										@endcan
 										</td>
 										@else
@@ -157,13 +152,11 @@
 											<a href="{{ route('admin.questionnaires.edit',[$questionnaire->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
 											@endcan
 											@can('questionnaire_delete')
-											{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'DELETE',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
-												{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-											{!! Form::close() !!}
+											<form action="{{ route('admin.questionnaires.destroy', $questionnaire->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_delete') }}</button>
+											</form>
 											@endcan
 										</td>
 										@endif
@@ -211,26 +204,21 @@
 										<td field-key='responses'>@if (!$item->label)
 											{{App\Response::whereIn('questionnaire_id',$survey->questionnaires->pluck('id'))->where('question_id',$item->question->id)->count()}}
 										@endif</td>
-										<td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
+										<td field-key='label'><input type="checkbox" name="label" value="1" {{ $item->label == 1 ? 'checked' : '' }} disabled></td>
 										@if( request('show_deleted') == 1 )
 										<td>
 											@can('item_delete')
-																				{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'POST',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.items.restore', $item->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-											{!! Form::close() !!}
+												<form action="{{ route('admin.items.restore', $item->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+											<button type="submit" class="btn btn-xs btn-success">{{ trans('quickadmin.qa_restore') }}</button>
+											</form>
 										@endcan
 											@can('item_delete')
-																				{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'DELETE',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.items.perma_del', $item->id])) !!}
-											{!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-											{!! Form::close() !!}
+												<form action="{{ route('admin.items.perma_del', $item->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+												@method('DELETE')
+											<button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_permadel') }}</button>
+											</form>
 										@endcan
 										</td>
 										@else
@@ -242,13 +230,11 @@
 											<a href="{{ route('admin.items.edit',[$item->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
 											@endcan
 											@can('item_delete')
-											{!! Form::open(array(
-												'style' => 'display: inline-block;',
-												'method' => 'DELETE',
-												'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-												'route' => ['admin.items.destroy', $item->id])) !!}
-												{!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-											{!! Form::close() !!}
+											<form action="{{ route('admin.items.destroy', $item->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_delete') }}</button>
+											</form>
 											@endcan
 										</td>
 										@endif
@@ -383,7 +369,7 @@
 					            <td field-key='device'>{{ $loguseragent->device }}</td>
 					            <td field-key='language'>{{ $loguseragent->language }}</td>
 					            <td field-key='uri'>{{ $loguseragent->uri }}</td>
-					            <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
+					            <td field-key='form_submitted'><input type="checkbox" name="form_submitted" value="1" {{ $loguseragent->form_submitted == 1 ? 'checked' : '' }} disabled></td>
 					            <td field-key='user'>{{ $loguseragent->user->name ?? '' }}</td>
 							</tr>
 						@endforeach

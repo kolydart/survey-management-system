@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.content-pages.fields.featured-image')</th>
-                            <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(env('UPLOAD_PATH').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(env('UPLOAD_PATH').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
+                            <td field-key='featured_image'>@if($content_page->featured_image)<a href="{{ asset(config('quickadmin.upload_path').'/' . $content_page->featured_image) }}" target="_blank"><img src="{{ asset(config('quickadmin.upload_path').'/thumb/' . $content_page->featured_image) }}"/></a>@endif</td>
                         </tr>
                     </table>
                 </div>

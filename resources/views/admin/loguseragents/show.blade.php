@@ -52,7 +52,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.loguseragent.fields.form-submitted')</th>
-                            <td field-key='form_submitted'>{{ Form::checkbox("form_submitted", 1, $loguseragent->form_submitted == 1 ? true : false, ["disabled"]) }}</td>
+                            <td field-key='form_submitted'><input type="checkbox" name="form_submitted" value="1" {{ $loguseragent->form_submitted == 1 ? 'checked' : '' }} disabled></td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.loguseragent.fields.user')</th>

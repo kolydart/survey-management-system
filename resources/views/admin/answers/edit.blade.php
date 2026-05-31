@@ -5,7 +5,9 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.answers.title')</h3>
     
-    {!! Form::model($answer, ['method' => 'PUT', 'route' => ['admin.answers.update', $answer->id]]) !!}
+    <form action="{{ route('admin.answers.update', $answer->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,8 +17,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.answers.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.answers.fields.title').'*' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title', $answer->title ?? '') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -27,9 +29,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('open', trans('quickadmin.answers.fields.open').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('open', 0) !!}
-                    {!! Form::checkbox('open', 1, old('open', old('open')), []) !!}
+                    <label for="open" class="control-label">{{ trans('quickadmin.answers.fields.open').'' }}</label>
+                    <input type="hidden" name="open" value="0">
+                    <input type="checkbox" name="open" value="1" {{ old('open', $answer->open ?? '') ? 'checked' : '' }}>
                     <p class="help-block">open ended question?</p>
                     @if($errors->has('open'))
                         <p class="help-block">
@@ -42,7 +44,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_update') }}</button>
+    </form>
 @stop
 

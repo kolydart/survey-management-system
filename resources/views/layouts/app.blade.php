@@ -55,9 +55,10 @@
     </div>
 </div>
 
-{!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}
-<button type="submit">Logout</button>
-{!! Form::close() !!}
+<form action="{{ route('auth.logout') }}" method="POST" style="display:none;" id="logout">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
 
 @include('partials.javascripts')
 @yield('javascript')

@@ -11,7 +11,9 @@
 			</div>
 		</div>
 	@else
-		{!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
+		<form action="{{ route('auth.change_password') }}" method="POST">
+			@csrf
+			@method('PATCH')
 		<!-- If no success message in flash session show change password form  -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -21,8 +23,8 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-xs-12 form-group">
-						{!! Form::label('current_password', trans('quickadmin.qa_current_password'), ['class' => 'control-label']) !!}
-						{!! Form::password('current_password', ['class' => 'form-control', 'placeholder' => '']) !!}
+						<label for="current_password" class="control-label">{{ trans('quickadmin.qa_current_password') }}</label>
+						<input type="password" name="current_password" id="current_password" class="form-control" placeholder="">
 						<p class="help-block"></p>
 						@if($errors->has('current_password'))
 							<p class="help-block">
@@ -34,8 +36,8 @@
 
 				<div class="row">
 					<div class="col-xs-12 form-group">
-						{!! Form::label('new_password', trans('quickadmin.qa_new_password'), ['class' => 'control-label']) !!}
-						{!! Form::password('new_password', ['class' => 'form-control', 'placeholder' => '']) !!}
+						<label for="new_password" class="control-label">{{ trans('quickadmin.qa_new_password') }}</label>
+						<input type="password" name="new_password" id="new_password" class="form-control" placeholder="">
 						<p class="help-block"></p>
 						@if($errors->has('new_password'))
 							<p class="help-block">
@@ -47,8 +49,8 @@
 
 				<div class="row">
 					<div class="col-xs-12 form-group">
-						{!! Form::label('new_password_confirmation', trans('quickadmin.qa_password_confirm'), ['class' => 'control-label']) !!}
-						{!! Form::password('new_password_confirmation', ['class' => 'form-control', 'placeholder' => '']) !!}
+						<label for="new_password_confirmation" class="control-label">{{ trans('quickadmin.qa_password_confirm') }}</label>
+						<input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="">
 						<p class="help-block"></p>
 						@if($errors->has('new_password_confirmation'))
 							<p class="help-block">
@@ -60,8 +62,8 @@
 			</div>
 		</div>
 
-		{!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-		{!! Form::close() !!}
+		<button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+		</form>
 	@endif
 @stop
 

@@ -4,8 +4,10 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.responses.title')</h3>
-    
-    {!! Form::model($response, ['method' => 'PUT', 'route' => ['admin.responses.update', $response->id]]) !!}
+
+    <form action="{{ route('admin.responses.update', $response->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,8 +17,12 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('questionnaire_id', trans('quickadmin.responses.fields.questionnaire').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('questionnaire_id', $questionnaires, old('questionnaire_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="questionnaire_id" class="control-label">{{ trans('quickadmin.responses.fields.questionnaire').'*' }}</label>
+                    <select name="questionnaire_id" id="questionnaire_id" class="form-control select2" required>
+                        @foreach($questionnaires as $key => $label)
+                            <option value="{{ $key }}" {{ old('questionnaire_id', $response->questionnaire_id ?? '') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('questionnaire_id'))
                         <p class="help-block">
@@ -27,8 +33,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('question_id', trans('quickadmin.responses.fields.question').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="question_id" class="control-label">{{ trans('quickadmin.responses.fields.question').'*' }}</label>
+                    <select name="question_id" id="question_id" class="form-control select2" required>
+                        @foreach($questions as $key => $label)
+                            <option value="{{ $key }}" {{ old('question_id', $response->question_id ?? '') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('question_id'))
                         <p class="help-block">
@@ -39,8 +49,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('answer_id', trans('quickadmin.responses.fields.answer').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('answer_id', $answers, old('answer_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="answer_id" class="control-label">{{ trans('quickadmin.responses.fields.answer').'*' }}</label>
+                    <select name="answer_id" id="answer_id" class="form-control select2" required>
+                        @foreach($answers as $key => $label)
+                            <option value="{{ $key }}" {{ old('answer_id', $response->answer_id ?? '') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('answer_id'))
                         <p class="help-block">
@@ -51,8 +65,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('content', trans('quickadmin.responses.fields.content').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('content', old('content'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <label for="content" class="control-label">{{ trans('quickadmin.responses.fields.content').'' }}</label>
+                    <textarea name="content" id="content" class="form-control " placeholder="">{{ old('content', $response->content ?? '') }}</textarea>
                     <p class="help-block"></p>
                     @if($errors->has('content'))
                         <p class="help-block">
@@ -61,11 +75,11 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_update') }}</button>
+    </form>
 @stop
 

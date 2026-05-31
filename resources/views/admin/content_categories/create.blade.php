@@ -4,18 +4,18 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.content-categories.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.content_categories.store']]) !!}
+    <form action="{{ route('admin.content_categories.store') }}" method="POST">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_create')
         </div>
-        
+
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.content-categories.fields.title').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.content-categories.fields.title').'' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -26,8 +26,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('slug', trans('quickadmin.content-categories.fields.slug').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="slug" class="control-label">{{ trans('quickadmin.content-categories.fields.slug').'' }}</label>
+                    <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('slug'))
                         <p class="help-block">
@@ -36,11 +36,11 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 

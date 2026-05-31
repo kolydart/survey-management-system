@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.items.fields.label')</th>
-                            <td field-key='label'>{{ Form::checkbox("label", 1, $item->label == 1 ? true : false, ["disabled"]) }}</td>
+                            <td field-key='label'><input type="checkbox" name="label" value="1" {{ $item->label == 1 ? 'checked' : '' }} disabled></td>
                         </tr>
                         <x-dates-in-show :model="$item" />                        
                     </table>

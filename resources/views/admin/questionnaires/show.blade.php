@@ -76,22 +76,14 @@
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('response_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'POST',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.responses.restore', $response->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_restore'), array('class' => 'btn btn-xs btn-success')) !!}
-                                    {!! Form::close() !!}
+                                                                        <form action="{{ route('admin.responses.restore', $response->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">@csrf
+                                    <button type="submit" class="btn btn-xs btn-success">{{ trans('quickadmin.qa_restore') }}</button>
+                                    </form>
                                 @endcan
                                     @can('response_delete')
-                                                                        {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.responses.perma_del', $response->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
+                                                                        <form action="{{ route('admin.responses.perma_del', $response->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">@csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_permadel') }}</button>
+                                    </form>
                                 @endcan
                                 </td>
                                 @else
@@ -103,13 +95,9 @@
                                     <a href="{{ route('admin.responses.edit',[$response->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('response_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.responses.destroy', $response->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
+                                    <form action="{{ route('admin.responses.destroy', $response->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">@csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger">{{ trans('quickadmin.qa_delete') }}</button>
+                                    </form>
                                     @endcan
                                 </td>
                                 @endif
@@ -131,13 +119,9 @@
         </div>
 
         @can('questionnaire_delete')
-        {!! Form::open(array(
-            'style' => 'display: inline-block; width:100%;',
-            'method' => 'DELETE',
-            'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-            'route' => ['admin.questionnaires.destroy', $questionnaire->id])) !!}
-        {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-danger', 'style'=>'float:right;margin-right:20px;')) !!}
-        {!! Form::close() !!}
+        <form action="{{ route('admin.questionnaires.destroy', $questionnaire->id) }}" method="POST" style="display: inline-block; width:100%;" onsubmit="return confirm('{{ trans('quickadmin.qa_are_you_sure') }}');">@csrf @method('DELETE')
+        <button type="submit" class="btn btn-danger" style="float:right;margin-right:20px;">{{ trans('quickadmin.qa_delete') }}</button>
+        </form>
         @endcan         
     </div>
 @stop

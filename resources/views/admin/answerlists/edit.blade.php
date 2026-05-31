@@ -5,7 +5,9 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.answerlists.title')</h3>
     
-    {!! Form::model($answerlist, ['method' => 'PUT', 'route' => ['admin.answerlists.update', $answerlist->id]]) !!}
+    <form action="{{ route('admin.answerlists.update', $answerlist->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,8 +17,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.answerlists.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.answerlists.fields.title').'*' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title', $answerlist->title ?? '') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -27,7 +29,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('type', trans('quickadmin.answerlists.fields.type').'*', ['class' => 'control-label']) !!}
+                    <label for="type" class="control-label">{{ trans('quickadmin.answerlists.fields.type').'*' }}</label>
                     <p class="help-block"></p>
                     @if($errors->has('type'))
                         <p class="help-block">
@@ -36,91 +38,91 @@
                     @endif
                     <div>
                         <label>
-                            {!! Form::radio('type', 'radio', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="radio" {{ old('type', $answerlist->type ?? '') == 'radio' ? 'checked' : '' }} required>
                             radio
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'checkbox', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="checkbox" {{ old('type', $answerlist->type ?? '') == 'checkbox' ? 'checked' : '' }} required>
                             checkbox
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'text', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="text" {{ old('type', $answerlist->type ?? '') == 'text' ? 'checked' : '' }} required>
                             text
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'number', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="number" {{ old('type', $answerlist->type ?? '') == 'number' ? 'checked' : '' }} required>
                             number (integer)
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'date', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="date" {{ old('type', $answerlist->type ?? '') == 'date' ? 'checked' : '' }} required>
                             date
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'time', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="time" {{ old('type', $answerlist->type ?? '') == 'time' ? 'checked' : '' }} required>
                             time
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'datetime-local', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="datetime-local" {{ old('type', $answerlist->type ?? '') == 'datetime-local' ? 'checked' : '' }} required>
                             datetime
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'week', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="week" {{ old('type', $answerlist->type ?? '') == 'week' ? 'checked' : '' }} required>
                             week
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'month', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="month" {{ old('type', $answerlist->type ?? '') == 'month' ? 'checked' : '' }} required>
                             month
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'email', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="email" {{ old('type', $answerlist->type ?? '') == 'email' ? 'checked' : '' }} required>
                             email
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'url', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="url" {{ old('type', $answerlist->type ?? '') == 'url' ? 'checked' : '' }} required>
                             url
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'tel', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="tel" {{ old('type', $answerlist->type ?? '') == 'tel' ? 'checked' : '' }} required>
                             telephone
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'password', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="password" {{ old('type', $answerlist->type ?? '') == 'password' ? 'checked' : '' }} required>
                             password (no special chars)
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'range', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="range" {{ old('type', $answerlist->type ?? '') == 'range' ? 'checked' : '' }} required>
                             range
                         </label>
                     </div>
                     <div>
                         <label>
-                            {!! Form::radio('type', 'color', false, ['required' => '']) !!}
+                            <input type="radio" name="type" value="color" {{ old('type', $answerlist->type ?? '') == 'color' ? 'checked' : '' }} required>
                             color
                         </label>
                     </div>
@@ -129,14 +131,19 @@
             </div>
             <div class="row" id="gw_answers">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('answers', trans('quickadmin.answerlists.fields.answers').'*', ['class' => 'control-label']) !!}
+                    <label for="answers" class="control-label">{{ trans('quickadmin.answerlists.fields.answers').'*' }}</label>
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-answers">
                         {{ trans('quickadmin.qa_select_all') }}
                     </button>
                     <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-answers">
                         {{ trans('quickadmin.qa_deselect_all') }}
                     </button>
-                    {!! Form::select('answers[]', $answers, old('answers') ? old('answers') : $answerlist->answers->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-answers']) !!}
+                    @php $__selectedAnswers = old('answers') ? old('answers') : $answerlist->answers->pluck('id')->toArray(); @endphp
+                    <select name="answers[]" id="selectall-answers" class="form-control select2" multiple>
+                        @foreach($answers as $key => $label)
+                            <option value="{{ $key }}" {{ (is_array($__selectedAnswers) && in_array($key, $__selectedAnswers)) ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('answers'))
                         <p class="help-block">
@@ -194,8 +201,8 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_update') }}</button>
+    </form>
 @stop
 
 @section('javascript')

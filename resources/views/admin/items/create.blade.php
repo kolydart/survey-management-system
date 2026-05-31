@@ -4,7 +4,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.items.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.items.store']]) !!}
+    <form action="{{ route('admin.items.store') }}" method="POST">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,8 +14,12 @@
         <div class="panel-body">
             <div class="row" id="gw_fld_survey">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('survey_id', trans('quickadmin.items.fields.survey').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('survey_id', $surveys, old('survey_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="survey_id" class="control-label">{{ trans('quickadmin.items.fields.survey').'*' }}</label>
+                    <select name="survey_id" id="survey_id" class="form-control select2" required>
+                        @foreach($surveys as $key => $label)
+                            <option value="{{ $key }}" {{ old('survey_id') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('survey_id'))
                         <p class="help-block">
@@ -26,8 +30,12 @@
             </div>
             <div class="row" id="gw_fld_question">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('question_id', trans('quickadmin.items.fields.question'), ['class' => 'control-label']) !!}
-                    {!! Form::select('question_id', $questions, old('question_id'), ['class' => 'form-control select2']) !!}
+                    <label for="question_id" class="control-label">{{ trans('quickadmin.items.fields.question') }}</label>
+                    <select name="question_id" id="question_id" class="form-control select2">
+                        @foreach($questions as $key => $label)
+                            <option value="{{ $key }}" {{ old('question_id') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('question_id'))
                         <p class="help-block">
@@ -38,9 +46,9 @@
             </div>
             <div class="row" id="gw_fld_label">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('label', trans('quickadmin.items.fields.label').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('label', 0) !!}
-                    {!! Form::checkbox('label', 1, old('label', false), []) !!}
+                    <label for="label" class="control-label">{{ trans('quickadmin.items.fields.label').'' }}</label>
+                    <input type="hidden" name="label" value="0">
+                    <input type="checkbox" name="label" value="1" {{ old('label', false) ? 'checked' : '' }}>
                     <p class="help-block">Category label. Do not show content.</p>
                     @if($errors->has('label'))
                         <p class="help-block">
@@ -51,8 +59,8 @@
             </div>
             <div class="row" id="gw_fld_order">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('order', trans('quickadmin.items.fields.order').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('order', old('order'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="order" class="control-label">{{ trans('quickadmin.items.fields.order').'' }}</label>
+                    <input type="text" name="order" id="order" value="{{ old('order') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('order'))
                         <p class="help-block">
@@ -65,8 +73,8 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 
 @section('javascript')

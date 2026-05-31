@@ -4,7 +4,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.users.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.users.store']]) !!}
+    <form action="{{ route('admin.users.store') }}" method="POST">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,8 +14,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('name', trans('quickadmin.users.fields.name').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="name" class="control-label">{{ trans('quickadmin.users.fields.name').'*' }}</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('name'))
                         <p class="help-block">
@@ -26,8 +26,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('email', trans('quickadmin.users.fields.email').'*', ['class' => 'control-label']) !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="email" class="control-label">{{ trans('quickadmin.users.fields.email').'*' }}</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('email'))
                         <p class="help-block">
@@ -38,8 +38,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('password', trans('quickadmin.users.fields.password').'*', ['class' => 'control-label']) !!}
-                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="password" class="control-label">{{ trans('quickadmin.users.fields.password').'*' }}</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('password'))
                         <p class="help-block">
@@ -50,8 +50,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('role_id', trans('quickadmin.users.fields.role').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('role_id', $roles, old('role_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="role_id" class="control-label">{{ trans('quickadmin.users.fields.role').'*' }}</label>
+                    <select name="role_id" id="role_id" class="form-control select2" required>
+                        @foreach($roles as $key => $label)
+                            <option value="{{ $key }}" {{ old('role_id') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('role_id'))
                         <p class="help-block">
@@ -64,7 +68,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 

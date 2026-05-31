@@ -4,7 +4,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.groups.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.groups.store']]) !!}
+    <form action="{{ route('admin.groups.store') }}" method="POST">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,8 +14,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.groups.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.groups.fields.title').'*' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 

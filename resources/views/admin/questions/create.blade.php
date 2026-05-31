@@ -4,7 +4,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.questions.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.questions.store']]) !!}
+    <form action="{{ route('admin.questions.store') }}" method="POST">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,8 +14,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.questions.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.questions.fields.title').'*' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -26,8 +26,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('answerlist_id', trans('quickadmin.questions.fields.answerlist').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('answerlist_id', $answerlists, old('answerlist_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    <label for="answerlist_id" class="control-label">{{ trans('quickadmin.questions.fields.answerlist').'*' }}</label>
+                    <select name="answerlist_id" id="answerlist_id" class="form-control select2" required>
+                        @foreach($answerlists as $key => $label)
+                            <option value="{{ $key }}" {{ old('answerlist_id') == $key ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('answerlist_id'))
                         <p class="help-block">
@@ -40,7 +44,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 

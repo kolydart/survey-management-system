@@ -3,7 +3,9 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.activitylog.title')</h3>
     
-    {!! Form::model($activitylog, ['method' => 'PUT', 'route' => ['admin.activitylogs.update', $activitylog->id]]) !!}
+    <form action="{{ route('admin.activitylogs.update', $activitylog->id) }}" method="POST">
+        @csrf
+        @method('PUT')
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -13,8 +15,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('log_name', trans('quickadmin.activitylog.fields.log-name').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('log_name', old('log_name'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="log_name" class="control-label">{{ trans('quickadmin.activitylog.fields.log-name').'' }}</label>
+                    <input type="text" name="log_name" id="log_name" value="{{ old('log_name', $activitylog->log_name ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('log_name'))
                         <p class="help-block">
@@ -25,8 +27,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('causer_type', trans('quickadmin.activitylog.fields.causer-type').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('causer_type', old('causer_type'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="causer_type" class="control-label">{{ trans('quickadmin.activitylog.fields.causer-type').'' }}</label>
+                    <input type="text" name="causer_type" id="causer_type" value="{{ old('causer_type', $activitylog->causer_type ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('causer_type'))
                         <p class="help-block">
@@ -37,8 +39,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('causer_id', trans('quickadmin.activitylog.fields.causer-id').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('causer_id', old('causer_id'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="causer_id" class="control-label">{{ trans('quickadmin.activitylog.fields.causer-id').'' }}</label>
+                    <input type="number" name="causer_id" id="causer_id" value="{{ old('causer_id', $activitylog->causer_id ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('causer_id'))
                         <p class="help-block">
@@ -49,8 +51,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('description', trans('quickadmin.activitylog.fields.description').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('description', old('description'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="description" class="control-label">{{ trans('quickadmin.activitylog.fields.description').'' }}</label>
+                    <input type="text" name="description" id="description" value="{{ old('description', $activitylog->description ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('description'))
                         <p class="help-block">
@@ -61,8 +63,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('subject_type', trans('quickadmin.activitylog.fields.subject-type').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('subject_type', old('subject_type'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="subject_type" class="control-label">{{ trans('quickadmin.activitylog.fields.subject-type').'' }}</label>
+                    <input type="text" name="subject_type" id="subject_type" value="{{ old('subject_type', $activitylog->subject_type ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('subject_type'))
                         <p class="help-block">
@@ -73,8 +75,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('subject_id', trans('quickadmin.activitylog.fields.subject-id').'', ['class' => 'control-label']) !!}
-                    {!! Form::number('subject_id', old('subject_id'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <label for="subject_id" class="control-label">{{ trans('quickadmin.activitylog.fields.subject-id').'' }}</label>
+                    <input type="number" name="subject_id" id="subject_id" value="{{ old('subject_id', $activitylog->subject_id ?? '') }}" class="form-control" placeholder="">
                     <p class="help-block"></p>
                     @if($errors->has('subject_id'))
                         <p class="help-block">
@@ -85,8 +87,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('properties', trans('quickadmin.activitylog.fields.properties').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('properties', old('properties'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <label for="properties" class="control-label">{{ trans('quickadmin.activitylog.fields.properties').'' }}</label>
+                    <textarea name="properties" id="properties" class="form-control " placeholder="">{{ old('properties', $activitylog->properties ?? '') }}</textarea>
                     <p class="help-block"></p>
                     @if($errors->has('properties'))
                         <p class="help-block">
@@ -99,7 +101,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_update') }}</button>
+    </form>
 @stop
 

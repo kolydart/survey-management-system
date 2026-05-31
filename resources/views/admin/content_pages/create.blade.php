@@ -4,7 +4,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.content-pages.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.content_pages.store'], 'files' => true,]) !!}
+    <form action="{{ route('admin.content_pages.store') }}" method="POST" enctype="multipart/form-data">@csrf
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,8 +14,8 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('title', trans('quickadmin.content-pages.fields.title').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <label for="title" class="control-label">{{ trans('quickadmin.content-pages.fields.title').'*' }}</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('title'))
                         <p class="help-block">
@@ -26,14 +26,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('category_id', trans('quickadmin.content-pages.fields.category-id').'', ['class' => 'control-label']) !!}
+                    <label for="category_id" class="control-label">{{ trans('quickadmin.content-pages.fields.category-id').'' }}</label>
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-category_id">
                         {{ trans('quickadmin.qa_select_all') }}
                     </button>
                     <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-category_id">
                         {{ trans('quickadmin.qa_deselect_all') }}
                     </button>
-                    {!! Form::select('category_id[]', $category_ids, old('category_id'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-category_id' ]) !!}
+                    <select name="category_id[]" id="selectall-category_id" class="form-control select2" multiple>
+                        @foreach($category_ids as $key => $label)
+                            <option value="{{ $key }}" {{ (is_array(old('category_id')) && in_array($key, old('category_id'))) ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('category_id'))
                         <p class="help-block">
@@ -44,14 +48,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('tag_id', trans('quickadmin.content-pages.fields.tag-id').'', ['class' => 'control-label']) !!}
+                    <label for="tag_id" class="control-label">{{ trans('quickadmin.content-pages.fields.tag-id').'' }}</label>
                     <button type="button" class="btn btn-primary btn-xs" id="selectbtn-tag_id">
                         {{ trans('quickadmin.qa_select_all') }}
                     </button>
                     <button type="button" class="btn btn-primary btn-xs" id="deselectbtn-tag_id">
                         {{ trans('quickadmin.qa_deselect_all') }}
                     </button>
-                    {!! Form::select('tag_id[]', $tag_ids, old('tag_id'), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-tag_id' ]) !!}
+                    <select name="tag_id[]" id="selectall-tag_id" class="form-control select2" multiple>
+                        @foreach($tag_ids as $key => $label)
+                            <option value="{{ $key }}" {{ (is_array(old('tag_id')) && in_array($key, old('tag_id'))) ? 'selected' : '' }}>{{ $label }}</option>
+                        @endforeach
+                    </select>
                     <p class="help-block"></p>
                     @if($errors->has('tag_id'))
                         <p class="help-block">
@@ -62,8 +70,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('page_text', trans('quickadmin.content-pages.fields.page-text').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('page_text', old('page_text'), ['class' => 'form-control ckeditor', 'placeholder' => '', 'id' => 'page_text']) !!}
+                    <label for="page_text" class="control-label">{{ trans('quickadmin.content-pages.fields.page-text').'' }}</label>
+                    <textarea name="page_text" id="page_text" class="form-control ckeditor" placeholder="">{{ old('page_text') }}</textarea>
                     <p class="help-block"></p>
                     @if($errors->has('page_text'))
                         <p class="help-block">
@@ -74,8 +82,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('excerpt', trans('quickadmin.content-pages.fields.excerpt').'', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('excerpt', old('excerpt'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <label for="excerpt" class="control-label">{{ trans('quickadmin.content-pages.fields.excerpt').'' }}</label>
+                    <textarea name="excerpt" id="excerpt" class="form-control " placeholder="">{{ old('excerpt') }}</textarea>
                     <p class="help-block"></p>
                     @if($errors->has('excerpt'))
                         <p class="help-block">
@@ -86,11 +94,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('featured_image', trans('quickadmin.content-pages.fields.featured-image').'', ['class' => 'control-label']) !!}
-                    {!! Form::file('featured_image', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
-                    {!! Form::hidden('featured_image_max_size', 10) !!}
-                    {!! Form::hidden('featured_image_max_width', 1000) !!}
-                    {!! Form::hidden('featured_image_max_height', 1000) !!}
+                    <label for="featured_image" class="control-label">{{ trans('quickadmin.content-pages.fields.featured-image').'' }}</label>
+                    <input type="file" name="featured_image" id="featured_image" class="form-control" style="margin-top: 4px;">
+                    <input type="hidden" name="featured_image_max_size" value="10">
+                    <input type="hidden" name="featured_image_max_width" value="1000">
+                    <input type="hidden" name="featured_image_max_height" value="1000">
                     <p class="help-block"></p>
                     @if($errors->has('featured_image'))
                         <p class="help-block">
@@ -103,8 +111,8 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+    <button type="submit" class="btn btn-danger">{{ trans('quickadmin.qa_save') }}</button>
+    </form>
 @stop
 
 @section('javascript')

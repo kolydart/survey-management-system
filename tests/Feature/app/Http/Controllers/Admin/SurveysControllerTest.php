@@ -419,7 +419,7 @@ class SurveysControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'csv']));
 
         $response->assertOk();
-        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
+        $response->assertHeader('Content-Type', 'text/csv; charset=utf-8');
         $response->assertHeader('Content-Disposition', 'attachment; filename="survey_' . $survey->id . '_export.csv"');
 
         // Check CSV has header row
@@ -664,7 +664,7 @@ class SurveysControllerTest extends TestCase
         $response = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'csv-results']));
 
         $response->assertOk();
-        $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
+        $response->assertHeader('Content-Type', 'text/csv; charset=utf-8');
         $response->assertHeader('Content-Disposition', 'attachment; filename="survey_' . $survey->id . '_results.csv"');
 
         // Check CSV has header row
