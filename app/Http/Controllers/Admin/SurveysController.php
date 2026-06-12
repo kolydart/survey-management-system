@@ -312,6 +312,10 @@ class SurveysController extends Controller
      */
     protected function exportRawData($id, $format = 'json')
     {
+        // Exports are research data: never include soft-deleted records,
+        // regardless of UI state (relations switch to withTrashed() when show_deleted=1)
+        request()->merge(['show_deleted' => 0]);
+
         // Load survey with all necessary relationships
         $survey = Survey::with([
             'institution',
@@ -500,6 +504,9 @@ class SurveysController extends Controller
      */
     protected function exportAsJSONResults($id)
     {
+        // Exports are research data: never include soft-deleted records (see exportRawData)
+        request()->merge(['show_deleted' => 0]);
+
         // Load survey with necessary relationships for template
         $survey = Survey::with([
             'institution',
@@ -623,6 +630,9 @@ class SurveysController extends Controller
      */
     protected function exportAsCSVResults($id)
     {
+        // Exports are research data: never include soft-deleted records (see exportRawData)
+        request()->merge(['show_deleted' => 0]);
+
         // Load survey with necessary relationships
         $survey = Survey::with([
             'institution',

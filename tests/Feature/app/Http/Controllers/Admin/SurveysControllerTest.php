@@ -9,6 +9,7 @@ use App\Questionnaire;
 use App\Survey;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -464,6 +465,41 @@ class SurveysControllerTest extends TestCase
         // Verify questionnaires
         $this->assertCount(1, $data['questionnaires']);
         $this->assertEquals($questionnaire->id, $data['questionnaires'][0]['id']);
+    }
+
+    #[Test]
+    public function exports_exclude_soft_deleted_questionnaires_even_with_show_deleted_parameter(): void
+    {
+        $survey = Survey::factory()->create();
+        $kept = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+        $trashed = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+        $trashed->delete();
+
+        $user = $this->create_user('admin');
+
+        $response = $this->actingAs($user)->get(route('admin.surveys.show', [
+            'survey' => $survey,
+            'view' => 'json',
+            'show_deleted' => 1,
+        ]));
+
+        $response->assertOk();
+        $data = $response->json();
+
+        $this->assertEquals(1, $data['responses_summary']['total_questionnaires']);
+        $ids = array_column($data['questionnaires'], 'id');
+        $this->assertContains($kept->id, $ids);
+        $this->assertNotContains($trashed->id, $ids);
+
+        // The aggregated results export must also exclude trashed questionnaires
+        $resultsResponse = $this->actingAs($user)->get(route('admin.surveys.show', [
+            'survey' => $survey,
+            'view' => 'json-results',
+            'show_deleted' => 1,
+        ]));
+
+        $resultsResponse->assertOk();
+        $this->assertEquals(1, $resultsResponse->json()['survey']['total_responses']);
     }
 
     /**
