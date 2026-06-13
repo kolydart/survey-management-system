@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\app\Http\Controllers\Admin;
 
+use App\Answer;
+use App\Answerlist;
 use App\Category;
 use App\Group;
 use App\Item;
+use App\Question;
 use App\Questionnaire;
+use App\Response;
 use App\Survey;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -500,6 +504,176 @@ class SurveysControllerTest extends TestCase
 
         $resultsResponse->assertOk();
         $this->assertEquals(1, $resultsResponse->json()['survey']['total_responses']);
+    }
+
+    #[Test]
+    public function json_results_export_types_numeric_statistics_correctly(): void
+    {
+        $survey = Survey::factory()->create();
+        $questionnaire = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+
+        // Odd-count question: median is the raw string element
+        $oddQuestion = Question::factory()->create([
+            'answerlist_id' => Answerlist::factory()->create(['type' => 'number'])->id,
+        ]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $oddQuestion->id, 'label' => 0]);
+        // Mean is kept non-integral: json_encode drops the zero fraction of
+        // integral floats, so 20.0 would decode back as int
+        foreach (['10', '20', '31'] as $content) {
+            Response::factory()->create([
+                'questionnaire_id' => $questionnaire->id,
+                'question_id' => $oddQuestion->id,
+                'answer_id' => null,
+                'content' => $content,
+            ]);
+        }
+
+        // Even-count question: median is computed as ($low+$high)/2, a float
+        $evenQuestion = Question::factory()->create([
+            'answerlist_id' => Answerlist::factory()->create(['type' => 'number'])->id,
+        ]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $evenQuestion->id, 'label' => 0]);
+        foreach (['10', '20', '35', '40'] as $content) {
+            Response::factory()->create([
+                'questionnaire_id' => $questionnaire->id,
+                'question_id' => $evenQuestion->id,
+                'answer_id' => null,
+                'content' => $content,
+            ]);
+        }
+
+        $user = $this->create_user('admin');
+
+        $response = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'json-results']));
+
+        $response->assertOk();
+        $data = $response->json();
+
+        $questions = collect($data['questions']);
+
+        $oddStats = $questions->firstWhere('question_id', $oddQuestion->id)['results']['statistics'];
+        $this->assertIsString($oddStats['min']);
+        $this->assertSame('10', $oddStats['min']);
+        $this->assertIsString($oddStats['max']);
+        $this->assertSame('31', $oddStats['max']);
+        $this->assertIsString($oddStats['median']);
+        $this->assertSame('20', $oddStats['median']);
+        $this->assertIsFloat($oddStats['mean']);
+        $this->assertSame(20.33, $oddStats['mean']);
+
+        $evenStats = $questions->firstWhere('question_id', $evenQuestion->id)['results']['statistics'];
+        $this->assertIsFloat($evenStats['median']);
+        $this->assertSame(27.5, $evenStats['median']);
+    }
+
+    #[Test]
+    public function json_results_export_exposes_distinct_total_responses_fields(): void
+    {
+        $survey = Survey::factory()->create();
+        $questionnaire = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+
+        $question = Question::factory()->create([
+            'answerlist_id' => Answerlist::factory()->create(['type' => 'number'])->id,
+        ]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $question->id, 'label' => 0]);
+
+        foreach (['5', '6', '7', ''] as $content) {
+            Response::factory()->create([
+                'questionnaire_id' => $questionnaire->id,
+                'question_id' => $question->id,
+                'answer_id' => null,
+                'content' => $content,
+            ]);
+        }
+
+        $user = $this->create_user('admin');
+
+        $response = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'json-results']));
+
+        $response->assertOk();
+        $questionData = collect($response->json()['questions'])->firstWhere('question_id', $question->id);
+
+        // Outer total_responses counts all response rows; inner counts non-empty contents only
+        $this->assertSame(4, $questionData['total_responses']);
+        $this->assertSame(3, $questionData['results']['total_responses']);
+    }
+
+    #[Test]
+    public function full_export_includes_open_answer_text_but_results_export_drops_it(): void
+    {
+        $survey = Survey::factory()->create();
+        $questionnaire = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+
+        $answerlist = Answerlist::factory()->create(['type' => 'radio']);
+        $question = Question::factory()->create(['answerlist_id' => $answerlist->id]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $question->id, 'label' => 0]);
+
+        $answer = Answer::factory()->create(['open' => 1]);
+        $answerlist->answers()->attach($answer->id);
+
+        Response::factory()->create([
+            'questionnaire_id' => $questionnaire->id,
+            'question_id' => $question->id,
+            'answer_id' => $answer->id,
+            'content' => 'OPEN_TEXT_MARKER',
+        ]);
+
+        $user = $this->create_user('admin');
+
+        $fullResponse = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'json']));
+        $fullResponse->assertOk();
+        $this->assertStringContainsString('OPEN_TEXT_MARKER', $fullResponse->getContent());
+
+        $resultsResponse = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'json-results']));
+        $resultsResponse->assertOk();
+        $this->assertStringNotContainsString('OPEN_TEXT_MARKER', $resultsResponse->getContent());
+
+        // The open answer is still counted in the aggregated results
+        $questionData = collect($resultsResponse->json()['questions'])->firstWhere('question_id', $question->id);
+        $answerResult = collect($questionData['results'])->firstWhere('answer_id', $answer->id);
+        $this->assertSame(1, $answerResult['count']);
+        $this->assertTrue($answerResult['answer_is_open']);
+    }
+
+    #[Test]
+    public function json_results_export_emits_sample_responses_for_text_questions(): void
+    {
+        $survey = Survey::factory()->create();
+        $questionnaire = Questionnaire::factory()->create(['survey_id' => $survey->id]);
+
+        $question = Question::factory()->create([
+            'answerlist_id' => Answerlist::factory()->create(['type' => 'text'])->id,
+        ]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $question->id, 'label' => 0]);
+
+        foreach (['alpha', 'beta'] as $content) {
+            Response::factory()->create([
+                'questionnaire_id' => $questionnaire->id,
+                'question_id' => $question->id,
+                'answer_id' => null,
+                'content' => $content,
+            ]);
+        }
+
+        // A label text item never reaches the results export (why production never hits this branch)
+        $labelQuestion = Question::factory()->create([
+            'answerlist_id' => Answerlist::factory()->create(['type' => 'text'])->id,
+        ]);
+        Item::factory()->create(['survey_id' => $survey->id, 'question_id' => $labelQuestion->id, 'label' => 1]);
+
+        $user = $this->create_user('admin');
+
+        $response = $this->actingAs($user)->get(route('admin.surveys.show', ['survey' => $survey, 'view' => 'json-results']));
+
+        $response->assertOk();
+        $questions = collect($response->json()['questions']);
+
+        $questionData = $questions->firstWhere('question_id', $question->id);
+        $this->assertArrayHasKey('sample_responses', $questionData['results']);
+        $this->assertContains('alpha', $questionData['results']['sample_responses']);
+        $this->assertContains('beta', $questionData['results']['sample_responses']);
+
+        $this->assertNull($questions->firstWhere('question_id', $labelQuestion->id));
     }
 
     /**
