@@ -1,5 +1,7 @@
 # Roadmap: Implement `jenssegers/agent` to Populate `loguseragents` Table
 
+> **Status note (2026-06-13):** The admin CRUD UI for `loguseragents` was **removed** (route, `LoguseragentsController`, form requests, views, sidebar entry, gates, and the "Loguseragent" tab on the user show page). Reason: nothing has populated the table since 2025-07-30, and duplicate detection now reads `activity_log` via `DuplicateDetectionService`, not this table. The `loguseragents` **table, model, factory and historical data were kept**. If this roadmap is ever implemented, the admin UI must be rebuilt — references below to an "existing admin CRUD interface" no longer hold.
+
 ## Context
 
 The `loguseragents` table exists with the following fields: `os`, `os_version`, `browser`, `browser_version`, `device`, `language`, `item_id`, `ipv6`, `uri`, `form_submitted`, `user_id`. The `jenssegers/agent` package was previously installed in `composer.json` but was removed because it was not being used anywhere in the codebase. Previously, another package handled this functionality but is no longer supported.

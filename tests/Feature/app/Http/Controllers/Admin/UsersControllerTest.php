@@ -121,7 +121,6 @@ class UsersControllerTest extends TestCase
         $response->assertOk();
         $response->assertViewIs('admin.users.show');
         $response->assertViewHas('user');
-        $response->assertViewHas('loguseragents');
 
 
     }

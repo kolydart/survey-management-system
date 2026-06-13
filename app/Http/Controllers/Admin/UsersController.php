@@ -109,11 +109,10 @@ class UsersController extends Controller
         }
 
         $roles = \App\Role::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $loguseragents = \App\Loguseragent::where('user_id', $id)->get();
 
         $user = User::findOrFail($id);
 
-        return view('admin.users.show', compact('user', 'loguseragents'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**

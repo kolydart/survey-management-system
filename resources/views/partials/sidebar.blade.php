@@ -180,14 +180,6 @@
                         </a>
                     </li>@endcan
                     
-                    @can('loguseragent_access')
-                    <li>
-                        <a href="{{ route('admin.loguseragents.index') }}">
-                            <i class="fa fa-user-secret"></i>
-                            <span>@lang('quickadmin.loguseragent.title')</span>
-                        </a>
-                    </li>@endcan
-                    
                     @can('user_access')
                     <li>
                         <a href="{{ route('admin.users.index') }}">

@@ -295,20 +295,6 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 
-        // Auth gates for: Loguseragent
-        Gate::define('loguseragent_access', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('loguseragent_edit', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('loguseragent_view', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-        Gate::define('loguseragent_delete', function ($user) {
-            return in_array($user->role_id, [1]);
-        });
-
         // Auth gates for: Users
         Gate::define('user_access', function ($user) {
             return in_array($user->role_id, [1]);
