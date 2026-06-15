@@ -19,3 +19,4 @@ _ide_helper_models.php
 /lock/tmp_sql/export.sql
 /lock/export.sql
 /_class
+/composer.lock
