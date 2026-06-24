@@ -59,6 +59,10 @@
         }
     },
     "scripts": {
+        "post-update-cmd-dev": [
+            "if [ ! -L vendor/kolydart/laravel ] ; then rm -rf vendor/kolydart/laravel && ln -s ../../../kolydart-laravel vendor/kolydart/laravel; fi",
+            "if [ ! -L vendor/kolydart/common ] ; then rm -rf vendor/kolydart/common && ln -s ../../../kolydart-common vendor/kolydart/common; fi"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],

@@ -1,5 +1,8 @@
 {{-- show / hide textarea on load/reload --}}
 <script>
+    {{-- jQuery is loaded in the footer (partials.javascripts); wait for window load
+         so this in-body script does not reference jQuery before it is defined. --}}
+    window.addEventListener('load', function () {
     jQuery(document).ready(function($) {
         /** show/hide if input == $answer->id */
         function check(){
@@ -31,5 +34,6 @@
         $('#i_{{$item->id}} input[name^="{{$item->question->id}}_id"]').change(function(){
             check();
         });
+    });
     });
 </script>

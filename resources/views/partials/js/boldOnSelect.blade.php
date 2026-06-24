@@ -1,5 +1,8 @@
 {{-- bold on select --}}
 <script>
+    {{-- jQuery is loaded in the footer (partials.javascripts); wait for window load
+         so this in-body script does not reference jQuery before it is defined. --}}
+    window.addEventListener('load', function () {
     jQuery(document).ready(function($) {
         function check(){
             /** font-weight-normal|bold */
@@ -24,4 +27,5 @@
             check();
         });
     });
-</script> 
+    });
+</script>
