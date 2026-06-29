@@ -109,7 +109,7 @@ class LoginTest extends TestCase
         $response->assertCookie(Auth::guard()->getRecallerName(), vsprintf('%s|%s|%s', [
             $user->id,
             $user->getRememberToken(),
-            $user->password,
+            Auth::guard()->hashPasswordForCookie($user->password),
         ]));
         $this->assertAuthenticatedAs($user);
     }

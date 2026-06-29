@@ -76,9 +76,11 @@
 					</div>
 				</div>
 			@endcan
+			@if ($survey->alias)
 			<div class="col-sm-2">
 				<a href="{{route('frontend.create',$survey->alias)}}" class="btn btn-success hidden-print" target="_blank"><i class="fa fa-street-view"></i> @lang('User view')</a>
 			</div>
+			@endif
 			@can('survey_create')
 				<div class="col-sm-2">
 					<a href="{{route('admin.surveys.clone',$survey->id)}}" class="btn btn-warning hidden-print"><i class="fa fa-copy"></i> @lang('Clone')</a>
