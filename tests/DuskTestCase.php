@@ -20,8 +20,25 @@ abstract class DuskTestCase extends BaseTestCase
     public static function prepare(): void
     {
         if (! static::runningInSail()) {
+            static::useSharedChromedriver();
             static::startChromeDriver(['--port=9515']);
             usleep(2000000); // wait for ChromeDriver to bind to port
+        }
+    }
+
+    /**
+     * Point Dusk at the machine-wide chromedriver that `dusk-driver-sync` keeps
+     * matched to the installed Chrome, instead of the copy pinned inside
+     * vendor/ — Chrome auto-updates, that copy does not, and the mismatch
+     * surfaces as SessionNotCreatedException. Falls back to Dusk's bundled
+     * binary when the shared driver is absent (CI, fresh checkouts).
+     */
+    protected static function useSharedChromedriver(): void
+    {
+        $shared = ($_SERVER['HOME'] ?? getenv('HOME')).'/.local/share/chromedriver/chromedriver';
+
+        if (is_executable($shared)) {
+            static::useChromedriver($shared);
         }
     }
 
