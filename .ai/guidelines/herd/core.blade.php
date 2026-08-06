@@ -1,0 +1,1 @@
+- The app is served by Laravel Herd at `https?://[kebab-case-project-dir].test` and is always available; never run a serve command. Use the `herd` CLI for services/PHP versions.
