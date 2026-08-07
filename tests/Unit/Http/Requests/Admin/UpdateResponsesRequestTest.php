@@ -4,6 +4,7 @@ namespace Tests\Unit\Http\Requests\Admin;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -21,9 +22,7 @@ class UpdateResponsesRequestTest extends TestCase
         $this->subject = new \App\Http\Requests\Admin\UpdateResponsesRequest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authorize()
     {
 
@@ -33,9 +32,7 @@ class UpdateResponsesRequestTest extends TestCase
         $this->assertTrue($actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function rules()
     {
 

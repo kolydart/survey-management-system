@@ -5,6 +5,7 @@ namespace Tests\Feature\app\Http\Controllers\Admin;
 use App\Institution;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -14,9 +15,7 @@ class InstitutionsControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function create_returns_an_ok_response()
     {
 
@@ -31,9 +30,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function destroy_returns_an_ok_response()
     {
 
@@ -50,9 +47,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function edit_returns_an_ok_response()
     {
 
@@ -69,9 +64,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_returns_an_ok_response()
     {
 
@@ -87,9 +80,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mass_destroy_returns_an_ok_response()
     {
         $institution = Institution::factory()->create();
@@ -104,9 +95,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function perma_del_returns_an_ok_response()
     {
 
@@ -124,9 +113,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function restore_returns_an_ok_response()
     {
 
@@ -146,9 +133,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_returns_an_ok_response()
     {
 
@@ -166,9 +151,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_returns_an_ok_response()
     {
 
@@ -182,9 +165,7 @@ class InstitutionsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function update_returns_an_ok_response()
     {
 

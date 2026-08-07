@@ -5,6 +5,7 @@ namespace Tests\Feature\app\Http\Controllers\Admin;
 use App\Role;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -14,9 +15,7 @@ class RolesControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function create_returns_an_ok_response()
     {
 
@@ -31,9 +30,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function destroy_returns_an_ok_response()
     {
 
@@ -49,9 +46,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function edit_returns_an_ok_response()
     {
 
@@ -68,9 +63,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_returns_an_ok_response()
     {
 
@@ -86,9 +79,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mass_destroy_returns_an_ok_response()
     {
         $role = Role::factory()->create();
@@ -103,9 +94,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_returns_an_ok_response()
     {
 
@@ -123,9 +112,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_returns_an_ok_response()
     {
 
@@ -139,9 +126,7 @@ class RolesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function update_returns_an_ok_response()
     {
 

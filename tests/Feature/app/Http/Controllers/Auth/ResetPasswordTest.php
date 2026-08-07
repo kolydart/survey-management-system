@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
@@ -37,9 +38,7 @@ class ResetPasswordTest extends TestCase
         return '/password/reset';
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanViewAPasswordResetForm()
     {
         $user = $this->create_user();
@@ -51,9 +50,7 @@ class ResetPasswordTest extends TestCase
         $response->assertViewHas('token', $token);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanViewAPasswordResetFormWhenAuthenticated()
     {
         $user = $this->create_user();
@@ -65,9 +62,7 @@ class ResetPasswordTest extends TestCase
         $response->assertViewHas('token', $token);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanResetPasswordWithValidToken()
     {
 
@@ -91,9 +86,7 @@ class ResetPasswordTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotResetPasswordWithInvalidToken()
     {
 
@@ -116,9 +109,7 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotResetPasswordWithoutProvidingANewPassword()
     {
         $this->seed_permissions();
@@ -143,9 +134,7 @@ class ResetPasswordTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotResetPasswordWithoutProvidingAnEmail()
     {
 

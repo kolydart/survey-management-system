@@ -4,6 +4,7 @@ namespace Tests\Feature\app\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -11,9 +12,7 @@ use Tests\TestCase;
  */
 class ChangePasswordControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function change_password_returns_an_ok_response()
     {
 
@@ -32,9 +31,7 @@ class ChangePasswordControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_change_password_form_returns_an_ok_response()
     {
 

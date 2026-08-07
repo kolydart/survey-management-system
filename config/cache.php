@@ -103,4 +103,26 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Serializable Classes
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the classes that can be unserialized from cache
+    | storage. The Laravel default is `false` (no PHP classes at all), which
+    | prevents gadget chain attacks if your APP_KEY is leaked. We keep that
+    | restriction but allow the one object graph the application really does
+    | cache: Kolydart\Laravel\Providers\RoleServiceProvider caches Role::all()
+    | for an hour to register the role gates. Under `false` that value decodes
+    | as __PHP_Incomplete_Class and the gates silently stop being registered.
+    |
+    | Add a class here only when something genuinely stores it in the cache.
+    |
+    */
+
+    'serializable_classes' => [
+        Illuminate\Database\Eloquent\Collection::class,
+        App\Role::class,
+    ],
+
 ];

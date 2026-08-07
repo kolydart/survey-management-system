@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services;
 
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -17,9 +18,9 @@ use Tests\TestCase;
 class ChartDataServiceTest extends TestCase
 {
     /**
-     * @test
      * Test percentage calculation with valid data
      */
+    #[Test]
     public function test_generate_percentage_data_correctly()
     {
         $answerCount = 25;
@@ -31,9 +32,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test percentage calculation with decimal result
      */
+    #[Test]
     public function test_generate_percentage_with_decimal_result()
     {
         $answerCount = 1;
@@ -45,9 +46,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test percentage calculation with rounding
      */
+    #[Test]
     public function test_percentage_calculation_rounding()
     {
         $answerCount = 2;
@@ -59,9 +60,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling zero total responses - critical edge case
      */
+    #[Test]
     public function test_handle_zero_total_responses()
     {
         $answerCount = 5;
@@ -78,9 +79,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling zero answer count
      */
+    #[Test]
     public function test_handle_zero_answer_count()
     {
         $answerCount = 0;
@@ -92,9 +93,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test 100% percentage calculation
      */
+    #[Test]
     public function test_handle_full_percentage()
     {
         $answerCount = 100;
@@ -106,9 +107,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test percentage greater than 100% (edge case that shouldn't normally happen)
      */
+    #[Test]
     public function test_handle_percentage_over_100()
     {
         $answerCount = 150;
@@ -120,9 +121,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test small fraction percentages
      */
+    #[Test]
     public function test_handle_small_fraction_percentages()
     {
         $answerCount = 1;
@@ -134,9 +135,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test very small percentages that round to zero
      */
+    #[Test]
     public function test_handle_very_small_percentages()
     {
         $answerCount = 1;
@@ -156,9 +157,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test chart data structure for multiple answers
      */
+    #[Test]
     public function test_generate_chart_data_for_multiple_answers()
     {
         // Simulate data for multiple answers
@@ -196,9 +197,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test chart data with no responses
      */
+    #[Test]
     public function test_generate_chart_data_with_no_responses()
     {
         $answers = [
@@ -229,9 +230,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test aspect ratio calculation (from line 96 in answerChart.blade.php)
      */
+    #[Test]
     public function test_aspect_ratio_calculation()
     {
         // Test the aspect ratio formula: 15 / (labels_count + 5)
@@ -252,9 +253,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test tooltip data format (lines 145-147 in answerChart.blade.php)
      */
+    #[Test]
     public function test_tooltip_data_format()
     {
         $percentage = 25.50;
@@ -267,9 +268,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test string splitting function (lines 4-17 in answerChart.blade.php)
      */
+    #[Test]
     public function test_string_splitting_for_labels()
     {
         // Replicate the splitter function logic
@@ -302,9 +303,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test chart color and styling data
      */
+    #[Test]
     public function test_chart_styling_data()
     {
         // Test the chart configuration values from answerChart.blade.php
@@ -320,9 +321,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test performance with large dataset
      */
+    #[Test]
     public function test_performance_with_large_chart_dataset()
     {
         // Create large dataset (many survey answers)
@@ -366,9 +367,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling of negative counts (edge case that shouldn't happen)
      */
+    #[Test]
     public function test_handle_negative_counts()
     {
         $answerCount = -5;
@@ -384,9 +385,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test rounding precision with edge cases
      */
+    #[Test]
     public function test_rounding_precision_edge_cases()
     {
         // Test rounding behavior for values that are exactly between two decimals
@@ -405,9 +406,9 @@ class ChartDataServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test chart data validation for required fields
      */
+    #[Test]
     public function test_chart_data_contains_required_fields()
     {
         $answerCount = 25;

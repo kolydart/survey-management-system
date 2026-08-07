@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\Services;
 
+use App\Services\SurveyStatisticsService;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -20,9 +22,9 @@ use Tests\TestCase;
 class SurveyStatisticsServiceTest extends TestCase
 {
     /**
-     * @test
      * Test min calculation with valid numeric data
      */
+    #[Test]
     public function test_calculate_min_with_valid_numeric_data()
     {
         $data = [10, 5, 8, 3, 15, 1];
@@ -32,9 +34,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test  
      * Test min calculation with single value
      */
+    #[Test]
     public function test_calculate_min_with_single_value()
     {
         $data = [42];
@@ -44,9 +46,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test min calculation with negative numbers
      */
+    #[Test]
     public function test_calculate_min_with_negative_numbers()
     {
         $data = [-5, -10, 3, -2];
@@ -56,9 +58,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test min calculation with decimal numbers
      */
+    #[Test]
     public function test_calculate_min_with_decimal_numbers()
     {
         $data = [1.5, 2.7, 0.3, 4.1];
@@ -68,9 +70,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test max calculation with valid numeric data
      */
+    #[Test]
     public function test_calculate_max_with_valid_numeric_data()
     {
         $data = [10, 5, 8, 3, 15, 1];
@@ -80,9 +82,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test max calculation with single value
      */
+    #[Test]
     public function test_calculate_max_with_single_value()
     {
         $data = [42];
@@ -92,9 +94,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test mean calculation with valid numeric data
      */
+    #[Test]
     public function test_calculate_mean_with_valid_numeric_data()
     {
         $data = [10, 20, 30];
@@ -104,9 +106,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test mean calculation with decimal result
      */
+    #[Test]
     public function test_calculate_mean_with_decimal_result()
     {
         $data = [1, 2, 3];
@@ -116,9 +118,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test mean calculation with single value
      */
+    #[Test]
     public function test_calculate_mean_with_single_value()
     {
         $data = [42];
@@ -128,10 +130,10 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test median calculation with odd number count
      * This tests the logic from lines 277-283 in questionnaireRender.blade.php
      */
+    #[Test]
     public function test_calculate_median_with_odd_number_count()
     {
         $array = [1, 3, 5, 7, 9];
@@ -154,10 +156,10 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test median calculation with even number count
      * This tests the logic from lines 284-288 in questionnaireRender.blade.php
      */
+    #[Test]
     public function test_calculate_median_with_even_number_count()
     {
         $array = [1, 2, 8, 9];
@@ -180,9 +182,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test median calculation with single value
      */
+    #[Test]
     public function test_calculate_median_with_single_value()
     {
         $array = [42];
@@ -203,9 +205,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test median calculation with duplicate values
      */
+    #[Test]
     public function test_calculate_median_with_duplicate_values()
     {
         $array = [1, 2, 2, 2, 3];
@@ -226,9 +228,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling of empty array - critical edge case
      */
+    #[Test]
     public function test_handle_empty_array_gracefully()
     {
         $array = [];
@@ -261,9 +263,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test division by zero protection for mean calculation
      */
+    #[Test]
     public function test_division_by_zero_protection()
     {
         $array = [];
@@ -279,9 +281,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling of non-numeric data
      */
+    #[Test]
     public function test_handle_non_numeric_data_gracefully()
     {
         $array = ['a', 'b', 'c'];
@@ -292,36 +294,50 @@ class SurveyStatisticsServiceTest extends TestCase
         
         $this->assertEquals('a', $min);
         $this->assertEquals('c', $max);
-        
-        // array_sum will treat strings as 0
-        $sum = array_sum($array);
-        $this->assertEquals(0, $sum);
-        
-        // Mean calculation will be 0
-        $mean = round($sum / count($array), 2);
-        $this->assertEquals(0.00, $mean);
+
+        // Summing them directly is what the service must never do: since
+        // PHP 8.3 array_sum() warns on non-numeric strings, and Laravel's
+        // error handler turns that warning into an ErrorException.
+        $this->expectException(\ErrorException::class);
+        array_sum($array);
     }
 
     /**
-     * @test
+     * The service itself must reject an all non-numeric data set rather than
+     * attempting to sum it.
+     */
+    #[Test]
+    public function test_service_returns_null_for_non_numeric_data()
+    {
+        $service = new SurveyStatisticsService();
+
+        $this->assertNull($service->calculateStatistics(['a', 'b', 'c']));
+    }
+
+    /**
      * Test handling of mixed numeric and string data
      */
+    #[Test]
     public function test_handle_mixed_numeric_string_data()
     {
-        $array = [1, 'abc', 3, 'def', 5];
-        
-        // array_sum will only sum numeric values
-        $sum = array_sum($array); // 1 + 0 + 3 + 0 + 5 = 9
-        $this->assertEquals(9, $sum);
-        
-        $mean = round($sum / count($array), 2); // 9 / 5 = 1.8
-        $this->assertEquals(1.8, $mean);
+        $service = new SurveyStatisticsService();
+
+        $statistics = $service->calculateStatistics([1, 'abc', 3, 'def', 5]);
+
+        // Non-numeric entries are dropped from every calculation, but still
+        // counted in raw_count so the caller can see how much was discarded.
+        $this->assertEquals(1, $statistics['min']);
+        $this->assertEquals(5, $statistics['max']);
+        $this->assertEquals(3, $statistics['mean']); // (1 + 3 + 5) / 3
+        $this->assertEquals(3, $statistics['median']);
+        $this->assertEquals(3, $statistics['count']);
+        $this->assertEquals(5, $statistics['raw_count']);
     }
 
     /**
-     * @test
      * Test handling of numeric strings
      */
+    #[Test]
     public function test_handle_numeric_strings()
     {
         $array = ['1', '2', '3', '4', '5'];
@@ -341,9 +357,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test handling of large numbers
      */
+    #[Test]
     public function test_handle_large_numbers()
     {
         $array = [999999999, 1000000000, 1000000001];
@@ -358,9 +374,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test performance with large dataset
      */
+    #[Test]
     public function test_performance_with_large_dataset()
     {
         // Create large array (simulates many survey responses)
@@ -399,10 +415,10 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test answerlist type validation logic
      * This tests the condition from line 269 in questionnaireRender.blade.php
      */
+    #[Test]
     public function test_answerlist_type_validation_for_statistics()
     {
         $numericTypes = ["number", "range", "date", "time", "datetime-local", "week", "month"];
@@ -426,9 +442,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test median calculation edge case with two elements
      */
+    #[Test]
     public function test_median_calculation_with_two_elements()
     {
         $array = [10, 20];
@@ -449,9 +465,9 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test count function behavior
      */
+    #[Test]
     public function test_count_function_behavior()
     {
         $this->assertEquals(0, count([]));
@@ -461,23 +477,34 @@ class SurveyStatisticsServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test array_sum behavior with various data types
      */
+    #[Test]
     public function test_array_sum_behavior_with_various_types()
     {
         $this->assertEquals(0, array_sum([]));
         $this->assertEquals(6, array_sum([1, 2, 3]));
         $this->assertEquals(6, array_sum(['1', '2', '3'])); // String numbers
-        $this->assertEquals(0, array_sum(['a', 'b', 'c'])); // Non-numeric strings
-        $this->assertEquals(3, array_sum([1, 'a', 2])); // Mixed types
         $this->assertEquals(1, array_sum([true, false])); // Booleans
     }
 
     /**
-     * @test
+     * Since PHP 8.3 array_sum() no longer silently treats a non-numeric string
+     * as 0 - it warns, which Laravel's error handler promotes to an exception.
+     * This is why SurveyStatisticsService filters before summing.
+     */
+    #[Test]
+    public function test_array_sum_rejects_non_numeric_strings()
+    {
+        $this->expectException(\ErrorException::class);
+
+        array_sum([1, 'a', 2]);
+    }
+
+    /**
      * Test rounding behavior in mean calculation
      */
+    #[Test]
     public function test_rounding_behavior_in_mean_calculation()
     {
         $array = [1, 2];

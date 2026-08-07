@@ -24,9 +24,7 @@ class SurveysControllerTest extends TestCase
     use DatabaseTransactions;
     use WithFaker;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clone_creates_a_new_survey()
     {
         $survey = Survey::factory()->create();
@@ -45,9 +43,7 @@ class SurveysControllerTest extends TestCase
     }
 
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clone_has_completed_set_to_false()
     {
         $survey = Survey::factory()->create(['completed' => true]);
@@ -62,9 +58,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clone_creates_an_exact_copy()
     {
 
@@ -93,9 +87,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clone_has_the_same_relationships()
     {
 
@@ -145,9 +137,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function create_returns_an_ok_response()
     {
 
@@ -165,9 +155,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function destroy_returns_an_ok_response()
     {
 
@@ -184,9 +172,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function edit_returns_an_ok_response()
     {
 
@@ -206,9 +192,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_returns_an_ok_response()
     {
 
@@ -224,9 +208,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mass_destroy_returns_an_ok_response()
     {
 
@@ -241,9 +223,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function perma_del_returns_an_ok_response()
     {
 
@@ -261,9 +241,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function restore_returns_an_ok_response()
     {
 
@@ -283,9 +261,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_returns_an_ok_response()
     {
 
@@ -305,9 +281,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_returns_an_ok_response()
     {
 
@@ -321,9 +295,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function update_returns_an_ok_response()
     {
 
@@ -339,9 +311,7 @@ class SurveysControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_graph_mode_returns_html_view()
     {
         $survey = Survey::factory()->create();
@@ -354,9 +324,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('viewMode', 'graph');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_text_mode_returns_html_view()
     {
         $survey = Survey::factory()->create();
@@ -369,9 +337,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('viewMode', 'text');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_rawdata_parameter_returns_text_mode()
     {
         $survey = Survey::factory()->create();
@@ -385,9 +351,7 @@ class SurveysControllerTest extends TestCase
         $response->assertViewHas('viewMode', 'text');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_json_mode_returns_json_response()
     {
         $survey = Survey::factory()
@@ -411,9 +375,7 @@ class SurveysControllerTest extends TestCase
         $this->assertEquals($survey->title, $data['survey']['title']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_csv_mode_returns_csv_response()
     {
         $survey = Survey::factory()
@@ -434,9 +396,7 @@ class SurveysControllerTest extends TestCase
         $this->assertStringContainsString('answer_id', $content);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function json_export_includes_all_survey_data()
     {
         $category = Category::factory()->create();
@@ -676,9 +636,7 @@ class SurveysControllerTest extends TestCase
         $this->assertNull($questions->firstWhere('question_id', $labelQuestion->id));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function export_requires_authentication()
     {
         $survey = Survey::factory()->create();
@@ -692,9 +650,7 @@ class SurveysControllerTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_json_results_mode_returns_aggregated_json()
     {
         $survey = Survey::factory()
@@ -725,9 +681,7 @@ class SurveysControllerTest extends TestCase
         $this->assertArrayNotHasKey('questionnaires', $data);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function json_results_includes_aggregated_answer_counts()
     {
         $survey = Survey::factory()->create();
@@ -796,9 +750,7 @@ class SurveysControllerTest extends TestCase
         $this->assertEquals(33.33, $answer2Result['percentage']); // 1/3 * 100
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function json_results_includes_statistics_for_numeric_questions()
     {
         $survey = Survey::factory()->create();
@@ -858,9 +810,7 @@ class SurveysControllerTest extends TestCase
         $this->assertEquals(3, $stats['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_with_csv_results_mode_returns_aggregated_csv()
     {
         $survey = Survey::factory()
@@ -886,9 +836,7 @@ class SurveysControllerTest extends TestCase
         $this->assertStringContainsString('percentage', $content);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function csv_results_includes_aggregated_answer_counts()
     {
         $survey = Survey::factory()->create();
@@ -951,9 +899,7 @@ class SurveysControllerTest extends TestCase
         $this->assertStringContainsString('33.33', $content);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function csv_results_includes_statistics_for_numeric_questions()
     {
         $survey = Survey::factory()->create();
@@ -1007,9 +953,7 @@ class SurveysControllerTest extends TestCase
         $this->assertStringContainsString('20', $content); // mean and median
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function csv_results_format_is_suitable_for_pivot_tables()
     {
         $survey = Survey::factory()->create();

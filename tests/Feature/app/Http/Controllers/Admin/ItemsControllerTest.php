@@ -5,6 +5,7 @@ namespace Tests\Feature\app\Http\Controllers\Admin;
 use App\Item;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -14,9 +15,7 @@ class ItemsControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function create_returns_an_ok_response()
     {
 
@@ -33,9 +32,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function destroy_returns_an_ok_response()
     {
 
@@ -52,9 +49,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function edit_returns_an_ok_response()
     {
 
@@ -73,9 +68,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_returns_an_ok_response()
     {
 
@@ -93,9 +86,39 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
+    public function index_ajax_returns_datatables_payload()
+    {
+        $item = Item::factory()->create();
+
+        $user = $this->create_user('admin');
+
+        // The controller serves the DataTables payload only for XHR requests.
+        $response = $this->actingAs($user)->withHeaders([
+            'X-Requested-With' => 'XMLHttpRequest',
+        ])->getJson(route('admin.items.index', [
+            'draw' => 1,
+            'start' => 0,
+            'length' => 10,
+            'columns' => [
+                ['data' => 'id', 'name' => 'id', 'searchable' => 'true', 'orderable' => 'true', 'search' => ['value' => '', 'regex' => 'false']],
+                ['data' => 'order', 'name' => 'order', 'searchable' => 'true', 'orderable' => 'true', 'search' => ['value' => '', 'regex' => 'false']],
+            ],
+            'search' => ['value' => '', 'regex' => 'false'],
+        ]));
+
+        $response->assertOk();
+        $response->assertJsonStructure(['draw', 'recordsTotal', 'recordsFiltered', 'data']);
+
+        $payload = $response->json();
+
+        $this->assertGreaterThan(0, $payload['recordsTotal']);
+        $this->assertSame($payload['recordsTotal'], $payload['recordsFiltered']);
+        $this->assertNotEmpty($payload['data']);
+        $this->assertArrayHasKey('actions', $payload['data'][0]);
+    }
+
+    #[Test]
     public function mass_destroy_returns_an_ok_response()
     {
         $item = Item::factory()->create();
@@ -110,9 +133,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function perma_del_returns_an_ok_response()
     {
 
@@ -130,9 +151,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function restore_returns_an_ok_response()
     {
 
@@ -152,9 +171,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_returns_an_ok_response()
     {
 
@@ -171,9 +188,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_returns_an_ok_response()
     {
 
@@ -187,9 +202,7 @@ class ItemsControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function update_returns_an_ok_response()
     {
         $item = \App\Item::factory()->create();

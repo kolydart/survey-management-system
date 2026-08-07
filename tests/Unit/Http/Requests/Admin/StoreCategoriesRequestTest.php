@@ -4,6 +4,7 @@ namespace Tests\Unit\Http\Requests\Admin;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -21,9 +22,7 @@ class StoreCategoriesRequestTest extends TestCase
         $this->subject = new \App\Http\Requests\Admin\StoreCategoriesRequest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authorize()
     {
 

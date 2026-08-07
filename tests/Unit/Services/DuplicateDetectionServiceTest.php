@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Activitylog\Models\Activity;
 use Tests\TestCase;
 
@@ -38,9 +39,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test cookie detection when no previous cookie exists
      */
+    #[Test]
     public function test_check_cookie_duplicate_no_previous_cookie()
     {
         $survey = Survey::factory()->create();
@@ -55,10 +56,10 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test cookie detection method returns null gracefully in test environment
      * Note: Cookie testing requires feature tests with actual browser simulation
      */
+    #[Test]
     public function test_check_cookie_duplicate_returns_safely()
     {
         $survey = Survey::factory()->create();
@@ -75,9 +76,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByActivityLog returns empty array when no questionnaires exist
      */
+    #[Test]
     public function test_find_by_activity_log_with_no_questionnaires()
     {
         $survey = Survey::factory()->create();
@@ -89,9 +90,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByActivityLog detects duplicates by IP and User Agent
      */
+    #[Test]
     public function test_find_by_activity_log_detects_duplicates()
     {
         $survey = Survey::factory()->create();
@@ -135,9 +136,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByActivityLog does not detect duplicates with different fingerprints
      */
+    #[Test]
     public function test_find_by_activity_log_no_duplicates_different_fingerprints()
     {
         $survey = Survey::factory()->create();
@@ -176,9 +177,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByContentSimilarity with no questionnaires
      */
+    #[Test]
     public function test_find_by_content_similarity_with_no_questionnaires()
     {
         $survey = Survey::factory()->create();
@@ -190,9 +191,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByContentSimilarity detects exact duplicate responses
      */
+    #[Test]
     public function test_find_by_content_similarity_detects_exact_duplicates()
     {
         $survey = Survey::factory()->create();
@@ -226,9 +227,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByContentSimilarity does not detect low similarity
      */
+    #[Test]
     public function test_find_by_content_similarity_ignores_low_similarity()
     {
         $survey = Survey::factory()->create();
@@ -256,9 +257,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByContentSimilarity with answer_id comparison (no text content)
      */
+    #[Test]
     public function test_find_by_content_similarity_with_answer_ids()
     {
         $survey = Survey::factory()->create();
@@ -308,9 +309,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test findByActivityLog filters by correct description
      */
+    #[Test]
     public function test_find_by_activity_log_filters_by_description()
     {
         $survey = Survey::factory()->create();
@@ -334,9 +335,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test data structure format for activity log results
      */
+    #[Test]
     public function test_activity_log_result_format()
     {
         $survey = Survey::factory()->create();
@@ -382,9 +383,9 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * Test data structure format for similarity results
      */
+    #[Test]
     public function test_similarity_result_format()
     {
         $survey = Survey::factory()->create();
@@ -422,13 +423,13 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * REGRESSION TEST: Prevent false 100% similarity bug
      *
      * Bug: Questionnaires with identical text but different answers were showing 100% similarity
      * Example: Q251 vs Q259 had 11/20 different answers (45% actual) but reported 100%
      * Cause: Old algorithm compared ONLY text content when present, ignoring answer_id mismatches
      */
+    #[Test]
     public function test_does_not_give_false_100_percent_for_same_text_different_answers()
     {
         $survey = Survey::factory()->create();
@@ -536,11 +537,11 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * REGRESSION TEST: Verify per-question comparison logic
      *
      * Ensures responses are compared by question_id, not by array position
      */
+    #[Test]
     public function test_compares_answers_by_question_id_not_position()
     {
         $survey = Survey::factory()->create();
@@ -590,11 +591,11 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * REGRESSION TEST: Verify weighted combination (70% answer, 30% text)
      *
      * Ensures the algorithm uses proper weighting between answer and text similarity
      */
+    #[Test]
     public function test_uses_weighted_combination_70_30()
     {
         $survey = Survey::factory()->create();
@@ -632,11 +633,11 @@ class DuplicateDetectionServiceTest extends TestCase
     }
 
     /**
-     * @test
      * REGRESSION TEST: 100% requires BOTH answers AND text to match
      *
      * Ensures that 100% similarity requires complete match on both dimensions
      */
+    #[Test]
     public function test_requires_both_answers_and_text_to_match_for_100_percent()
     {
         $survey = Survey::factory()->create();

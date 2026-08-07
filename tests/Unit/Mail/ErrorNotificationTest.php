@@ -4,6 +4,7 @@ namespace Tests\Unit\Mail;
 
 use App\Mail\ErrorNotification;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -15,9 +16,9 @@ class ErrorNotificationTest extends TestCase
     use WithFaker;
 
     /**
-     * @test
      * Test ErrorNotification builds correctly with default subject
      */
+    #[Test]
     public function test_error_notification_builds_correctly_with_default_subject()
     {
         $errorMessage = 'Test error message';
@@ -30,9 +31,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification builds correctly with custom subject
      */
+    #[Test]
     public function test_error_notification_builds_correctly_with_custom_subject()
     {
         $errorMessage = 'Test error message';
@@ -45,9 +46,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification includes required data in view
      */
+    #[Test]
     public function test_error_notification_includes_required_data()
     {
         $errorMessage = 'Detailed error message for testing';
@@ -72,9 +73,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification uses correct view
      */
+    #[Test]
     public function test_error_notification_uses_correct_view()
     {
         $mailable = new ErrorNotification('Test message');
@@ -84,9 +85,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification timestamp format
      */
+    #[Test]
     public function test_error_notification_timestamp_format()
     {
         $mailable = new ErrorNotification('Test message');
@@ -105,9 +106,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with empty error message
      */
+    #[Test]
     public function test_error_notification_handles_empty_error_message()
     {
         $mailable = new ErrorNotification('');
@@ -118,9 +119,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with very long error message
      */
+    #[Test]
     public function test_error_notification_handles_long_error_message()
     {
         $longMessage = str_repeat('This is a very long error message. ', 100);
@@ -133,9 +134,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with special characters in message
      */
+    #[Test]
     public function test_error_notification_handles_special_characters()
     {
         $specialMessage = 'Error with special chars: äöü @#$%^&*()_+{}[]|\\:";\'<>?,./ 中文 🚀';
@@ -147,9 +148,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with null values
      */
+    #[Test]
     public function test_error_notification_handles_null_values()
     {
         $mailable = new ErrorNotification(null, null);
@@ -161,9 +162,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification URL capture
      */
+    #[Test]
     public function test_error_notification_captures_current_url()
     {
         // Set up a mock request with specific URL
@@ -182,9 +183,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification serialization for queuing
      */
+    #[Test]
     public function test_error_notification_is_serializable()
     {
         $errorMessage = 'Serializable error message';
@@ -202,9 +203,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification properties are accessible
      */
+    #[Test]
     public function test_error_notification_properties_are_accessible()
     {
         $errorMessage = 'Test error message';
@@ -217,9 +218,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with multiline message
      */
+    #[Test]
     public function test_error_notification_handles_multiline_message()
     {
         $multilineMessage = "Line 1 of error\nLine 2 of error\nLine 3 with details:\n- Detail 1\n- Detail 2";
@@ -232,9 +233,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification with HTML in message
      */
+    #[Test]
     public function test_error_notification_handles_html_in_message()
     {
         $htmlMessage = '<script>alert("xss")</script><strong>Error</strong> with <em>HTML</em> tags';
@@ -247,9 +248,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification timestamp is recent
      */
+    #[Test]
     public function test_error_notification_timestamp_is_recent()
     {
         $beforeTime = now()->subSecond(); // Allow 1 second tolerance
@@ -265,9 +266,9 @@ class ErrorNotificationTest extends TestCase
     }
 
     /**
-     * @test
      * Test ErrorNotification constructor parameter validation
      */
+    #[Test]
     public function test_error_notification_constructor_parameter_types()
     {
         // Test with various parameter types

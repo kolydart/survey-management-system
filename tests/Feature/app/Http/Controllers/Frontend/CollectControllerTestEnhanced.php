@@ -11,9 +11,10 @@ use App\Survey;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -44,9 +45,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test successful questionnaire creation with valid data
      */
+    #[Test]
     public function test_store_creates_questionnaire_successfully()
     {
         $requestData = [
@@ -68,9 +69,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test handling of malformed request keys
      */
+    #[Test]
     public function test_store_handles_malformed_request_keys()
     {
         $requestData = [
@@ -90,9 +91,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test error notification when User::getAdminEmail() fails
      */
+    #[Test]
     public function test_store_sends_error_notification_for_invalid_data()
     {
         // Remove admin user to test error scenario
@@ -110,9 +111,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test survey completion abortion
      */
+    #[Test]
     public function test_store_handles_completed_survey_abortion()
     {
         // Mark survey as completed
@@ -130,9 +131,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test audit log creation for authenticated user
      */
+    #[Test]
     public function test_store_creates_audit_log_for_authenticated_user()
     {
         $user = User::factory()->create();
@@ -153,9 +154,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test activity log creation for guest user
      */
+    #[Test]
     public function test_store_creates_activity_log_for_guest_user()
     {
         // Ensure no authenticated user
@@ -176,9 +177,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test cookie handling exceptions
      */
+    #[Test]
     public function test_store_handles_cookie_exceptions_gracefully()
     {
         // Mock Log to capture error messages
@@ -205,9 +206,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test email notification when survey inform flag is set
      */
+    #[Test]
     public function test_store_sends_email_notification_when_informed()
     {
         $this->survey->update(['inform' => 1]);
@@ -224,9 +225,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test handling of email sending exceptions
      */
+    #[Test]
     public function test_store_handles_email_sending_exceptions()
     {
         $this->survey->update(['inform' => 1]);
@@ -253,9 +254,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test create method redirects when survey is completed
      */
+    #[Test]
     public function test_create_redirects_when_survey_completed()
     {
         $this->survey->update(['completed' => 1]);
@@ -267,9 +268,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test create method logs activity for non-authenticated users only
      */
+    #[Test]
     public function test_create_logs_activity_for_non_authenticated_users_only()
     {
         // Test as guest user
@@ -299,9 +300,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test handling of empty request data
      */
+    #[Test]
     public function test_store_handles_empty_request_data()
     {
         $requestData = [
@@ -317,9 +318,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test race condition on survey completion
      */
+    #[Test]
     public function test_store_handles_survey_completion_race_condition()
     {
         $requestData = [
@@ -336,9 +337,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test content validation and sanitization
      */
+    #[Test]
     public function test_store_validates_and_sanitizes_content()
     {
         $requestData = [
@@ -358,9 +359,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test duplicate cookie detection
      */
+    #[Test]
     public function test_store_detects_duplicate_cookie_submission()
     {
         // Set existing cookie
@@ -384,9 +385,9 @@ class CollectControllerTestEnhanced extends TestCase
     }
 
     /**
-     * @test
      * Test name extraction from cipher
      */
+    #[Test]
     public function test_store_extracts_name_from_cipher()
     {
         // Set up environment variable for cipher

@@ -7,10 +7,11 @@ use App\Answerlist;
 use App\Item;
 use App\Question;
 use App\Questionnaire;
-use App\Survey;
 use App\Response;
+use App\Survey;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -20,9 +21,7 @@ class QuestionnairesControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function create_returns_an_ok_response()
     {
 
@@ -38,9 +37,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function destroy_returns_an_ok_response()
     {
 
@@ -57,9 +54,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function edit_returns_an_ok_response()
     {
 
@@ -77,9 +72,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_returns_an_ok_response()
     {
 
@@ -97,9 +90,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mass_destroy_returns_an_ok_response()
     {
 
@@ -114,9 +105,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function perma_del_returns_an_ok_response()
     {
 
@@ -134,9 +123,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function restore_returns_an_ok_response()
     {
 
@@ -156,9 +143,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function show_returns_an_ok_response()
     {
 
@@ -177,9 +162,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function store_returns_an_ok_response()
     {
 
@@ -192,9 +175,7 @@ class QuestionnairesControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function update_returns_an_ok_response()
     {
 
@@ -210,9 +191,9 @@ class QuestionnairesControllerTest extends TestCase
     }
 
     /** 
-     * @test
      * this one took a long time to debug
      */
+    #[Test]
     public function querionnaireShowRendersCorrectResponseContent(){
 
         $this->faker = \Faker\Factory::create();
@@ -258,9 +239,7 @@ class QuestionnairesControllerTest extends TestCase
     }
 
      
-        /** 
-         * @test
-         */
+        #[Test]
         public function querionnaireFormRenders(){
 
         $this->faker = \Faker\Factory::create();

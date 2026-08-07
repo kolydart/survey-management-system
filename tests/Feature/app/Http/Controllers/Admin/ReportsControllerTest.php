@@ -4,6 +4,7 @@ namespace Tests\Feature\app\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -11,9 +12,7 @@ use Tests\TestCase;
  */
 class ReportsControllerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function questionnaires_returns_an_ok_response()
     {
 

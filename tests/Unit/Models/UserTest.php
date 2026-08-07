@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use App\Role;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -26,9 +27,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail returns first admin user's email
      */
+    #[Test]
     public function test_get_admin_email_returns_first_admin_email()
     {
         // Create multiple admin users
@@ -48,9 +49,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail throws exception when no admin exists
      */
+    #[Test]
     public function test_get_admin_email_throws_exception_when_no_admin_exists()
     {
         // Create non-admin users
@@ -64,9 +65,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail handles multiple admins correctly
      */
+    #[Test]
     public function test_get_admin_email_handles_multiple_admins_correctly()
     {
         // Create admin users with different creation times
@@ -96,9 +97,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail with deleted admin users
      */
+    #[Test]
     public function test_get_admin_email_handles_soft_deleted_admins()
     {
         // Create admin user and soft delete it
@@ -118,9 +119,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail with case-insensitive role matching
      */
+    #[Test]
     public function test_get_admin_email_role_matching_is_case_sensitive()
     {
         // Create role with different case
@@ -143,9 +144,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail with null role
      */
+    #[Test]
     public function test_get_admin_email_handles_users_with_null_role()
     {
         // Create user without role
@@ -162,9 +163,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail returns valid email format
      */
+    #[Test]
     public function test_get_admin_email_returns_valid_email_format()
     {
         $admin = User::factory()->create(['email' => 'valid.admin@example.com']);
@@ -178,9 +179,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail performance with large dataset
      */
+    #[Test]
     public function test_get_admin_email_performance_with_large_dataset()
     {
         // Create many non-admin users
@@ -207,9 +208,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail with special characters in email
      */
+    #[Test]
     public function test_get_admin_email_handles_special_characters_in_email()
     {
         $admin = User::factory()->create(['email' => 'admin+test@example-domain.co.uk']);
@@ -222,9 +223,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * @test
      * Test getAdminEmail when admin has empty email
      */
+    #[Test]
     public function test_get_admin_email_handles_empty_admin_email()
     {
         // Create backup admin with valid email first

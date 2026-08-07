@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\Test;
 use Route;
 use Tests\TestCase;
 
@@ -47,9 +48,7 @@ class LoginTest extends TestCase
         return sprintf('/^%s$/', str_replace('\:seconds', '\d+', preg_quote(__('auth.throttle'), '/')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanViewALoginForm()
     {
         $response = $this->get($this->loginGetRoute());
@@ -58,9 +57,7 @@ class LoginTest extends TestCase
         $response->assertViewIs('auth.login');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotViewALoginFormWhenAuthenticated()
     {
         $user = $this->create_user();
@@ -70,9 +67,7 @@ class LoginTest extends TestCase
         $response->assertRedirect();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanLoginWithCorrectCredentials()
     {
         $user = $this->create_user('User',[
@@ -88,9 +83,7 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function RememberMeFunctionality()
     {
         $user = $this->create_user('User',[
@@ -114,9 +107,7 @@ class LoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotLoginWithIncorrectPassword()
     {
         $user = $this->create_user('User',[
@@ -135,9 +126,7 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotLoginWithEmailThatDoesNotExist()
     {
         $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
@@ -152,9 +141,7 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCanLogout()
     {
         $this->be($this->create_user());
@@ -165,9 +152,7 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotLogoutWhenNotAuthenticated()
     {
         $response = $this->post($this->logoutRoute());
@@ -176,9 +161,7 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function UserCannotMakeMoreThanFiveAttemptsInOneMinute()
     {
         $user = $this->create_user('User',[
@@ -186,11 +169,10 @@ class LoginTest extends TestCase
         ]);
 
         foreach (range(0, 5) as $_) {
-            $response = $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)
-                ->from($this->loginGetRoute())->post($this->loginPostRoute(), [
-                    'email' => $user->email,
-                    'password' => 'invalid-password',
-                ]);
+            $response = $this->from($this->loginGetRoute())->post($this->loginPostRoute(), [
+                'email' => $user->email,
+                'password' => 'invalid-password',
+            ]);
         }
 
         $response->assertRedirect($this->loginGetRoute());

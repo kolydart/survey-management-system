@@ -5,15 +5,14 @@ namespace Tests\Feature\routes;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class webTest extends TestCase
 {
     use DatabaseTransactions;
     
-    /**
-     * @test
-     */
+    #[Test]
     public function api_routes_are_protected(){
 
         $routes = collect(Route::getRoutes())

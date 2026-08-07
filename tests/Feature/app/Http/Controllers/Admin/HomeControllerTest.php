@@ -4,6 +4,7 @@ namespace Tests\Feature\app\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 /**
@@ -15,18 +16,14 @@ class HomeControllerTest extends TestCase
 
     use DatabaseTransactions;
 
-    /** 
-     * @test
-     */
+    #[Test]
     public function admin_has_access_privileges(){
         $user = $this->login_user('Admin');
         $this->assertTrue($user->can('survey_access'));
         
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_allowed_to_admin()
     {
         $user = $this->login_user('admin');
@@ -38,9 +35,7 @@ class HomeControllerTest extends TestCase
         $response->assertViewHas('questionnaires');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function index_not_allowed_to_guest()
     {
         $response = $this->get(route('admin.home'));
